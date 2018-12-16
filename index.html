@@ -7,10 +7,11 @@
         <link href="css/stack-interface.css" rel="stylesheet" type="text/css" media="all">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <link href="css/stack-interface.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/socicon.css" rel="stylesheet" type="text/css" media="all" />
         <link href="css/theme.css" rel="stylesheet" type="text/css" media="all" />
         <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body data-smooth-scroll-offset="77">
         <div class="nav-container">
@@ -27,35 +28,76 @@
                         </div>
                     </div>
                 </div>
-                <nav id="menu2" class="bar bar-2 hidden-xs bar--absolute">
+                <nav class="bar bar-toggle ">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-lg-2 text-center text-left-sm hidden-xs order-lg-2">
+                        <div class="row align-items-center">
+                            <div class="col-6">
                                 <div class="bar__module">
-                                    <a href="index.html"> <img class="logo logo-dark" alt="logo" src="img/logo-dark.png"> <img class="logo logo-light" alt="logo" src="img/logo-light.png"> </a>
+                                    <a href="index.html">
+                                        <img class="logo logo-dark" alt="logo" src="img/logo-dark.png" />
+                                        <img class="logo logo-light" alt="logo" src="img/logo-light.png" />
+                                    </a>
                                 </div>
                             </div>
-                            <div class="col-lg-5 order-lg-1">
+                            <div class="col-6 d-flex justify-content-end">
                                 <div class="bar__module">
-                                    <ul class="menu-horizontal text-left">
-                                        <li>
-                                            <a href="#workedon">What I've Worked on</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Blog</a>
-                                        </li>
-                                    </ul>
+                                    <div class="modal-instance pull-right">
+                                        <a class="modal-trigger menu-toggle" href="#">
+                                            <i class="stack-interface stack-menu"></i>
+                                        </a>
+                                        <div class="modal-container menu-fullscreen">
+                                            <div class="modal-content" data-width="100%" data-height="100%">
+                                                <div class="pos-vertical-center pos-asbolute text-center">
+                                                    <div class="heading-block">
+                                                        <img alt="Image" src="img/logo-light.png" class="logo image--xs" />
+                                                        <p class="lead">
+                                                            A robust, multipurpose HTML template with
+                                                            <br class="hidden-xs hidden-sm" /> over 290 interface blocks.
+                                                        </p>
+                                                    </div>
+                                                    <ul class="menu-vertical">
+                                                        <li class="h4">
+                                                            <a href="#">Home</a>
+                                                        </li>
+                                                        <li class="h4">
+                                                            <a href="#">What I've Worked on</a>
+                                                        </li>
+                                                        <li class="h4">
+                                                            <a href="#">Contact</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <!--end centered-->
+                                                <div class="pos-absolute pos-bottom text-center">
+                                                    <ul class="social-list list-inline list--hover">
+                                                        <li>
+                                                            <a href="https://github.com/alhazme" target="_blank">
+                                                                <i class="socicon socicon-github icon icon--xs"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="https://instagram.com/alhaz.me" target="_blank">
+                                                                <i class="socicon socicon-instagram icon icon--xs"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="https://twitter.com/aizcheryz" target="_blank">
+                                                                <i class="socicon socicon-twitter icon icon--xs"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="https://www.facebook.com/aizcheryz" target="_blank">
+                                                                <i class="socicon socicon-facebook icon icon--xs"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <p class="type--fine-print type--fade">&copy; <span class="update-year"></span> &mdash; Alhaz.me</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <!--
-                            <div class="col-lg-5 text-right text-left-xs text-left-sm order-lg-3">
-                                <div class="bar__module">
-                                    <a class="btn btn--sm type--uppercase" href="#"> <span class="btn__text">
-                                    Button
-                                </span> </a>
-                                </div>
-                            </div>
-                            -->
                         </div>
                     </div>
                 </nav>
@@ -66,7 +108,7 @@
                 <div class="container">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-md-6 col-lg-5 mt--3">
-                            <h1> Moch. Fariz Al Hazmi</h1>
+                            <h1>Moch. Fariz Al Hazmi</h1>
                             <p class="lead"> Mobile Application Engineer from Malang, Indonesia who focuses on helping your business presence to your customer mobile phone. </p> <span class="block type--fine-print"><br></span> </div>
                         <div class="col-md-6"> <img alt="Image" src="img/portfolio/cover/cover.png"> </div>
                     </div>
@@ -86,9 +128,10 @@
                     <div class="row justify-content-between">
                         <div class="col-lg-5 col-md-7">
                             <div class="mt--2">
-                                <h1> mLis</h1>
+                                <span class="block type--fine-print">Oct 2016 - Nov 2016 at <a href="https://montazze.com/">Montazze Studio</a></span>
+                                <h1>mLis</h1>
                                 <p class="lead"> Mobile application platform by Laboratorium Klinik Sakura for internal purpose.</p>
-                                <a class="btn btn--primary type--uppercase" href="#customise-template"> <span class="btn__text">details<br></span> </a> <span class="block type--fine-print">or <a href="index.html">open in app store</a></span> </div>
+                                <a class="btn btn--primary type--uppercase" href="#customise-template"> <span class="btn__text">See More<br></span> </a> </div>
                         </div>
                         <div class="col-lg-7 col-md-5 col-12"> <img alt="Image" src="img/portfolio/gallery/mlis/mlis-mainmenu.png"> </div>
                     </div>
@@ -99,21 +142,181 @@
                     <div class="row justify-content-between">
                         <div class="col-lg-5 col-md-7">
                             <div class="mt--2">
-                                <h1> Chaterpress</h1>
-                                <p class="lead"> First social photo printing app in Indonesia where you can chat to collaborate, curate and print laid-back photobook from yout social media accounts.</p>
+                                <span class="block type--fine-print">Sep 2016 - Oct 2016 at <a href="https://montazze.com/">Montazze Studio</a></span>
+                                <h1>Lab Sakura</h1>
+                                <p class="lead">Mobile application platform for online clinics operated by Laboratorium Klinik Sakura.</p>
                                 <a class="btn btn--primary type--uppercase" href="#customise-template"> <span class="btn__text">
-							Details</span> </a> <span class="block type--fine-print">or <a href="index.html">iopen in app store</a></span> </div>
+							See More</span> </a> </div>
+                        </div>
+                        <div class="col-lg-7 col-md-5 col-12"> <img alt="Image" src="img/portfolio/gallery/labsakura/labsakura-homeservice.png"> </div>
+                    </div>
+                </div>
+            </section>
+            <section class="switchable switchable--switch">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-5 col-md-7">
+                            <div class="mt--2">
+                                <span class="block type--fine-print">May 2016 at <a href="https://montazze.com/">Montazze Studio</a></span>
+                                <h1>The Graph</h1>
+                                <p class="lead">The most powerfull tools for searching and targeting your market inside Facebook.</p>
+                                <a class="btn btn--primary type--uppercase" href="#customise-template"> <span class="btn__text">
+							See More</span> </a> </div>
+                        </div>
+                        <div class="col-lg-7 col-md-5 col-12"> <img alt="Image" src="img/portfolio/gallery/thegraph/thegraph-searchresult.png"> </div>
+                    </div>
+                </div>
+            </section>
+            <section class="switchable switchable--switch">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-5 col-md-7">
+                            <div class="mt--2">
+                                    <span class="block type--fine-print">Apr 2015 - May 2016 at <a href="https://montazze.com/">Montazze Studio</a></span>
+                                <h1>Chaterpress</h1>
+                                <p class="lead">First social photo printing app in Indonesia where you can chat to collaborate, curate and print laid-back photobook from yout social media accounts.</p>
+                                <a class="btn btn--primary type--uppercase" href="#customise-template"> <span class="btn__text">
+							See More</span> </a> </div>
                         </div>
                         <div class="col-lg-7 col-md-5 col-12"> <img alt="Image" src="img/portfolio/gallery/chaterpress/chaterpress-photobook.png"> </div>
                     </div>
                 </div>
             </section>
+            <section class="switchable switchable--switch">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-5 col-md-7">
+                            <div class="mt--2">
+                                <span class="block type--fine-print">Oct 2015 - Dec 2015 at <a href="https://montazze.com/">Montazze Studio</a></span>
+                                <h1>Shoutter Clock</h1>
+                                <p class="lead">Mobile application platform for online clinics operated by Laboratorium Klinik Sakura.</p>
+                                <a class="btn btn--primary type--uppercase" href="#customise-template"> <span class="btn__text">
+							See More</span> </a> </div>
+                        </div>
+                        <div class="col-lg-7 col-md-5 col-12"> <img alt="Image" src="img/portfolio/gallery/shoutterclock/shoutterclock-dashboard.png"> </div>
+                    </div>
+                </div>
+            </section>
+            <section class="text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 col-lg-8">
+                            <h1 id="#workedon">Recommendations</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class=" ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="slider slider--inline-arrows" data-arrows="true">
+                                <ul class="slides">
+                                    <li>
+                                        <div class="testimonial row justify-content-center">
+                                            <div class="col-lg-2 col-md-4 col-6 text-center">
+                                                <img class="testimonial__image" alt="Image" src="img/omheru.jpg" />
+                                            </div>
+                                            <div class="col-lg-7 col-md-8 col-12">
+                                                <span class="h4 lead">&ldquo;Moch. Fariz or we call him Aiz is a great partner in team work. We have completed many projects together in the last 2 years. What I like from him is he almost never complain about job assignment, good listener and always does his job better from day to day in getting perfection. I've learn many things about mobile development from him that makes me more understand how to design better for mobile application.&rdquo;</span>
+                                                <h5>Heru Herlambang</h5>
+                                                <span>Self-taught UX Designer &nbsp; Design Thinking Advocate</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--
+            <section class="space--sm unpad--bottom text-center testimonial testimonial-1 ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-5">
+                            <img alt="Image" src="img/omheru.jpg" />
+                        </div>
+                        <div class="col-md-6">
+                            <blockquote>
+                                &ldquo;Moch. Fariz or we call him Aiz is a great partner in team work. We have completed many projects together in the last 2 years. What I like from him is he almost never complain about job assignment, good listener and always does his job better from day to day in getting perfection. I've learn many things about mobile development from him that makes me more understand how to design better for mobile application.&rdquo;
+                            </blockquote>
+                            <h5>Heru Herlambang</h5>
+                            <span>Self-taught UX Designer &nbsp; Design Thinking Advocate</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            -->
+            <footer class="text-center space--sm footer-5  ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="heading-block">
+                                <ul class="list-inline list--hover">
+                                    <li>
+                                        <a href="#">
+                                            <span>What I've Worked on</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>Blog</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>Work With Me</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="social-list list-inline list--hover">
+                                    <li>
+                                        <a href="https://github.com/alhazme" target="_blank">
+                                            <i class="socicon socicon-github icon icon--xs"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://instagram.com/alhaz.me" target="_blank">
+                                            <i class="socicon socicon-instagram icon icon--xs"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://twitter.com/aizcheryz" target="_blank">
+                                            <i class="socicon socicon-twitter icon icon--xs"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.facebook.com/aizcheryz" target="_blank">
+                                            <i class="socicon socicon-facebook icon icon--xs"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--
+                            <div>
+                                <span class="type--fine-print">Made in Malang</span>
+                                <img alt="Image" class="flag" src="img/indonesia-flag.png" />
+                            </div>
+                            -->
+                            <div>
+                                <span class="type--fine-print">&copy;
+                                <span class="update-year"></span> &mdash; Alhaz.me</span>
+                                <!--
+                                <a class="type--fine-print" href="#">Privacy Policy</a>
+                                <a class="type--fine-print" href="#">Legal</a>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
         <script src="js/jquery-3.1.1.min.js"></script>
         <script src="js/parallax.js"></script>
         <script src="js/smooth-scroll.min.js"></script>
         <script src="js/scripts.js"></script>
-
     </body>
-
 </html>
