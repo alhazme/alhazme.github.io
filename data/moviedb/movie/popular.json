@@ -24,7 +24,7 @@
         "adult": false,
         "overview": "Simba idolises his father, King Mufasa, and takes to heart his own royal destiny. But not everyone in the kingdom celebrates the new cub's arrival. Scar, Mufasa's brother—and former heir to the throne—has plans of his own. The battle for Pride Rock is ravaged with betrayal, tragedy and drama, ultimately resulting in Simba's exile. With help from a curious pair of newfound friends, Simba will have to figure out how to grow up and take back what is rightfully his.",
         "release_date": "2019-07-12",
-        "order": 1
+        "sequence": 1
       },
       {
         "vote_count": 24,
@@ -47,7 +47,7 @@
         "adult": false,
         "overview": "23rd movie in the \"Detective Conan\" franchise.",
         "release_date": "2019-04-12",
-        "order": 2
+        "sequence": 2
       },
       {
         "vote_count": 2399,
@@ -68,7 +68,7 @@
         "adult": false,
         "overview": "Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest - Peter will have to agree to help Nick Fury uncover the mystery of creatures that cause natural disasters and destruction throughout the continent.",
         "release_date": "2019-06-28",
-        "order": 3
+        "sequence": 3
       },
       {
         "vote_count": 1,
@@ -89,7 +89,7 @@
         "adult": false,
         "overview": "While playing videogames Mike spots a mysterious masked man outside his building.",
         "release_date": "2019-07-19",
-        "order": 4
+        "sequence": 4
       },
       {
         "vote_count": 1764,
@@ -110,7 +110,7 @@
         "adult": false,
         "overview": "In a world where people collect pocket-size monsters (Pokémon) to do battle, a boy comes across an intelligent monster who seeks to be a detective.",
         "release_date": "2019-05-03",
-        "order": 5
+        "sequence": 5
       },
       {
         "vote_count": 2745,
@@ -132,7 +132,7 @@
         "adult": false,
         "overview": "When Alita awakens with no memory of who she is in a future world she does not recognize, she is taken in by Ido, a compassionate doctor who realizes that somewhere in this abandoned cyborg shell is the heart and soul of a young woman with an extraordinary past.",
         "release_date": "2019-01-31",
-        "order": 6
+        "sequence": 6
       },
       {
         "vote_count": 1575,
@@ -154,7 +154,7 @@
         "adult": false,
         "overview": "Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called \"Forky\" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.",
         "release_date": "2019-06-19",
-        "order": 7
+        "sequence": 7
       },
       {
         "vote_count": 3,
@@ -174,7 +174,7 @@
         "adult": false,
         "overview": "Princes who have been turned into Dwarfs seek the red shoes of a lady in order to break the spell, although it will not be easy.",
         "release_date": "2019-07-25",
-        "order": 8
+        "sequence": 8
       },
       {
         "vote_count": 6520,
@@ -195,7 +195,7 @@
         "adult": false,
         "overview": "The story follows Carol Danvers as she becomes one of the universe’s most powerful heroes when Earth is caught in the middle of a galactic war between two alien races. Set in the 1990s, Captain Marvel is an all-new adventure from a previously unseen period in the history of the Marvel Cinematic Universe.",
         "release_date": "2019-03-06",
-        "order": 9
+        "sequence": 9
       },
       {
         "vote_count": 560,
@@ -217,7 +217,7 @@
         "adult": false,
         "overview": "The Men in Black have always protected the Earth from the scum of the universe. In this new adventure, they tackle their biggest, most global threat to date: a mole in the Men in Black organization.",
         "release_date": "2019-06-12",
-        "order": 10
+        "sequence": 10
       },
       {
         "vote_count": 7954,
@@ -238,7 +238,7 @@
         "adult": false,
         "overview": "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
         "release_date": "2019-04-24",
-        "order": 11
+        "sequence": 11
       },
       {
         "vote_count": 7774,
@@ -260,7 +260,7 @@
         "adult": false,
         "overview": "Lightning McQueen, a hotshot rookie race car driven to succeed, discovers that life is about the journey, not the finish line, when he finds himself unexpectedly detoured in the sleepy Route 66 town of Radiator Springs. On route across the country to the big Piston Cup Championship in California to compete against two seasoned pros, McQueen gets to know the town's offbeat characters.",
         "release_date": "2006-06-08",
-        "order": 12
+        "sequence": 12
       },
       {
         "vote_count": 2628,
@@ -281,7 +281,7 @@
         "adult": false,
         "overview": "A boy is given the ability to become an adult superhero in times of need with a single magic word.",
         "release_date": "2019-03-23",
-        "order": 13
+        "sequence": 13
       },
       {
         "vote_count": 232,
@@ -301,7 +301,7 @@
         "adult": false,
         "overview": "When Fred Flarsky reunites with and charms his first crush, Charlotte Field—one of the most influential women in the world. As Charlotte prepares to make a run for the Presidency, she hires Fred as her speechwriter and sparks fly.",
         "release_date": "2019-05-02",
-        "order": 14
+        "sequence": 14
       },
       {
         "vote_count": 740,
@@ -324,7 +324,7 @@
         "adult": false,
         "overview": "Hellboy comes to England, where he must defeat Nimue, Merlin's consort and the Blood Queen. But their battle will bring about the end of the world, a fate he desperately tries to turn away.",
         "release_date": "2019-04-10",
-        "order": 15
+        "sequence": 15
       },
       {
         "vote_count": 42,
@@ -347,7 +347,7 @@
         "adult": false,
         "overview": "A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age in 1969 Los Angeles.",
         "release_date": "2019-07-25",
-        "order": 16
+        "sequence": 16
       },
       {
         "vote_count": 1652,
@@ -368,7 +368,7 @@
         "adult": false,
         "overview": "Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn.",
         "release_date": "2019-05-15",
-        "order": 17
+        "sequence": 17
       },
       {
         "vote_count": 11,
@@ -387,7 +387,7 @@
         "adult": false,
         "overview": "Ellie and Jake fall in love, but struggle with their relationship when they discover an unexpected connection between their pasts.",
         "release_date": "2018-10-10",
-        "order": 18
+        "sequence": 18
       },
       {
         "vote_count": 107,
@@ -408,7 +408,7 @@
         "adult": false,
         "overview": "While struggling to save her father during a Category 5 hurricane, a young woman finds herself trapped inside a flooding house and fighting for her life against Florida’s most savage and feared predators.",
         "release_date": "2019-07-11",
-        "order": 19
+        "sequence": 19
       },
       {
         "vote_count": 14528,
@@ -429,7 +429,7 @@
         "adult": false,
         "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
         "release_date": "2018-04-25",
-        "order": 20
+        "sequence": 20
       }
     ]
   }

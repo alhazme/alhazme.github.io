@@ -22,7 +22,7 @@
             "vote_average": 7.6,
             "overview": "David Haller, AKA Legion, is a troubled young man who may be more than human. Diagnosed as schizophrenic, David has been in and out of psychiatric hospitals for years. But after a strange encounter with a fellow patient, he’s confronted with the possibility that the voices he hears and the visions he sees might be real.",
             "poster_path": "/vT0Zsbm4GWd7llNjgWEtwY0CqOv.jpg",
-            "order": 1
+            "sequence": 1
         },
         {
             "original_name": "The Flash",
@@ -43,7 +43,7 @@
             "vote_average": 6.7,
             "overview": "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \"meta-human\" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become...The Flash.",
             "poster_path": "/fki3kBlwJzFp8QohL43g9ReV455.jpg",
-            "order": 2
+            "sequence": 2
         },
         {
             "original_name": "La casa de papel",
@@ -64,7 +64,7 @@
             "vote_average": 8.1,
             "overview": "To carry out the biggest heist in history, a mysterious man called The Professor recruits a band of eight robbers who have a single characteristic: none of them has anything to lose. Five months of seclusion - memorizing every step, every detail, every probability - culminate in eleven days locked up in the National Coinage and Stamp Factory of Spain, surrounded by police forces and with dozens of hostages in their power, to find out whether their suicide wager will lead to everything or nothing.",
             "poster_path": "/MoEKaPFHABtA1xKoOteirGaHl1.jpg",
-            "order": 3
+            "sequence": 3
         },
         {
             "original_name": "Arrow",
@@ -87,7 +87,7 @@
             "vote_average": 5.8,
             "overview": "Spoiled billionaire playboy Oliver Queen is missing and presumed dead when his yacht is lost at sea. He returns five years later a changed man, determined to clean up the city as a hooded vigilante armed with a bow.",
             "poster_path": "/mo0FP1GxOFZT4UDde7RFDz5APXF.jpg",
-            "order": 4
+            "sequence": 4
         },
         {
             "original_name": "Crímenes que cambiaron la historia",
@@ -108,7 +108,7 @@
             "vote_average": 3.5,
             "overview": "",
             "poster_path": "/fMgPDXqSL4XILb0RKSXpDqc5tJ9.jpg",
-            "order": 5
+            "sequence": 5
         },
         {
             "original_name": "Pandora",
@@ -127,7 +127,7 @@
             "vote_average": 6.3,
             "overview": "In the year 2199, a young woman who has lost everything finds a new life at Earth's Space Training Academy where she learns to defend the galaxy from intergalactic threats.",
             "poster_path": "/tPsvhL45f1AjES5rycFIxnbaH8v.jpg",
-            "order": 6
+            "sequence": 6
         },
         {
             "original_name": "Stranger Things",
@@ -149,7 +149,7 @@
             "vote_average": 8.3,
             "overview": "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.",
             "poster_path": "/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",
-            "order": 7
+            "sequence": 7
         },
         {
             "original_name": "The 100",
@@ -170,7 +170,7 @@
             "vote_average": 6.5,
             "overview": "100 years in the future, when the Earth has been abandoned due to radioactivity, the last surviving humans live on an ark orbiting the planet — but the ark won't last forever. So the repressive regime picks 100 expendable juvenile delinquents to send down to Earth to see if the planet is still habitable.",
             "poster_path": "/wBzNjurA8ijJPF21Ggs9nbviIzi.jpg",
-            "order": 8
+            "sequence": 8
         },
         {
             "original_name": "Grey's Anatomy",
@@ -190,7 +190,7 @@
             "vote_average": 6.3,
             "overview": "Follows the personal and professional lives of a group of doctors at Seattle’s Grey Sloan Memorial Hospital.",
             "poster_path": "/eqgIOObafPJitt8JNh1LuO2fvqu.jpg",
-            "order": 9
+            "sequence": 9
         },
         {
             "original_name": "Family Guy",
@@ -211,7 +211,7 @@
             "vote_average": 6.5,
             "overview": "Sick, twisted, politically incorrect and Freakin' Sweet animated series featuring the adventures of the dysfunctional Griffin family. Bumbling Peter and long-suffering Lois have three kids. Stewie (a brilliant but sadistic baby bent on killing his mother and taking over the world), Meg (the oldest, and is the most unpopular girl in town) and Chris (the middle kid, he's not very bright but has a passion for movies). The final member of the family is Brian - a talking dog and much more than a pet, he keeps Stewie in check whilst sipping Martinis and sorting through his own life issues.",
             "poster_path": "/gBGUL1UTUNmdRQT8gA1LUV4yg39.jpg",
-            "order": 10
+            "sequence": 10
         },
         {
             "original_name": "Murder, She Wrote",
@@ -233,7 +233,7 @@
             "vote_average": 7.1,
             "overview": "An unassuming mystery writer turned sleuth uses her professional insight to help solve real-life homicide cases.",
             "poster_path": "/j6DC2Xe0SZS6xKS2d6LWL1EGwzX.jpg",
-            "order": 11
+            "sequence": 11
         },
         {
             "original_name": "ワンパンマン",
@@ -255,7 +255,7 @@
             "vote_average": 8,
             "overview": "Saitama is a hero who only became a hero for fun. After three years of “special” training, though, he’s become so strong that he’s practically invincible. In fact, he’s too strong—even his mightiest opponents are taken out with a single punch, and it turns out that being devastatingly powerful is actually kind of a bore. With his passion for being a hero lost along with his hair, yet still faced with new enemies every day, how much longer can he keep it going?",
             "poster_path": "/iE3s0lG5QVdEHOEZnoAxjmMtvne.jpg",
-            "order": 12
+            "sequence": 12
         },
         {
             "original_name": "Fear the Walking Dead",
@@ -276,7 +276,7 @@
             "vote_average": 6.3,
             "overview": "What did the world look like as it was transforming into the horrifying apocalypse depicted in \"The Walking Dead\"? This spin-off set in Los Angeles, following new characters as they face the beginning of the end of the world, will answer that question.",
             "poster_path": "/aOdTWn8dXlS0tA5xl0ZBr8Ws15R.jpg",
-            "order": 13
+            "sequence": 13
         },
         {
             "original_name": "The Simpsons",
@@ -297,7 +297,7 @@
             "vote_average": 7.1,
             "overview": "Set in Springfield, the average American town, the show focuses on the antics and everyday adventures of the Simpson family; Homer, Marge, Bart, Lisa and Maggie, as well as a virtual cast of thousands. Since the beginning, the series has been a pop culture icon, attracting hundreds of celebrities to guest star. The show has also made name for itself in its fearless satirical take on politics, media and American life in general.",
             "poster_path": "/yTZQkSsxUFJZJe67IenRM0AEklc.jpg",
-            "order": 14
+            "sequence": 14
         },
         {
             "original_name": "ありふれた職業で世界最強",
@@ -319,7 +319,7 @@
             "vote_average": 5.3,
             "overview": "Seventeen-year-old Hajime Nagumo is your average, everyday otaku. However, his simple life of pulling all-nighters and sleeping in school is suddenly turned upside down when he, along with the rest of his class, is summoned to a fantasy world! They're treated like heroes and tasked with the duty of saving the human race from utter extinction. But what should have been any otaku's wet dream quickly turns into Hajime's nightmare. While the rest of his class are blessed with godlike powers, Hajime's job, Synergist, only has a single transmutation skill. Ridiculed and bullied by his classmates for being weak, he soon finds himself in despair. Will he be able to survive in this dangerous world of monsters and demons with only a glorified blacksmith's level of strength?",
             "poster_path": "/cmMh8awgtRvLUKmYvIXtVCYINIv.jpg",
-            "order": 15
+            "sequence": 15
         },
         {
             "original_name": "Marvel's Agents of S.H.I.E.L.D.",
@@ -341,7 +341,7 @@
             "vote_average": 6.8,
             "overview": "Agent Phil Coulson of S.H.I.E.L.D. (Strategic Homeland Intervention, Enforcement and Logistics Division) puts together a team of agents to investigate the new, the strange and the unknown around the globe, protecting the ordinary from the extraordinary.",
             "poster_path": "/cXiETfFK1BTLest5fhTLfDLRdL6.jpg",
-            "order": 16
+            "sequence": 16
         },
         {
             "original_name": "ドクターストーン",
@@ -362,7 +362,7 @@
             "vote_average": 6.3,
             "overview": "The science-fiction adventure follows two boys struggle to revive humanity after a mysterious crisis has left everyone in the world turned to stone for several millennia.",
             "poster_path": "/dLlnzbDCblBXcJqFLXyvN43NIwp.jpg",
-            "order": 17
+            "sequence": 17
         },
         {
             "original_name": "Supernatural",
@@ -384,7 +384,7 @@
             "vote_average": 7.3,
             "overview": "When they were boys, Sam and Dean Winchester lost their mother to a mysterious and demonic supernatural force. Subsequently, their father raised them to be soldiers. He taught them about the paranormal evil that lives in the dark corners and on the back roads of America ... and he taught them how to kill it. Now, the Winchester brothers crisscross the country in their '67 Chevy Impala, battling every kind of supernatural threat they encounter along the way. ",
             "poster_path": "/3iFm6Kz7iYoFaEcj4fLyZHAmTQA.jpg",
-            "order": 18
+            "sequence": 18
         },
         {
             "original_name": "Gotham",
@@ -406,7 +406,7 @@
             "vote_average": 6.8,
             "overview": "Before there was Batman, there was GOTHAM. \n\nEveryone knows the name Commissioner Gordon. He is one of the crime world's greatest foes, a man whose reputation is synonymous with law and order. But what is known of Gordon's story and his rise from rookie detective to Police Commissioner? What did it take to navigate the multiple layers of corruption that secretly ruled Gotham City, the spawning ground of the world's most iconic villains? And what circumstances created them – the larger-than-life personas who would become Catwoman, The Penguin, The Riddler, Two-Face and The Joker? ",
             "poster_path": "/4XddcRDtnNjYmLRMYpbrhFxsbuq.jpg",
-            "order": 19
+            "sequence": 19
         },
         {
             "original_name": "異世界チート魔術師",
@@ -428,7 +428,7 @@
             "vote_average": 6.8,
             "overview": "As regular high school students Taichi and Rin disappeared in a beam of light. When they came to, the two of them were already in a world of swords and magic. Finally getting away after experiencing an attack by monsters, following the suggestion of adventurers they headed on the path towards the guild. In the guild, the two of them found out that they possessed unbelievably powerful magic. Thus the regular high school students transformed into the strongest cheats...",
             "poster_path": "/bda9my9vSL78zO40hcHLzb0Ae4t.jpg",
-            "order": 20
+            "sequence": 20
         }
     ]
 }
