@@ -4,67 +4,69 @@
     "total_pages": 1000,
     "results": [
         {
-            "original_name": "Legion",
+            "original_name": "The Simpsons",
             "genre_ids": [
+                16,
+                35
+            ],
+            "name": "The Simpsons",
+            "popularity": 151.261,
+            "origin_country": [
+                "US"
+            ],
+            "vote_count": 2060,
+            "first_air_date": "1989-12-17",
+            "backdrop_path": "/1pP0gg0iNGX06wSs19EQOvzfZIF.jpg",
+            "original_language": "en",
+            "id": 456,
+            "vote_average": 7.1,
+            "overview": "Set in Springfield, the average American town, the show focuses on the antics and everyday adventures of the Simpson family; Homer, Marge, Bart, Lisa and Maggie, as well as a virtual cast of thousands. Since the beginning, the series has been a pop culture icon, attracting hundreds of celebrities to guest star. The show has also made name for itself in its fearless satirical take on politics, media and American life in general.",
+            "poster_path": "/yTZQkSsxUFJZJe67IenRM0AEklc.jpg",
+            "sequence": 14
+        },
+        {
+            "original_name": "Murder, She Wrote",
+            "genre_ids": [
+                80,
+                18,
+                9648
+            ],
+            "name": "Murder, She Wrote",
+            "popularity": 158.592,
+            "origin_country": [
+                "US"
+            ],
+            "vote_count": 83,
+            "first_air_date": "1984-09-30",
+            "backdrop_path": "/5M8bF0BwBk6RtJVrvpS9zj2bcxM.jpg",
+            "original_language": "en",
+            "id": 484,
+            "vote_average": 7.1,
+            "overview": "An unassuming mystery writer turned sleuth uses her professional insight to help solve real-life homicide cases.",
+            "poster_path": "/j6DC2Xe0SZS6xKS2d6LWL1EGwzX.jpg",
+            "sequence": 11
+        },
+        {
+            "original_name": "Marvel's Agents of S.H.I.E.L.D.",
+            "genre_ids": [
+                18,
                 10759,
                 10765
             ],
-            "name": "Legion",
-            "popularity": 275.145,
+            "name": "Marvel's Agents of S.H.I.E.L.D.",
+            "popularity": 147.503,
             "origin_country": [
                 "US"
             ],
-            "vote_count": 581,
-            "first_air_date": "2017-02-08",
-            "backdrop_path": "/87eP7ITTrOWvkA4EqCuoRdyjzLy.jpg",
+            "vote_count": 1328,
+            "first_air_date": "2013-09-24",
+            "backdrop_path": "/iWopHyAvuIDjGX10Yc3nn6UEebW.jpg",
             "original_language": "en",
-            "id": 67195,
-            "vote_average": 7.6,
-            "overview": "David Haller, AKA Legion, is a troubled young man who may be more than human. Diagnosed as schizophrenic, David has been in and out of psychiatric hospitals for years. But after a strange encounter with a fellow patient, he’s confronted with the possibility that the voices he hears and the visions he sees might be real.",
-            "poster_path": "/vT0Zsbm4GWd7llNjgWEtwY0CqOv.jpg",
-            "sequence": 1
-        },
-        {
-            "original_name": "The Flash",
-            "genre_ids": [
-                18,
-                10765
-            ],
-            "name": "The Flash",
-            "popularity": 273.813,
-            "origin_country": [
-                "US"
-            ],
-            "vote_count": 2749,
-            "first_air_date": "2014-10-07",
-            "backdrop_path": "/jC1KqsFx8ZyqJyQa2Ohi7xgL7XC.jpg",
-            "original_language": "en",
-            "id": 60735,
-            "vote_average": 6.7,
-            "overview": "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \"meta-human\" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become...The Flash.",
-            "poster_path": "/fki3kBlwJzFp8QohL43g9ReV455.jpg",
-            "sequence": 2
-        },
-        {
-            "original_name": "La casa de papel",
-            "genre_ids": [
-                80,
-                18
-            ],
-            "name": "Money Heist",
-            "popularity": 261.812,
-            "origin_country": [
-                "ES"
-            ],
-            "vote_count": 422,
-            "first_air_date": "2017-05-02",
-            "backdrop_path": "/piuRhGiQBYWgW668eSNJ2ug5uAO.jpg",
-            "original_language": "es",
-            "id": 71446,
-            "vote_average": 8.1,
-            "overview": "To carry out the biggest heist in history, a mysterious man called The Professor recruits a band of eight robbers who have a single characteristic: none of them has anything to lose. Five months of seclusion - memorizing every step, every detail, every probability - culminate in eleven days locked up in the National Coinage and Stamp Factory of Spain, surrounded by police forces and with dozens of hostages in their power, to find out whether their suicide wager will lead to everything or nothing.",
-            "poster_path": "/MoEKaPFHABtA1xKoOteirGaHl1.jpg",
-            "sequence": 3
+            "id": 1403,
+            "vote_average": 6.8,
+            "overview": "Agent Phil Coulson of S.H.I.E.L.D. (Strategic Homeland Intervention, Enforcement and Logistics Division) puts together a team of agents to investigate the new, the strange and the unknown around the globe, protecting the ordinary from the extraordinary.",
+            "poster_path": "/cXiETfFK1BTLest5fhTLfDLRdL6.jpg",
+            "sequence": 16
         },
         {
             "original_name": "Arrow",
@@ -88,89 +90,6 @@
             "overview": "Spoiled billionaire playboy Oliver Queen is missing and presumed dead when his yacht is lost at sea. He returns five years later a changed man, determined to clean up the city as a hooded vigilante armed with a bow.",
             "poster_path": "/mo0FP1GxOFZT4UDde7RFDz5APXF.jpg",
             "sequence": 4
-        },
-        {
-            "original_name": "Crímenes que cambiaron la historia",
-            "genre_ids": [
-                99,
-                10767
-            ],
-            "name": "Crímenes que cambiaron la historia",
-            "popularity": 234.946,
-            "origin_country": [
-                "ES"
-            ],
-            "vote_count": 6,
-            "first_air_date": "2019-01-22",
-            "backdrop_path": "/fngq96eBFAlXuqUzzKuxCi0ytsB.jpg",
-            "original_language": "es",
-            "id": 86816,
-            "vote_average": 3.5,
-            "overview": "",
-            "poster_path": "/fMgPDXqSL4XILb0RKSXpDqc5tJ9.jpg",
-            "sequence": 5
-        },
-        {
-            "original_name": "Pandora",
-            "genre_ids": [
-                10759,
-                10765
-            ],
-            "name": "Pandora",
-            "popularity": 198.352,
-            "origin_country": [],
-            "vote_count": 6,
-            "first_air_date": "2019-07-16",
-            "backdrop_path": "/dUn5B2B5BaM2de21Z3fZP79NK4m.jpg",
-            "original_language": "en",
-            "id": 90670,
-            "vote_average": 6.3,
-            "overview": "In the year 2199, a young woman who has lost everything finds a new life at Earth's Space Training Academy where she learns to defend the galaxy from intergalactic threats.",
-            "poster_path": "/tPsvhL45f1AjES5rycFIxnbaH8v.jpg",
-            "sequence": 6
-        },
-        {
-            "original_name": "Stranger Things",
-            "genre_ids": [
-                18,
-                9648,
-                10765
-            ],
-            "name": "Stranger Things",
-            "popularity": 194.726,
-            "origin_country": [
-                "US"
-            ],
-            "vote_count": 2446,
-            "first_air_date": "2016-07-15",
-            "backdrop_path": "/56v2KjBlU4XaOv9rVYEQypROD7P.jpg",
-            "original_language": "en",
-            "id": 66732,
-            "vote_average": 8.3,
-            "overview": "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.",
-            "poster_path": "/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",
-            "sequence": 7
-        },
-        {
-            "original_name": "The 100",
-            "genre_ids": [
-                18,
-                10765
-            ],
-            "name": "The 100",
-            "popularity": 188.797,
-            "origin_country": [
-                "US"
-            ],
-            "vote_count": 1605,
-            "first_air_date": "2014-03-19",
-            "backdrop_path": "/qYTIuJJ7fIehicAt3bl0vW70Sq6.jpg",
-            "original_language": "en",
-            "id": 48866,
-            "vote_average": 6.5,
-            "overview": "100 years in the future, when the Earth has been abandoned due to radioactivity, the last surviving humans live on an ark orbiting the planet — but the ark won't last forever. So the repressive regime picks 100 expendable juvenile delinquents to send down to Earth to see if the planet is still habitable.",
-            "poster_path": "/wBzNjurA8ijJPF21Ggs9nbviIzi.jpg",
-            "sequence": 8
         },
         {
             "original_name": "Grey's Anatomy",
@@ -214,157 +133,6 @@
             "sequence": 10
         },
         {
-            "original_name": "Murder, She Wrote",
-            "genre_ids": [
-                80,
-                18,
-                9648
-            ],
-            "name": "Murder, She Wrote",
-            "popularity": 158.592,
-            "origin_country": [
-                "US"
-            ],
-            "vote_count": 83,
-            "first_air_date": "1984-09-30",
-            "backdrop_path": "/5M8bF0BwBk6RtJVrvpS9zj2bcxM.jpg",
-            "original_language": "en",
-            "id": 484,
-            "vote_average": 7.1,
-            "overview": "An unassuming mystery writer turned sleuth uses her professional insight to help solve real-life homicide cases.",
-            "poster_path": "/j6DC2Xe0SZS6xKS2d6LWL1EGwzX.jpg",
-            "sequence": 11
-        },
-        {
-            "original_name": "ワンパンマン",
-            "genre_ids": [
-                16,
-                35,
-                10759
-            ],
-            "name": "One-Punch Man",
-            "popularity": 156.695,
-            "origin_country": [
-                "JP"
-            ],
-            "vote_count": 439,
-            "first_air_date": "2015-10-04",
-            "backdrop_path": "/s0w8JbuNNxL1YgaHeDWih12C3jG.jpg",
-            "original_language": "ja",
-            "id": 63926,
-            "vote_average": 8,
-            "overview": "Saitama is a hero who only became a hero for fun. After three years of “special” training, though, he’s become so strong that he’s practically invincible. In fact, he’s too strong—even his mightiest opponents are taken out with a single punch, and it turns out that being devastatingly powerful is actually kind of a bore. With his passion for being a hero lost along with his hair, yet still faced with new enemies every day, how much longer can he keep it going?",
-            "poster_path": "/iE3s0lG5QVdEHOEZnoAxjmMtvne.jpg",
-            "sequence": 12
-        },
-        {
-            "original_name": "Fear the Walking Dead",
-            "genre_ids": [
-                18,
-                27
-            ],
-            "name": "Fear the Walking Dead",
-            "popularity": 151.641,
-            "origin_country": [
-                "US"
-            ],
-            "vote_count": 967,
-            "first_air_date": "2015-08-23",
-            "backdrop_path": "/7r4FieFH6Eh6S55hi8c9LOiFENg.jpg",
-            "original_language": "en",
-            "id": 62286,
-            "vote_average": 6.3,
-            "overview": "What did the world look like as it was transforming into the horrifying apocalypse depicted in \"The Walking Dead\"? This spin-off set in Los Angeles, following new characters as they face the beginning of the end of the world, will answer that question.",
-            "poster_path": "/aOdTWn8dXlS0tA5xl0ZBr8Ws15R.jpg",
-            "sequence": 13
-        },
-        {
-            "original_name": "The Simpsons",
-            "genre_ids": [
-                16,
-                35
-            ],
-            "name": "The Simpsons",
-            "popularity": 151.261,
-            "origin_country": [
-                "US"
-            ],
-            "vote_count": 2060,
-            "first_air_date": "1989-12-17",
-            "backdrop_path": "/1pP0gg0iNGX06wSs19EQOvzfZIF.jpg",
-            "original_language": "en",
-            "id": 456,
-            "vote_average": 7.1,
-            "overview": "Set in Springfield, the average American town, the show focuses on the antics and everyday adventures of the Simpson family; Homer, Marge, Bart, Lisa and Maggie, as well as a virtual cast of thousands. Since the beginning, the series has been a pop culture icon, attracting hundreds of celebrities to guest star. The show has also made name for itself in its fearless satirical take on politics, media and American life in general.",
-            "poster_path": "/yTZQkSsxUFJZJe67IenRM0AEklc.jpg",
-            "sequence": 14
-        },
-        {
-            "original_name": "ありふれた職業で世界最強",
-            "genre_ids": [
-                16,
-                10759,
-                10765
-            ],
-            "name": "Arifureta: From Commonplace to World's Strongest",
-            "popularity": 147.948,
-            "origin_country": [
-                "JP"
-            ],
-            "vote_count": 8,
-            "first_air_date": "2019-07-08",
-            "backdrop_path": "/1lL1ts7dzTUp0eOTHvMqfw6zFJn.jpg",
-            "original_language": "ja",
-            "id": 86034,
-            "vote_average": 5.3,
-            "overview": "Seventeen-year-old Hajime Nagumo is your average, everyday otaku. However, his simple life of pulling all-nighters and sleeping in school is suddenly turned upside down when he, along with the rest of his class, is summoned to a fantasy world! They're treated like heroes and tasked with the duty of saving the human race from utter extinction. But what should have been any otaku's wet dream quickly turns into Hajime's nightmare. While the rest of his class are blessed with godlike powers, Hajime's job, Synergist, only has a single transmutation skill. Ridiculed and bullied by his classmates for being weak, he soon finds himself in despair. Will he be able to survive in this dangerous world of monsters and demons with only a glorified blacksmith's level of strength?",
-            "poster_path": "/cmMh8awgtRvLUKmYvIXtVCYINIv.jpg",
-            "sequence": 15
-        },
-        {
-            "original_name": "Marvel's Agents of S.H.I.E.L.D.",
-            "genre_ids": [
-                18,
-                10759,
-                10765
-            ],
-            "name": "Marvel's Agents of S.H.I.E.L.D.",
-            "popularity": 147.503,
-            "origin_country": [
-                "US"
-            ],
-            "vote_count": 1328,
-            "first_air_date": "2013-09-24",
-            "backdrop_path": "/iWopHyAvuIDjGX10Yc3nn6UEebW.jpg",
-            "original_language": "en",
-            "id": 1403,
-            "vote_average": 6.8,
-            "overview": "Agent Phil Coulson of S.H.I.E.L.D. (Strategic Homeland Intervention, Enforcement and Logistics Division) puts together a team of agents to investigate the new, the strange and the unknown around the globe, protecting the ordinary from the extraordinary.",
-            "poster_path": "/cXiETfFK1BTLest5fhTLfDLRdL6.jpg",
-            "sequence": 16
-        },
-        {
-            "original_name": "ドクターストーン",
-            "genre_ids": [
-                16,
-                10759
-            ],
-            "name": "Dr. Stone",
-            "popularity": 140.797,
-            "origin_country": [
-                "JP"
-            ],
-            "vote_count": 13,
-            "first_air_date": "2019-07-05",
-            "backdrop_path": "/1Ep6YHL5QcrNC1JN6RYalWRPopi.jpg",
-            "original_language": "ja",
-            "id": 86031,
-            "vote_average": 6.3,
-            "overview": "The science-fiction adventure follows two boys struggle to revive humanity after a mysterious crisis has left everyone in the world turned to stone for several millennia.",
-            "poster_path": "/dLlnzbDCblBXcJqFLXyvN43NIwp.jpg",
-            "sequence": 17
-        },
-        {
             "original_name": "Supernatural",
             "genre_ids": [
                 18,
@@ -385,6 +153,27 @@
             "overview": "When they were boys, Sam and Dean Winchester lost their mother to a mysterious and demonic supernatural force. Subsequently, their father raised them to be soldiers. He taught them about the paranormal evil that lives in the dark corners and on the back roads of America ... and he taught them how to kill it. Now, the Winchester brothers crisscross the country in their '67 Chevy Impala, battling every kind of supernatural threat they encounter along the way. ",
             "poster_path": "/3iFm6Kz7iYoFaEcj4fLyZHAmTQA.jpg",
             "sequence": 18
+        },
+        {
+            "original_name": "The 100",
+            "genre_ids": [
+                18,
+                10765
+            ],
+            "name": "The 100",
+            "popularity": 188.797,
+            "origin_country": [
+                "US"
+            ],
+            "vote_count": 1605,
+            "first_air_date": "2014-03-19",
+            "backdrop_path": "/qYTIuJJ7fIehicAt3bl0vW70Sq6.jpg",
+            "original_language": "en",
+            "id": 48866,
+            "vote_average": 6.5,
+            "overview": "100 years in the future, when the Earth has been abandoned due to radioactivity, the last surviving humans live on an ark orbiting the planet — but the ark won't last forever. So the repressive regime picks 100 expendable juvenile delinquents to send down to Earth to see if the planet is still habitable.",
+            "poster_path": "/wBzNjurA8ijJPF21Ggs9nbviIzi.jpg",
+            "sequence": 8
         },
         {
             "original_name": "Gotham",
@@ -409,6 +198,198 @@
             "sequence": 19
         },
         {
+            "original_name": "The Flash",
+            "genre_ids": [
+                18,
+                10765
+            ],
+            "name": "The Flash",
+            "popularity": 273.813,
+            "origin_country": [
+                "US"
+            ],
+            "vote_count": 2749,
+            "first_air_date": "2014-10-07",
+            "backdrop_path": "/jC1KqsFx8ZyqJyQa2Ohi7xgL7XC.jpg",
+            "original_language": "en",
+            "id": 60735,
+            "vote_average": 6.7,
+            "overview": "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \"meta-human\" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become...The Flash.",
+            "poster_path": "/fki3kBlwJzFp8QohL43g9ReV455.jpg",
+            "sequence": 2
+        },
+        {
+            "original_name": "Fear the Walking Dead",
+            "genre_ids": [
+                18,
+                27
+            ],
+            "name": "Fear the Walking Dead",
+            "popularity": 151.641,
+            "origin_country": [
+                "US"
+            ],
+            "vote_count": 967,
+            "first_air_date": "2015-08-23",
+            "backdrop_path": "/7r4FieFH6Eh6S55hi8c9LOiFENg.jpg",
+            "original_language": "en",
+            "id": 62286,
+            "vote_average": 6.3,
+            "overview": "What did the world look like as it was transforming into the horrifying apocalypse depicted in \"The Walking Dead\"? This spin-off set in Los Angeles, following new characters as they face the beginning of the end of the world, will answer that question.",
+            "poster_path": "/aOdTWn8dXlS0tA5xl0ZBr8Ws15R.jpg",
+            "sequence": 13
+        },
+        {
+            "original_name": "ワンパンマン",
+            "genre_ids": [
+                16,
+                35,
+                10759
+            ],
+            "name": "One-Punch Man",
+            "popularity": 156.695,
+            "origin_country": [
+                "JP"
+            ],
+            "vote_count": 439,
+            "first_air_date": "2015-10-04",
+            "backdrop_path": "/s0w8JbuNNxL1YgaHeDWih12C3jG.jpg",
+            "original_language": "ja",
+            "id": 63926,
+            "vote_average": 8,
+            "overview": "Saitama is a hero who only became a hero for fun. After three years of “special” training, though, he’s become so strong that he’s practically invincible. In fact, he’s too strong—even his mightiest opponents are taken out with a single punch, and it turns out that being devastatingly powerful is actually kind of a bore. With his passion for being a hero lost along with his hair, yet still faced with new enemies every day, how much longer can he keep it going?",
+            "poster_path": "/iE3s0lG5QVdEHOEZnoAxjmMtvne.jpg",
+            "sequence": 12
+        },
+        {
+            "original_name": "Stranger Things",
+            "genre_ids": [
+                18,
+                9648,
+                10765
+            ],
+            "name": "Stranger Things",
+            "popularity": 194.726,
+            "origin_country": [
+                "US"
+            ],
+            "vote_count": 2446,
+            "first_air_date": "2016-07-15",
+            "backdrop_path": "/56v2KjBlU4XaOv9rVYEQypROD7P.jpg",
+            "original_language": "en",
+            "id": 66732,
+            "vote_average": 8.3,
+            "overview": "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.",
+            "poster_path": "/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",
+            "sequence": 7
+        },
+        {
+            "original_name": "Legion",
+            "genre_ids": [
+                10759,
+                10765
+            ],
+            "name": "Legion",
+            "popularity": 275.145,
+            "origin_country": [
+                "US"
+            ],
+            "vote_count": 581,
+            "first_air_date": "2017-02-08",
+            "backdrop_path": "/87eP7ITTrOWvkA4EqCuoRdyjzLy.jpg",
+            "original_language": "en",
+            "id": 67195,
+            "vote_average": 7.6,
+            "overview": "David Haller, AKA Legion, is a troubled young man who may be more than human. Diagnosed as schizophrenic, David has been in and out of psychiatric hospitals for years. But after a strange encounter with a fellow patient, he’s confronted with the possibility that the voices he hears and the visions he sees might be real.",
+            "poster_path": "/vT0Zsbm4GWd7llNjgWEtwY0CqOv.jpg",
+            "sequence": 1
+        },
+        {
+            "original_name": "La casa de papel",
+            "genre_ids": [
+                80,
+                18
+            ],
+            "name": "Money Heist",
+            "popularity": 261.812,
+            "origin_country": [
+                "ES"
+            ],
+            "vote_count": 422,
+            "first_air_date": "2017-05-02",
+            "backdrop_path": "/piuRhGiQBYWgW668eSNJ2ug5uAO.jpg",
+            "original_language": "es",
+            "id": 71446,
+            "vote_average": 8.1,
+            "overview": "To carry out the biggest heist in history, a mysterious man called The Professor recruits a band of eight robbers who have a single characteristic: none of them has anything to lose. Five months of seclusion - memorizing every step, every detail, every probability - culminate in eleven days locked up in the National Coinage and Stamp Factory of Spain, surrounded by police forces and with dozens of hostages in their power, to find out whether their suicide wager will lead to everything or nothing.",
+            "poster_path": "/MoEKaPFHABtA1xKoOteirGaHl1.jpg",
+            "sequence": 3
+        },
+        {
+            "original_name": "ドクターストーン",
+            "genre_ids": [
+                16,
+                10759
+            ],
+            "name": "Dr. Stone",
+            "popularity": 140.797,
+            "origin_country": [
+                "JP"
+            ],
+            "vote_count": 13,
+            "first_air_date": "2019-07-05",
+            "backdrop_path": "/1Ep6YHL5QcrNC1JN6RYalWRPopi.jpg",
+            "original_language": "ja",
+            "id": 86031,
+            "vote_average": 6.3,
+            "overview": "The science-fiction adventure follows two boys struggle to revive humanity after a mysterious crisis has left everyone in the world turned to stone for several millennia.",
+            "poster_path": "/dLlnzbDCblBXcJqFLXyvN43NIwp.jpg",
+            "sequence": 17
+        },
+        {
+            "original_name": "ありふれた職業で世界最強",
+            "genre_ids": [
+                16,
+                10759,
+                10765
+            ],
+            "name": "Arifureta: From Commonplace to World's Strongest",
+            "popularity": 147.948,
+            "origin_country": [
+                "JP"
+            ],
+            "vote_count": 8,
+            "first_air_date": "2019-07-08",
+            "backdrop_path": "/1lL1ts7dzTUp0eOTHvMqfw6zFJn.jpg",
+            "original_language": "ja",
+            "id": 86034,
+            "vote_average": 5.3,
+            "overview": "Seventeen-year-old Hajime Nagumo is your average, everyday otaku. However, his simple life of pulling all-nighters and sleeping in school is suddenly turned upside down when he, along with the rest of his class, is summoned to a fantasy world! They're treated like heroes and tasked with the duty of saving the human race from utter extinction. But what should have been any otaku's wet dream quickly turns into Hajime's nightmare. While the rest of his class are blessed with godlike powers, Hajime's job, Synergist, only has a single transmutation skill. Ridiculed and bullied by his classmates for being weak, he soon finds himself in despair. Will he be able to survive in this dangerous world of monsters and demons with only a glorified blacksmith's level of strength?",
+            "poster_path": "/cmMh8awgtRvLUKmYvIXtVCYINIv.jpg",
+            "sequence": 15
+        },
+        {
+            "original_name": "Crímenes que cambiaron la historia",
+            "genre_ids": [
+                99,
+                10767
+            ],
+            "name": "Crímenes que cambiaron la historia",
+            "popularity": 234.946,
+            "origin_country": [
+                "ES"
+            ],
+            "vote_count": 6,
+            "first_air_date": "2019-01-22",
+            "backdrop_path": "/fngq96eBFAlXuqUzzKuxCi0ytsB.jpg",
+            "original_language": "es",
+            "id": 86816,
+            "vote_average": 3.5,
+            "overview": "",
+            "poster_path": "/fMgPDXqSL4XILb0RKSXpDqc5tJ9.jpg",
+            "sequence": 5
+        },
+        {
             "original_name": "異世界チート魔術師",
             "genre_ids": [
                 16,
@@ -429,6 +410,25 @@
             "overview": "As regular high school students Taichi and Rin disappeared in a beam of light. When they came to, the two of them were already in a world of swords and magic. Finally getting away after experiencing an attack by monsters, following the suggestion of adventurers they headed on the path towards the guild. In the guild, the two of them found out that they possessed unbelievably powerful magic. Thus the regular high school students transformed into the strongest cheats...",
             "poster_path": "/bda9my9vSL78zO40hcHLzb0Ae4t.jpg",
             "sequence": 20
+        },
+        {
+            "original_name": "Pandora",
+            "genre_ids": [
+                10759,
+                10765
+            ],
+            "name": "Pandora",
+            "popularity": 198.352,
+            "origin_country": [],
+            "vote_count": 6,
+            "first_air_date": "2019-07-16",
+            "backdrop_path": "/dUn5B2B5BaM2de21Z3fZP79NK4m.jpg",
+            "original_language": "en",
+            "id": 90670,
+            "vote_average": 6.3,
+            "overview": "In the year 2199, a young woman who has lost everything finds a new life at Earth's Space Training Academy where she learns to defend the galaxy from intergalactic threats.",
+            "poster_path": "/tPsvhL45f1AjES5rycFIxnbaH8v.jpg",
+            "sequence": 6
         }
     ]
 }
