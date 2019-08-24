@@ -1,0 +1,24 @@
+{
+        "vote_count": 42,
+        "id": 466272,
+        "video": false,
+        "vote_average": 8,
+        "title": "Once Upon a Time in Hollywood",
+        "popularity": 84.916,
+        "poster_path": "/8j58iEBw9pOXFD2L0nt0ZXeHviB.jpg",
+        "original_language": "en",
+        "original_title": "Once Upon a Time in Hollywood",
+        "genre_ids": [
+          18,
+          35,
+          28,
+          80,
+          37
+        ],
+        "backdrop_path": "/b82nVVhYNRgtsTFV1jkdDwe6LJZ.jpg",
+        "adult": false,
+        "overview": "A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age in 1969 Los Angeles.",
+        "overview_id": "Seorang aktor televisi yang pudar dan aksi gandanya berusaha untuk mencapai ketenaran dan kesuksesan di industri film selama tahun-tahun terakhir Hollywood Golden Age pada 1969 di Los Angeles.",
+        "release_date": "2019-07-25",
+        "sequence": 16
+      }

@@ -1,0 +1,21 @@
+{
+        "vote_count": 3,
+        "id": 486589,
+        "video": false,
+        "vote_average": 8,
+        "title": "Red Shoes and the Seven Dwarfs",
+        "popularity": 114.832,
+        "poster_path": "/xQccIXfq9J4tgbvdSSPPLLYZGRD.jpg",
+        "original_language": "en",
+        "original_title": "Red Shoes and the Seven Dwarfs",
+        "genre_ids": [
+          16,
+          10749
+        ],
+        "backdrop_path": "/4uhVMTAgGt36h68SCTOQKCB4z50.jpg",
+        "adult": false,
+        "overview": "Princes who have been turned into Dwarfs seek the red shoes of a lady in order to break the spell, although it will not be easy.",
+        "overview_id": "Pangeran yang telah berubah menjadi Kurcaci mencari sepatu merah wanita untuk memecahkan mantera, meskipun itu tidak akan mudah.",
+        "release_date": "2019-07-25",
+        "sequence": 8
+      }

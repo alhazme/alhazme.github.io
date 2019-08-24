@@ -1,0 +1,22 @@
+{
+    "vote_count": 1,
+    "id": 613473,
+    "video": false,
+    "vote_average": 8,
+    "title": "Burglary",
+    "popularity": 224.027,
+    "poster_path": "/xztkk3qwvjTfKArjTkhWUCuadFY.jpg",
+    "original_language": "en",
+    "original_title": "Burglary",
+    "genre_ids": [
+        27,
+        53,
+        9648
+    ],
+    "backdrop_path": null,
+    "adult": false,
+    "overview": "While playing videogames Mike spots a mysterious masked man outside his building.",
+    "overview_id": "Saat bermain videogame, Mike melihat seorang pria bertopeng misterius di luar gedungnya.",
+    "release_date": "2019-07-19",
+    "sequence": 4
+}

@@ -1,0 +1,22 @@
+{
+        "vote_count": 1764,
+        "id": 447404,
+        "video": false,
+        "vote_average": 7,
+        "title": "Pokémon Detective Pikachu",
+        "popularity": 145.339,
+        "poster_path": "/wgQ7APnFpf1TuviKHXeEe3KnsTV.jpg",
+        "original_language": "en",
+        "original_title": "Pokémon Detective Pikachu",
+        "genre_ids": [
+          28,
+          12,
+          14
+        ],
+        "backdrop_path": "/nDP33LmQwNsnPv29GQazz59HjJI.jpg",
+        "adult": false,
+        "overview": "In a world where people collect pocket-size monsters (Pokémon) to do battle, a boy comes across an intelligent monster who seeks to be a detective.",
+        "overview_id": "Di dunia di mana orang mengumpulkan monster ukuran saku (Pokémon) untuk melakukan pertempuran, seorang bocah lelaki menemukan monster cerdas yang berusaha menjadi detektif.",
+        "release_date": "2019-05-03",
+        "sequence": 5
+      }

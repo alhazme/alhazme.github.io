@@ -1,0 +1,23 @@
+{
+        "vote_count": 560,
+        "id": 479455,
+        "video": false,
+        "vote_average": 5.9,
+        "title": "Men in Black: International",
+        "popularity": 107.814,
+        "poster_path": "/dPrUPFcgLfNbmDL8V69vcrTyEfb.jpg",
+        "original_language": "en",
+        "original_title": "Men in Black: International",
+        "genre_ids": [
+          28,
+          35,
+          878,
+          12
+        ],
+        "backdrop_path": "/2FYzxgLNuNVwncilzUeCGbOQzP7.jpg",
+        "adult": false,
+        "overview": "The Men in Black have always protected the Earth from the scum of the universe. In this new adventure, they tackle their biggest, most global threat to date: a mole in the Men in Black organization.",
+        "overview_id": "The Men in Black selalu melindungi Bumi dari buangan alam semesta. Dalam petualangan baru ini, mereka menangani ancaman terbesar, paling global hingga saat ini: tikus dalam organisasi Men in Black.",
+        "release_date": "2019-06-12",
+        "sequence": 10
+      }
