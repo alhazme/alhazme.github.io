@@ -22,6 +22,7 @@
         "backdrop_path": "/a1MlbLBk5Sy6YvMbSuKfwGlDVlb.jpg",
         "adult": false,
         "overview": "Lightning McQueen, a hotshot rookie race car driven to succeed, discovers that life is about the journey, not the finish line, when he finds himself unexpectedly detoured in the sleepy Route 66 town of Radiator Springs. On route across the country to the big Piston Cup Championship in California to compete against two seasoned pros, McQueen gets to know the town's offbeat characters.",
+        "overview_id": "Lightning McQueen, mobil balap rookie jagoan yang digerakkan untuk sukses, menemukan bahwa hidup adalah tentang perjalanan, bukan garis finish, ketika dia mendapati dirinya tiba-tiba berbelok di Radiator Springs, kota Route 66 yang mengantuk. Dalam perjalanan melintasi negara ke Kejuaraan Piala Piston besar di California untuk bersaing dengan dua pemain pro berpengalaman, McQueen mengenal karakter offbeat kota.",
         "release_date": "2006-06-08",
         "sequence": 12
       },
@@ -43,6 +44,7 @@
         "backdrop_path": "/OIGX2lm5tmlCKvZUghtwHzoxxO.jpg",
         "adult": false,
         "overview": "A boy is given the ability to become an adult superhero in times of need with a single magic word.",
+        "overview_id": "Seorang anak laki-laki diberikan kemampuan untuk menjadi pahlawan dewasa di saat dibutuhkan dengan satu kata ajaib.",
         "release_date": "2019-03-23",
         "sequence": 13
       },
@@ -64,6 +66,7 @@
         "backdrop_path": "/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg",
         "adult": false,
         "overview": "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
+        "overview_id" : "Setelah peristiwa yang menghancurkan dari Avengers: Perang Infinity, alam semesta hancur karena upaya Titan Gila, Thanos. Dengan bantuan sekutu yang tersisa, Avengers harus berkumpul sekali lagi untuk membatalkan tindakan Thanos dan mengembalikan ketertiban ke alam semesta sekali dan untuk semua, tidak peduli konsekuensi apa yang mungkin ada di toko.",
         "release_date": "2019-04-24",
         "sequence": 11
       },
@@ -85,6 +88,7 @@
         "backdrop_path": "/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg",
         "adult": false,
         "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+        "overview_id" : "Ketika Avengers dan sekutu mereka terus melindungi dunia dari ancaman yang terlalu besar untuk ditangani oleh satu pahlawan, bahaya baru telah muncul dari bayang-bayang kosmik: Thanos. Seorang lalim penghinaan intergalaksi, tujuannya adalah untuk mengumpulkan semua enam Batu Infinity, artefak kekuatan tak terbayangkan, dan menggunakannya untuk menimbulkan keinginannya yang terpelintir pada semua kenyataan. Segala yang Avengers telah perjuangkan telah mengarah ke saat ini - nasib Bumi dan keberadaannya sendiri tidak pernah lebih pasti.",
         "release_date": "2018-04-25",
         "sequence": 20
       },
@@ -106,6 +110,7 @@
         "backdrop_path": "/10csMIye4Vmr5lJpx3cdmMN8FOT.jpg",
         "adult": false,
         "overview": "The story follows Carol Danvers as she becomes one of the universe’s most powerful heroes when Earth is caught in the middle of a galactic war between two alien races. Set in the 1990s, Captain Marvel is an all-new adventure from a previously unseen period in the history of the Marvel Cinematic Universe.",
+        "overview_id": "Peter Parker dan teman-temannya melakukan perjalanan musim panas ke Eropa. Namun, mereka hampir tidak dapat beristirahat - Peter harus setuju untuk membantu Nick Fury mengungkap misteri makhluk yang menyebabkan bencana alam dan kehancuran di seluruh benua.",
         "release_date": "2019-03-06",
         "sequence": 9
       },
@@ -128,6 +133,7 @@
         "backdrop_path": "/m67smI1IIMmYzCl9axvKNULVKLr.jpg",
         "adult": false,
         "overview": "Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called \"Forky\" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.",
+        "overview_id": "Woody selalu yakin tentang tempatnya di dunia dan bahwa prioritasnya adalah merawat anaknya, apakah itu Andy atau Bonnie. Tetapi ketika Bonnie menambahkan mainan baru yang enggan disebut \"Forky\" ke kamarnya, petualangan perjalanan bersama teman-teman lama dan baru akan menunjukkan kepada Woody seberapa besar dunia untuk sebuah mainan.",
         "release_date": "2019-06-19",
         "sequence": 7
       },
@@ -150,6 +156,7 @@
         "backdrop_path": "/8RKBHHRqOMOLh5qW3sS6TSFTd8h.jpg",
         "adult": false,
         "overview": "When Alita awakens with no memory of who she is in a future world she does not recognize, she is taken in by Ido, a compassionate doctor who realizes that somewhere in this abandoned cyborg shell is the heart and soul of a young woman with an extraordinary past.",
+        "overview_id": "Ketika Alita terbangun tanpa ingatan tentang siapa dia di dunia masa depan yang tidak dia kenal, dia ditangkap oleh Ido, seorang dokter yang penuh kasih yang menyadari bahwa di suatu tempat dalam cangkang cyborg yang ditinggalkan ini adalah hati dan jiwa seorang wanita muda dengan luar biasa. lalu.",
         "release_date": "2019-01-31",
         "sequence": 6
       },
@@ -173,6 +180,7 @@
         "backdrop_path": "/1TUg5pO1VZ4B0Q1amk3OlXvlpXV.jpg",
         "adult": false,
         "overview": "Simba idolises his father, King Mufasa, and takes to heart his own royal destiny. But not everyone in the kingdom celebrates the new cub's arrival. Scar, Mufasa's brother—and former heir to the throne—has plans of his own. The battle for Pride Rock is ravaged with betrayal, tragedy and drama, ultimately resulting in Simba's exile. With help from a curious pair of newfound friends, Simba will have to figure out how to grow up and take back what is rightfully his.",
+        "overview_id": "Simba idolis ayahnya, Raja Mufasa, dan mengambil hati takdir kerajaannya sendiri. Tetapi tidak semua orang di kerajaan itu merayakan kedatangan anaknya yang baru. Scar, saudara lelaki Mufasa — dan mantan pewaris takhta — memiliki rencana sendiri. Pertempuran untuk Pride Rock dirusak dengan pengkhianatan, tragedi dan drama, yang akhirnya mengakibatkan pengasingan Simba. Dengan bantuan dari sepasang teman baru yang penasaran, Simba harus mencari cara untuk tumbuh dan mengambil kembali apa yang menjadi haknya.",
         "release_date": "2019-07-12",
         "sequence": 1
       },
@@ -194,6 +202,7 @@
         "backdrop_path": "/dihW2yTsvQlust7mSuAqJDtqW7k.jpg",
         "adult": false,
         "overview": "Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest - Peter will have to agree to help Nick Fury uncover the mystery of creatures that cause natural disasters and destruction throughout the continent.",
+        "overview_id": "Peter Parker dan teman-temannya melakukan perjalanan musim panas ke Eropa. Namun, mereka hampir tidak dapat beristirahat - Peter harus setuju untuk membantu Nick Fury mengungkap misteri makhluk yang menyebabkan bencana alam dan kehancuran di seluruh benua.",
         "release_date": "2019-06-28",
         "sequence": 3
       },
@@ -215,6 +224,7 @@
         "backdrop_path": "/nDP33LmQwNsnPv29GQazz59HjJI.jpg",
         "adult": false,
         "overview": "In a world where people collect pocket-size monsters (Pokémon) to do battle, a boy comes across an intelligent monster who seeks to be a detective.",
+        "overview_id": "Di dunia di mana orang mengumpulkan monster ukuran saku (Pokémon) untuk melakukan pertempuran, seorang bocah lelaki menemukan monster cerdas yang berusaha menjadi detektif.",
         "release_date": "2019-05-03",
         "sequence": 5
       },
@@ -238,6 +248,7 @@
         "backdrop_path": "/5BkSkNtfrnTuKOtTaZhl8avn4wU.jpg",
         "adult": false,
         "overview": "Hellboy comes to England, where he must defeat Nimue, Merlin's consort and the Blood Queen. But their battle will bring about the end of the world, a fate he desperately tries to turn away.",
+        "overview_id": "Hellboy datang ke Inggris, di mana ia harus mengalahkan Nimue, permaisuri Merlin dan Ratu Darah. Tetapi pertempuran mereka akan membawa akhir dunia, nasib yang dengan putus asa dia coba untuk berpaling.",
         "release_date": "2019-04-10",
         "sequence": 15
       },
@@ -259,6 +270,7 @@
         "backdrop_path": "/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg",
         "adult": false,
         "overview": "Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn.",
+        "overview_id": "Super-pembunuh John Wick kembali dengan label harga $14 juta di kepalanya dan sepasukan pembunuh pemburu hadiah di jejaknya. Setelah membunuh anggota guild pembunuh bayang-bayang internasional, High Table, John Wick dikucilkan, tetapi pria dan wanita hit paling kejam di dunia menunggu setiap gilirannya.",
         "release_date": "2019-05-15",
         "sequence": 17
       },
@@ -279,6 +291,7 @@
         "backdrop_path": "/88r25ghJzVYKq0vaOApqEOZsQlD.jpg",
         "adult": false,
         "overview": "When Fred Flarsky reunites with and charms his first crush, Charlotte Field—one of the most influential women in the world. As Charlotte prepares to make a run for the Presidency, she hires Fred as her speechwriter and sparks fly.",
+        "overview_id": "Ketika Fred Flarsky bersatu kembali dengan dan memikat naksir pertamanya, Charlotte Field — salah satu wanita paling berpengaruh di dunia. Ketika Charlotte bersiap untuk mencalonkan diri sebagai Presiden, dia mempekerjakan Fred ketika penulis pidatonya dan bunga api beterbangan.",
         "release_date": "2019-05-02",
         "sequence": 14
       },
@@ -302,6 +315,7 @@
         "backdrop_path": "/b82nVVhYNRgtsTFV1jkdDwe6LJZ.jpg",
         "adult": false,
         "overview": "A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age in 1969 Los Angeles.",
+        "overview_id": "Seorang aktor televisi yang pudar dan aksi gandanya berusaha untuk mencapai ketenaran dan kesuksesan di industri film selama tahun-tahun terakhir Hollywood Golden Age pada 1969 di Los Angeles.",
         "release_date": "2019-07-25",
         "sequence": 16
       },
@@ -324,6 +338,7 @@
         "backdrop_path": "/2FYzxgLNuNVwncilzUeCGbOQzP7.jpg",
         "adult": false,
         "overview": "The Men in Black have always protected the Earth from the scum of the universe. In this new adventure, they tackle their biggest, most global threat to date: a mole in the Men in Black organization.",
+        "overview_id": "The Men in Black selalu melindungi Bumi dari buangan alam semesta. Dalam petualangan baru ini, mereka menangani ancaman terbesar, paling global hingga saat ini: tikus dalam organisasi Men in Black.",
         "release_date": "2019-06-12",
         "sequence": 10
       },
@@ -344,6 +359,7 @@
         "backdrop_path": "/4uhVMTAgGt36h68SCTOQKCB4z50.jpg",
         "adult": false,
         "overview": "Princes who have been turned into Dwarfs seek the red shoes of a lady in order to break the spell, although it will not be easy.",
+        "overview_id": "Pangeran yang telah berubah menjadi Kurcaci mencari sepatu merah wanita untuk memecahkan mantera, meskipun itu tidak akan mudah.",
         "release_date": "2019-07-25",
         "sequence": 8
       },
@@ -365,6 +381,7 @@
         "backdrop_path": "/2cAce3oD0Hh7f5XxuXmNXa1WiuZ.jpg",
         "adult": false,
         "overview": "While struggling to save her father during a Category 5 hurricane, a young woman finds herself trapped inside a flooding house and fighting for her life against Florida’s most savage and feared predators.",
+        "overview_id": "Ketika berjuang untuk menyelamatkan ayahnya selama badai Kategori 5, seorang wanita muda menemukan dirinya terjebak di dalam rumah banjir dan berjuang untuk hidupnya melawan predator paling kejam dan ditakuti di Florida.",
         "release_date": "2019-07-11",
         "sequence": 19
       },
@@ -384,6 +401,7 @@
         "backdrop_path": "/9v4nPAyVvtGONV5NtPkDHA9bczS.jpg",
         "adult": false,
         "overview": "Ellie and Jake fall in love, but struggle with their relationship when they discover an unexpected connection between their pasts.",
+        "overview_id": "Ellie dan Jake jatuh cinta, tetapi berjuang dengan hubungan mereka ketika mereka menemukan hubungan tak terduga antara masa lalu mereka.",
         "release_date": "2018-10-10",
         "sequence": 18
       },
@@ -407,6 +425,7 @@
         "backdrop_path": "/wf6VDSi4aFCZfuD8sX8JAKLfJ5m.jpg",
         "adult": false,
         "overview": "23rd movie in the \"Detective Conan\" franchise.",
+        "overview_id" : "Film ke-23 dalam franchise \"Detective Conan\".",
         "release_date": "2019-04-12",
         "sequence": 2
       },
@@ -428,6 +447,7 @@
         "backdrop_path": null,
         "adult": false,
         "overview": "While playing videogames Mike spots a mysterious masked man outside his building.",
+        "overview_id": "Saat bermain videogame, Mike melihat seorang pria bertopeng misterius di luar gedungnya.",
         "release_date": "2019-07-19",
         "sequence": 4
       }

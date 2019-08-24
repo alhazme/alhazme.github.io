@@ -21,6 +21,7 @@
             "id": 456,
             "vote_average": 7.1,
             "overview": "Set in Springfield, the average American town, the show focuses on the antics and everyday adventures of the Simpson family; Homer, Marge, Bart, Lisa and Maggie, as well as a virtual cast of thousands. Since the beginning, the series has been a pop culture icon, attracting hundreds of celebrities to guest star. The show has also made name for itself in its fearless satirical take on politics, media and American life in general.",
+            "overview_id": "Bertempat di Springfield, kota rata-rata di Amerika, pertunjukan ini berfokus pada kejenakaan dan petualangan sehari-hari keluarga Simpson; Homer, Marge, Bart, Lisa dan Maggie, serta ribuan pemain virtual. Sejak awal, serial ini telah menjadi ikon budaya pop, menarik ratusan selebriti menjadi bintang tamu. Acara ini juga menjadi terkenal karena satirnya yang tak kenal takut terhadap kehidupan politik, media, dan Amerika secara umum.",
             "poster_path": "/yTZQkSsxUFJZJe67IenRM0AEklc.jpg",
             "sequence": 14
         },
@@ -43,6 +44,7 @@
             "id": 484,
             "vote_average": 7.1,
             "overview": "An unassuming mystery writer turned sleuth uses her professional insight to help solve real-life homicide cases.",
+            "overview_id": "Seorang penulis misteri yang sederhana berubah menjadi detektif menggunakan wawasan profesionalnya untuk membantu menyelesaikan kasus-kasus pembunuhan di kehidupan nyata.",
             "poster_path": "/j6DC2Xe0SZS6xKS2d6LWL1EGwzX.jpg",
             "sequence": 11
         },
@@ -65,6 +67,7 @@
             "id": 1403,
             "vote_average": 6.8,
             "overview": "Agent Phil Coulson of S.H.I.E.L.D. (Strategic Homeland Intervention, Enforcement and Logistics Division) puts together a team of agents to investigate the new, the strange and the unknown around the globe, protecting the ordinary from the extraordinary.",
+            "overview_id": "Agen Phil Coulson dari S.H.I.E.L.D. (Divisi Intervensi, Penegakan dan Logistik Tanah Air Strategis) membentuk sebuah tim agen untuk menyelidiki yang baru, yang aneh dan yang tidak diketahui di seluruh dunia, melindungi yang biasa dari yang luar biasa.",
             "poster_path": "/cXiETfFK1BTLest5fhTLfDLRdL6.jpg",
             "sequence": 16
         },
@@ -88,6 +91,7 @@
             "id": 1412,
             "vote_average": 5.8,
             "overview": "Spoiled billionaire playboy Oliver Queen is missing and presumed dead when his yacht is lost at sea. He returns five years later a changed man, determined to clean up the city as a hooded vigilante armed with a bow.",
+            "overview_id": "Playboy miliarder manja, Oliver Queen, hilang dan diduga tewas ketika kapal pesiarnya hilang di laut. Dia kembali lima tahun kemudian seorang pria yang berubah, bertekad untuk membersihkan kota sebagai main hakim sendiri bersenjatakan busur.",
             "poster_path": "/mo0FP1GxOFZT4UDde7RFDz5APXF.jpg",
             "sequence": 4
         },
@@ -108,6 +112,7 @@
             "id": 1416,
             "vote_average": 6.3,
             "overview": "Follows the personal and professional lives of a group of doctors at Seattle’s Grey Sloan Memorial Hospital.",
+            "overview_id": "Ikuti kehidupan pribadi dan profesional sekelompok dokter di Rumah Sakit Gray Sloan Memorial di Seattle.",
             "poster_path": "/eqgIOObafPJitt8JNh1LuO2fvqu.jpg",
             "sequence": 9
         },
@@ -129,6 +134,7 @@
             "id": 1434,
             "vote_average": 6.5,
             "overview": "Sick, twisted, politically incorrect and Freakin' Sweet animated series featuring the adventures of the dysfunctional Griffin family. Bumbling Peter and long-suffering Lois have three kids. Stewie (a brilliant but sadistic baby bent on killing his mother and taking over the world), Meg (the oldest, and is the most unpopular girl in town) and Chris (the middle kid, he's not very bright but has a passion for movies). The final member of the family is Brian - a talking dog and much more than a pet, he keeps Stewie in check whilst sipping Martinis and sorting through his own life issues.",
+            "overview_id": "Seri animasi animasi Freakin 'Sweet yang sakit, terpelintir, dan salah, menampilkan petualangan keluarga Griffin yang disfungsional. Peter yang kikuk dan Lois yang sudah lama menderita memiliki tiga anak. Stewie (bayi yang brilian tetapi sadis yang bertekad membunuh ibunya dan mengambil alih dunia), Meg (yang tertua, dan merupakan gadis yang paling tidak populer di kota) dan Chris (anak tengah, dia tidak terlalu cerdas tetapi memiliki hasrat untuk film ). Anggota terakhir keluarga itu adalah Brian - anjing yang bisa bicara dan lebih dari sekadar hewan peliharaan, ia menjaga Stewie, sementara menghirup Martinis dan memilah-milah masalah hidupnya sendiri.",
             "poster_path": "/gBGUL1UTUNmdRQT8gA1LUV4yg39.jpg",
             "sequence": 10
         },
@@ -151,6 +157,7 @@
             "id": 1622,
             "vote_average": 7.3,
             "overview": "When they were boys, Sam and Dean Winchester lost their mother to a mysterious and demonic supernatural force. Subsequently, their father raised them to be soldiers. He taught them about the paranormal evil that lives in the dark corners and on the back roads of America ... and he taught them how to kill it. Now, the Winchester brothers crisscross the country in their '67 Chevy Impala, battling every kind of supernatural threat they encounter along the way. ",
+            "overview_id": "Ketika mereka masih kecil, Sam dan Dean Winchester kehilangan ibu mereka karena kekuatan gaib yang misterius dan iblis. Selanjutnya, ayah mereka membesarkan mereka menjadi tentara. Dia mengajari mereka tentang kejahatan paranormal yang hidup di sudut-sudut gelap dan di jalan belakang Amerika ... dan dia mengajari mereka cara membunuhnya. Sekarang, saudara-saudara Winchester menjelajahi negara itu dengan Chevy Impala '67 mereka, memerangi setiap jenis ancaman supernatural yang mereka temui di sepanjang jalan.",
             "poster_path": "/3iFm6Kz7iYoFaEcj4fLyZHAmTQA.jpg",
             "sequence": 18
         },
@@ -172,6 +179,7 @@
             "id": 48866,
             "vote_average": 6.5,
             "overview": "100 years in the future, when the Earth has been abandoned due to radioactivity, the last surviving humans live on an ark orbiting the planet — but the ark won't last forever. So the repressive regime picks 100 expendable juvenile delinquents to send down to Earth to see if the planet is still habitable.",
+            "overview_id": "100 tahun di masa depan, ketika Bumi telah ditinggalkan karena radioaktivitas, manusia terakhir yang masih hidup hidup di atas bahtera yang mengorbit planet ini - tetapi bahtera itu tidak akan bertahan selamanya. Jadi rezim represif memilih 100 kenakalan remaja untuk dikirim ke Bumi untuk melihat apakah planet ini masih layak huni.",
             "poster_path": "/wBzNjurA8ijJPF21Ggs9nbviIzi.jpg",
             "sequence": 8
         },
@@ -194,6 +202,7 @@
             "id": 60708,
             "vote_average": 6.8,
             "overview": "Before there was Batman, there was GOTHAM. \n\nEveryone knows the name Commissioner Gordon. He is one of the crime world's greatest foes, a man whose reputation is synonymous with law and order. But what is known of Gordon's story and his rise from rookie detective to Police Commissioner? What did it take to navigate the multiple layers of corruption that secretly ruled Gotham City, the spawning ground of the world's most iconic villains? And what circumstances created them – the larger-than-life personas who would become Catwoman, The Penguin, The Riddler, Two-Face and The Joker? ",
+            "overview_id": "Sebelum ada Batman, ada GOTHAM.\n\nSemua orang tahu nama Komisaris Gordon. Dia adalah salah satu musuh terbesar dunia kejahatan, seorang pria yang reputasinya identik dengan hukum dan ketertiban. Tapi apa yang diketahui tentang kisah Gordon dan kenaikannya dari detektif pemula ke Komisaris Polisi? Apa yang diperlukan untuk menavigasi berbagai lapisan korupsi yang diam-diam memerintah Kota Gotham, tempat bertelurnya penjahat paling ikonik di dunia? Dan keadaan apa yang menciptakan mereka - persona yang lebih besar dari kehidupan yang akan menjadi Catwoman, The Penguin, The Riddler, Two-Face dan The Joker?",
             "poster_path": "/4XddcRDtnNjYmLRMYpbrhFxsbuq.jpg",
             "sequence": 19
         },
@@ -215,6 +224,7 @@
             "id": 60735,
             "vote_average": 6.7,
             "overview": "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \"meta-human\" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become...The Flash.",
+            "overview_id": "Setelah akselerator partikel menyebabkan badai aneh, Penyelidik CSI Barry Allen disambar petir dan jatuh koma. Beberapa bulan kemudian dia terbangun dengan kekuatan kecepatan super, memberinya kemampuan untuk bergerak melalui Central City seperti malaikat penjaga yang tak terlihat. Meskipun awalnya senang dengan kekuatan barunya, Barry terkejut menemukan bahwa dia bukan satu-satunya \"manusia meta\" yang diciptakan setelah ledakan akselerator - dan tidak semua orang menggunakan kekuatan baru mereka untuk kebaikan. Barry bermitra dengan S.T.A.R. Lab dan mendedikasikan hidupnya untuk melindungi yang tidak bersalah. Untuk saat ini, hanya beberapa teman dekat dan rekan yang tahu bahwa Barry secara harfiah adalah manusia tercepat, tetapi tidak lama sebelum dunia mengetahui apa yang menjadi Barry Allen ... The Flash.",
             "poster_path": "/fki3kBlwJzFp8QohL43g9ReV455.jpg",
             "sequence": 2
         },
@@ -236,6 +246,7 @@
             "id": 62286,
             "vote_average": 6.3,
             "overview": "What did the world look like as it was transforming into the horrifying apocalypse depicted in \"The Walking Dead\"? This spin-off set in Los Angeles, following new characters as they face the beginning of the end of the world, will answer that question.",
+            "overview_id": "Seperti apa dunia saat berubah menjadi kiamat mengerikan yang digambarkan dalam \"The Walking Dead\"? Spin-off ini ditetapkan di Los Angeles, mengikuti karakter baru saat mereka menghadapi awal akhir dunia, akan menjawab pertanyaan itu.",
             "poster_path": "/aOdTWn8dXlS0tA5xl0ZBr8Ws15R.jpg",
             "sequence": 13
         },
@@ -258,6 +269,7 @@
             "id": 63926,
             "vote_average": 8,
             "overview": "Saitama is a hero who only became a hero for fun. After three years of “special” training, though, he’s become so strong that he’s practically invincible. In fact, he’s too strong—even his mightiest opponents are taken out with a single punch, and it turns out that being devastatingly powerful is actually kind of a bore. With his passion for being a hero lost along with his hair, yet still faced with new enemies every day, how much longer can he keep it going?",
+            "overview_id": "Saitama adalah pahlawan yang hanya menjadi pahlawan untuk bersenang-senang. Namun, setelah tiga tahun pelatihan \"istimewa\", ia menjadi begitu kuat sehingga praktis tidak terkalahkan. Faktanya, dia terlalu kuat — bahkan lawan terkuatnya dikeluarkan dengan satu pukulan, dan ternyata menjadi sangat dahsyat sebenarnya agak membosankan. Dengan hasratnya untuk menjadi pahlawan yang hilang bersamaan dengan rambutnya, namun masih berhadapan dengan musuh baru setiap hari, berapa lama lagi dia bisa mempertahankannya?",
             "poster_path": "/iE3s0lG5QVdEHOEZnoAxjmMtvne.jpg",
             "sequence": 12
         },
@@ -280,6 +292,7 @@
             "id": 66732,
             "vote_average": 8.3,
             "overview": "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.",
+            "overview_id": "Ketika seorang bocah lelaki menghilang, sebuah kota kecil mengungkap misteri yang melibatkan eksperimen rahasia, kekuatan gaib yang menakutkan, dan seorang gadis kecil yang aneh.",
             "poster_path": "/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg",
             "sequence": 7
         },
@@ -301,6 +314,7 @@
             "id": 67195,
             "vote_average": 7.6,
             "overview": "David Haller, AKA Legion, is a troubled young man who may be more than human. Diagnosed as schizophrenic, David has been in and out of psychiatric hospitals for years. But after a strange encounter with a fellow patient, he’s confronted with the possibility that the voices he hears and the visions he sees might be real.",
+            "overview_id": "David Haller, Legiun AKA, adalah seorang pemuda bermasalah yang mungkin lebih dari manusia. Didiagnosis sebagai penderita skizofrenia, David telah keluar masuk rumah sakit jiwa selama bertahun-tahun. Tetapi setelah pertemuan aneh dengan sesama pasien, dia dihadapkan dengan kemungkinan bahwa suara yang dia dengar dan penglihatan yang dia lihat mungkin nyata.",
             "poster_path": "/vT0Zsbm4GWd7llNjgWEtwY0CqOv.jpg",
             "sequence": 1
         },
@@ -322,6 +336,7 @@
             "id": 71446,
             "vote_average": 8.1,
             "overview": "To carry out the biggest heist in history, a mysterious man called The Professor recruits a band of eight robbers who have a single characteristic: none of them has anything to lose. Five months of seclusion - memorizing every step, every detail, every probability - culminate in eleven days locked up in the National Coinage and Stamp Factory of Spain, surrounded by police forces and with dozens of hostages in their power, to find out whether their suicide wager will lead to everything or nothing.",
+            "overview_id": "Untuk melakukan perampokan terbesar dalam sejarah, seorang pria misterius bernama The Professor merekrut sekelompok delapan perampok yang memiliki karakteristik tunggal: tidak ada dari mereka yang kehilangan. Lima bulan pengasingan - menghafal setiap langkah, setiap detail, setiap probabilitas - berpuncak dalam sebelas hari dikurung di Pabrik Koin dan Cap Nasional Spanyol, dikelilingi oleh pasukan polisi dan dengan puluhan sandera dalam kekuasaan mereka, untuk mengetahui apakah bunuh diri mereka taruhan akan mengarah pada segalanya atau tidak sama sekali.",
             "poster_path": "/MoEKaPFHABtA1xKoOteirGaHl1.jpg",
             "sequence": 3
         },
@@ -343,6 +358,7 @@
             "id": 86031,
             "vote_average": 6.3,
             "overview": "The science-fiction adventure follows two boys struggle to revive humanity after a mysterious crisis has left everyone in the world turned to stone for several millennia.",
+            "overview_id": "Petualangan sains-fiksi mengikuti dua anak laki-laki yang berjuang untuk menghidupkan kembali umat manusia setelah krisis misterius telah membuat semua orang di dunia berubah menjadi batu selama beberapa milenium.",
             "poster_path": "/dLlnzbDCblBXcJqFLXyvN43NIwp.jpg",
             "sequence": 17
         },
@@ -365,6 +381,7 @@
             "id": 86034,
             "vote_average": 5.3,
             "overview": "Seventeen-year-old Hajime Nagumo is your average, everyday otaku. However, his simple life of pulling all-nighters and sleeping in school is suddenly turned upside down when he, along with the rest of his class, is summoned to a fantasy world! They're treated like heroes and tasked with the duty of saving the human race from utter extinction. But what should have been any otaku's wet dream quickly turns into Hajime's nightmare. While the rest of his class are blessed with godlike powers, Hajime's job, Synergist, only has a single transmutation skill. Ridiculed and bullied by his classmates for being weak, he soon finds himself in despair. Will he be able to survive in this dangerous world of monsters and demons with only a glorified blacksmith's level of strength?",
+            "overview_id": "Hajime Nagumo yang berusia 17 tahun adalah otaku harian Anda. Namun, kehidupannya yang sederhana untuk tidur semalaman dan tidur di sekolah tiba-tiba terbalik ketika dia, bersama dengan seluruh kelasnya, dipanggil ke dunia fantasi! Mereka diperlakukan seperti pahlawan dan ditugaskan untuk menyelamatkan umat manusia dari kepunahan total. Tapi apa yang seharusnya menjadi mimpi basah otaku dengan cepat berubah menjadi mimpi buruk Hajime. Sementara seluruh kelasnya diberkati dengan kekuatan seperti dewa, pekerjaan Hajime, Synergist, hanya memiliki keterampilan transmutasi tunggal. Ditertawakan dan diintimidasi oleh teman-teman sekelasnya karena menjadi lemah, dia segera menemukan dirinya dalam keputusasaan. Akankah dia bisa bertahan di dunia monster dan iblis berbahaya ini hanya dengan tingkat kekuatan pandai besi yang dimuliakan?",
             "poster_path": "/cmMh8awgtRvLUKmYvIXtVCYINIv.jpg",
             "sequence": 15
         },
@@ -386,6 +403,7 @@
             "id": 86816,
             "vote_average": 3.5,
             "overview": "",
+            "overview_id": "",
             "poster_path": "/fMgPDXqSL4XILb0RKSXpDqc5tJ9.jpg",
             "sequence": 5
         },
@@ -408,6 +426,7 @@
             "id": 90215,
             "vote_average": 6.8,
             "overview": "As regular high school students Taichi and Rin disappeared in a beam of light. When they came to, the two of them were already in a world of swords and magic. Finally getting away after experiencing an attack by monsters, following the suggestion of adventurers they headed on the path towards the guild. In the guild, the two of them found out that they possessed unbelievably powerful magic. Thus the regular high school students transformed into the strongest cheats...",
+            "overview_id": "Sebagai siswa sekolah menengah biasa, Taichi dan Rin menghilang dalam sorotan cahaya. Ketika mereka sadar, mereka berdua sudah berada di dunia pedang dan sihir. Akhirnya melarikan diri setelah mengalami serangan monster, mengikuti saran petualang, mereka menuju jalan menuju guild. Di guild, mereka berdua mengetahui bahwa mereka memiliki sihir yang luar biasa kuat. Dengan demikian siswa sekolah menengah biasa berubah menjadi cheat terkuat ...",
             "poster_path": "/bda9my9vSL78zO40hcHLzb0Ae4t.jpg",
             "sequence": 20
         },
@@ -427,6 +446,7 @@
             "id": 90670,
             "vote_average": 6.3,
             "overview": "In the year 2199, a young woman who has lost everything finds a new life at Earth's Space Training Academy where she learns to defend the galaxy from intergalactic threats.",
+            "overview_id": "Ditetapkan pada tahun 2199, seorang wanita muda yang telah kehilangan segalanya menemukan kehidupan baru di Akademi Pelatihan Luar Angkasa Bumi di mana dia belajar untuk mempertahankan galaksi dari ancaman intergalaksi.",
             "poster_path": "/tPsvhL45f1AjES5rycFIxnbaH8v.jpg",
             "sequence": 6
         }
