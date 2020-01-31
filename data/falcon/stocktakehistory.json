@@ -4,26 +4,56 @@
     "data": [
         {
             "id": 1,
-            "userId": 1,
+            "user_id": 1,
             "username": "Cahaya Alam",
-            "status": "submitted",
-            "galleyCode": "G001",
+            "status": "OPEN",
+            "sales": "IN FLIGHT",
+            "galley_code": "G001",
             "created_at": 1579746734135
         },
         {
             "id": 2,
-            "userId": 1,
+            "user_id": 1,
             "username": "Cahaya Alam",
-            "status": "submitted",
-            "galleyCode": "G002",
+            "status": "OPEN",
+            "sales": "IN FLIGHT",
+            "galley_code": "G002",
             "created_at": 1579846734135
         },
         {
             "id": 3,
-            "userId": 1,
+            "user_id": 1,
             "username": "Cahaya Alam",
-            "status": "submitted",
-            "galleyCode": "G003",
+            "status": "OPEN",
+            "sales": "IN FLIGHT",
+            "galley_code": "G003",
+            "created_at": 1579946734135
+        },
+        {
+            "id": 4,
+            "user_id": 1,
+            "username": "Cahaya Alam",
+            "status": "CLOSE",
+            "sales": "IN FLIGHT",
+            "galley_code": "G001",
+            "created_at": 1579746734135
+        },
+        {
+            "id": 5,
+            "user_id": 1,
+            "username": "Cahaya Alam",
+            "status": "CLOSE",
+            "sales": "IN FLIGHT",
+            "galleyCode": "G002",
+            "created_at": 1579846734135
+        },
+        {
+            "id": 6,
+            "user_id": 1,
+            "username": "Cahaya Alam",
+            "status": "CLOSE",
+            "sales": "IN FLIGHT",
+            "galley_code": "G003",
             "created_at": 1579946734135
         }
     ]
