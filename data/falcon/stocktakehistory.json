@@ -1,0 +1,30 @@
+{
+    "message": "Success",
+    "response_code": 200,
+    "data": [
+        {
+            "id": 1,
+            "userId": 1,
+            "username": "Cahaya Alam",
+            "status": "submitted",
+            "galleyCode": "G001",
+            "created_at": 1579746734135
+        },
+        {
+            "id": 2,
+            "userId": 1,
+            "username": "Cahaya Alam",
+            "status": "submitted",
+            "galleyCode": "G002",
+            "created_at": 1579846734135
+        },
+        {
+            "id": 3,
+            "userId": 1,
+            "username": "Cahaya Alam",
+            "status": "submitted",
+            "galleyCode": "G003",
+            "created_at": 1579946734135
+        }
+    ]
+}
