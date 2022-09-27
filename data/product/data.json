@@ -1,0 +1,110 @@
+[
+    {
+      "id": 1,
+      "title": "Topi",
+      "brand": "Shark",
+      "variant": "Black - M",
+      "price": 19000,
+      "stock": 5,
+      "photo": "hat.png"
+    },
+    {
+      "id": 2,
+      "title": "Instax Mini",
+      "brand": "Instax",
+      "variant": "Blue - Mini",
+      "price": 1900000,
+      "stock": 10,
+      "photo": "instaxmini.png"
+    },
+    {
+      "id": 3,
+      "title": "Instax Mini 90",
+      "brand": "Instax",
+      "variant": "Silver Black - Mini",
+      "price": 1890000,
+      "stock": 10,
+      "photo": "instaxmini90.png"
+    },
+    {
+      "id": 4,
+      "title": "Jacket Army",
+      "brand": "Army 99",
+      "variant": "Green Army - L",
+      "price": 1200000,
+      "stock": 3,
+      "photo": "jacket.png"
+    },
+    {
+      "id": 5,
+      "title": "Leica",
+      "brand": "Leica",
+      "variant": "Silver Black - M",
+      "price": 1000000,
+      "stock": 7,
+      "photo": "leicam.png"
+    },
+    {
+      "id": 6,
+      "title": "Leica Mini Lux",
+      "brand": "Leica",
+      "variant": "Gold",
+      "price": 1200000,
+      "stock": 5,
+      "photo": "leicaminilux.png"
+    },
+    {
+      "id": 7,
+      "title": "Leica So Fort",
+      "brand": "Leicam",
+      "variant": "Yellow",
+      "price": 2000000,
+      "stock": 8,
+      "photo": "leicasofort.png"
+    },
+    {
+      "id": 8,
+      "title": "Mono Runners",
+      "brand": "Mono",
+      "variant": "Navy",
+      "price": 800000,
+      "stock": 2,
+      "photo": "monorunners.png"
+    },
+    {
+      "id": 9,
+      "title": "Replica Sneakers",
+      "brand": "Replica",
+      "variant": "Green",
+      "price": 300000,
+      "stock": 10,
+      "photo": "replicasneakers.png"
+    },
+    {
+      "id": 10,
+      "title": "Shoes",
+      "brand": "Soepatu",
+      "variant": "Grey",
+      "price": 2000000,
+      "stock": 8,
+      "photo": "shoes.png"
+    },
+    {
+      "id": 11,
+      "title": "Tennis Classic",
+      "brand": "Classic",
+      "variant": "White",
+      "price": 2500000,
+      "stock": 8,
+      "photo": "tennisclassic.png"
+    },
+    {
+      "id": 12,
+      "title": "Zoom Talaria",
+      "brand": "Zoom",
+      "variant": "Green Neon",
+      "price": 3000000,
+      "stock": 2,
+      "photo": "zoomtalaria.png"
+    }
+]
