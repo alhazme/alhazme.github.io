@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rtk ls *)",
+      "Bash(open \"/Users/mochfarizalhazmi/Documents/CV and Resume/Personal Website/index.html\")",
+      "Bash(rtk grep *)"
+    ]
+  }
+}
