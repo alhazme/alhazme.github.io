@@ -44,7 +44,7 @@
     "knowsAbout": ["Flutter", "Dart", "Go", "iOS", "Swift", "Android", "Kotlin", "React", "Node.js", "PostgreSQL", "MongoDB", "Firebase", "Docker"],
     "nationality": "Indonesian",
     "sameAs": [
-      "https://linkedin.com/in/alhazmi",
+      "https://linkedin.com/in/alhazme",
       "https://github.com/mochfarizalhazmi"
     ]
   }
@@ -604,6 +604,83 @@
       .logo-item img { height: 36px; }
     }
 
+    /* === SERVICES === */
+    #services {
+      padding: 96px 60px;
+      background: var(--color-absolute-zero);
+    }
+
+    .services-heading {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 62px);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--color-vapor-white);
+      margin-bottom: 56px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--color-deep-space);
+      border-radius: 12px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .service-icon {
+      color: var(--color-electric-blue);
+      display: flex;
+    }
+
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--color-vapor-white);
+    }
+
+    .service-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--color-ash-gray);
+      flex: 1;
+    }
+
+    .service-cta {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-electric-blue);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .service-cta:hover {
+      text-decoration: underline;
+    }
+
+    [data-theme="light"] .service-card {
+      background: #f7f7f7;
+    }
+
+    @media (max-width: 768px) {
+      .services-grid { grid-template-columns: 1fr; }
+      #services { padding: 64px 24px; }
+    }
+
     /* === PROJECTS === */
     .project-block {
       min-height: 100vh;
@@ -622,6 +699,10 @@
     }
 
     [data-theme="light"] .project-block--grey {
+      background: #f7f7f7;
+    }
+
+    [data-theme="light"] .testimonials-section {
       background: #f7f7f7;
     }
 
@@ -719,7 +800,7 @@
 
     /* === TESTIMONIALS === */
     .testimonials-section {
-      background: var(--color-absolute-zero);
+      background: var(--color-deep-space);
       padding: 96px 0 80px;
     }
 
@@ -759,7 +840,7 @@
     .testimonial-card {
       width: 340px;
       flex-shrink: 0;
-      background: var(--color-deep-space);
+      background: #ffffff;
       border-radius: 8px;
       padding: 28px;
       display: flex;
@@ -768,7 +849,7 @@
     }
 
     [data-theme="light"] .testimonial-card {
-      background: #f7f7f7;
+      background: #ffffff;
     }
 
     .testimonial-stars {
@@ -954,7 +1035,7 @@
 
   <!-- NAV -->
   <nav aria-label="Main navigation">
-    <a href="#" class="nav-logo">alhaz<span>.me</span></a>
+    <a href="#" class="nav-logo">Alhaz<span>me</span></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -992,8 +1073,9 @@
           <span class="accent">Al Hazmi</span>
         </h1>
 
+        <p class="hero-subtitle">Founder of Alhazme, AI-Native Software Agency</p>
         <p class="hero-subtitle">
-          Solo founder building AI-native products end-to-end — Flutter, Go, React, and everything in between. From first commit to go-live.
+          Building mobile apps and backend systems end-to-end. From first commit to go-live.
         </p>
 
         <div class="hero-actions">
@@ -1021,12 +1103,12 @@
             <div class="stat-label">Products shipped end-to-end</div>
           </div>
           <div class="stat-item">
-            <div class="stat-value">3x</div>
-            <div class="stat-label">Faster delivery with AI augmentation</div>
+            <div class="stat-value">10+</div>
+            <div class="stat-label">Years of engineering experience</div>
           </div>
           <div class="stat-item">
-            <div class="stat-value">5&#9733;</div>
-            <div class="stat-label">Client satisfaction across all projects</div>
+            <div class="stat-value">5 &#9733;</div>
+            <div class="stat-label">Client satisfaction</div>
           </div>
         </div>
       </div>
@@ -1039,6 +1121,47 @@
     </div>
 
   </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <h2 class="services-heading">What I Build</h2>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+          </svg>
+        </div>
+        <h3 class="service-title">AI-Native App Development</h3>
+        <p class="service-desc">Mobile, web, and backend, delivered end-to-end. Flutter, Go, React, with AI baked into the product from day one.</p>
+        <a href="#contact" class="service-cta">Start a Project</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+          </svg>
+        </div>
+        <h3 class="service-title">SaaS Development</h3>
+        <p class="service-desc">White-label or custom. Multi-tenant, fully documented, and ready to scale. Your brand, my build.</p>
+        <a href="#contact" class="service-cta">Start a Project</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <h3 class="service-title">Digital Products</h3>
+        <p class="service-desc">Flutter templates, Figma UI kits, and ABK tools. Built once, ready to use instantly.</p>
+        <a href="#contact" class="service-cta">Browse Products</a>
+      </div>
+
+    </div>
+  </section>
 
   <!-- LOGOS SECTION -->
   <section class="logos-section">
@@ -1062,7 +1185,7 @@
         <div class="logo-item" title="Figma"><img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma"></div>
         <div class="logo-item logo-invert" title="GitHub"><img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub"></div>
         <div class="logo-item" title="Claude"><img src="https://cdn.simpleicons.org/anthropic/D97757" alt="Claude"></div>
-        <div class="logo-item" title="Codex"><img src="https://cdn.simpleicons.org/openai/ffffff" alt="Codex"></div>
+        <!-- <div class="logo-item" title="Codex"><img src="https://cdn.simpleicons.org/openai/ffffff" alt="Codex"></div> -->
 
         <!-- Duplicate set for seamless loop -->
         <div class="logo-item" title="Flutter"><img src="https://cdn.simpleicons.org/flutter/54C5F8" alt="Flutter"></div>
@@ -1166,11 +1289,11 @@
           <span class="tech-tag"><span class="tech-dot" style="background:#3DDC84"></span>Android Kotlin</span>
         </div>
         <p class="project-desc">
-          Internal lab management app operated by Laboratorium Klinik Sakura
+          Sales mobile app for top up deposit, tracking and analyzing whitelabel AlphaPay online agent.
         </p>
       </div>
       <div class="project-img">
-        <img src="images/salesku.png" alt="MLis App">
+        <img src="images/salesku.png" alt="Salesku App">
       </div>
     </div>
 
@@ -1184,11 +1307,11 @@
           <span class="tech-tag"><span class="tech-dot" style="background:#3DDC84"></span>Android Kotlin</span>
         </div>
         <p class="project-desc">
-          Chaterpress is a social printing app that lets users import Instagram photos, edit, share, and print them into a photobook.
+          Online payment mobile app to top up your phone balance and pay all your bills in Indonesia with several click.
         </p>
       </div>
       <div class="project-img">
-        <img src="images/sepulsa.png" alt="Chaterpress App">
+        <img src="images/sepulsa.png" alt="Sepulsa App">
       </div>
     </div>
 
@@ -1201,7 +1324,7 @@
           <span class="tech-tag"><span class="tech-dot" style="background:#F05138"></span>iOS Swift</span>
         </div>
         <p class="project-desc">
-          Internal lab management app operated by Laboratorium Klinik Sakura
+          Mobile application platform by Laboratorium Klinik Sakura for internal purpose.
         </p>
       </div>
       <div class="project-img">
@@ -1281,78 +1404,54 @@
 
   <!-- TESTIMONIALS -->
   <section class="testimonials-section">
-    <h2 class="testimonials-heading">What Clients Say</h2>
+    <h2 class="testimonials-heading">What They Say</h2>
     <div class="testimonials-outer">
       <div class="testimonials-track">
 
         <div class="testimonial-card">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Working with Fariz was a game-changer for our startup. He delivered a production-ready Flutter app in under a month — clean architecture, zero shortcuts."</p>
+          <p class="testimonial-quote">"Mochamad Fariz Al Hazmi is a motivated, forward-thinking, intelligent senior Flutter developer with lots of knowledge in his field. His hands-on strategy to dart, Flutter, iOS, Android development, remote teamwork, and strong personality won him the team's respect. I could always depend on him to set the best example as a senior Flutter developer at PT Glovory Technologies Indonesia. Definitely someone I'd want to have on my team."</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:#1a1a3e;color:#9869fd">SK</div>
+            <div class="testimonial-avatar" style="background:#2a1a3e;color:#9869fd">US</div>
             <div>
-              <div class="testimonial-name">Sarah K.</div>
-              <div class="testimonial-role">CTO &middot; Nexora</div>
+              <div class="testimonial-name">Utrodus Said Al Baqi</div>
+              <div class="testimonial-role">Software Engineer &middot; PT Glovory Technologies</div>
             </div>
           </div>
         </div>
 
         <div class="testimonial-card">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Fariz understands the full product — from API design to pixel-perfect UI. Our logistics dashboard went from spec to live in 6 weeks."</p>
+          <p class="testimonial-quote">"His knowledge of iOS development is top notch."</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:#1a3020;color:#33c659">BS</div>
+            <div class="testimonial-avatar" style="background:#1a3020;color:#33c659">MF</div>
             <div>
-              <div class="testimonial-name">Budi S.</div>
-              <div class="testimonial-role">Founder &middot; Logistika</div>
+              <div class="testimonial-name">Muhammad Faruk Abdul Rahman</div>
+              <div class="testimonial-role">Lead Software Engineer &middot; GoTo Financial</div>
             </div>
           </div>
         </div>
 
         <div class="testimonial-card">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"The AI-native approach Fariz brought to our product completely changed how we think about automation. Highly recommend for any serious build."</p>
+          <p class="testimonial-quote">"Such a great moment to know &amp; work in the same Scrum team with Aiz. He really represents: Talk Less Do More attitude. He is able to surprise us with awesome working. Always interested to learn new knowledge/skill. A good coachee who always looks for new paths to grow as a great talent. Keep up, Aiz!"</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:#3e1a1a;color:#fd5d5c">RW</div>
+            <div class="testimonial-avatar" style="background:#3e2a0a;color:#fac80a">RA</div>
             <div>
-              <div class="testimonial-name">Rina W.</div>
-              <div class="testimonial-role">Product Manager &middot; Finova</div>
+              <div class="testimonial-name">Rendy Aries Fajrin</div>
+              <div class="testimonial-role">Agile Coach &middot; Indonesian Coaching Practitioners</div>
             </div>
           </div>
         </div>
 
         <div class="testimonial-card">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Best investment we made for our MVP. Fariz delivered more than what was scoped — on time, on budget, with full documentation included."</p>
+          <p class="testimonial-quote">"Moch. Fariz or we call him Aiz is a great partner in team work. We have completed many projects together in the last 2 years. What I like from him is he almost never complains about job assignment, good listener and always does his job better from day to day in getting perfection. I've learned many things about mobile development from him that makes me more understand how to design better for mobile application."</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:#3e300a;color:#fac80a">AF</div>
+            <div class="testimonial-avatar" style="background:#1a2e3e;color:#4fa3d1">HH</div>
             <div>
-              <div class="testimonial-name">Ahmad F.</div>
-              <div class="testimonial-role">Founder &middot; Edukita</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Clean code, clear communication, zero ghosting. Fariz is the kind of engineer you want on every critical project."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:#0d1f2d;color:#0099ff">JT</div>
-            <div>
-              <div class="testimonial-name">James T.</div>
-              <div class="testimonial-role">CEO &middot; Retailex</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Our Android app had been stuck for months. Fariz came in, diagnosed the issues, and shipped a stable release in two weeks. Incredible work."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:#1a2e1a;color:#3DDC84">DM</div>
-            <div>
-              <div class="testimonial-name">Dita M.</div>
-              <div class="testimonial-role">Lead Engineer &middot; Codewave</div>
+              <div class="testimonial-name">Heru Herlambang</div>
+              <div class="testimonial-role">Head of Design &middot; Self-taught UX Designer</div>
             </div>
           </div>
         </div>
@@ -1360,72 +1459,48 @@
         <!-- Duplicate set for seamless infinite loop -->
         <div class="testimonial-card">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Working with Fariz was a game-changer for our startup. He delivered a production-ready Flutter app in under a month — clean architecture, zero shortcuts."</p>
+          <p class="testimonial-quote">"Mochamad Fariz Al Hazmi is a motivated, forward-thinking, intelligent senior Flutter developer with lots of knowledge in his field. His hands-on strategy to dart, Flutter, iOS, Android development, remote teamwork, and strong personality won him the team's respect. I could always depend on him to set the best example as a senior Flutter developer at PT Glovory Technologies Indonesia. Definitely someone I'd want to have on my team."</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:#1a1a3e;color:#9869fd">SK</div>
+            <div class="testimonial-avatar" style="background:#2a1a3e;color:#9869fd">US</div>
             <div>
-              <div class="testimonial-name">Sarah K.</div>
-              <div class="testimonial-role">CTO &middot; Nexora</div>
+              <div class="testimonial-name">Utrodus Said Al Baqi</div>
+              <div class="testimonial-role">Software Engineer &middot; PT Glovory Technologies</div>
             </div>
           </div>
         </div>
 
         <div class="testimonial-card">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Fariz understands the full product — from API design to pixel-perfect UI. Our logistics dashboard went from spec to live in 6 weeks."</p>
+          <p class="testimonial-quote">"His knowledge of iOS development is top notch."</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:#1a3020;color:#33c659">BS</div>
+            <div class="testimonial-avatar" style="background:#1a3020;color:#33c659">MF</div>
             <div>
-              <div class="testimonial-name">Budi S.</div>
-              <div class="testimonial-role">Founder &middot; Logistika</div>
+              <div class="testimonial-name">Muhammad Faruk Abdul Rahman</div>
+              <div class="testimonial-role">Lead Software Engineer &middot; GoTo Financial</div>
             </div>
           </div>
         </div>
 
         <div class="testimonial-card">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"The AI-native approach Fariz brought to our product completely changed how we think about automation. Highly recommend for any serious build."</p>
+          <p class="testimonial-quote">"Such a great moment to know &amp; work in the same Scrum team with Aiz. He really represents: Talk Less Do More attitude. He is able to surprise us with awesome working. Always interested to learn new knowledge/skill. A good coachee who always looks for new paths to grow as a great talent. Keep up, Aiz!"</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:#3e1a1a;color:#fd5d5c">RW</div>
+            <div class="testimonial-avatar" style="background:#3e2a0a;color:#fac80a">RA</div>
             <div>
-              <div class="testimonial-name">Rina W.</div>
-              <div class="testimonial-role">Product Manager &middot; Finova</div>
+              <div class="testimonial-name">Rendy Aries Fajrin</div>
+              <div class="testimonial-role">Agile Coach &middot; Indonesian Coaching Practitioners</div>
             </div>
           </div>
         </div>
 
         <div class="testimonial-card">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Best investment we made for our MVP. Fariz delivered more than what was scoped — on time, on budget, with full documentation included."</p>
+          <p class="testimonial-quote">"Moch. Fariz or we call him Aiz is a great partner in team work. We have completed many projects together in the last 2 years. What I like from him is he almost never complains about job assignment, good listener and always does his job better from day to day in getting perfection. I've learned many things about mobile development from him that makes me more understand how to design better for mobile application."</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:#3e300a;color:#fac80a">AF</div>
+            <div class="testimonial-avatar" style="background:#1a2e3e;color:#4fa3d1">HH</div>
             <div>
-              <div class="testimonial-name">Ahmad F.</div>
-              <div class="testimonial-role">Founder &middot; Edukita</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Clean code, clear communication, zero ghosting. Fariz is the kind of engineer you want on every critical project."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:#0d1f2d;color:#0099ff">JT</div>
-            <div>
-              <div class="testimonial-name">James T.</div>
-              <div class="testimonial-role">CEO &middot; Retailex</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-quote">"Our Android app had been stuck for months. Fariz came in, diagnosed the issues, and shipped a stable release in two weeks. Incredible work."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:#1a2e1a;color:#3DDC84">DM</div>
-            <div>
-              <div class="testimonial-name">Dita M.</div>
-              <div class="testimonial-role">Lead Engineer &middot; Codewave</div>
+              <div class="testimonial-name">Heru Herlambang</div>
+              <div class="testimonial-role">Head of Design &middot; Self-taught UX Designer</div>
             </div>
           </div>
         </div>
@@ -1444,7 +1519,7 @@
 
         <div class="footer-brand">
           <a href="#" class="footer-logo">alhaz<span>.me</span></a>
-          <p class="footer-tagline">Solo founder building AI-native products end-to-end. Flutter, Go, React, and everything in between.</p>
+          <p class="footer-tagline">AI-Native Software Agency. Mobile apps, backend systems, and AI products — end-to-end.</p>
         </div>
 
         <div class="footer-links">
@@ -1463,7 +1538,7 @@
           <div class="footer-col">
             <span class="footer-col-title">Contact</span>
             <a href="mailto:mochfarizalhazmi@gmail.com">Email</a>
-            <a href="https://linkedin.com/in/alhazmi" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://linkedin.com/in/alhazme" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://github.com/mochfarizalhazmi" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
@@ -1471,7 +1546,7 @@
       </div>
 
       <div class="footer-bottom">
-        <span class="footer-copy">&copy; 2026 Alhazme. All rights reserved.</span>
+        <span class="footer-copy">&copy; 2026 Alhazme &mdash; AI-Native Software Agency</span>
         <div class="footer-socials">
           <a href="mailto:mochfarizalhazmi@gmail.com">mochfarizalhazmi@gmail.com</a>
         </div>
