@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iOS Native Engineering Workshop — Staff/Principal Track</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding:56px 24px 96px}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}a:hover{text-decoration:underline}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay);margin-bottom:12px}
+.hero h1{font-size:46px;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px}
+.hero p.lead{font-size:18px;color:var(--gray-700);max-width:660px}
+.meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+hr{border:none;border-top:1px solid var(--gray-300);margin:40px 0 28px}
+.progress-panel{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:24px;box-shadow:var(--shadow-sm);margin-top:32px}
+.progress-panel h3{font-size:18px;margin-bottom:6px}
+.progress-bar{height:10px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin:14px 0 8px}
+.progress-fill{height:100%;background:var(--clay);width:0;transition:width .4s ease;border-radius:var(--radius-pill)}
+.progress-meta{font-size:13px;color:var(--gray-500);font-family:var(--mono)}
+.phase{margin-top:36px}
+.phase-head{display:flex;align-items:baseline;gap:12px;margin-bottom:4px}
+.phase-num{font-family:var(--mono);font-size:13px;color:var(--gray-500)}
+.phase-head h2{font-size:23px}
+.phase-desc{color:var(--gray-500);font-size:14px;margin-bottom:14px}
+.modules{display:grid;gap:10px}
+.mod-card{display:flex;align-items:center;gap:16px;background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:16px 18px;box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .2s}
+.mod-card.available:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.mod-card.locked{opacity:.6}
+.mod-index{font-family:var(--mono);font-size:13px;color:var(--gray-500);min-width:38px}
+.mod-body{flex:1}
+.mod-body h4{font-size:15.5px;margin-bottom:2px}
+.mod-body p{font-size:12.5px;color:var(--gray-500)}
+.mod-status{font-size:12px;font-weight:500;padding:4px 10px;border-radius:var(--radius-pill);white-space:nowrap}
+.s-ready{background:rgba(120,140,93,.16);color:var(--olive)}
+.s-soon{background:var(--gray-100);color:var(--gray-500)}
+.callout{background:var(--oat);border-radius:var(--radius-panel);padding:20px 22px;margin-top:32px;font-size:14px}
+.callout strong{font-weight:600}
+footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--gray-300);font-size:13px;color:var(--gray-500)}
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
+.stack-item{background:var(--white);border:var(--border);border-radius:var(--radius-row);padding:12px 14px}
+.stack-item .k{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em}
+.stack-item .v{font-size:14px;color:var(--slate);margin-top:3px}
+@media(max-width:640px){.hero h1{font-size:32px}.wrap{padding:40px 18px 72px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">iOS Native Engineering · Staff / Principal Track</div>
+    <h1>iOS Native dari Nol hingga Expert Production-Grade</h1>
+    <p class="lead">Workshop internal 10 fase + pelengkap · 19 modul. Membangun aplikasi iOS production — fintech, e-commerce, SaaS, enterprise — dengan scalable architecture, clean code, testing, CI/CD, security, dan performance optimization.</p>
+    <div class="meta-row">
+      <span class="badge accent">Swift 6.4</span>
+      <span class="badge accent">Xcode 27</span>
+      <span class="badge accent">iOS 27</span>
+      <span class="badge neutral">SwiftUI + UIKit</span>
+      <span class="badge neutral">Swift Testing</span>
+      <span class="badge success">WWDC 2026 baseline</span>
+    </div>
+  </div>
+
+  <div class="progress-panel">
+    <h3>Progress Anda</h3>
+    <div class="progress-bar"><div class="progress-fill" id="globalFill"></div></div>
+    <div class="progress-meta" id="globalMeta">Memuat progress…</div>
+  </div>
+
+  <div class="callout">
+    <strong>Baseline ecosystem (Juni 2026).</strong> Swift 6.4 (rilis WWDC 2026), Xcode 27, Swift 6 language mode dengan data-race safety aktif. Default project Xcode 27: Approachable Concurrency + Default Actor Isolation = MainActor + Strict Concurrency = Complete. Pattern deprecated (DispatchQueue manual untuk state, ObservableObject klasik, completion-handler-only networking) ditandai blok <em>Old → New → Migration → Alasan</em>.
+  </div>
+
+  <hr>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">PHASE 1</span><h2>Swift Foundation</h2></div>
+    <p class="phase-desc">Mental model bahasa: value semantics, generics, protocol-oriented, concurrency, memory.</p>
+    <div class="modules">
+      <a class="mod-card available" href="modules/module-01.html"><div class="mod-index">01</div><div class="mod-body"><h4>Swift Foundation</h4><p>Type system, optionals, value vs reference, enums, functions/closures, error handling</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-02.html"><div class="mod-index">02</div><div class="mod-body"><h4>Swift Advanced — Generics &amp; Protocol-Oriented</h4><p>Generics, associated types, POP, opaque/existential types, Result, advanced closures</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-03.html"><div class="mod-index">03</div><div class="mod-body"><h4>Swift Concurrency &amp; Memory</h4><p>async/await, actors, structured concurrency, Sendable, @MainActor, ARC, SPM</p></div><span class="mod-status s-ready">Tersedia</span></a>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">PHASE 2</span><h2>iOS Fundamental</h2></div>
+    <p class="phase-desc">Xcode mastery, lifecycle, networking, persistence, background task.</p>
+    <div class="modules">
+      <a class="mod-card available" href="modules/module-04.html"><div class="mod-index">04</div><div class="mod-body"><h4>Xcode &amp; App/Scene Lifecycle</h4><p>Xcode 27, project structure, targets/schemes, bundle, permission, lifecycle</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-05.html"><div class="mod-index">05</div><div class="mod-body"><h4>Networking &amp; Persistence</h4><p>URLSession async, Codable, Keychain, file storage, background task, SwiftData</p></div><span class="mod-status s-ready">Tersedia</span></a>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">PHASE 3</span><h2>UI Development</h2></div>
+    <p class="phase-desc">SwiftUI + Observation, UIKit + Coordinator, kapan pakai yang mana.</p>
+    <div class="modules">
+      <a class="mod-card available" href="modules/module-06.html"><div class="mod-index">06</div><div class="mod-body"><h4>SwiftUI &amp; Observation</h4><p>View system, @Observable, state, navigation, animation, custom component, design system</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-07.html"><div class="mod-index">07</div><div class="mod-body"><h4>UIKit &amp; Coordinator</h4><p>UIViewController, Auto Layout, Table/CollectionView, coordinator, interop strategy</p></div><span class="mod-status s-ready">Tersedia</span></a>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">PHASE 4</span><h2>Enterprise Architecture</h2></div>
+    <p class="phase-desc">MVC problem → MVVM → Clean → VIPER → TCA, modularization, DI, repository.</p>
+    <div class="modules">
+      <a class="mod-card available" href="modules/module-08.html"><div class="mod-index">08</div><div class="mod-body"><h4>Architecture Patterns</h4><p>MVC problem, MVVM, Clean Architecture, VIPER, TCA, trade-off matrix</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-09.html"><div class="mod-index">09</div><div class="mod-body"><h4>Modularization &amp; DI</h4><p>Modular architecture (SPM), dependency injection, repository pattern, dependency direction</p></div><span class="mod-status s-ready">Tersedia</span></a>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">PHASE 5</span><h2>Third-Party Library Mastery</h2></div>
+    <p class="phase-desc">Networking stack berlapis + ekosistem library production.</p>
+    <div class="modules">
+      <a class="mod-card available" href="modules/module-10.html"><div class="mod-index">10</div><div class="mod-body"><h4>Networking Stack &amp; Libraries</h4><p>URLSession vs Alamofire vs Moya, auth/refresh/interceptor/retry, parsing, layered architecture</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-11.html"><div class="mod-index">11</div><div class="mod-body"><h4>Ecosystem Libraries</h4><p>Swinject, Combine/RxSwift, CoreData/Realm, Kingfisher, Lottie, Firebase, Sentry, Quick/Nimble</p></div><span class="mod-status s-ready">Tersedia</span></a>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">PHASE 6</span><h2>Production Project</h2></div>
+    <p class="phase-desc">Enterprise SaaS iOS app end-to-end.</p>
+    <div class="modules">
+      <a class="mod-card available" href="modules/module-12.html"><div class="mod-index">12</div><div class="mod-body"><h4>Enterprise SaaS Build</h4><p>Auth, RBAC, API, offline, push, deep link, upload, payment, analytics, crash reporting</p></div><span class="mod-status s-ready">Tersedia</span></a>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">PHASE 7</span><h2>Testing</h2></div>
+    <p class="phase-desc">Swift Testing, UI test, snapshot, mocking, test architecture.</p>
+    <div class="modules">
+      <a class="mod-card available" href="modules/module-13.html"><div class="mod-index">13</div><div class="mod-body"><h4>Testing Strategy</h4><p>Unit, UI (XCUITest), snapshot, mocking, test architecture, coverage gate</p></div><span class="mod-status s-ready">Tersedia</span></a>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">PHASE 8</span><h2>DevOps</h2></div>
+    <p class="phase-desc">Git workflow, Fastlane, CI/CD, TestFlight, App Store release.</p>
+    <div class="modules">
+      <a class="mod-card available" href="modules/module-14.html"><div class="mod-index">14</div><div class="mod-body"><h4>Git, Fastlane &amp; CI/CD</h4><p>Git workflow, Fastlane, GitHub Actions, signing, TestFlight, App Store submission</p></div><span class="mod-status s-ready">Tersedia</span></a>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">PHASE 9</span><h2>Advanced</h2></div>
+    <p class="phase-desc">Instruments, memory, battery, security, certificate pinning.</p>
+    <div class="modules">
+      <a class="mod-card available" href="modules/module-15.html"><div class="mod-index">15</div><div class="mod-body"><h4>Performance &amp; Security</h4><p>Instruments, memory &amp; battery optimization, OWASP MASVS, certificate pinning</p></div><span class="mod-status s-ready">Tersedia</span></a>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">PHASE 10</span><h2>Senior Engineer</h2></div>
+    <p class="phase-desc">System design, architecture decision, code review, scaling team.</p>
+    <div class="modules">
+      <a class="mod-card available" href="modules/module-16.html"><div class="mod-index">16</div><div class="mod-body"><h4>System Design &amp; Leadership</h4><p>iOS system design, architecture decision records, code review at scale, scaling team</p></div><span class="mod-status s-ready">Tersedia</span></a>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-head"><span class="phase-num">PELENGKAP</span><h2>Production Readiness</h2></div>
+    <p class="phase-desc">Kemampuan wajib-rilis yang menutup gap: property wrapper, lokalisasi, aksesibilitas, migrasi, privacy, feature flags.</p>
+    <div class="modules">
+      <a class="mod-card available" href="modules/module-17.html"><div class="mod-index">17</div><div class="mod-body"><h4>Property Wrappers, L10n &amp; A11y</h4><p>Custom @propertyWrapper, String Catalog, format locale (IDR/WIB), VoiceOver, Dynamic Type, aksesibilitas ABK</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-18.html"><div class="mod-index">18</div><div class="mod-body"><h4>Migration, Privacy &amp; Feature Flags</h4><p>SwiftData migration, PrivacyInfo.xcprivacy, ATT, feature flags, kill-switch &amp; rollout</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-19.html"><div class="mod-index">19</div><div class="mod-body"><h4>Native Frameworks &amp; Permissions</h4><p>Kamera, lokasi, foto, notifikasi, StoreKit 2; siklus izin, handle penolakan, best practice</p></div><span class="mod-status s-ready">Tersedia</span></a>
+    </div>
+  </div>
+
+  <hr>
+  <h3 style="font-size:18px;margin-bottom:4px">Delivery Stack</h3>
+  <div class="stack-grid">
+    <div class="stack-item"><div class="k">Language</div><div class="v">Swift 6.4</div></div>
+    <div class="stack-item"><div class="k">UI</div><div class="v">SwiftUI + UIKit</div></div>
+    <div class="stack-item"><div class="k">Networking</div><div class="v">URLSession / Alamofire</div></div>
+    <div class="stack-item"><div class="k">Persistence</div><div class="v">SwiftData / CoreData</div></div>
+    <div class="stack-item"><div class="k">Testing</div><div class="v">Swift Testing</div></div>
+    <div class="stack-item"><div class="k">CI/CD</div><div class="v">Fastlane + GH Actions</div></div>
+  </div>
+
+  <footer>iOS Native Workshop · Staff/Principal Track · Disusun untuk Alhazme. Progress disimpan lokal di browser (localStorage). Skill tersedia di <code>.claude/skills/</code>.</footer>
+</div>
+
+<script>
+(function(){
+  const MODULE_ITEMS={m01:9,m02:8,m03:8,m04:7,m05:8,m06:8,m07:8,m08:8,m09:8,m10:8,m11:8,m12:8,m13:8,m14:8,m15:8,m16:8,m17:8,m18:8,m19:9};
+  let done=0,total=0;
+  for(const k in MODULE_ITEMS){
+    total+=MODULE_ITEMS[k];
+    try{const raw=localStorage.getItem('ios-ws-'+k);if(raw){const a=JSON.parse(raw);done+=Object.values(a).filter(Boolean).length;}}catch(e){}
+  }
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById('globalFill').style.width=pct+'%';
+  document.getElementById('globalMeta').textContent=done+' / '+total+' item selesai · '+pct+'% · 19 dari 19 modul — workshop lengkap + pelengkap 🎓';
+})();
+</script>
+</body>
+</html>

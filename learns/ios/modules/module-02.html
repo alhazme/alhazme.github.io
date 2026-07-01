@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 02 — Swift Advanced: Generics & Protocol-Oriented</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+.onm{border:var(--border);border-radius:var(--radius-panel);overflow:hidden;margin:18px 0}
+.onm-head{background:var(--gray-100);padding:10px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500)}
+.onm-grid{display:grid;grid-template-columns:1fr 1fr}
+.onm-cell{padding:14px 16px}.onm-cell.old{border-right:1px solid var(--gray-300)}
+.onm-tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;display:inline-block}
+.onm-tag.t-old{color:var(--danger)}.onm-tag.t-new{color:var(--olive)}
+.onm-cell pre{margin:0;font-size:12px}
+.onm-mig{padding:12px 16px;background:var(--ivory);font-size:13.5px;border-top:1px solid var(--gray-300)}.onm-mig b{font-weight:600}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.diagram{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px;margin:18px 0;text-align:center}
+.diagram svg{max-width:100%;height:auto}.dcap{font-size:12.5px;color:var(--gray-500);margin-top:10px;font-style:italic}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+  .onm-grid{grid-template-columns:1fr}.onm-cell.old{border-right:none;border-bottom:1px solid var(--gray-300)}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 02 · Phase 1</div><h2>Swift Advanced</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Dari Konkret ke Abstrak</a>
+      <a href="#generics"><span class="nidx">01</span>Generics</a>
+      <a href="#constraints"><span class="nidx">02</span>Constraints & where</a>
+      <a href="#associated"><span class="nidx">03</span>Associated Types</a>
+      <a href="#pop"><span class="nidx">04</span>Protocol-Oriented</a>
+      <a href="#some-any"><span class="nidx">05</span>some vs any</a>
+      <a href="#result"><span class="nidx">06</span>Result & Error Flow</a>
+      <a href="#closures"><span class="nidx">07</span>Advanced Closures</a>
+      <a href="#exercises"><span class="nidx">08</span>Latihan</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 02 · PHASE 1 — SWIFT ADVANCED</span>Dari Tipe Konkret ke Abstraksi</h2>
+      <p class="lead">Module 1 membangun fondasi value semantics. Module 2 mengajarkan cara <strong>menulis kode yang bekerja untuk banyak tipe sekaligus</strong> — tanpa mengorbankan type safety. Inilah yang membedakan kode library-grade dari kode sekali pakai.</p>
+      <div class="meta-row"><span class="badge accent">Swift 6.4</span><span class="badge neutral">~100 menit</span><span class="badge neutral">8 topik</span><span class="badge success">Principal calibrated</span></div>
+      <p>Tiga alat abstraksi inti Swift, dari paling spesifik ke paling fleksibel:</p>
+      <table>
+        <thead><tr><th>Alat</th><th>Gunakan saat</th><th>Biaya runtime</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Generics</strong> <code>&lt;T&gt;</code></td><td>Satu algoritma, banyak tipe, diketahui compile-time</td><td>Nol (di-specialize) — paling cepat</td></tr>
+          <tr><td><strong>Opaque</strong> <code>some P</code></td><td>Return satu tipe konkret yang disembunyikan</td><td>Nol — sama seperti generic</td></tr>
+          <tr><td><strong>Existential</strong> <code>any P</code></td><td>Heterogen, tipe baru ditentukan runtime</td><td>Ada — boxing + dynamic dispatch</td></tr>
+        </tbody>
+      </table>
+      <div class="note key"><span class="nt">Tesis Modul</span><strong>Protocol-Oriented Programming (POP)</strong> adalah paradigma utama Swift, bukan OOP klasik. Anda mengomposisi behavior lewat protocol + protocol extension, bukan mewarisi lewat class hierarchy. Module ini membangun intuisi kapan tiap alat tepat — keputusan yang sering salah bahkan di tim senior.</div>
+    </section>
+
+    <section id="generics">
+      <h2><span class="sn">01</span>Generics — Satu Algoritma, Banyak Tipe</h2>
+      <p>Generic memungkinkan Anda menulis fungsi atau tipe yang bekerja untuk tipe apa pun, dengan compiler tetap mengecek tipe secara penuh. Tidak ada casting, tidak ada <code>Any</code>, tidak ada kehilangan keamanan.</p>
+      <div class="code-label">Generic function & generic type</div>
+<pre><code data-swift>// Generic function — `T` adalah type parameter
+func swapValues&lt;T&gt;(_ a: inout T, _ b: inout T) {
+    let tmp = a; a = b; b = tmp
+}
+
+// Generic type — Stack bekerja untuk Element apa pun
+struct Stack&lt;Element&gt; {
+    private var items: [Element] = []
+    var isEmpty: Bool { items.isEmpty }
+    mutating func push(_ item: Element) { items.append(item) }
+    mutating func pop() -&gt; Element? { items.popLast() }
+}
+
+var s = Stack&lt;Int&gt;()      // di-specialize jadi Stack of Int — nol overhead
+s.push(1); s.push(2)
+s.pop()                    // Optional(2)</code></pre>
+      <div class="note key"><span class="nt">Kenapa cepat</span>Compiler melakukan <strong>monomorphization / specialization</strong>: <code>Stack&lt;Int&gt;</code> menghasilkan kode mesin khusus Int, seolah Anda menulisnya manual. Berbeda dari Java generics (type erasure) atau existential Swift — generic Swift tidak punya biaya boxing.</div>
+    </section>
+
+    <section id="constraints">
+      <h2><span class="sn">02</span>Type Constraints & <code>where</code></h2>
+      <p>Generic tanpa constraint hanya bisa melakukan hal yang berlaku untuk <em>semua</em> tipe (assign, simpan). Untuk memanggil method, batasi <code>T</code> dengan protocol.</p>
+<pre><code data-swift>// Constraint: T harus Comparable agar bisa pakai operator &lt;
+func maxElement&lt;T: Comparable&gt;(_ items: [T]) -&gt; T? {
+    items.max()
+}
+
+// `where` clause untuk constraint yang lebih kaya
+extension Array where Element: Numeric {
+    func total() -&gt; Element { reduce(.zero, +) }
+}
+[1, 2, 3].total()          // 6
+["a", "b"].total()         // compile error — String bukan Numeric
+
+// Constraint pada associated type lewat where
+func allEqual&lt;C: Collection&gt;(_ c: C) -&gt; Bool where C.Element: Equatable {
+    guard let first = c.first else { return true }
+    return c.allSatisfy { $0 == first }
+}</code></pre>
+      <div class="note warn"><span class="nt">Prinsip Desain</span>Tambahkan constraint <strong>seminimal mungkin</strong> tetapi <strong>secukupnya</strong>. Constraint yang terlalu longgar membuat body tak bisa apa-apa; terlalu ketat membatasi reusability. Idiom Swift: constrain ke protocol kemampuan (<code>Equatable</code>, <code>Hashable</code>, <code>Comparable</code>), bukan ke tipe konkret.</div>
+    </section>
+
+    <section id="associated">
+      <h2><span class="sn">03</span>Associated Types — Generic untuk Protocol</h2>
+      <p>Protocol tidak bisa punya type parameter <code>&lt;T&gt;</code>. Sebagai gantinya, ia mendeklarasikan <strong>associated type</strong> — placeholder yang diisi oleh tiap conformer. Ini fondasi <code>Repository</code>, <code>Collection</code>, dan hampir semua abstraksi data di iOS enterprise.</p>
+      <div class="code-label">Protocol with associated type (PAT)</div>
+<pre><code data-swift>protocol Repository {
+    associatedtype Entity                      // placeholder
+    func fetch(id: String) async throws -&gt; Entity
+    func save(_ entity: Entity) async throws
+}
+
+struct UserRepository: Repository {
+    typealias Entity = User                    // sering diinferensikan otomatis
+    func fetch(id: String) async throws -&gt; User { /* ... */ }
+    func save(_ entity: User) async throws { /* ... */ }
+}</code></pre>
+
+      <h3>Primary associated types (Swift 5.7+)</h3>
+      <div class="onm">
+        <div class="onm-head">Old → New · Constraining PAT di tipe</div>
+        <div class="onm-grid">
+          <div class="onm-cell old"><span class="onm-tag t-old">Old</span>
+<pre><code data-swift>// Harus pakai generic +
+// where — verbose
+func use&lt;R: Repository&gt;(_ r: R)
+   where R.Entity == User {}</code></pre></div>
+          <div class="onm-cell new"><span class="onm-tag t-new">New (5.7+)</span>
+<pre><code data-swift>// Tandai primary
+protocol Repository&lt;Entity&gt; {…}
+// lalu ringkas:
+func use(_ r: some Repository&lt;User&gt;){}
+let r: any Repository&lt;User&gt;</code></pre></div>
+        </div>
+        <div class="onm-mig"><b>Migrasi & alasan:</b> Tandai associated type utama di sudut kurung protocol (<code>protocol Repository&lt;Entity&gt;</code>). Ini memungkinkan sintaks lightweight <code>some Repository&lt;User&gt;</code> / <code>any Repository&lt;User&gt;</code>. <b>Alasan perubahan:</b> sebelum 5.7, PAT tidak bisa dipakai sebagai existential sama sekali (<code>any Repository</code> error). Primary associated types membuka ekspresivitas generic standard-library (mis. <code>any Collection&lt;Int&gt;</code>) untuk kode Anda.</div>
+      </div>
+    </section>
+
+    <section id="pop">
+      <h2><span class="sn">04</span>Protocol-Oriented Programming</h2>
+      <p>POP menggantikan inheritance dengan <strong>komposisi protocol</strong> + <strong>default implementation</strong> via protocol extension. Tipe value (struct/enum) yang tak bisa inherit pun mendapat shared behavior.</p>
+      <div class="code-label">Protocol extension = default behavior</div>
+<pre><code data-swift>protocol Animal { var name: String { get } }
+
+extension Animal {
+    func describe() -&gt; String { "Hewan bernama \(name)" }   // default
+}
+
+struct Cat: Animal { let name: String }
+Cat(name: "Mochi").describe()   // gratis, tanpa duplikasi</code></pre>
+
+      <h3>Composition over inheritance</h3>
+<pre><code data-swift>protocol Identifiable2 { var id: String { get } }
+protocol Timestamped { var createdAt: Date { get } }
+protocol Auditable: Identifiable2, Timestamped {}   // komposisi
+
+// Satu tipe conform ke banyak kapabilitas kecil — bukan satu superclass gemuk
+struct Invoice: Auditable {
+    let id: String
+    let createdAt: Date
+}</code></pre>
+
+      <div class="diagram">
+        <svg viewBox="0 0 560 190" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, monospace">
+          <text x="120" y="22" text-anchor="middle" font-size="12" fill="#B04A4A">OOP: inheritance kaku</text>
+          <rect x="70" y="36" width="100" height="32" rx="6" fill="#FAF9F5" stroke="#D1CFC5"/><text x="120" y="56" text-anchor="middle" font-size="11">BaseModel</text>
+          <rect x="40" y="96" width="70" height="30" rx="6" fill="#FAF9F5" stroke="#D1CFC5"/><text x="75" y="115" text-anchor="middle" font-size="10">User</text>
+          <rect x="130" y="96" width="70" height="30" rx="6" fill="#FAF9F5" stroke="#D1CFC5"/><text x="165" y="115" text-anchor="middle" font-size="10">Invoice</text>
+          <path d="M95 96 L110 68" stroke="#87867F" stroke-width="1.3"/><path d="M165 96 L140 68" stroke="#87867F" stroke-width="1.3"/>
+          <line x1="280" y1="14" x2="280" y2="176" stroke="#D1CFC5" stroke-dasharray="4 4"/>
+          <text x="420" y="22" text-anchor="middle" font-size="12" fill="#788C5D">POP: komposisi protocol</text>
+          <rect x="330" y="40" width="78" height="26" rx="6" fill="rgba(120,140,93,.16)" stroke="#788C5D"/><text x="369" y="57" text-anchor="middle" font-size="10">Identifiable</text>
+          <rect x="430" y="40" width="86" height="26" rx="6" fill="rgba(120,140,93,.16)" stroke="#788C5D"/><text x="473" y="57" text-anchor="middle" font-size="10">Timestamped</text>
+          <rect x="380" y="120" width="86" height="28" rx="6" fill="rgba(217,119,87,.14)" stroke="#D97757"/><text x="423" y="138" text-anchor="middle" font-size="10">Invoice</text>
+          <path d="M400 120 L375 66" stroke="#788C5D" stroke-width="1.3"/><path d="M446 120 L468 66" stroke="#788C5D" stroke-width="1.3"/>
+        </svg>
+        <div class="dcap">Tipe memilih kapabilitas yang dibutuhkan, bukan terjebak satu rantai pewarisan.</div>
+      </div>
+      <div class="note danger"><span class="nt">Anti-Pattern</span>Membuat <code>class BaseViewModel</code> raksasa yang diwarisi semua view model adalah jejak OOP yang harus dihindari di Swift. Pecah jadi protocol kecil (<code>Loadable</code>, <code>Refreshable</code>) + protocol extension. Inheritance class hanya untuk kasus yang benar-benar butuh (UIKit, identity).</div>
+    </section>
+
+    <section id="some-any">
+      <h2><span class="sn">05</span><code>some</code> vs <code>any</code> — Opaque vs Existential</h2>
+      <p>Keputusan yang paling sering salah. Keduanya menyembunyikan tipe konkret, tetapi mekanisme dan biayanya berbeda fundamental.</p>
+      <table>
+        <thead><tr><th></th><th><code>some P</code> (opaque)</th><th><code>any P</code> (existential)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Tipe konkret</strong></td><td>Satu, tetap, diketahui compiler</td><td>Bisa beda-beda saat runtime</td></tr>
+          <tr><td><strong>Mekanisme</strong></td><td>Static dispatch, no box</td><td>Boxed, dynamic dispatch</td></tr>
+          <tr><td><strong>Biaya</strong></td><td>Nol overhead</td><td>Heap box + indirection</td></tr>
+          <tr><td><strong>Heterogen array</strong></td><td>Tidak bisa</td><td>Bisa (<code>[any P]</code>)</td></tr>
+          <tr><td><strong>Default pilihan</strong></td><td>✓ Mulai dari sini</td><td>Hanya saat butuh heterogenitas</td></tr>
+        </tbody>
+      </table>
+<pre><code data-swift>// some — return satu tipe konkret yang disembunyikan (API boundary bersih)
+func makeRepo() -&gt; some Repository { UserRepository() }
+
+// any — simpan campuran tipe berbeda dalam satu koleksi
+let handlers: [any EventHandler] = [LoginHandler(), LogoutHandler()]
+for h in handlers { h.handle() }   // dynamic dispatch</code></pre>
+      <div class="onm">
+        <div class="onm-head">Old → New · Existential wajib eksplisit</div>
+        <div class="onm-grid">
+          <div class="onm-cell old"><span class="onm-tag t-old">Old (Swift 5.5−)</span>
+<pre><code data-swift>// Existential implisit —
+// biaya tersembunyi
+let repo: Repository = …
+func f(x: Animal) {}</code></pre></div>
+          <div class="onm-cell new"><span class="onm-tag t-new">New (Swift 6)</span>
+<pre><code data-swift>// `any` wajib —
+// biaya jadi terlihat
+let repo: any Repository = …
+func f(x: some Animal) {}</code></pre></div>
+        </div>
+        <div class="onm-mig"><b>Migrasi:</b> Tambahkan <code>any</code> ke setiap existential. Untuk parameter, ganti ke <code>some</code> bila tiap call-site memakai satu tipe konkret. <b>Alasan:</b> di Swift 6 language mode, penggunaan existential telanjang menjadi error/warning. Apple sengaja membuat biaya boxing <em>terlihat di kode</em> agar engineer memilih sadar antara fleksibilitas (<code>any</code>) dan performa (<code>some</code>/generic).</div>
+      </div>
+    </section>
+
+    <section id="result">
+      <h2><span class="sn">06</span><code>Result</code> & Error Flow</h2>
+      <p><code>throws</code> adalah idiom utama (Module 1). <code>Result</code> dipakai ketika error perlu <strong>disimpan sebagai nilai</strong> — melewati batas callback, disimpan di state, atau dikumpulkan.</p>
+<pre><code data-swift>enum NetworkError: Error { case offline, decoding, server(Int) }
+
+func load() async -&gt; Result&lt;[Order], NetworkError&gt; {
+    do {
+        let orders = try await api.orders()
+        return .success(orders)
+    } catch {
+        return .failure(.offline)
+    }
+}
+
+switch await load() {
+case .success(let orders): show(orders)
+case .failure(let err):    handle(err)
+}
+
+// Interop dua arah dengan throws:
+let value = try result.get()                 // Result → throws
+let r = await Result { try await api.user() } // throws → Result (Swift 6+)</code></pre>
+      <div class="note key"><span class="nt">Kapan Result, kapan throws</span><strong>throws</strong> untuk alur sinkron/async langsung yang ditangani di tempat. <strong>Result</strong> ketika nilai-error harus hidup di luar stack: disimpan di <code>@Observable</code> state, dikirim lewat closure lama, atau di-<code>map</code>/<code>flatMap</code> sebagai data. Jangan campur keduanya tanpa alasan — pilih satu per boundary.</div>
+    </section>
+
+    <section id="closures">
+      <h2><span class="sn">07</span>Advanced Closures — Capture, Escaping, Sendable</h2>
+      <p>Closure adalah reference type yang meng-capture lingkungannya. Memahami semantik capture adalah prasyarat memahami memory (Module 3).</p>
+      <div class="code-label">Capture by reference vs capture list</div>
+<pre><code data-swift>var counter = 0
+let inc = { counter += 1 }    // capture `counter` BY REFERENCE
+inc(); inc(); print(counter)  // 2
+
+// Capture list — ambil snapshot nilai saat closure dibuat
+var x = 10
+let printX = { [x] in print(x) }  // snapshot 10
+x = 99
+printX()                          // tetap 10</code></pre>
+
+      <h3>@escaping & retain cycle</h3>
+<pre><code data-swift>final class Downloader {
+    var onDone: (() -&gt; Void)?           // disimpan → escaping
+
+    func start() {
+        // [weak self] mencegah retain cycle saat closure disimpan
+        fetch { [weak self] in
+            guard let self else { return }
+            self.finish()
+        }
+    }
+    func finish() {}
+}</code></pre>
+      <div class="note warn"><span class="nt">@Sendable closure (Swift 6)</span>Saat closure menyeberang isolation domain (mis. masuk <code>Task</code> atau actor), compiler mewajibkannya <code>@Sendable</code> — tidak boleh meng-capture mutable shared state non-Sendable. Ini ditegakkan sebagai compile error di Swift 6 language mode. Mekanika lengkap concurrency dibahas di Module 3.</div>
+<pre><code data-swift>func schedule(_ work: @Sendable @escaping () -&gt; Void) {
+    Task { work() }
+}</code></pre>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">08</span>Latihan</h2>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Generic + constraint</h4></div>
+        <p>Tulis fungsi generic <code>frequency(of:in:)</code> yang menghitung kemunculan sebuah elemen di array. Pilih constraint yang tepat.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>func frequency&lt;T: Equatable&gt;(of value: T, in array: [T]) -&gt; Int {
+    array.filter { $0 == value }.count
+}</code></pre>
+        <p><em>Review:</em> Constraint <code>Equatable</code> (bukan <code>Hashable</code>) sudah cukup — Anda hanya butuh <code>==</code>. Memilih constraint paling longgar yang memenuhi kebutuhan = desain generic yang benar.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>some vs any</h4></div>
+        <p>Untuk tiap kasus, pilih <code>some</code> atau <code>any</code> dan jelaskan: (a) factory yang selalu mengembalikan <code>JSONDecoderStrategy</code>; (b) array berisi campuran <code>PaymentMethod</code> (card, wallet, transfer).</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>(a) <code>some</code> → <code>func makeStrategy() -&gt; some DecoderStrategy</code>. Satu tipe konkret, sembunyikan dari caller, nol overhead.</p>
+        <p>(b) <code>any</code> → <code>[any PaymentMethod]</code>. Heterogen, tipe berbeda dalam satu koleksi memerlukan existential. Biaya boxing di sini memang diperlukan dan dapat dibenarkan.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Refactor inheritance → POP</h4></div>
+        <p>Diberi <code>class BaseService</code> dengan method <code>log()</code> yang diwarisi <code>AuthService</code> &amp; <code>PaymentService</code>. Refactor ke pendekatan protocol-oriented.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>protocol Logging {}
+extension Logging {
+    func log(_ msg: String) { print("[\(Self.self)] \(msg)") }
+}
+struct AuthService: Logging {}
+struct PaymentService: Logging {}</code></pre>
+        <p><em>Review:</em> <code>log()</code> kini default implementation di protocol extension. Service menjadi <code>struct</code> (value type) tanpa kehilangan shared behavior, dan tidak terikat satu superclass.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Repository generic</h4></div>
+        <p>Definisikan protocol <code>Repository</code> dengan primary associated type, lalu tulis fungsi <code>syncAll</code> yang menerima <code>some Repository&lt;Order&gt;</code>.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>protocol Repository&lt;Entity&gt; {
+    associatedtype Entity
+    func fetchAll() async throws -&gt; [Entity]
+}
+
+func syncAll(from repo: some Repository&lt;Order&gt;) async throws -&gt; [Order] {
+    try await repo.fetchAll()
+}</code></pre>
+        <p><em>Review:</em> <code>some Repository&lt;Order&gt;</code> jauh lebih ringkas daripada generic <code>&lt;R: Repository&gt; where R.Entity == Order</code>, dan tetap nol overhead.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 02</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Menulis generic function & generic type; paham specialization (nol overhead)</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Menerapkan type constraint & <code>where</code> seminimal-secukupnya</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Mendesain protocol dengan associated type & primary associated type</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Protocol-oriented: default impl + komposisi, hindari base-class raksasa</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Memilih <code>some</code> vs <code>any</code> dengan benar berdasarkan trade-off biaya</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Memakai <code>Result</code> vs <code>throws</code> di boundary yang tepat</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Paham capture list, @escaping, retain cycle, @Sendable closure</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-01.html">← Module 01 — Swift Foundation</a>
+      <a href="module-03.html">Module 03 — Concurrency & Memory →</a>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m02';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

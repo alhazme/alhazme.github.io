@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 12 — Enterprise SaaS Build</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+.onm{border:var(--border);border-radius:var(--radius-panel);overflow:hidden;margin:18px 0}
+.onm-head{background:var(--gray-100);padding:10px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500)}
+.onm-grid{display:grid;grid-template-columns:1fr 1fr}
+.onm-cell{padding:14px 16px}.onm-cell.old{border-right:1px solid var(--gray-300)}
+.onm-tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;display:inline-block}
+.onm-tag.t-old{color:var(--danger)}.onm-tag.t-new{color:var(--olive)}
+.onm-cell pre{margin:0;font-size:12px}
+.onm-mig{padding:12px 16px;background:var(--ivory);font-size:13.5px;border-top:1px solid var(--gray-300)}.onm-mig b{font-weight:600}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.diagram{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px;margin:18px 0;text-align:center}
+.diagram svg{max-width:100%;height:auto}.dcap{font-size:12.5px;color:var(--gray-500);margin-top:10px;font-style:italic}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+  .onm-grid{grid-template-columns:1fr}.onm-cell.old{border-right:none;border-bottom:1px solid var(--gray-300)}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 12 · Phase 6</div><h2>Enterprise SaaS Build</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Blueprint SaaS</a>
+      <a href="#auth"><span class="nidx">01</span>Auth & Session</a>
+      <a href="#rbac"><span class="nidx">02</span>RBAC</a>
+      <a href="#offline"><span class="nidx">03</span>Offline Mode & Sync</a>
+      <a href="#push"><span class="nidx">04</span>Push & Deep Link</a>
+      <a href="#upload"><span class="nidx">05</span>File Upload</a>
+      <a href="#payment"><span class="nidx">06</span>Payment</a>
+      <a href="#observability"><span class="nidx">07</span>Observability & Latihan</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 12 · PHASE 6 — PRODUCTION PROJECT</span>Blueprint Aplikasi SaaS Enterprise</h2>
+      <p class="lead">Modul capstone. Di sini seluruh Phase 1–5 dirangkai menjadi satu arsitektur aplikasi SaaS production nyata — bukan konsep terpisah, melainkan cara komponen saling terhubung.</p>
+      <div class="meta-row"><span class="badge accent">Integration</span><span class="badge accent">RBAC</span><span class="badge accent">Offline</span><span class="badge accent">StoreKit 2</span><span class="badge neutral">~120 menit</span></div>
+      <div class="diagram">
+        <svg viewBox="0 0 620 260" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, monospace" font-size="10.5">
+          <rect x="20" y="14" width="580" height="46" rx="8" fill="rgba(217,119,87,.10)" stroke="#D97757"/><text x="310" y="32" text-anchor="middle" fill="#D97757">Presentation — SwiftUI Views + @Observable ViewModels + Router (M6/M7)</text>
+          <text x="310" y="49" text-anchor="middle" fill="#87867F" font-size="9.5">Auth · Dashboard · Orders · Upload · Payment · Settings</text>
+          <rect x="20" y="72" width="580" height="46" rx="8" fill="rgba(120,140,93,.14)" stroke="#788C5D"/><text x="310" y="90" text-anchor="middle" fill="#788C5D">Domain — Use Cases + Entities + Repository Protocols (M8)</text>
+          <text x="310" y="107" text-anchor="middle" fill="#87867F" font-size="9.5">Login · CheckPermission · SyncOrders · UploadFile · Purchase</text>
+          <rect x="20" y="130" width="580" height="52" rx="8" fill="rgba(92,124,163,.10)" stroke="#5C7CA3"/><text x="310" y="149" text-anchor="middle" fill="#5C7CA3">Data — Repository Impl + DataSources (M5/M9/M10)</text>
+          <text x="310" y="166" text-anchor="middle" fill="#87867F" font-size="9.5">NetworkService (auth/refresh) · Keychain · SwiftData cache · Sync queue</text>
+          <rect x="20" y="194" width="580" height="50" rx="8" fill="#F0EEE6" stroke="#D1CFC5"/><text x="310" y="212" text-anchor="middle" fill="#3D3D3A">Platform & SDK — APNs/FCM · StoreKit 2 · Universal Links · Analytics/Crash (M11)</text>
+          <text x="310" y="229" text-anchor="middle" fill="#87867F" font-size="9.5">di balik protocol vendor-agnostic</text>
+        </svg>
+        <div class="dcap">Setiap fitur di prompt Anda memetakan ke lapisan ini. Dependency selalu menunjuk ke bawah (ke Domain).</div>
+      </div>
+      <div class="note key"><span class="nt">Cara membaca modul ini</span>Tiap bagian menunjukkan <em>bagaimana fitur SaaS diletakkan pada arsitektur</em>, bukan tutorial baru. Referensi silang ke modul asal ditandai. Fokus: integrasi, boundary, dan keputusan yang benar di titik temu antar-fitur.</div>
+    </section>
+
+    <section id="auth">
+      <h2><span class="sn">01</span>Authentication & Session</h2>
+      <p>Alur: login → simpan token di Keychain → setiap request menyertakan Bearer → refresh otomatis saat 401 → logout membersihkan sesi.</p>
+<pre><code data-swift>// Domain
+protocol AuthRepository {
+    func login(email: String, password: String) async throws -&gt; Session
+    func logout() async
+    var isAuthenticated: Bool { get }
+}
+
+struct LoginUseCase {
+    let repo: AuthRepository
+    func execute(email: String, password: String) async throws -&gt; Session {
+        guard email.contains("@") else { throw AuthError.invalidEmail }   // aturan bisnis
+        return try await repo.login(email: email, password: password)
+    }
+}
+
+// Data — token ke Keychain (M5), refresh via interceptor (M10)
+final class AuthRepositoryImpl: AuthRepository {
+    let network: NetworkService; let tokenStore: TokenStore
+    func login(email: String, password: String) async throws -&gt; Session {
+        let session: Session = try await network.post("/auth/login",
+            body: ["email": email, "password": password])
+        try tokenStore.save(session.accessToken, session.refreshToken)   // Keychain
+        return session
+    }
+    func logout() async { tokenStore.clear() }
+    var isAuthenticated: Bool { tokenStore.accessToken != nil }
+}</code></pre>
+      <div class="note key"><span class="nt">Session gating di root</span>Di entry point, cabangkan berdasarkan <code>isAuthenticated</code>: tampilkan <code>AuthFlow</code> atau <code>MainFlow</code>. Simpan status auth sebagai <code>@Observable</code> yang di-inject via <code>@Environment</code> (M6) agar seluruh app bereaksi terhadap login/logout secara reaktif.</div>
+    </section>
+
+    <section id="rbac">
+      <h2><span class="sn">02</span>Role-Based Access Control</h2>
+      <p>Permission adalah aturan domain, bukan pengecekan UI ad-hoc. Modelkan role & permission, gate fitur lewat use case.</p>
+<pre><code data-swift>enum Permission: String { case viewOrders, editOrders, refund, manageUsers }
+
+struct Role { let name: String; let permissions: Set&lt;Permission&gt; }
+
+@Observable final class SessionContext {          // di-inject via @Environment
+    private(set) var role: Role
+    init(role: Role) { self.role = role }
+    func can(_ p: Permission) -&gt; Bool { role.permissions.contains(p) }
+}
+
+// Di View — gate deklaratif
+if session.can(.refund) {
+    Button("Refund") { vm.refund() }
+}
+
+// Di Domain — gate otoritatif (jangan hanya andalkan UI)
+struct RefundUseCase {
+    let repo: OrderRepository
+    func execute(orderID: String, by session: SessionContext) async throws {
+        guard session.can(.refund) else { throw AuthError.forbidden }   // enforce di logic
+        try await repo.refund(orderID)
+    }
+}</code></pre>
+      <div class="note danger"><span class="nt">Prinsip keamanan</span>Menyembunyikan tombol di UI <strong>bukan</strong> kontrol keamanan — hanya UX. Enforcement sebenarnya ada di use case (client) <em>dan</em> di server (otoritatif). Jangan pernah percaya klien: server harus memvalidasi ulang setiap permission. Client-side gate mencegah kesalahan, bukan serangan.</div>
+    </section>
+
+    <section id="offline">
+      <h2><span class="sn">03</span>Offline Mode & Sync</h2>
+      <p>Offline resilience: baca dari cache lokal saat offline, tulis ke antrean saat offline lalu sinkron saat online kembali. Semua di Repository (M9).</p>
+<pre><code data-swift>final class OrderRepositoryImpl: OrderRepository {
+    let remote: OrderRemoteDataSource; let local: OrderLocalDataSource   // SwiftData (M5)
+    let syncQueue: SyncQueue
+
+    func fetchAll() async throws -&gt; [Order] {
+        do {
+            let fresh = try await remote.getOrders()
+            try await local.save(fresh)
+            return fresh
+        } catch is URLError {
+            return try await local.loadAll()          // fallback offline
+        }
+    }
+
+    func place(_ order: Order) async throws {
+        try await local.save([order])                 // optimistic write lokal
+        do { try await remote.create(order) }
+        catch is URLError { await syncQueue.enqueue(.create(order)) }   // antre untuk nanti
+    }
+}</code></pre>
+      <div class="note warn"><span class="nt">Konflik & idempotency</span>Saat sinkron antrean berjalan, dua isu muncul: (1) <strong>konflik</strong> — server & lokal berbeda; tentukan strategi (last-write-wins, server-wins, atau merge). (2) <strong>idempotency</strong> — operasi antre bisa terkirim dua kali; sertakan client-generated ID/idempotency key (M10). Rancang ini eksplisit; offline yang naif menyebabkan data ganda/hilang.</div>
+    </section>
+
+    <section id="push">
+      <h2><span class="sn">04</span>Push Notification & Deep Link</h2>
+      <p>Push (APNs, sering via FCM) memicu aksi; deep link & Universal Links mengarahkan ke layar tertentu lewat Router (M6).</p>
+<pre><code data-swift>// Registrasi (AppDelegate adaptor — M4)
+func application(_ app: UIApplication,
+    didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -&gt; Bool {
+    Task { _ = try? await UNUserNotificationCenter.current()
+        .requestAuthorization(options: [.alert, .badge, .sound]) }        // M4 permission
+    app.registerForRemoteNotifications()
+    return true
+}
+
+// Deep link dari notifikasi / Universal Link → Router (M6)
+@Observable final class Router {
+    var path = NavigationPath()
+    func handle(_ url: URL) {
+        // https://app.com/orders/123  →  push OrderDetail(123)
+        guard url.pathComponents.count &gt;= 3, url.pathComponents[1] == "orders" else { return }
+        path.append(OrderRoute.detail(id: url.pathComponents[2]))
+    }
+}</code></pre>
+      <div class="note key"><span class="nt">Integrasi</span>Universal Links dikonfigurasi lewat <code>apple-app-site-association</code> + capability Associated Domains. Notifikasi & link keduanya berakhir di satu titik: <code>Router.handle</code>. Menyatukan entry navigasi mencegah logika deep link tersebar — dan membuatnya teruji (beri URL, verifikasi path).</div>
+    </section>
+
+    <section id="upload">
+      <h2><span class="sn">05</span>File Upload</h2>
+      <p>Upload multipart dengan progress; untuk file besar, gunakan background URLSession (M5) agar berlanjut saat app di background.</p>
+<pre><code data-swift>protocol FileUploader {
+    func upload(_ data: Data, filename: String,
+                progress: @escaping (Double) -&gt; Void) async throws -&gt; RemoteFile
+}
+
+// Implementasi (Alamofire multipart — M10 — atau URLSession upload task)
+final class MultipartUploader: FileUploader {
+    func upload(_ data: Data, filename: String,
+                progress: @escaping (Double) -&gt; Void) async throws -&gt; RemoteFile {
+        // AF.upload(multipartFormData:) atau URLSession.uploadTask
+        // laporkan progress; validasi tipe/ukuran sebelum kirim
+        fatalError("impl")
+    }
+}</code></pre>
+      <div class="note warn"><span class="nt">Wajib</span>Validasi tipe & ukuran file di klien <em>dan</em> server. Untuk file besar: background session + resume. Simpan referensi upload agar bisa dilanjutkan/dibatalkan. Jangan blokir UI — laporkan progress via state <code>@Observable</code>.</div>
+    </section>
+
+    <section id="payment">
+      <h2><span class="sn">06</span>Payment</h2>
+      <p>Dua jalur berbeda dengan aturan berbeda:</p>
+      <table>
+        <thead><tr><th>Jenis</th><th>Mekanisme</th><th>Aturan</th></tr></thead>
+        <tbody>
+          <tr><td>Digital (subscription, unlock fitur)</td><td><strong>StoreKit 2</strong></td><td>WAJIB via App Store (kebijakan Apple)</td></tr>
+          <tr><td>Barang/jasa fisik</td><td>Payment gateway (mis. Midtrans/Xendit/Stripe)</td><td>Di luar IAP; gateway SDK</td></tr>
+        </tbody>
+      </table>
+      <div class="code-label">StoreKit 2 — modern async</div>
+<pre><code data-swift>import StoreKit
+
+func purchase(_ product: Product) async throws {
+    let result = try await product.purchase()
+    switch result {
+    case .success(let verification):
+        let transaction = try checkVerified(verification)   // verifikasi tanda tangan
+        await transaction.finish()
+        // unlock entitlement
+    case .userCancelled, .pending: break
+    @unknown default: break
+    }
+}
+// Pantau entitlement: Transaction.currentEntitlements & Transaction.updates</code></pre>
+      <div class="note danger"><span class="nt">PCI & keamanan pembayaran</span>Untuk gateway fisik, aplikasi <strong>tidak boleh menyentuh/menyimpan nomor kartu mentah</strong> — gunakan SDK gateway/tokenization (kartu di-tokenkan di sisi gateway). Menyimpan PAN kartu menempatkan Anda dalam scope PCI-DSS penuh. Verifikasi transaksi StoreKit selalu dilakukan (idealnya server-side receipt validation) untuk mencegah unlock palsu.</div>
+    </section>
+
+    <section id="observability">
+      <h2><span class="sn">07</span>Observability & Latihan</h2>
+      <p>Analytics & crash reporting (M11) dibungkus protocol, di-inject via composition root (M9), dan dinonaktifkan saat test.</p>
+<pre><code data-swift>// Event penting SaaS: login, purchase, upload_success, error_shown
+analytics.track("purchase_completed", ["plan": plan.id, "amount": plan.price])
+crashReporter.setUser(id: session.userID)     // korelasikan crash dengan user
+crashReporter.record(error)                    // non-fatal untuk error yang tertangani</code></pre>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>RBAC enforcement</h4></div>
+        <p>Seorang engineer hanya menyembunyikan tombol "Refund" dari user tanpa permission. Cukupkah? Apa yang kurang?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Tidak cukup. UI hiding hanya UX. Enforcement harus di use case (klien) dan — yang otoritatif — di server. User bisa memanggil API langsung.</p>
+        <p><em>Review:</em> Aturan keamanan: klien tidak pernah dipercaya. Client-side gate mencegah kesalahan; server-side gate mencegah serangan.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Offline write</h4></div>
+        <p>User membuat order saat offline. Rancang alurnya agar tidak hilang & tidak ganda saat online.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Tulis optimistic ke lokal + enqueue ke sync queue dengan client-generated ID. Saat online, kirim dengan idempotency key sehingga retry tidak menggandakan. Tangani konflik dengan strategi yang dipilih (mis. server-wins).</p>
+        <p><em>Review:</em> Idempotency key + optimistic local write + queue = pola offline resilience standar. Tanpa idempotency, retry queue = data ganda.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Payment routing</h4></div>
+        <p>App Anda menjual (a) langganan premium dan (b) produk fisik UMKM. Mekanisme pembayaran mana untuk masing-masing?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>(a) StoreKit 2 — digital, wajib IAP per kebijakan Apple. (b) Payment gateway (Midtrans/Xendit) — barang fisik di luar IAP.</p>
+        <p><em>Review:</em> Salah menaruh barang fisik di IAP melanggar guideline & memotong 15–30% komisi tak perlu; salah menaruh digital di gateway → penolakan App Review. Ketahui batasnya.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Deep link testability</h4></div>
+        <p>Bagaimana Anda menguji bahwa Universal Link <code>/orders/123</code> membuka layar yang benar tanpa menjalankan seluruh app?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Karena logika ada di <code>Router.handle(url:)</code> yang murni, unit-test: beri URL, assert <code>path</code> berisi <code>OrderRoute.detail(id: "123")</code>. Tidak perlu UI.</p>
+        <p><em>Review:</em> Menyatukan parsing link di satu fungsi murni membuatnya teruji unit — bukti nilai memisahkan navigasi dari View.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 12</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Memetakan fitur SaaS ke lapisan arsitektur (presentation/domain/data/platform)</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Auth & session: login, Keychain, refresh, session gating reaktif</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">RBAC: enforce di use case + server, bukan hanya UI hiding</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Offline: optimistic write, sync queue, idempotency, strategi konflik</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Push & deep link menyatu di Router; Universal Links teruji</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">File upload: multipart, progress, background, validasi client+server</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Payment: StoreKit 2 (digital) vs gateway (fisik); tidak menyimpan PAN</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-11.html">← Module 11 — Ecosystem Libraries</a>
+      <a href="module-13.html">Module 13 — Testing Strategy →</a>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m12';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

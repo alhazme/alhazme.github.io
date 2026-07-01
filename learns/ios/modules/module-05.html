@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 05 — Networking & Persistence</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+.onm{border:var(--border);border-radius:var(--radius-panel);overflow:hidden;margin:18px 0}
+.onm-head{background:var(--gray-100);padding:10px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500)}
+.onm-grid{display:grid;grid-template-columns:1fr 1fr}
+.onm-cell{padding:14px 16px}.onm-cell.old{border-right:1px solid var(--gray-300)}
+.onm-tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;display:inline-block}
+.onm-tag.t-old{color:var(--danger)}.onm-tag.t-new{color:var(--olive)}
+.onm-cell pre{margin:0;font-size:12px}
+.onm-mig{padding:12px 16px;background:var(--ivory);font-size:13.5px;border-top:1px solid var(--gray-300)}.onm-mig b{font-weight:600}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.diagram{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px;margin:18px 0;text-align:center}
+.diagram svg{max-width:100%;height:auto}.dcap{font-size:12.5px;color:var(--gray-500);margin-top:10px;font-style:italic}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+  .onm-grid{grid-template-columns:1fr}.onm-cell.old{border-right:none;border-bottom:1px solid var(--gray-300)}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 05 · Phase 2</div><h2>Networking & Persistence</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Peta Data Layer</a>
+      <a href="#urlsession"><span class="nidx">01</span>URLSession async</a>
+      <a href="#codable"><span class="nidx">02</span>Codable</a>
+      <a href="#errors"><span class="nidx">03</span>Response & Error</a>
+      <a href="#keychain"><span class="nidx">04</span>Keychain</a>
+      <a href="#swiftdata"><span class="nidx">05</span>SwiftData & Core Data</a>
+      <a href="#background"><span class="nidx">06</span>Background Tasks</a>
+      <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 05 · PHASE 2 — iOS FUNDAMENTAL</span>Data Layer: Network & Persistence</h2>
+      <p class="lead">Setiap app produksi membaca data dari jaringan dan menyimpan sebagian secara lokal. Module ini membangun fondasi keduanya dengan API native modern — pondasi yang akan diabstraksi menjadi Repository di Phase 4 & 5.</p>
+      <div class="meta-row"><span class="badge accent">URLSession async</span><span class="badge accent">SwiftData</span><span class="badge neutral">~100 menit</span><span class="badge success">iOS 27</span></div>
+      <p>Pilih mekanisme penyimpanan berdasarkan sifat data:</p>
+      <table>
+        <thead><tr><th>Data</th><th>Mekanisme</th><th>Catatan</th></tr></thead>
+        <tbody>
+          <tr><td>Token, kredensial, kunci</td><td><strong>Keychain</strong></td><td>Terenkripsi, terikat device/biometrik</td></tr>
+          <tr><td>Preferensi ringan, flag</td><td><strong>UserDefaults</strong></td><td>Bukan untuk data sensitif/besar</td></tr>
+          <tr><td>File, dokumen, cache besar</td><td><strong>FileManager</strong></td><td>Direktori Documents/Caches</td></tr>
+          <tr><td>Model relasional / object graph</td><td><strong>SwiftData / Core Data</strong></td><td>Query, relasi, migrasi</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="urlsession">
+      <h2><span class="sn">01</span>URLSession async</h2>
+      <p>URLSession native sudah cukup untuk mayoritas kebutuhan. API async menggantikan completion handler & delegate untuk request standar.</p>
+      <div class="onm">
+        <div class="onm-head">Old → New · HTTP request</div>
+        <div class="onm-grid">
+          <div class="onm-cell old"><span class="onm-tag t-old">Old — dataTask + handler</span>
+<pre><code data-swift>URLSession.shared.dataTask(
+  with: url) { data, resp, err in
+    if let err { return }
+    guard let data else { return }
+    // parse di dalam closure
+}.resume()</code></pre></div>
+          <div class="onm-cell new"><span class="onm-tag t-new">New — async/await</span>
+<pre><code data-swift>let (data, resp) = try await
+    URLSession.shared.data(from: url)
+// linear, throws,
+// otomatis cancellable</code></pre></div>
+        </div>
+        <div class="onm-mig"><b>Migrasi:</b> Ganti <code>dataTask(...).resume()</code> dengan <code>try await session.data(from:)</code> / <code>data(for:)</code>. <b>Alasan:</b> versi async mengintegrasikan error ke <code>throws</code>, mendukung cancellation structured concurrency (Module 3), dan menghapus closure bersarang. Delegate-based session tetap dipakai untuk streaming, background download, atau metrics.</p></div>
+      </div>
+
+      <div class="code-label">GET & POST dengan URLRequest</div>
+<pre><code data-swift>func get&lt;T: Decodable&gt;(_ url: URL) async throws -&gt; T {
+    var req = URLRequest(url: url)
+    req.httpMethod = "GET"
+    req.setValue("application/json", forHTTPHeaderField: "Accept")
+    let (data, resp) = try await URLSession.shared.data(for: req)
+    try validate(resp)
+    return try JSONDecoder().decode(T.self, from: data)
+}
+
+func post&lt;Body: Encodable, T: Decodable&gt;(_ url: URL, body: Body) async throws -&gt; T {
+    var req = URLRequest(url: url)
+    req.httpMethod = "POST"
+    req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    req.httpBody = try JSONEncoder().encode(body)
+    let (data, resp) = try await URLSession.shared.data(for: req)
+    try validate(resp)
+    return try JSONDecoder().decode(T.self, from: data)
+}</code></pre>
+      <div class="note key"><span class="nt">Catatan arsitektur</span>Kode di atas adalah <code>NetworkService</code> level terendah. Di Phase 5 (Module 10) ia dibungkus interceptor (auth/refresh/retry) dan diabstraksi sebagai protocol agar dapat di-mock saat testing. Jangan panggil URLSession langsung dari ViewModel di kode produksi.</div>
+    </section>
+
+    <section id="codable">
+      <h2><span class="sn">02</span>Codable</h2>
+      <p><code>Codable</code> = <code>Encodable & Decodable</code>. Mayoritas model cukup conform tanpa kode tambahan. Kontrol detail lewat <code>CodingKeys</code> dan strategy.</p>
+<pre><code data-swift>struct Order: Codable, Identifiable {
+    let id: String
+    let totalAmount: Decimal
+    let createdAt: Date
+    let items: [Item]                        // nested otomatis
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case totalAmount = "total_amount"    // mapping snake_case → camelCase
+        case createdAt = "created_at"
+        case items
+    }
+}
+
+let decoder = JSONDecoder()
+decoder.dateDecodingStrategy = .iso8601      // tangani tanggal di satu tempat
+// Alternatif global: decoder.keyDecodingStrategy = .convertFromSnakeCase</code></pre>
+      <div class="note warn"><span class="nt">Pilihan strategi</span>Untuk API konsisten snake_case, <code>keyDecodingStrategy = .convertFromSnakeCase</code> menghapus kebutuhan <code>CodingKeys</code> manual. Gunakan <code>CodingKeys</code> eksplisit hanya saat mapping tidak seragam. Untuk <code>Decimal</code> uang, hindari <code>Double</code> (presisi floating-point merusak nilai moneter).</div>
+    </section>
+
+    <section id="errors">
+      <h2><span class="sn">03</span>Response Validation & Error Model</h2>
+      <p>Jangan pernah mendecode body tanpa memvalidasi status HTTP. Definisikan error domain yang typed.</p>
+<pre><code data-swift>enum APIError: Error, Equatable {
+    case invalidResponse
+    case unauthorized                 // 401 → trigger refresh (Module 10)
+    case notFound
+    case server(status: Int)
+    case decoding(String)
+}
+
+func validate(_ resp: URLResponse) throws {
+    guard let http = resp as? HTTPURLResponse else { throw APIError.invalidResponse }
+    switch http.statusCode {
+    case 200...299: return
+    case 401:       throw APIError.unauthorized
+    case 404:       throw APIError.notFound
+    case 500...599: throw APIError.server(status: http.statusCode)
+    default:        throw APIError.server(status: http.statusCode)
+    }
+}</code></pre>
+      <div class="note key"><span class="nt">Prinsip</span>Error domain yang typed (bukan <code>Error</code> generik) memungkinkan ViewModel bereaksi spesifik: <code>.unauthorized</code> memicu refresh token, <code>.notFound</code> menampilkan empty state, <code>.server</code> menampilkan retry. Petakan error transport (offline, timeout) secara terpisah dari error HTTP.</div>
+    </section>
+
+    <section id="keychain">
+      <h2><span class="sn">04</span>Keychain — Secure Storage</h2>
+      <p>Token autentikasi <strong>wajib</strong> di Keychain, bukan UserDefaults (yang plaintext). Keychain terenkripsi dan dapat diikat ke biometrik.</p>
+<pre><code data-swift>import Security
+
+enum Keychain {
+    static func save(_ data: Data, account: String) throws {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: account,
+            kSecValueData as String: data,
+            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
+        ]
+        SecItemDelete(query as CFDictionary)              // overwrite jika ada
+        let status = SecItemAdd(query as CFDictionary, nil)
+        guard status == errSecSuccess else { throw KeychainError.status(status) }
+    }
+
+    static func read(account: String) -&gt; Data? {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: account,
+            kSecReturnData as String: true,
+            kSecMatchLimit as String: kSecMatchLimitOne
+        ]
+        var item: CFTypeRef?
+        guard SecItemCopyMatching(query as CFDictionary, &item) == errSecSuccess else { return nil }
+        return item as? Data
+    }
+}
+enum KeychainError: Error { case status(OSStatus) }</code></pre>
+      <div class="note danger"><span class="nt">Anti-Pattern</span>Menyimpan access token / refresh token di <code>UserDefaults</code> atau plist = kebocoran kredensial; keduanya tidak terenkripsi dan terbaca lewat backup. Token selalu di Keychain dengan accessibility <code>...ThisDeviceOnly</code> agar tidak ikut ter-restore ke device lain. Hardening lanjutan (biometric gate) di Module 15.</div>
+    </section>
+
+    <section id="swiftdata">
+      <h2><span class="sn">05</span>SwiftData & Core Data</h2>
+      <p>Untuk model lokal relasional, ada dua pilihan resmi. Status 2026: <strong>SwiftData sudah production-ready</strong> untuk project baru berbasis SwiftUI; Core Data tetap unggul untuk object graph sangat kompleks, heavyweight migration, dan public CloudKit.</p>
+      <div class="code-label">SwiftData — deklaratif, code-first</div>
+<pre><code data-swift>import SwiftData
+
+@Model
+final class CachedOrder {
+    @Attribute(.unique) var id: String
+    var total: Decimal
+    var createdAt: Date
+    @Relationship(deleteRule: .cascade) var items: [CachedItem]
+    init(id: String, total: Decimal, createdAt: Date, items: [CachedItem] = []) {
+        self.id = id; self.total = total; self.createdAt = createdAt; self.items = items
+    }
+}
+
+// Setup container di entry point
+@main struct MyApp: App {
+    var body: some Scene {
+        WindowGroup { ContentView() }
+            .modelContainer(for: CachedOrder.self)
+    }
+}
+
+// Query reaktif di View
+struct OrdersView: View {
+    @Query(sort: \CachedOrder.createdAt, order: .reverse) var orders: [CachedOrder]
+    @Environment(\.modelContext) private var context
+    var body: some View {
+        List(orders) { Text($0.id) }
+    }
+}</code></pre>
+      <div class="onm">
+        <div class="onm-head">Decision · SwiftData vs Core Data (2026)</div>
+        <div class="onm-grid">
+          <div class="onm-cell old"><span class="onm-tag t-new" style="color:var(--clay)">Pilih SwiftData bila</span>
+          <ul style="margin:0 0 0 18px;font-size:13px">
+            <li>Project baru, SwiftUI-first</li>
+            <li>Model & relasi wajar</li>
+            <li>Butuh kecepatan & boilerplate minimal</li>
+            <li>Sync iCloud privat</li>
+            <li>Concurrency via <code>@ModelActor</code></li>
+          </ul></div>
+          <div class="onm-cell new" style="border-left:1px solid var(--gray-300)"><span class="onm-tag t-old" style="color:var(--gray-700)">Tetap Core Data bila</span>
+          <ul style="margin:0 0 0 18px;font-size:13px">
+            <li>Object graph sangat kompleks (puluhan entity)</li>
+            <li>Heavyweight/custom migration</li>
+            <li>Public CloudKit database</li>
+            <li>Codebase UIKit besar yang sudah ada</li>
+            <li>Butuh kontrol granular & tooling matang</li>
+          </ul></div>
+        </div>
+        <div class="onm-mig"><b>Catatan epistemik:</b> SwiftData masih berevolusi; untuk app enterprise besar, banyak tim membungkusnya di <b>Repository abstraction</b> (Module 8–9) agar bisnis logic tidak terikat framework persistence — sehingga migrasi antar-framework di masa depan terisolasi. Verifikasi kapabilitas migration terbaru terhadap rilis SwiftData saat Anda mengevaluasi.</div>
+      </div>
+    </section>
+
+    <section id="background">
+      <h2><span class="sn">06</span>Background Tasks</h2>
+      <p>Kerja yang harus berlanjut saat app tidak di depan: refresh data, upload, sinkronisasi. iOS membatasi ketat demi baterai — gunakan API yang tepat.</p>
+      <table>
+        <thead><tr><th>Kebutuhan</th><th>API</th></tr></thead>
+        <tbody>
+          <tr><td>Refresh berkala (app refresh)</td><td><code>BGAppRefreshTask</code> (BGTaskScheduler)</td></tr>
+          <tr><td>Pemrosesan panjang (maintenance, ML)</td><td><code>BGProcessingTask</code></td></tr>
+          <tr><td>Download/upload besar yang bertahan</td><td>URLSession <code>background</code> configuration</td></tr>
+          <tr><td>Eksekusi singkat saat ke background</td><td><code>beginBackgroundTask</code></td></tr>
+        </tbody>
+      </table>
+<pre><code data-swift>import BackgroundTasks
+
+// 1. Daftarkan saat launch
+BGTaskScheduler.shared.register(
+    forTaskWithIdentifier: "com.app.refresh", using: nil) { task in
+    handleRefresh(task as! BGAppRefreshTask)
+}
+
+// 2. Jadwalkan (mis. saat masuk background)
+func schedule() {
+    let request = BGAppRefreshTaskRequest(identifier: "com.app.refresh")
+    request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+    try? BGTaskScheduler.shared.submit(request)
+}
+
+// 3. Tangani — set expiration handler & tandai selesai
+func handleRefresh(_ task: BGAppRefreshTask) {
+    schedule()                                  // jadwalkan berikutnya
+    let work = Task {
+        try await syncLatest()
+        task.setTaskCompleted(success: true)
+    }
+    task.expirationHandler = { work.cancel() }  // hormati batas waktu sistem
+}</code></pre>
+      <div class="note warn"><span class="nt">Wajib</span>Identifier harus didaftarkan di <code>Info.plist</code> (<code>BGTaskSchedulerPermittedIdentifiers</code>) dan capability Background Modes diaktifkan. Selalu pasang <code>expirationHandler</code> dan panggil <code>setTaskCompleted</code> — task yang tidak diselesaikan akan dihukum sistem dengan penjadwalan lebih jarang.</div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">07</span>Latihan</h2>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Generic GET</h4></div>
+        <p>Lengkapi fungsi <code>fetch</code> generic yang mengambil URL, memvalidasi status, dan mendecode ke tipe <code>Decodable</code> apa pun.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>func fetch&lt;T: Decodable&gt;(_ url: URL, as: T.Type = T.self) async throws -&gt; T {
+    let (data, resp) = try await URLSession.shared.data(from: url)
+    try validate(resp)
+    let dec = JSONDecoder()
+    dec.keyDecodingStrategy = .convertFromSnakeCase
+    return try dec.decode(T.self, from: data)
+}</code></pre>
+        <p><em>Review:</em> Generic <code>T: Decodable</code> membuat satu fungsi melayani semua endpoint. Validasi status sebelum decode mencegah "decode error" menyesatkan padahal sebenarnya 401/500.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Token round-trip Keychain</h4></div>
+        <p>Simpan string token ke Keychain lalu baca kembali sebagai String.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>func saveToken(_ token: String) throws {
+    try Keychain.save(Data(token.utf8), account: "access_token")
+}
+func loadToken() -&gt; String? {
+    Keychain.read(account: "access_token").flatMap { String(data: $0, encoding: .utf8) }
+}</code></pre>
+        <p><em>Review:</em> Token disimpan sebagai <code>Data</code>. Pastikan accessibility <code>...ThisDeviceOnly</code> di <code>save</code> agar token tidak ikut backup/restore lintas device.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Pilih persistence</h4></div>
+        <p>Untuk tiap kasus, pilih mekanisme: (a) refresh token; (b) daftar 5.000 produk untuk offline browse dengan relasi kategori; (c) preferensi "dark mode aktif".</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>(a) <strong>Keychain</strong> — sensitif. (b) <strong>SwiftData/Core Data</strong> — volume + relasi + query. (c) <strong>UserDefaults</strong> — flag ringan non-sensitif.</p>
+        <p><em>Review:</em> Kesalahan umum: menaruh (b) di UserDefaults (lambat, tak ada query) atau (a) di UserDefaults (bocor). Cocokkan mekanisme dengan sifat data, bukan kemudahan.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>SwiftData model</h4></div>
+        <p>Definisikan <code>@Model</code> untuk <code>Note</code> (id unik, judul, body, updatedAt) dan tampilkan terurut terbaru di sebuah View.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>@Model final class Note {
+    @Attribute(.unique) var id: UUID
+    var title: String
+    var body: String
+    var updatedAt: Date
+    init(title: String, body: String) {
+        self.id = UUID(); self.title = title; self.body = body; self.updatedAt = .now
+    }
+}
+struct NotesView: View {
+    @Query(sort: \Note.updatedAt, order: .reverse) var notes: [Note]
+    var body: some View { List(notes) { Text($0.title) } }
+}</code></pre>
+        <p><em>Review:</em> <code>@Query</code> reaktif otomatis memperbarui View saat data berubah. Jangan lupa <code>.modelContainer(for: Note.self)</code> di App agar context tersedia.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 05</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">URLSession async: GET/POST dengan URLRequest, header, body</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Codable: CodingKeys, nested, date & key strategy, Decimal untuk uang</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Validasi status HTTP & error domain typed sebelum decode</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Menyimpan token di Keychain dengan accessibility benar</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">SwiftData @Model, @Query, modelContainer; tahu kapan pilih Core Data</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Memilih mekanisme persistence sesuai sifat data</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Background task: BGTaskScheduler, expiration handler, setTaskCompleted</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-04.html">← Module 04 — Xcode & Lifecycle</a>
+      <span class="next">Phase 2 selesai. Berikutnya: Phase 3 — Module 06 (SwiftUI & Observation)</span>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m05';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

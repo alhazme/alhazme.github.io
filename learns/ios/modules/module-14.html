@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 14 — Git, Fastlane & CI/CD</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.diagram{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px;margin:18px 0;text-align:center}
+.diagram svg{max-width:100%;height:auto}.dcap{font-size:12.5px;color:var(--gray-500);margin-top:10px;font-style:italic}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 14 · Phase 8</div><h2>Git, Fastlane & CI/CD</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Pipeline Overview</a>
+      <a href="#git"><span class="nidx">01</span>Git Workflow</a>
+      <a href="#signing"><span class="nidx">02</span>Code Signing</a>
+      <a href="#fastlane"><span class="nidx">03</span>Fastlane</a>
+      <a href="#ci"><span class="nidx">04</span>CI/CD Pipeline</a>
+      <a href="#flavors"><span class="nidx">05</span>Build Flavors</a>
+      <a href="#release"><span class="nidx">06</span>TestFlight & Release</a>
+      <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 14 · PHASE 8 — DEVOPS</span>Dari Commit ke App Store</h2>
+      <p class="lead">Automasi rilis mengubah deployment dari ritual manual berisiko menjadi proses satu-klik yang dapat diulang. Module ini membangun pipeline lengkap: Git yang disiplin → build tertandatangani → distribusi otomatis.</p>
+      <div class="meta-row"><span class="badge accent">GitHub Actions</span><span class="badge accent">Fastlane</span><span class="badge neutral">~95 menit</span><span class="badge success">TestFlight</span></div>
+      <div class="diagram">
+        <svg viewBox="0 0 640 90" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, monospace" font-size="10.5">
+          <rect x="8" y="30" width="86" height="34" rx="6" fill="#FAF9F5" stroke="#D1CFC5"/><text x="51" y="51" text-anchor="middle">git push / PR</text>
+          <rect x="118" y="30" width="86" height="34" rx="6" fill="#FAF9F5" stroke="#D1CFC5"/><text x="161" y="47" text-anchor="middle">CI: lint</text><text x="161" y="59" text-anchor="middle">test + cover</text>
+          <rect x="228" y="30" width="86" height="34" rx="6" fill="#FAF9F5" stroke="#D1CFC5"/><text x="271" y="51" text-anchor="middle">build + sign</text>
+          <rect x="338" y="30" width="96" height="34" rx="6" fill="rgba(217,119,87,.14)" stroke="#D97757"/><text x="386" y="51" text-anchor="middle">Fastlane</text>
+          <rect x="458" y="30" width="86" height="34" rx="6" fill="rgba(120,140,93,.16)" stroke="#788C5D"/><text x="501" y="47" text-anchor="middle">TestFlight</text><text x="501" y="59" text-anchor="middle">/ Store</text>
+          <rect x="558" y="30" width="74" height="34" rx="6" fill="#F0EEE6" stroke="#D1CFC5"/><text x="595" y="51" text-anchor="middle">users</text>
+          <g stroke="#87867F" stroke-width="1.2">
+            <path d="M94 47 H118" marker-end="url(#a)"/><path d="M204 47 H228" marker-end="url(#a)"/>
+            <path d="M314 47 H338" marker-end="url(#a)"/><path d="M434 47 H458" marker-end="url(#a)"/><path d="M544 47 H558" marker-end="url(#a)"/>
+          </g>
+          <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#87867F"/></marker></defs>
+        </svg>
+        <div class="dcap">Setiap PR memicu gate kualitas; merge ke rilis memicu build & distribusi otomatis.</div>
+      </div>
+    </section>
+
+    <section id="git">
+      <h2><span class="sn">01</span>Git Workflow</h2>
+      <p>Untuk solo founder & tim kecil, <strong>trunk-based dengan short-lived branch</strong> lebih sederhana & cepat daripada git-flow yang berat.</p>
+      <table>
+        <thead><tr><th>Elemen</th><th>Praktik</th></tr></thead>
+        <tbody>
+          <tr><td>Branch</td><td>Pendek-umur dari <code>main</code>: <code>feat/orders-filter</code>, merge cepat</td></tr>
+          <tr><td>Commit</td><td>Conventional Commits: <code>feat:</code>, <code>fix:</code>, <code>refactor:</code>, <code>chore:</code></td></tr>
+          <tr><td>PR</td><td>Kecil, satu tujuan; CI hijau wajib sebelum merge</td></tr>
+          <tr><td>Branch protection</td><td>Wajib PR + status check lulus untuk <code>main</code></td></tr>
+          <tr><td>Versi</td><td>Semantic Versioning: <code>MAJOR.MINOR.PATCH</code></td></tr>
+        </tbody>
+      </table>
+<pre><code>git checkout -b feat/orders-filter
+git commit -m "feat: add status filter to orders list"
+git push -u origin feat/orders-filter
+# buka PR → CI jalan → review → merge ke main</code></pre>
+      <div class="note key"><span class="nt">Selaras dengan SDLC Anda</span>Ini memetakan langsung ke flow Anda: <code>/new-ticket</code> → <code>/new-spec</code> → code → <code>/pr</code> → merge → <code>/progress-update</code>. Conventional Commits juga memungkinkan changelog & versioning otomatis (mis. semantic-release), mendukung standar Technical Documentation Anda.</div>
+    </section>
+
+    <section id="signing">
+      <h2><span class="sn">02</span>Code Signing</h2>
+      <p>Signing adalah sumber frustrasi terbesar iOS CI. Dua artefak: <strong>certificate</strong> (identitas developer) & <strong>provisioning profile</strong> (app + device + entitlement). <code>fastlane match</code> menyimpannya terenkripsi di repo terpisah agar konsisten lintas mesin & CI.</p>
+<pre><code># Setup sekali — simpan cert & profile terenkripsi di git repo privat
+fastlane match init
+fastlane match appstore        # generate/ambil cert + profile untuk distribusi
+
+# Di CI, match mengambil & meng-install cert yang sama
+fastlane match appstore --readonly</code></pre>
+      <div class="note danger"><span class="nt">Keamanan kredensial</span>Passphrase <code>match</code>, App Store Connect API key, dan token disimpan sebagai <strong>encrypted secrets</strong> di GitHub (bukan di repo/kode). Gunakan App Store Connect <strong>API key</strong> (bukan Apple ID + password) untuk autentikasi CI — lebih aman & tak terpengaruh 2FA. Jangan pernah commit <code>.p12</code>/profile/key ke repo utama.</div>
+    </section>
+
+    <section id="fastlane">
+      <h2><span class="sn">03</span>Fastlane</h2>
+      <p>Fastlane mengotomasi tugas berulang (build, signing, upload, screenshot) lewat <strong>lane</strong> yang didefinisikan di <code>Fastfile</code>.</p>
+<pre><code># Fastfile
+default_platform(:ios)
+
+platform :ios do
+  desc "Build & upload ke TestFlight"
+  lane :beta do
+    match(type: "appstore", readonly: true)          # signing konsisten
+    increment_build_number(xcodeproj: "MyApp.xcodeproj")
+    build_app(scheme: "Production", export_method: "app-store")
+    upload_to_testflight(skip_waiting_for_build_processing: true)
+  end
+
+  desc "Jalankan test"
+  lane :test do
+    run_tests(scheme: "Production")
+  end
+end</code></pre>
+      <div class="note key"><span class="nt">Nilai</span>Satu perintah <code>fastlane beta</code> menggantikan puluhan langkah manual (bump versi, archive, export, upload). Lane yang sama jalan di mesin lokal & CI — reproducible. Ini inti doktrin "automation over manual" Anda: jika berjalan lebih dari dua kali, otomasikan.</div>
+    </section>
+
+    <section id="ci">
+      <h2><span class="sn">04</span>CI/CD Pipeline — GitHub Actions</h2>
+      <p>Workflow menjalankan gate kualitas pada tiap PR, lalu distribusi pada merge/tag.</p>
+<pre><code># .github/workflows/ios.yml
+name: iOS CI
+on:
+  pull_request:
+    branches: [main]
+  push:
+    tags: ['v*']
+
+jobs:
+  quality:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint
+        run: swiftlint --strict
+      - name: Test + Coverage
+        run: fastlane test
+      - name: Coverage gate
+        run: ./scripts/check_coverage.sh 70   # PR gagal bila domain coverage < 70%
+
+  deploy:
+    needs: quality
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Beta
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          APP_STORE_CONNECT_API_KEY: ${{ secrets.ASC_API_KEY }}
+        run: fastlane beta</code></pre>
+      <div class="note key"><span class="nt">Struktur gate</span>Job <code>quality</code> (lint + test + coverage) jalan di <em>setiap PR</em> — mencegah kode buruk masuk <code>main</code>. Job <code>deploy</code> hanya jalan pada <em>tag rilis</em> — memisahkan integrasi dari distribusi. Coverage gate (M13) menegakkan ambang pada logika domain, bukan angka global.</div>
+    </section>
+
+    <section id="flavors">
+      <h2><span class="sn">05</span>Build Flavors</h2>
+      <p>Tiga environment (dev/staging/production) dipisahkan lewat scheme + configuration + <code>.xcconfig</code> (M4), sehingga satu codebase menghasilkan build berbeda tanpa perubahan kode.</p>
+      <table>
+        <thead><tr><th>Environment</th><th>Bundle ID</th><th>Backend</th></tr></thead>
+        <tbody>
+          <tr><td>Dev</td><td><code>com.app.dev</code></td><td>dev API, logging verbose</td></tr>
+          <tr><td>Staging</td><td><code>com.app.staging</code></td><td>staging API, TestFlight internal</td></tr>
+          <tr><td>Production</td><td><code>com.app</code></td><td>prod API, App Store</td></tr>
+        </tbody>
+      </table>
+      <div class="note warn"><span class="nt">Praktik</span>Bundle ID berbeda memungkinkan ketiga build ter-install bersamaan di satu device (QA praktis). Nilai per-environment (base URL, key) berasal dari <code>.xcconfig</code>, dikonsumsi CI lewat scheme yang dipilih — bukan hardcode.</div>
+    </section>
+
+    <section id="release">
+      <h2><span class="sn">06</span>TestFlight & App Store Release Checklist</h2>
+      <ul>
+        <li><strong>TestFlight</strong> — build otomatis via <code>upload_to_testflight</code>; internal testers instan, external butuh review ringan.</li>
+        <li><strong>Metadata</strong> — deskripsi, screenshot (bisa via <code>fastlane snapshot</code>), keyword, privacy policy URL.</li>
+        <li><strong>Privacy</strong> — App Privacy "nutrition label" (data dikumpulkan) & <code>PrivacyInfo.xcprivacy</code> manifest wajib.</li>
+        <li><strong>Compliance</strong> — export compliance (enkripsi), age rating.</li>
+        <li><strong>Review</strong> — patuhi App Review Guidelines (mis. IAP untuk digital — M12).</li>
+        <li><strong>Rollout</strong> — phased release (bertahap ke % user) agar regresi tertangkap sebelum 100%.</li>
+      </ul>
+      <div class="note key"><span class="nt">Rollback</span>iOS tidak punya "rollback" instan seperti web — user yang sudah update tetap di versi baru. Mitigasi: <strong>phased release</strong> + <strong>feature flag / remote config</strong> untuk mematikan fitur bermasalah tanpa rilis ulang, dan <strong>expedited review</strong> untuk hotfix kritis. Rancang kemampuan mematikan fitur dari server sejak awal.</div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">07</span>Latihan</h2>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Rancang gate PR</h4></div>
+        <p>Apa saja yang harus lulus sebelum PR boleh merge ke <code>main</code>?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Lint bersih, semua test hijau, coverage domain ≥ ambang, build sukses, minimal satu review approval, branch up-to-date dengan main. Tegakkan via branch protection.</p>
+        <p><em>Review:</em> Gate otomatis mencegah "works on my machine". Coverage gate spesifik ke logika bernilai (M13), bukan angka global.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Signing di CI</h4></div>
+        <p>CI gagal build dengan "no matching provisioning profile". Bagaimana pendekatan yang benar?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Gunakan <code>fastlane match</code>: cert & profile terenkripsi di repo terpisah, di-fetch <code>--readonly</code> di CI dengan <code>MATCH_PASSWORD</code> dari secrets. Autentikasi via App Store Connect API key.</p>
+        <p><em>Review:</em> Jangan generate profile ad-hoc di CI; match memberi konsistensi deterministik lintas mesin. Kredensial selalu di encrypted secrets.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Hotfix produksi</h4></div>
+        <p>Fitur baru menyebabkan crash di produksi. Rilis App Review butuh waktu. Apa opsi Anda?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>(1) Matikan fitur via feature flag / remote config (instan, tanpa rilis). (2) Ajukan expedited review untuk hotfix. (3) Untuk rilis bertahap yang belum 100%, hentikan phased rollout.</p>
+        <p><em>Review:</em> Karena tidak ada rollback instan di iOS, kemampuan remote-disable harus dirancang <em>sebelum</em> insiden. Ini keputusan arsitektur, bukan reaksi.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Lane rilis</h4></div>
+        <p>Tulis outline lane Fastlane untuk rilis production ke App Store (bukan hanya TestFlight).</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code>lane :release do
+  match(type: "appstore", readonly: true)
+  build_app(scheme: "Production", export_method: "app-store")
+  upload_to_app_store(
+    submit_for_review: true,
+    automatic_release: false,        # kontrol manual saat go-live
+    phased_release: true
+  )
+end</code></pre>
+        <p><em>Review:</em> <code>phased_release</code> menyebar rilis bertahap; <code>automatic_release: false</code> memberi kontrol waktu go-live. Metadata & screenshot bisa disertakan di lane yang sama.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 14</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Git workflow: trunk-based, Conventional Commits, branch protection, SemVer</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Code signing dengan fastlane match; kredensial di encrypted secrets + ASC API key</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Menulis Fastlane lane (beta/test/release)</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">GitHub Actions: gate quality per-PR, deploy per-tag</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Coverage gate pada logika domain</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Build flavors dev/staging/prod via scheme + xcconfig</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Release checklist + strategi phased release & remote-disable (tanpa rollback instan)</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-13.html">← Module 13 — Testing Strategy</a>
+      <a href="module-15.html">Module 15 — Performance & Security →</a>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m14';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

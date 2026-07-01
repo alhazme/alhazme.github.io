@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 09 — Modularization & DI</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+.onm{border:var(--border);border-radius:var(--radius-panel);overflow:hidden;margin:18px 0}
+.onm-head{background:var(--gray-100);padding:10px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500)}
+.onm-grid{display:grid;grid-template-columns:1fr 1fr}
+.onm-cell{padding:14px 16px}.onm-cell.old{border-right:1px solid var(--gray-300)}
+.onm-tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;display:inline-block}
+.onm-tag.t-old{color:var(--danger)}.onm-tag.t-new{color:var(--olive)}
+.onm-cell pre{margin:0;font-size:12px}
+.onm-mig{padding:12px 16px;background:var(--ivory);font-size:13.5px;border-top:1px solid var(--gray-300)}.onm-mig b{font-weight:600}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.diagram{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px;margin:18px 0;text-align:center}
+.diagram svg{max-width:100%;height:auto}.dcap{font-size:12.5px;color:var(--gray-500);margin-top:10px;font-style:italic}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+  .onm-grid{grid-template-columns:1fr}.onm-cell.old{border-right:none;border-bottom:1px solid var(--gray-300)}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 09 · Phase 4</div><h2>Modularization & DI</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Kenapa Modular</a>
+      <a href="#spm"><span class="nidx">01</span>SPM Local Packages</a>
+      <a href="#direction"><span class="nidx">02</span>Dependency Direction</a>
+      <a href="#di"><span class="nidx">03</span>Dependency Injection</a>
+      <a href="#container"><span class="nidx">04</span>DI Container</a>
+      <a href="#repository"><span class="nidx">05</span>Repository Pattern</a>
+      <a href="#exercises"><span class="nidx">06</span>Latihan</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 09 · PHASE 4 — ENTERPRISE ARCHITECTURE</span>Modularization & Dependency Injection</h2>
+      <p class="lead">Clean Architecture (Module 8) memisahkan <em>lapisan</em>. Modularization memisahkan <em>fitur</em> ke unit fisik (SPM package), dan DI menyatukannya tanpa kopling keras. Bersama, keduanya membuat codebase besar tetap dapat dikelola solo atau tim.</p>
+      <div class="meta-row"><span class="badge accent">SPM</span><span class="badge accent">DI</span><span class="badge neutral">~95 menit</span><span class="badge success">Multi-tenant ready</span></div>
+      <p>Empat manfaat konkret modularization:</p>
+      <ul>
+        <li><strong>Build time</strong> — perubahan satu modul tidak meng-recompile seluruh app.</li>
+        <li><strong>Boundary tegas</strong> — modul hanya bisa memakai API publik modul lain.</li>
+        <li><strong>Ownership</strong> — tiap modul punya pemilik & test sendiri.</li>
+        <li><strong>Reuse</strong> — modul Core (networking, design system) dipakai lintas proyek/klien — selaras model "build once, scale many" Anda.</li>
+      </ul>
+    </section>
+
+    <section id="spm">
+      <h2><span class="sn">01</span>SPM Local Packages</h2>
+      <p>Modularisasi modern memakai <strong>local Swift Package</strong> (bukan framework target lawas). Tiap modul adalah package dengan API publik eksplisit.</p>
+<pre><code data-swift>MyApp.xcodeproj
+Packages/
+├─ CoreNetworking/        // Package.swift — NetworkService
+├─ CorePersistence/       // Keychain, SwiftData store
+├─ DesignSystem/          // token + komponen (Module 6)
+├─ DomainOrders/          // entity + use case + repository protocol
+└─ FeatureOrders/         // View + ViewModel (depends: Domain, DesignSystem)</code></pre>
+      <div class="code-label">Package.swift — kontrol akses & dependency</div>
+<pre><code data-swift>// swift-tools-version: 6.0
+let package = Package(
+    name: "FeatureOrders",
+    platforms: [.iOS(.v27)],
+    products: [.library(name: "FeatureOrders", targets: ["FeatureOrders"])],
+    dependencies: [
+        .package(path: "../DomainOrders"),
+        .package(path: "../DesignSystem")
+    ],
+    targets: [
+        .target(name: "FeatureOrders", dependencies: ["DomainOrders", "DesignSystem"],
+            swiftSettings: [.defaultIsolation(MainActor.self)]),   // UI module → MainActor
+        .testTarget(name: "FeatureOrdersTests", dependencies: ["FeatureOrders"])
+    ]
+)</code></pre>
+      <div class="note key"><span class="nt">Kontrol akses sebagai boundary</span>Hanya tipe <code>public</code> yang terlihat lintas modul. Ini memaksa Anda mendesain API modul secara sadar — internal detail tetap tersembunyi. Ingat (Module 3): set <code>.defaultIsolation(MainActor.self)</code> untuk modul UI; biarkan default <code>nonisolated</code> untuk modul logic/networking.</div>
+    </section>
+
+    <section id="direction">
+      <h2><span class="sn">02</span>Dependency Direction</h2>
+      <p>Aturan emas: dependency mengalir dari <strong>fitur → domain → core</strong>, tidak pernah sebaliknya, dan fitur tidak saling bergantung langsung.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 540 180" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, monospace" font-size="11">
+          <rect x="30" y="20" width="130" height="32" rx="6" fill="rgba(217,119,87,.14)" stroke="#D97757"/><text x="95" y="40" text-anchor="middle">FeatureOrders</text>
+          <rect x="380" y="20" width="130" height="32" rx="6" fill="rgba(217,119,87,.14)" stroke="#D97757"/><text x="445" y="40" text-anchor="middle">FeatureAuth</text>
+          <rect x="170" y="80" width="200" height="32" rx="6" fill="rgba(120,140,93,.16)" stroke="#788C5D"/><text x="270" y="100" text-anchor="middle">Domain (entities, use cases)</text>
+          <rect x="120" y="138" width="140" height="30" rx="6" fill="rgba(92,124,163,.12)" stroke="#5C7CA3"/><text x="190" y="157" text-anchor="middle">CoreNetworking</text>
+          <rect x="290" y="138" width="140" height="30" rx="6" fill="rgba(92,124,163,.12)" stroke="#5C7CA3"/><text x="360" y="157" text-anchor="middle">DesignSystem</text>
+          <g stroke="#87867F" stroke-width="1.3">
+            <path d="M110 52 L230 80" marker-end="url(#a)"/>
+            <path d="M430 52 L310 80" marker-end="url(#a)"/>
+            <path d="M250 112 L210 138" marker-end="url(#a)"/>
+            <path d="M300 112 L345 138" marker-end="url(#a)"/>
+          </g>
+          <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#87867F"/></marker></defs>
+        </svg>
+        <div class="dcap">Fitur tak saling impor. Komunikasi lintas-fitur lewat Domain atau event, bukan dependency langsung.</div>
+      </div>
+      <div class="note danger"><span class="nt">Anti-Pattern</span>FeatureOrders meng-import FeatureAuth secara langsung menciptakan <em>circular dependency</em> dan merusak independensi build. Bila Orders butuh status auth, ekspos lewat abstraksi di Domain/Core (mis. <code>AuthStateProviding</code> protocol) yang keduanya bergantung padanya.</div>
+    </section>
+
+    <section id="di">
+      <h2><span class="sn">03</span>Dependency Injection</h2>
+      <p>DI = objek menerima dependency-nya dari luar, bukan membuatnya sendiri. Bentuk paling tahan lama: <strong>constructor injection</strong>.</p>
+      <div class="onm">
+        <div class="onm-head">Kopling keras → DI</div>
+        <div class="onm-grid">
+          <div class="onm-cell old"><span class="onm-tag t-old">Hard-coupled</span>
+<pre><code data-swift>final class OrderVM {
+  // membuat sendiri →
+  // tak bisa di-mock
+  private let repo =
+    OrderRepositoryImpl(
+      network: .init())
+}</code></pre></div>
+          <div class="onm-cell new"><span class="onm-tag t-new">Constructor injection</span>
+<pre><code data-swift>final class OrderVM {
+  private let repo: OrderRepository
+  init(repo: OrderRepository) {
+    self.repo = repo   // disuntik
+  }
+}
+// test: OrderVM(repo: MockRepo())</code></pre></div>
+        </div>
+        <div class="onm-mig"><b>Alasan:</b> dengan dependency disuntik sebagai <em>protocol</em>, Anda dapat menukar implementasi nyata dengan mock saat testing, atau implementasi berbeda per environment/tenant — tanpa mengubah konsumen. Constructor injection membuat dependency <em>eksplisit & wajib</em> (tak ada dependency tersembunyi).</div>
+      </div>
+      <div class="note key"><span class="nt">Hierarki preferensi DI</span>(1) <strong>Constructor injection</strong> — default, paling eksplisit & teruji. (2) <strong>Environment</strong> (SwiftUI) — untuk dependency UI yang dibagikan luas. (3) <strong>Property/container</strong> — hanya bila konstruktor tak praktis. Hindari singleton global (<code>.shared</code>) sebagai mekanisme DI utama — ia menyembunyikan dependency & menyulitkan test.</div>
+    </section>
+
+    <section id="container">
+      <h2><span class="sn">04</span>DI Container & Composition Root</h2>
+      <p>Di satu tempat (composition root, dekat entry point) Anda merakit graph dependency. Bisa manual (factory) atau dengan library (Swinject — Module 11).</p>
+      <div class="code-label">Composition root manual — factory sederhana</div>
+<pre><code data-swift>@MainActor
+final class AppContainer {
+    // shared singletons (dependency level rendah)
+    private lazy var network: NetworkService = DefaultNetworkService(baseURL: Config.apiURL)
+    private lazy var orderRepository: OrderRepository = OrderRepositoryImpl(network: network)
+
+    // factory untuk objek per-layar
+    func makeOrderListViewModel() -&gt; OrderListViewModel {
+        OrderListViewModel(fetchOrders: FetchOrdersUseCase(repository: orderRepository))
+    }
+}
+
+// Di entry point
+@main struct MyApp: App {
+    @State private var container = AppContainer()
+    var body: some Scene {
+        WindowGroup { OrderListView(viewModel: container.makeOrderListViewModel()) }
+    }
+}</code></pre>
+      <div class="note key"><span class="nt">Prinsip Composition Root</span>Semua "new" yang merakit graph terjadi di satu tempat dekat root. Sisanya hanya menerima dependency. Ini menjaga modul fitur bebas dari pengetahuan cara membangun dependency-nya — fondasi reusability lintas klien (build once, scale many).</div>
+    </section>
+
+    <section id="repository">
+      <h2><span class="sn">05</span>Repository Pattern</h2>
+      <p>Repository menyembunyikan <em>sumber data</em> di balik kontrak domain. ViewModel/use case tidak tahu data datang dari jaringan, cache, atau keduanya.</p>
+<pre><code data-swift>// Domain — kontrak
+protocol OrderRepository {
+    func fetchAll() async throws -&gt; [Order]
+}
+
+// Data — implementasi dengan strategi cache-then-network
+final class OrderRepositoryImpl: OrderRepository {
+    let remote: OrderRemoteDataSource
+    let local: OrderLocalDataSource
+    init(remote: OrderRemoteDataSource, local: OrderLocalDataSource) {
+        self.remote = remote; self.local = local
+    }
+    func fetchAll() async throws -&gt; [Order] {
+        do {
+            let fresh = try await remote.getOrders().map { $0.toDomain() }
+            try await local.save(fresh)               // refresh cache
+            return fresh
+        } catch {
+            return try await local.loadAll()           // fallback offline
+        }
+    }
+}</code></pre>
+      <div class="note key"><span class="nt">Kekuatan</span>Logika offline/cache terpusat di satu tempat (repository), bukan tersebar di banyak ViewModel. Mengganti backend, menambah cache, atau pindah dari REST ke GraphQL hanya menyentuh data layer — domain & presentation tak berubah. Inilah inti offline resilience untuk app SaaS Anda.</div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">06</span>Latihan</h2>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Dependency direction</h4></div>
+        <p>FeatureCheckout perlu tahu apakah user login. Ia tergoda meng-import FeatureAuth. Apa solusi yang benar?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Definisikan protocol <code>AuthStateProviding</code> di Domain/Core; FeatureAuth menyediakan implementasi, FeatureCheckout bergantung pada <em>protocol</em> di Core — bukan pada FeatureAuth. Suntik implementasinya di composition root.</p>
+        <p><em>Review:</em> Ini mencegah circular dependency & menjaga fitur independen. Komunikasi lintas-fitur selalu lewat abstraksi bersama, tak pernah impor langsung.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Constructor injection</h4></div>
+        <p>Refactor agar <code>ProfileViewModel</code> dapat di-mock saat test.</p>
+<pre><code data-swift>final class ProfileViewModel {
+    private let repo = UserRepositoryImpl(network: DefaultNetworkService())
+}</code></pre>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>final class ProfileViewModel {
+    private let repo: UserRepository
+    init(repo: UserRepository) { self.repo = repo }
+}
+// test: ProfileViewModel(repo: MockUserRepository())</code></pre>
+        <p><em>Review:</em> Dependency menjadi protocol yang disuntik. Test kini bisa memberi mock deterministik tanpa jaringan nyata.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Cache-then-network repository</h4></div>
+        <p>Rancang repository yang mengembalikan cache dulu (cepat) lalu memperbarui dari network. Apa pertimbangan API-nya?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Opsi: kembalikan <code>AsyncStream&lt;[Order]&gt;</code> yang meng-emit dua kali (cache lalu fresh), atau dua method (<code>cached()</code> + <code>refresh()</code>). Pilih sesuai kebutuhan UI.</p>
+        <p><em>Review:</em> Kunci: keputusan strategi cache hidup di repository, bukan ViewModel. ViewModel hanya mengonsumsi hasil. Ini menjaga presentation tetap tipis.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Pecah ke modul</h4></div>
+        <p>App Anda punya fitur Auth, Orders, dan Profile plus networking & design system bersama. Usulkan struktur package + dependency-nya.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p><code>CoreNetworking</code>, <code>DesignSystem</code> (tanpa dependency fitur). <code>Domain</code> (entity + use case + repository protocol). <code>FeatureAuth/Orders/Profile</code> → depend ke Domain + DesignSystem (+ Core lewat Domain). App target merakit semua di composition root.</p>
+        <p><em>Review:</em> Tidak ada fitur yang depend ke fitur lain. Core & DesignSystem reusable lintas klien — modal utama model bisnis "build once, scale many".</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 09</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Menjelaskan empat manfaat modularization (build, boundary, ownership, reuse)</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Menyusun SPM local packages dengan API publik & isolasi yang benar</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Menjaga dependency direction; mencegah circular & cross-feature import</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Constructor injection dengan protocol; menghindari singleton sebagai DI utama</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Merakit graph di composition root (manual factory atau container)</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Repository pattern menyembunyikan sumber data; logika cache terpusat</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Merancang pemecahan modul untuk app multi-fitur</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-08.html">← Module 08 — Architecture Patterns</a>
+      <span class="next">Phase 4 selesai. Berikutnya: Phase 5 — Module 10 (Networking Stack & Libraries)</span>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m09';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

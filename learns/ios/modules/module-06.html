@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 06 — SwiftUI & Observation</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+.onm{border:var(--border);border-radius:var(--radius-panel);overflow:hidden;margin:18px 0}
+.onm-head{background:var(--gray-100);padding:10px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500)}
+.onm-grid{display:grid;grid-template-columns:1fr 1fr}
+.onm-cell{padding:14px 16px}.onm-cell.old{border-right:1px solid var(--gray-300)}
+.onm-tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;display:inline-block}
+.onm-tag.t-old{color:var(--danger)}.onm-tag.t-new{color:var(--olive)}
+.onm-cell pre{margin:0;font-size:12px}
+.onm-mig{padding:12px 16px;background:var(--ivory);font-size:13.5px;border-top:1px solid var(--gray-300)}.onm-mig b{font-weight:600}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.diagram{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px;margin:18px 0;text-align:center}
+.diagram svg{max-width:100%;height:auto}.dcap{font-size:12.5px;color:var(--gray-500);margin-top:10px;font-style:italic}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+  .onm-grid{grid-template-columns:1fr}.onm-cell.old{border-right:none;border-bottom:1px solid var(--gray-300)}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 06 · Phase 3</div><h2>SwiftUI & Observation</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Deklaratif & View Tree</a>
+      <a href="#views"><span class="nidx">01</span>View System</a>
+      <a href="#state"><span class="nidx">02</span>State: @State & @Observable</a>
+      <a href="#sharing"><span class="nidx">03</span>@Bindable & @Environment</a>
+      <a href="#navigation"><span class="nidx">04</span>NavigationStack</a>
+      <a href="#animation"><span class="nidx">05</span>Animation</a>
+      <a href="#components"><span class="nidx">06</span>Component & Design System</a>
+      <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 06 · PHASE 3 — UI DEVELOPMENT</span>SwiftUI Deklaratif & Observation</h2>
+      <p class="lead">SwiftUI mendeskripsikan UI sebagai fungsi dari state: <code>UI = f(state)</code>. Anda tidak memanipulasi view; Anda mengubah state, dan framework merekonsiliasi tampilan. Module ini menguasai sistem state modern (Observation) yang menjadi tulang punggung itu.</p>
+      <div class="meta-row"><span class="badge accent">iOS 27</span><span class="badge accent">@Observable</span><span class="badge accent">NavigationStack</span><span class="badge neutral">~110 menit</span></div>
+      <div class="note key"><span class="nt">Pergeseran besar</span>Sejak iOS 17, <strong>Observation framework (<code>@Observable</code> macro)</strong> menggantikan <code>ObservableObject + @Published</code>. Keuntungan: boilerplate hilang (semua stored property otomatis observable) dan re-render <em>granular per-properti</em> — view hanya rebuild saat properti yang benar-benar ia baca berubah. Ini sekaligus perbaikan performa dan kebenaran.</div>
+    </section>
+
+    <section id="views">
+      <h2><span class="sn">01</span>View System</h2>
+      <p>Sebuah <code>View</code> adalah struct ringan yang mendeklarasikan tampilan lewat <code>body</code>. View dikomposisi, bukan diwarisi. SwiftUI membuang & membangun ulang struct ini setiap render — murah karena value type.</p>
+<pre><code data-swift>struct OrderRow: View {
+    let order: Order                      // input immutable
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(order.id).font(.headline)
+                Text(order.createdAt, style: .date)
+                    .font(.caption).foregroundStyle(.secondary)
+            }
+            Spacer()
+            Text(order.total, format: .currency(code: "IDR"))
+        }
+        .padding(.vertical, 4)
+    }
+}</code></pre>
+      <div class="note warn"><span class="nt">Mental model</span>Jangan simpan state turunan yang bisa dihitung — derive di <code>body</code> atau computed property. View adalah deskripsi, bukan tempat menyimpan. Memecah <code>body</code> raksasa menjadi sub-view kecil bukan sekadar kerapian: ia membatasi cakupan re-render.</div>
+    </section>
+
+    <section id="state">
+      <h2><span class="sn">02</span>State: <code>@State</code> & <code>@Observable</code></h2>
+      <p>Dua sumber kebenaran berbeda peran:</p>
+      <table>
+        <thead><tr><th></th><th><code>@State</code></th><th><code>@Observable</code> class</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Tipe</strong></td><td>Value (struct/enum) atau model yang dimiliki view</td><td>Reference (class)</td></tr>
+          <tr><td><strong>Cakupan</strong></td><td>Lokal pada view</td><td>Dibagikan lintas view</td></tr>
+          <tr><td><strong>Untuk</strong></td><td>Toggle, teks input, state UI</td><td>Business/model state</td></tr>
+        </tbody>
+      </table>
+      <div class="onm">
+        <div class="onm-head">Old → New · Observable model</div>
+        <div class="onm-grid">
+          <div class="onm-cell old"><span class="onm-tag t-old">Old (pre-iOS 17)</span>
+<pre><code data-swift>class CartVM: ObservableObject {
+    @Published var items = [Item]()
+}
+struct CartView: View {
+    @StateObject private var
+        vm = CartVM()
+}</code></pre></div>
+          <div class="onm-cell new"><span class="onm-tag t-new">New (Observation)</span>
+<pre><code data-swift>@Observable
+final class CartModel {
+    var items = [Item]()   // auto-observable
+}
+struct CartView: View {
+    @State private var
+        cart = CartModel()
+}</code></pre></div>
+        </div>
+        <div class="onm-mig"><b>Migrasi:</b> Ganti <code>ObservableObject</code>→<code>@Observable</code>, hapus semua <code>@Published</code>, ganti <code>@StateObject</code>→<code>@State</code> (untuk yang dimiliki view) dan <code>@ObservedObject</code>→property biasa. <b>Alasan:</b> properti kini dilacak otomatis dengan presisi bedah; view yang hanya membaca <code>items.count</code> tidak rebuild saat properti lain berubah. Boilerplate <code>@Published</code> hilang sepenuhnya.</div>
+      </div>
+      <div class="code-label">@Observable dengan computed state</div>
+<pre><code data-swift>@Observable
+final class CartModel {
+    var items: [Item] = []
+    var total: Decimal { items.reduce(0) { $0 + $1.price } }  // derived, bukan disimpan
+    func add(_ item: Item) { items.append(item) }
+}</code></pre>
+    </section>
+
+    <section id="sharing">
+      <h2><span class="sn">03</span><code>@Bindable</code> & <code>@Environment</code></h2>
+      <p>Setelah model observable dibuat, dua cara menghubungkannya ke view lain:</p>
+      <div class="code-label">@Bindable — binding dua arah ke properti observable</div>
+<pre><code data-swift>struct ProfileEditor: View {
+    @Bindable var model: ProfileModel        // observable yang dimiliki view lain
+    var body: some View {
+        TextField("Nama", text: $model.name) // $ menghasilkan Binding
+        Toggle("Notifikasi", isOn: $model.notificationsEnabled)
+    }
+}</code></pre>
+      <div class="code-label">@Environment — dependency injection lintas hierarki</div>
+<pre><code data-swift>// Inject di root
+ContentView()
+    .environment(authModel)          // satu instance dibagikan
+
+// Baca di view mana pun di bawahnya
+struct HeaderView: View {
+    @Environment(AuthModel.self) private var auth
+    var body: some View { Text(auth.currentUser?.name ?? "Tamu") }
+}</code></pre>
+      <div class="note key"><span class="nt">Aturan pemilihan</span><code>@State</code> = view <em>memiliki</em> model (lifecycle). <code>@Bindable</code> = view menerima model & butuh binding edit. <code>@Environment</code> = dependency bersama yang dipakai banyak view jauh (auth, theme, router). Hindari menaruh semua di Environment — itu menyembunyikan dependency dan memperluas re-render.</div>
+    </section>
+
+    <section id="navigation">
+      <h2><span class="sn">04</span>NavigationStack — Routing Type-Safe</h2>
+      <p><code>NavigationStack</code> dengan <em>typed path</em> memberi navigasi programatik, deep link, dan testability. Ia menggantikan <code>NavigationView</code> sepenuhnya.</p>
+      <div class="onm">
+        <div class="onm-head">Old → New · Navigation</div>
+        <div class="onm-grid">
+          <div class="onm-cell old"><span class="onm-tag t-old">Old — NavigationView</span>
+<pre><code data-swift>NavigationView {
+  List(orders) { o in
+    NavigationLink(
+      destination: Detail(o)) {
+        OrderRow(order: o)
+    }
+  }
+} // navigasi terikat view,
+  // sulit deep link</code></pre></div>
+          <div class="onm-cell new"><span class="onm-tag t-new">New — NavigationStack</span>
+<pre><code data-swift>NavigationStack(path: $path) {
+  List(orders) { o in
+    NavigationLink(value: o) {
+      OrderRow(order: o)
+    }
+  }
+  .navigationDestination(
+    for: Order.self){ Detail($0) }
+}</code></pre></div>
+        </div>
+        <div class="onm-mig"><b>Migrasi:</b> <code>NavigationView</code>→<code>NavigationStack</code>; <code>NavigationLink(destination:)</code>→<code>NavigationLink(value:)</code> + <code>navigationDestination(for:)</code>. <b>Alasan:</b> path eksplisit & typed memungkinkan push/pop programatik, restore state, dan deep link (mis. buka order tertentu dari notifikasi) tanpa hack. Cocok untuk pola Router/Coordinator (lihat Module 07).</div>
+      </div>
+      <div class="code-label">Router observable untuk navigasi programatik</div>
+<pre><code data-swift>@Observable final class Router {
+    var path = NavigationPath()
+    func push(_ value: any Hashable) { path.append(value) }
+    func popToRoot() { path = NavigationPath() }
+}
+
+struct AppRoot: View {
+    @State private var router = Router()
+    var body: some View {
+        @Bindable var router = router
+        NavigationStack(path: $router.path) {
+            HomeView()
+                .navigationDestination(for: Order.self) { OrderDetail(order: $0) }
+                .navigationDestination(for: Settings.self) { _ in SettingsView() }
+        }
+        .environment(router)
+    }
+}</code></pre>
+    </section>
+
+    <section id="animation">
+      <h2><span class="sn">05</span>Animation</h2>
+      <p>Animasi di SwiftUI bersifat deklaratif: Anda menganimasikan <em>perubahan state</em>, bukan memerintah frame.</p>
+<pre><code data-swift>struct ExpandCard: View {
+    @State private var expanded = false
+    var body: some View {
+        VStack {
+            Text("Detail").font(.headline)
+            if expanded { Text("Konten tambahan").transition(.opacity.combined(with: .move(edge: .top))) }
+            Button(expanded ? "Tutup" : "Buka") {
+                withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                    expanded.toggle()          // animasikan perubahan state
+                }
+            }
+        }
+    }
+}</code></pre>
+      <div class="note warn"><span class="nt">Pilihan API</span>Gunakan <code>withAnimation { }</code> untuk membungkus perubahan state eksplisit; gunakan <code>.animation(_:value:)</code> bila ingin terikat pada perubahan nilai tertentu. <code>.transition</code> mengatur insert/remove view. Hindari menganimasikan layout besar setiap frame — gunakan <code>.drawingGroup()</code> atau pisahkan subtree bila terjadi jank (Module 15).</div>
+    </section>
+
+    <section id="components">
+      <h2><span class="sn">06</span>Custom Component & Design System</h2>
+      <p>Konsistensi visual dicapai lewat <strong>design token</strong> + <strong>reusable component/modifier</strong>, bukan styling ad-hoc per view. Ini fondasi yang juga Anda jual sebagai Figma/Flutter UI kit.</p>
+      <div class="code-label">Token + ButtonStyle + ViewModifier</div>
+<pre><code data-swift>enum AppColor { static let clay = Color(red: 0.85, green: 0.47, blue: 0.34) }
+enum AppSpacing { static let md: CGFloat = 16 }
+
+struct PrimaryButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -&gt; some View {
+        configuration.label
+            .padding(.horizontal, AppSpacing.md).frame(height: 44)
+            .background(AppColor.clay)
+            .foregroundStyle(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .opacity(configuration.isPressed ? 0.85 : 1)
+    }
+}
+
+struct Card&lt;Content: View&gt;: View {
+    @ViewBuilder var content: Content
+    var body: some View {
+        content.padding(AppSpacing.md)
+            .background(.white, in: RoundedRectangle(cornerRadius: 12))
+            .shadow(radius: 2, y: 1)
+    }
+}
+
+// Pemakaian
+Button("Bayar") { pay() }.buttonStyle(PrimaryButtonStyle())
+Card { Text("Ringkasan pesanan") }</code></pre>
+      <div class="note key"><span class="nt">Prinsip Principal</span>Component generik (<code>Card&lt;Content&gt;</code>) + <code>ButtonStyle</code>/<code>ViewModifier</code> + token terpusat = design system yang berubah di satu tempat. Saat klien minta rebrand, Anda ubah token, bukan ratusan view. Ini juga yang membuat UI kit Anda layak dijual.</div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">07</span>Latihan</h2>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Migrasi ke @Observable</h4></div>
+        <p>Konversi view model ini ke Observation framework:</p>
+<pre><code data-swift>class SearchVM: ObservableObject {
+    @Published var query = ""
+    @Published var results: [Item] = []
+}</code></pre>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>@Observable final class SearchModel {
+    var query = ""
+    var results: [Item] = []
+}
+// di view: @State private var model = SearchModel()</code></pre>
+        <p><em>Review:</em> Hapus <code>@Published</code> dan conformance <code>ObservableObject</code>. View yang membaca <code>results</code> tidak akan rebuild saat hanya <code>query</code> berubah — re-render granular gratis.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Binding ke observable</h4></div>
+        <p>Buat editor untuk <code>@Observable ProfileModel { var name; var bio }</code> dengan dua <code>TextField</code> dua-arah.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>struct ProfileEditor: View {
+    @Bindable var model: ProfileModel
+    var body: some View {
+        Form {
+            TextField("Nama", text: $model.name)
+            TextField("Bio", text: $model.bio)
+        }
+    }
+}</code></pre>
+        <p><em>Review:</em> <code>@Bindable</code> diperlukan agar <code>$model.name</code> menghasilkan <code>Binding</code>. Jika <code>model</code> hanya property biasa (read-only), <code>$</code> tidak tersedia.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Navigasi typed</h4></div>
+        <p>Susun <code>NavigationStack</code> yang menampilkan list <code>Order</code> dan push ke <code>OrderDetail</code> saat dipilih, dengan path yang bisa di-reset programatik.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>@State private var path = NavigationPath()
+NavigationStack(path: $path) {
+    List(orders) { o in NavigationLink(value: o) { OrderRow(order: o) } }
+        .navigationDestination(for: Order.self) { OrderDetail(order: $0) }
+}
+// reset: path = NavigationPath()</code></pre>
+        <p><em>Review:</em> <code>Order</code> harus <code>Hashable</code>. Path eksplisit memungkinkan deep link & pop-to-root — fondasi Coordinator di Module 07.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Reusable component</h4></div>
+        <p>Buat <code>StatusBadge</code> yang menerima enum status dan menampilkan warna berbeda, memakai token terpusat.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>enum Status { case paid, pending, failed }
+struct StatusBadge: View {
+    let status: Status
+    private var color: Color {
+        switch status { case .paid: .green; case .pending: .orange; case .failed: .red }
+    }
+    var body: some View {
+        Text("\(status)").font(.caption).padding(.horizontal, 8).padding(.vertical, 3)
+            .background(color.opacity(0.16), in: Capsule())
+            .foregroundStyle(color)
+    }
+}</code></pre>
+        <p><em>Review:</em> Logika warna terpusat di satu computed property. Ganti palet = satu tempat. Komponen kecil & murni seperti ini ideal untuk Widgetbook/preview catalog.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 06</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Memahami UI = f(state); komposisi view & cakupan re-render</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Membedakan @State (value/owned) vs @Observable class (shared)</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Migrasi ObservableObject/@Published → @Observable</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Menggunakan @Bindable & @Environment dengan benar</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">NavigationStack typed path; navigationDestination; router programatik</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Animasi deklaratif: withAnimation, transition, .animation(value:)</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Membuat component generik + ButtonStyle/ViewModifier + token terpusat</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-05.html">← Module 05 — Networking & Persistence</a>
+      <a href="module-07.html">Module 07 — UIKit & Coordinator →</a>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m06';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

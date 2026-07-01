@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 16 — System Design & Leadership</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.diagram{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px;margin:18px 0;text-align:center}
+.diagram svg{max-width:100%;height:auto}.dcap{font-size:12.5px;color:var(--gray-500);margin-top:10px;font-style:italic}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.capstone{background:linear-gradient(135deg, var(--oat), #EFE7D8);border-radius:var(--radius-panel);padding:26px;margin:26px 0}
+.capstone h3{font-size:22px;margin-bottom:8px}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 16 · Phase 10</div><h2>System Design & Leadership</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Dari Builder ke Staff</a>
+      <a href="#design"><span class="nidx">01</span>iOS System Design</a>
+      <a href="#adr"><span class="nidx">02</span>Architecture Decision Record</a>
+      <a href="#review"><span class="nidx">03</span>Code Review at Scale</a>
+      <a href="#leadership"><span class="nidx">04</span>Technical Leadership</a>
+      <a href="#scaling"><span class="nidx">05</span>Scaling Team</a>
+      <a href="#exercises"><span class="nidx">06</span>Latihan</a>
+      <a href="#capstone"><span class="nidx">07</span>Penutup</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 16 · PHASE 10 — SENIOR ENGINEER</span>Dari Builder ke Staff/Principal</h2>
+      <p class="lead">Lima belas modul sebelumnya mengajarkan cara <em>membangun</em>. Modul terakhir ini tentang cara <em>memutuskan, memimpin, dan menskala</em> — kemampuan yang memisahkan senior engineer dari staff/principal, dan yang menopang Anda sebagai solo founder yang bertumbuh.</p>
+      <div class="meta-row"><span class="badge accent">System Design</span><span class="badge accent">ADR</span><span class="badge accent">Leadership</span><span class="badge neutral">~100 menit</span><span class="badge success">Capstone</span></div>
+      <div class="note key"><span class="nt">Pergeseran mental</span>Junior mengoptimalkan <em>kode yang benar</em>. Senior mengoptimalkan <em>sistem yang benar</em>. Staff/principal mengoptimalkan <em>keputusan yang benar & tim yang efektif</em>. Nilai Anda bergeser dari "berapa banyak yang Anda tulis" ke "seberapa baik keputusan yang Anda buat dan seberapa Anda memampukan orang lain".</div>
+    </section>
+
+    <section id="design">
+      <h2><span class="sn">01</span>iOS System Design</h2>
+      <p>Merancang sistem iOS (untuk wawancara maupun proyek nyata) mengikuti alur terstruktur. Jangan langsung ke solusi — mulai dari kebutuhan & batasan.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, monospace" font-size="10.5">
+          <g>
+            <rect x="6" y="44" width="92" height="34" rx="6" fill="#FAF9F5" stroke="#D1CFC5"/><text x="52" y="65" text-anchor="middle">Requirements</text>
+            <rect x="118" y="44" width="92" height="34" rx="6" fill="#FAF9F5" stroke="#D1CFC5"/><text x="164" y="65" text-anchor="middle">Constraints</text>
+            <rect x="230" y="44" width="92" height="34" rx="6" fill="rgba(120,140,93,.16)" stroke="#788C5D"/><text x="276" y="65" text-anchor="middle">Data & API</text>
+            <rect x="342" y="44" width="100" height="34" rx="6" fill="rgba(217,119,87,.14)" stroke="#D97757"/><text x="392" y="61" text-anchor="middle">Architecture</text><text x="392" y="72" text-anchor="middle" font-size="9">layers · modules</text>
+            <rect x="462" y="44" width="130" height="34" rx="6" fill="#F0EEE6" stroke="#D1CFC5"/><text x="527" y="61" text-anchor="middle">Trade-offs</text><text x="527" y="72" text-anchor="middle" font-size="9">offline · scale · perf</text>
+          </g>
+          <g stroke="#87867F" stroke-width="1.2">
+            <path d="M98 61 H118" marker-end="url(#a)"/><path d="M210 61 H230" marker-end="url(#a)"/>
+            <path d="M322 61 H342" marker-end="url(#a)"/><path d="M442 61 H462" marker-end="url(#a)"/>
+          </g>
+          <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#87867F"/></marker></defs>
+        </svg>
+        <div class="dcap">Alur design: dari "apa & batasan" ke "bagaimana & trade-off" — bukan langsung ke kode.</div>
+      </div>
+      <p>Dimensi khas iOS yang harus dibahas di setiap desain:</p>
+      <ul>
+        <li><strong>Offline-first & sync</strong> — cache lokal, sync queue, konflik, idempotency (M12).</li>
+        <li><strong>State & data flow</strong> — arsitektur (M8), sumber kebenaran tunggal.</li>
+        <li><strong>Modularization</strong> — batas modul, dependency direction, build time (M9).</li>
+        <li><strong>Skalabilitas</strong> — daftar besar (paginasi/diffable), memori (downsampling), concurrency.</li>
+        <li><strong>Ketahanan</strong> — error handling, retry, degradasi anggun, observability.</li>
+        <li><strong>Trade-off eksplisit</strong> — nyatakan apa yang dikorbankan dan mengapa.</li>
+      </ul>
+      <div class="note key"><span class="nt">Sinyal principal</span>Kekuatan bukan menyebut teknologi terbanyak, melainkan <strong>menghubungkan setiap pilihan ke kebutuhan & batasan</strong>, dan menyebut trade-off tanpa diminta. "Saya pakai SwiftData karena X, mengorbankan Y; kalau kebutuhan Z muncul, saya pindah ke Core Data" jauh lebih kuat daripada daftar buzzword.</div>
+    </section>
+
+    <section id="adr">
+      <h2><span class="sn">02</span>Architecture Decision Record</h2>
+      <p>ADR mencatat <em>keputusan arsitektur signifikan</em> beserta konteks & konsekuensinya. Ia mencegah "kenapa dulu kita begini?" enam bulan kemudian dan merupakan bagian standar dokumentasi teknis Anda.</p>
+      <div class="code-label">Template ADR (Markdown, versioned di repo)</div>
+<pre><code># ADR-007: Adopsi SwiftData untuk cache lokal
+
+## Status
+Accepted — 2026-06-15
+
+## Context
+Butuh cache offline untuk daftar order. Tim kecil, proyek baru, SwiftUI-first.
+Object graph sedang, tanpa kebutuhan CloudKit publik.
+
+## Decision
+Gunakan SwiftData, dibungkus di balik OrderRepository (Domain).
+
+## Consequences
++ Boilerplate minimal, integrasi @Query reaktif, cepat delivery.
+- Framework relatif baru; migrasi kompleks belum matang.
+- Mitigasi: akses via Repository → migrasi ke Core Data terisolasi bila perlu.
+
+## Alternatives considered
+Core Data (lebih matang, lebih verbose), Realm (deprecated — ditolak).</code></pre>
+      <div class="note key"><span class="nt">Kapan menulis ADR</span>Tulis ADR untuk keputusan yang <strong>mahal dibalik</strong> atau <strong>memengaruhi banyak orang/modul</strong>: pilihan arsitektur, framework persistence, strategi auth, batas modul. Jangan untuk keputusan sepele. ADR bersifat immutable — bila berubah, buat ADR baru yang men-supersede, jangan edit yang lama. Ini memberi jejak keputusan yang auditable.</div>
+    </section>
+
+    <section id="review">
+      <h2><span class="sn">03</span>Code Review at Scale</h2>
+      <p>Code review adalah alat utama menjaga kualitas & menyebarkan pengetahuan. Di skala, cara Anda me-review membentuk budaya tim.</p>
+      <table>
+        <thead><tr><th>Fokus review (prioritas)</th><th>Contoh</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1. Kebenaran & keamanan</strong></td><td>Data race (M3), authorization (M12), kebocoran secret (M15)</td></tr>
+          <tr><td><strong>2. Arsitektur & boundary</strong></td><td>Dependency direction (M9), logika di lapisan salah (M8)</td></tr>
+          <tr><td><strong>3. Testability & test</strong></td><td>Dependency disuntik? Ada test untuk logika baru? (M13)</td></tr>
+          <tr><td><strong>4. Kejelasan</strong></td><td>Nama, keterbacaan, kompleksitas</td></tr>
+          <tr><td><strong>5. Gaya</strong></td><td>Serahkan ke linter otomatis — jangan buang waktu review manual</td></tr>
+        </tbody>
+      </table>
+      <div class="note key"><span class="nt">Cara review yang membangun</span><strong>Otomasikan yang bisa diotomasikan</strong> (format/lint/coverage di CI — M14) agar review manusia fokus ke hal bernilai. <strong>Bedakan blocker dari saran</strong> (mis. prefix "nit:" untuk opsional). <strong>Tanya, jangan menyerang</strong> ("apa pertimbangan memilih X?" bukan "ini salah"). <strong>Puji yang baik</strong>. Review adalah mentoring, bukan gerbang ego. Skill <code>swift-code-review</code> & saudaranya di paket ini mengotomasikan review per-isu bertingkat severity.</div>
+    </section>
+
+    <section id="leadership">
+      <h2><span class="sn">04</span>Technical Leadership</h2>
+      <p>Leadership teknis tidak butuh jabatan manajer. Ia tentang memampukan keputusan & orang.</p>
+      <ul>
+        <li><strong>RFC (Request for Comments)</strong> — untuk keputusan besar, tulis proposal & minta masukan sebelum implementasi. Membangun konsensus & menangkap risiko dini. (Selaras Phase 1 Anda.)</li>
+        <li><strong>Tech debt sebagai keputusan sadar</strong> — utang teknis bukan aib; catat, prioritaskan, bayar terencana. Utang tak tercatat yang berbahaya.</li>
+        <li><strong>Mentoring</strong> — tingkatkan orang lain; leverage Anda adalah kemampuan tim, bukan hanya output Anda.</li>
+        <li><strong>Dokumentasi sebagai first-class</strong> — ADR, runbook, README, changelog (standar dokumentasi Anda) — pengetahuan yang tidak ditulis akan hilang.</li>
+        <li><strong>Bahasa bisnis</strong> — hubungkan keputusan teknis ke dampak bisnis (biaya, waktu, risiko) — krusial saat berhadapan klien.</li>
+      </ul>
+      <div class="note key"><span class="nt">Untuk solo founder</span>Sebagai Alhazme, "tim" Anda mencakup diri di masa depan, kolaborator lepas, dan AI co-pilot. ADR, RFC, dan dokumentasi bukan overhead korporat — mereka adalah cara Anda <strong>menskalakan keputusan melampaui memori sesaat</strong> dan menyerahkan konteks ke agent/kolaborator secara andal. Disiplin ini yang membuat "build once, scale many" benar-benar berjalan.</div>
+    </section>
+
+    <section id="scaling">
+      <h2><span class="sn">05</span>Scaling Team</h2>
+      <p>Saat codebase & orang bertambah, struktur teknis dan struktur tim saling memengaruhi (Conway's Law: sistem cenderung mencerminkan struktur komunikasi organisasi).</p>
+      <ul>
+        <li><strong>Module ownership</strong> — modul (M9) memberi batas kepemilikan jelas; tiap tim/orang memiliki modul + test-nya.</li>
+        <li><strong>Batas API antar-modul</strong> — kontrak <code>public</code> yang stabil memungkinkan tim bekerja paralel tanpa saling menabrak.</li>
+        <li><strong>Onboarding</strong> — README + arsitektur + ADR membuat engineer/kolaborator baru produktif cepat.</li>
+        <li><strong>Standar terkodifikasi</strong> — linter, skill review, CI gate menegakkan standar tanpa gatekeeping manual.</li>
+        <li><strong>Autonomi + alignment</strong> — tim otonom dalam modulnya, selaras lewat kontrak & prinsip bersama (doktrin engineering Anda).</li>
+      </ul>
+      <div class="note key"><span class="nt">Inti</span>Menskala bukan menambah orang ke kekacauan — itu memperburuk. Menskala adalah menciptakan <strong>batas yang jelas, kontrak yang stabil, dan standar yang terotomasi</strong> sehingga lebih banyak orang dapat berkontribusi tanpa saling menghalangi. Modularization (M9) + CI/CD (M14) + dokumentasi (modul ini) adalah infrastruktur penskalaan itu.</div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">06</span>Latihan</h2>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Design: feed offline-first</h4></div>
+        <p>Rancang arsitektur feed sosial yang bekerja offline. Sebutkan langkah & dimensi yang Anda bahas.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Requirements (baca offline, post offline, sync) → Constraints (memori, baterai, ukuran cache) → Data (entity, pagination cursor) → Architecture (Clean + Repository cache-then-network) → Offline (local store, sync queue, idempotency, konflik) → Scale (diffable list, downsampling gambar) → Trade-off (staleness vs freshness).</p>
+        <p><em>Review:</em> Yang dinilai bukan jawaban "benar" tunggal, tapi apakah Anda menelusuri dimensi secara terstruktur & menyebut trade-off.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Tulis ADR</h4></div>
+        <p>Tim memutuskan memakai TCA untuk modul pembayaran (bukan MVVM). Tulis kerangka ADR-nya.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Status: Accepted. Context: modul payment kompleks, butuh prediktabilitas state tinggi, tim siap belajar. Decision: TCA untuk modul payment saja. Consequences: + prediktabilitas & test; − kurva belajar & boilerplate, ketergantungan library. Alternatives: MVVM+Clean (ditolak untuk kasus ini karena kompleksitas state).</p>
+        <p><em>Review:</em> ADR yang baik menyebut alternatif yang ditolak & alasannya — itu yang menjawab "kenapa" di masa depan.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Review yang membangun</h4></div>
+        <p>Anda melihat PR dengan ViewModel yang memanggil URLSession langsung + tanpa test. Bagaimana Anda menuliskan komentar review?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Blocker (arsitektur): "ViewModel memanggil networking langsung — ini menyulitkan test & melanggar boundary. Bisa dipindah ke belakang NetworkService protocol? Lihat pola di M10." + "Bisa tambahkan unit test untuk logika baru ini?" Nada bertanya, tunjuk referensi, bedakan blocker vs nit.</p>
+        <p><em>Review:</em> Fokus ke kebenaran/arsitektur/test (prioritas 1–3), bukan gaya. Bertanya & menunjuk pola > menyalahkan.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Skala modul</h4></div>
+        <p>Codebase Anda tumbuh & Anda mulai merekrut kolaborator. Apa langkah teknis agar mereka bisa bekerja paralel tanpa menabrak?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Pecah ke modul dengan ownership jelas (M9), tetapkan kontrak <code>public</code> stabil antar-modul, tulis README + ADR untuk onboarding, otomasikan standar via linter + skill review + CI gate. Tim otonom per modul, selaras lewat kontrak.</p>
+        <p><em>Review:</em> Batas + kontrak + otomasi = penskalaan sehat. Tanpa itu, menambah orang memperlambat semua.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="capstone">
+      <h2><span class="sn">07</span>Penutup Workshop</h2>
+      <div class="capstone">
+        <h3>Anda telah menyelesaikan 10 fase.</h3>
+        <p style="margin-bottom:0">Dari sintaks Swift (Phase 1) hingga kepemimpinan teknis (Phase 10), Anda kini memiliki peta lengkap membangun aplikasi iOS production-grade — fintech, e-commerce, SaaS, enterprise — dengan arsitektur bersih, testing, CI/CD, keamanan, dan performa. Ditambah 16 Claude Skill yang membuat AI agent bekerja pada standar principal Anda.</p>
+      </div>
+      <h4>Benang merah seluruh workshop</h4>
+      <ul>
+        <li><strong>Abstraksi & boundary</strong> — protocol, layer, modul: sembunyikan detail, tukar implementasi, uji dengan mock.</li>
+        <li><strong>Klien tak pernah dipercaya</strong> — keamanan otoritatif di server; klien = UX + defense-in-depth.</li>
+        <li><strong>Measure & decide</strong> — profil sebelum optimasi; nyatakan trade-off; catat keputusan (ADR).</li>
+        <li><strong>Automasi & dokumentasi</strong> — jika berjalan &gt; 2×, otomasikan; pengetahuan yang tak ditulis, hilang.</li>
+        <li><strong>Current, bukan deprecated</strong> — @Observable, NavigationStack, Swift Testing, async/await, hindari Realm.</li>
+      </ul>
+      <h4>Langkah berikutnya</h4>
+      <ul>
+        <li>Bangun satu proyek nyata end-to-end memakai blueprint Module 12 sebagai kerangka.</li>
+        <li>Aktifkan 16 skill di <code>.claude/skills/</code> agar AI co-pilot Anda me-review & generate pada standar ini.</li>
+        <li>Verifikasi versi terkini (Swift/Xcode/library) saat mulai proyek — ekosistem bergerak; disclaimer epistemik di beberapa modul menandai area yang perlu dicek ulang.</li>
+      </ul>
+      <div class="note key"><span class="nt">Terakhir</span>Menjadi principal bukan tentang mengetahui setiap API, melainkan tentang <strong>menghubungkan keputusan ke konteks, menyatakan trade-off, dan memampukan orang lain</strong>. Workshop ini memberi fondasi; penguasaan datang dari menerapkannya pada masalah nyata, berulang kali.</div>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 16</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Memahami pergeseran mental builder → senior → staff/principal</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Menjalankan alur system design: requirements → constraints → data → arsitektur → trade-off</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Menulis ADR untuk keputusan signifikan; tahu kapan perlu</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Code review at scale: prioritas kebenaran→arsitektur→test; otomasi gaya</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Technical leadership: RFC, tech debt sadar, mentoring, dokumentasi first-class</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Scaling team: module ownership, kontrak stabil, standar terotomasi</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Menghubungkan keputusan teknis ke dampak bisnis</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-15.html">← Module 15 — Performance & Security</a>
+      <a href="../index.html">Selesai · Kembali ke Daftar Modul →</a>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^#[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m16';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

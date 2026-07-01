@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 01 — Swift Foundation</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+
+/* Layout */
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+
+/* Sidebar */
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory);text-decoration:none}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+
+/* Content blocks */
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}
+li{margin:6px 0}
+strong{font-weight:600}
+em{color:var(--gray-700)}
+
+/* Code */
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}
+.t-type{color:#A9C18C}
+.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}
+.t-number{color:#8FB0CE}
+.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+
+/* Callouts */
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+
+/* Old vs New */
+.onm{border:var(--border);border-radius:var(--radius-panel);overflow:hidden;margin:18px 0}
+.onm-head{background:var(--gray-100);padding:10px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500)}
+.onm-grid{display:grid;grid-template-columns:1fr 1fr}
+.onm-cell{padding:14px 16px}
+.onm-cell.old{border-right:1px solid var(--gray-300)}
+.onm-tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;display:inline-block}
+.onm-tag.t-old{color:var(--danger)}
+.onm-tag.t-new{color:var(--olive)}
+.onm-cell pre{margin:0;font-size:12px}
+.onm-mig{padding:12px 16px;background:var(--ivory);font-size:13.5px;border-top:1px solid var(--gray-300)}
+.onm-mig b{font-weight:600}
+
+/* Tables */
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+
+/* Diagram */
+.diagram{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px;margin:18px 0;text-align:center}
+.diagram svg{max-width:100%;height:auto}
+.dcap{font-size:12.5px;color:var(--gray-500);margin-top:10px;font-style:italic}
+
+/* Exercise */
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+
+/* Checklist */
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+
+/* Footer nav */
+.foot-nav{display:flex;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}
+.foot-nav .next{color:var(--gray-500)}
+
+/* Mobile */
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}
+  section h2{font-size:25px}
+  .onm-grid{grid-template-columns:1fr}
+  .onm-cell.old{border-right:none;border-bottom:1px solid var(--gray-300)}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top">
+      <div class="eyebrow">Module 01 · Phase 1</div>
+      <h2>Swift Foundation</h2>
+    </div>
+    <div class="side-prog" id="sideProg">0 / 9 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Filosofi & Baseline</a>
+      <a href="#types"><span class="nidx">01</span>Type System</a>
+      <a href="#optionals"><span class="nidx">02</span>Optionals</a>
+      <a href="#value-ref"><span class="nidx">03</span>Value vs Reference</a>
+      <a href="#enums"><span class="nidx">04</span>Enums & Pattern Matching</a>
+      <a href="#functions"><span class="nidx">05</span>Functions & Closures</a>
+      <a href="#errors"><span class="nidx">06</span>Error Handling</a>
+      <a href="#collections"><span class="nidx">07</span>Collections & Control Flow</a>
+      <a href="#exercises"><span class="nidx">08</span>Latihan</a>
+    </nav>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- INTRO -->
+    <section id="intro">
+      <h2><span class="sn">MODULE 01 · PHASE 1 — SWIFT FOUNDATION</span>Filosofi Swift & Baseline 2026</h2>
+      <p class="lead">Sebelum menyentuh UIKit atau SwiftUI, Anda harus menguasai mental model bahasanya. Modul ini membangun fondasi yang tidak akan goyah saat aplikasi tumbuh dari satu screen menjadi sistem enterprise.</p>
+      <div class="meta-row">
+        <span class="badge accent">Swift 6.4</span>
+        <span class="badge neutral">~90 menit</span>
+        <span class="badge neutral">9 topik</span>
+        <span class="badge success">Principal calibrated</span>
+      </div>
+
+      <h3>Empat pilar desain Swift</h3>
+      <p>Swift dirancang Apple bukan sekadar untuk produktivitas, tetapi untuk <strong>memindahkan kelas kesalahan dari runtime ke compile-time</strong>. Ini fondasi yang menjelaskan hampir semua keputusan sintaksisnya.</p>
+      <table>
+        <thead><tr><th>Pilar</th><th>Implikasi Praktis</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Safety-first</strong></td><td>Optional memaksa Anda menangani <code>nil</code>. Tidak ada null pointer exception yang tersembunyi.</td></tr>
+          <tr><td><strong>Value semantics</strong></td><td><code>struct</code> di-copy, bukan di-share. Menghilangkan seluruh kelas bug shared mutable state.</td></tr>
+          <tr><td><strong>Expressiveness</strong></td><td>Enum dengan associated value, pattern matching, dan generics membuat invalid state tidak bisa direpresentasikan.</td></tr>
+          <tr><td><strong>Performance</strong></td><td>Value types dialokasikan di stack jika memungkinkan; ARC menggantikan garbage collector yang non-deterministik.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="note key">
+        <span class="nt">Baseline Workshop</span>
+        Seluruh kode di workshop ini dikompilasi pada <strong>Swift 6 language mode</strong> (default di Xcode 27) — artinya <strong>data-race safety</strong> aktif sebagai compile error, bukan warning. Sejak <strong>Swift 6.2</strong>, target aplikasi default ke <strong>main-actor isolation</strong> ("single-threaded by default"), sehingga UI code Anda aman tanpa anotasi <code>@MainActor</code> manual di mana-mana. Detail concurrency dibahas tuntas di Module 02; di sini cukup Anda tahu bahwa fondasi ini sudah berubah dari era Swift 5.</p>
+      </div>
+
+      <h3>Catatan untuk senior engineer</h3>
+      <p>Anda sudah memahami pemrograman. Modul ini <em>tidak</em> mengajari "apa itu variabel". Fokusnya adalah hal-hal yang <strong>spesifik Swift</strong> dan sering disalahpahami engineer yang datang dari Kotlin/Dart/Java — terutama value semantics, optional sebagai tipe, dan enum sebagai sum type. Di tiap topik, perhatikan blok <span class="badge neutral">Old → New</span> yang menandai pergeseran idiom modern.</p>
+    </section>
+
+    <!-- TYPES -->
+    <section id="types">
+      <h2><span class="sn">01</span>Type System: <code>let</code>, <code>var</code>, dan Type Inference</h2>
+      <p>Swift adalah <strong>statically & strongly typed</strong> dengan <strong>type inference</strong> yang kuat. Compiler menyimpulkan tipe dari nilai, tetapi tipe tetap dicek ketat saat compile.</p>
+
+      <div class="code-label">Deklarasi dasar</div>
+<pre><code data-swift>// `let` = immutable binding (default & preferred). `var` = mutable.
+let appName = "Alhazme"          // diinferensikan sebagai String
+var retryCount = 0               // Int
+let pi = 3.14159                 // Double
+let isActive: Bool = true        // anotasi eksplisit
+
+// Immutability adalah default yang Anda pilih secara sadar.
+// `let` bukan sekadar konstanta — ia menjamin binding tidak berubah.
+retryCount += 1                  // OK
+// appName = "X"                 // compile error: cannot assign to value 'let'</code></pre>
+
+      <div class="note key">
+        <span class="nt">Prinsip Enterprise</span>
+        <strong>Selalu mulai dengan <code>let</code>.</strong> Ubah ke <code>var</code> hanya ketika mutasi benar-benar dibutuhkan. Compiler bahkan memberi warning jika <code>var</code> tidak pernah dimutasi. Ini bukan gaya — immutability mengurangi permukaan bug konkurensi secara struktural.
+      </div>
+
+      <h3>Type safety vs implicit conversion</h3>
+      <p>Swift <strong>tidak</strong> melakukan implicit numeric conversion. Ini disengaja untuk mencegah kehilangan presisi yang tak terlihat.</p>
+<pre><code data-swift>let count: Int = 10
+let ratio: Double = 0.5
+// let result = count * ratio   // ERROR: binary operator '*' cannot be applied
+let result = Double(count) * ratio  // konversi eksplisit, hasil: 5.0</code></pre>
+
+      <h3>Type alias untuk domain clarity</h3>
+<pre><code data-swift>typealias UserID = String
+typealias Cents = Int
+
+func charge(user: UserID, amount: Cents) { /* ... */ }
+// Pembaca langsung paham domain-nya, bukan sekadar String & Int.</code></pre>
+    </section>
+
+    <!-- OPTIONALS -->
+    <section id="optionals">
+      <h2><span class="sn">02</span>Optionals — Jantung Keamanan Swift</h2>
+      <p>Optional adalah fitur paling fundamental Swift. Ia mengkodekan "ketiadaan nilai" <strong>ke dalam type system</strong>. Sebuah <code>String</code> dijamin berisi string; sebuah <code>String?</code> mungkin berisi string atau <code>nil</code>. Compiler memaksa Anda menangani kasus <code>nil</code> sebelum mengakses nilainya.</p>
+
+      <div class="note key">
+        <span class="nt">Mental Model</span>
+        <code>String?</code> sebenarnya adalah <code>Optional&lt;String&gt;</code> — sebuah enum dengan dua case: <code>.some(String)</code> dan <code>.none</code>. Optional bukan magic; ia hanyalah enum biasa dengan dukungan sintaksis. Ini menjelaskan kenapa pattern matching bekerja sangat baik dengannya.
+      </div>
+
+      <h3>Lima cara aman membuka optional</h3>
+      <div class="code-label">1 & 2 — Optional binding (modern shorthand) + guard</div>
+<pre><code data-swift>let raw: String? = fetchToken()
+
+// `if let` shorthand (Swift 5.7+): tak perlu lagi `if let token = token`
+if let raw {
+    print("Token: \(raw)")     // `raw` di sini bertipe String (non-optional)
+}
+
+// `guard let` — early exit, idiom utama di awal fungsi
+func process(_ token: String?) {
+    guard let token else { return }   // keluar jika nil
+    // sisa fungsi: `token` dijamin non-nil
+    send(token)
+}</code></pre>
+
+      <div class="code-label">3, 4 & 5 — Nil-coalescing, optional chaining, force unwrap</div>
+<pre><code data-swift>// 3. Nil-coalescing: beri default
+let name = userInput ?? "Guest"
+
+// 4. Optional chaining: rangkai akses dengan aman
+let city = order.customer?.address?.city   // String? — nil jika ada link putus
+
+// 5. Force unwrap — TERLARANG di production kecuali invariant terbukti
+let value = dictionary["key"]!   // crash jika nil — code smell</code></pre>
+
+      <div class="note danger">
+        <span class="nt">Anti-Pattern</span>
+        Force unwrap (<code>!</code>) dan implicitly unwrapped optional (<code>String!</code>) adalah penyebab crash nomor satu di aplikasi iOS. Di code review Alhazme, setiap <code>!</code> harus dijustifikasi dengan komentar invariant, atau ditolak. Gantilah dengan <code>guard let</code>, <code>??</code>, atau <code>if let</code>.
+      </div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, monospace">
+          <rect x="20" y="80" width="120" height="44" rx="8" fill="#E3DACC" stroke="#D1CFC5"/>
+          <text x="80" y="107" text-anchor="middle" font-size="13" fill="#141413">String?</text>
+          <path d="M140 102 H210" stroke="#87867F" stroke-width="1.5" marker-end="url(#a)"/>
+          <polygon points="380,40 420,60 380,80 340,60" fill="#FAF9F5" stroke="#D97757" stroke-width="1.5"/>
+          <text x="380" y="64" text-anchor="middle" font-size="11" fill="#141413">unwrap?</text>
+          <path d="M210 102 Q280 102 345 70" stroke="#87867F" stroke-width="1.5" fill="none" marker-end="url(#a)"/>
+          <rect x="450" y="18" width="90" height="40" rx="8" fill="rgba(120,140,93,.16)" stroke="#788C5D"/>
+          <text x="495" y="42" text-anchor="middle" font-size="12" fill="#3D3D3A">.some → String</text>
+          <path d="M420 60 H450" stroke="#788C5D" stroke-width="1.5" marker-end="url(#a)"/>
+          <rect x="450" y="120" width="90" height="40" rx="8" fill="rgba(176,74,74,.10)" stroke="#B04A4A"/>
+          <text x="495" y="144" text-anchor="middle" font-size="12" fill="#3D3D3A">.none → nil</text>
+          <path d="M380 80 Q415 110 450 138" stroke="#B04A4A" stroke-width="1.5" fill="none" marker-end="url(#b)"/>
+          <defs>
+            <marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#87867F"/></marker>
+            <marker id="b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#B04A4A"/></marker>
+          </defs>
+        </svg>
+        <div class="dcap">Optional sebagai dua jalur eksplisit — compiler memaksa Anda menangani keduanya.</div>
+      </div>
+    </section>
+
+    <!-- VALUE VS REFERENCE -->
+    <section id="value-ref">
+      <h2><span class="sn">03</span>Value vs Reference — Konsep Paling Penting</h2>
+      <p>Jika hanya satu konsep yang Anda kuasai dari modul ini, jadikan ini. Salah memahami value vs reference adalah sumber bug paling halus dan paling mahal di aplikasi iOS.</p>
+
+      <table>
+        <thead><tr><th></th><th><code>struct</code> (Value type)</th><th><code>class</code> (Reference type)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Saat di-assign / dipass</strong></td><td>Di-<strong>copy</strong> (salinan independen)</td><td>Di-<strong>share</strong> (referensi yang sama)</td></tr>
+          <tr><td><strong>Identity</strong></td><td>Tidak ada — hanya nilai</td><td>Ada — bisa dicek dengan <code>===</code></td></tr>
+          <tr><td><strong>Mutability</strong></td><td>Dikontrol <code>let</code>/<code>var</code> di binding</td><td>Internal state bisa berubah meski <code>let</code></td></tr>
+          <tr><td><strong>Memory</strong></td><td>Stack (umumnya), no ARC overhead</td><td>Heap, dikelola ARC</td></tr>
+          <tr><td><strong>Inheritance</strong></td><td>Tidak ada (pakai protocol)</td><td>Ada</td></tr>
+          <tr><td><strong>Konkurensi</strong></td><td>Aman dibagi (Sendable mudah)</td><td>Butuh proteksi (actor / lock)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="code-label">Demonstrasi perbedaan inti</div>
+<pre><code data-swift>struct PointValue { var x: Int }
+class  PointRef   { var x: Int; init(x: Int) { self.x = x } }
+
+var a = PointValue(x: 1)
+var b = a            // COPY
+b.x = 99
+print(a.x, b.x)      // 1 99  — a tidak terpengaruh
+
+let p = PointRef(x: 1)
+let q = p            // SHARE referensi yang sama
+q.x = 99
+print(p.x, q.x)      // 99 99 — keduanya menunjuk objek yang sama</code></pre>
+
+      <div class="diagram">
+        <svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, monospace">
+          <text x="140" y="24" text-anchor="middle" font-size="13" fill="#3D3D3A">struct — copy</text>
+          <rect x="60" y="40" width="70" height="36" rx="6" fill="#E3DACC" stroke="#D1CFC5"/><text x="95" y="63" text-anchor="middle" font-size="12">a: {1}</text>
+          <rect x="150" y="40" width="70" height="36" rx="6" fill="#E3DACC" stroke="#D1CFC5"/><text x="185" y="63" text-anchor="middle" font-size="12">b: {99}</text>
+          <text x="140" y="105" text-anchor="middle" font-size="11" fill="#87867F">dua box independen</text>
+
+          <line x1="280" y1="20" x2="280" y2="200" stroke="#D1CFC5" stroke-dasharray="4 4"/>
+
+          <text x="420" y="24" text-anchor="middle" font-size="13" fill="#3D3D3A">class — share</text>
+          <rect x="330" y="40" width="60" height="34" rx="6" fill="#FAF9F5" stroke="#D1CFC5"/><text x="360" y="62" text-anchor="middle" font-size="12">p</text>
+          <rect x="330" y="86" width="60" height="34" rx="6" fill="#FAF9F5" stroke="#D1CFC5"/><text x="360" y="108" text-anchor="middle" font-size="12">q</text>
+          <rect x="450" y="60" width="80" height="40" rx="8" fill="rgba(217,119,87,.14)" stroke="#D97757"/><text x="490" y="84" text-anchor="middle" font-size="12" fill="#141413">obj {99}</text>
+          <path d="M390 57 H450" stroke="#D97757" stroke-width="1.5" marker-end="url(#c)"/>
+          <path d="M390 103 Q420 100 450 90" stroke="#D97757" stroke-width="1.5" fill="none" marker-end="url(#c)"/>
+          <text x="420" y="150" text-anchor="middle" font-size="11" fill="#87867F">satu objek di heap</text>
+          <defs><marker id="c" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#D97757"/></marker></defs>
+        </svg>
+        <div class="dcap">Value type menyalin isi; reference type berbagi satu objek heap.</div>
+      </div>
+
+      <h3>Aturan keputusan (default Apple)</h3>
+      <ul>
+        <li><strong>Default ke <code>struct</code>.</strong> Gunakan untuk model data, DTO, state, value object — mayoritas tipe Anda.</li>
+        <li>Gunakan <strong><code>class</code></strong> hanya jika butuh: <em>identity</em> (objek yang sama harus dilacak), <em>shared mutable state</em> yang disengaja, interop dengan Objective-C/UIKit, atau lifecycle yang dikelola (mis. service singleton).</li>
+        <li>Untuk <strong>actor</strong> (reference type yang aman konkurensi) — dibahas di Module 02.</li>
+      </ul>
+
+      <div class="note warn">
+        <span class="nt">Jebakan untuk engineer Flutter/Dart</span>
+        Di Dart, hampir semua object adalah reference. Di Swift, <strong>kebalikannya</strong> — value type adalah default budaya. Jangan refleks membuat <code>class</code>. Membuat model sebagai <code>struct</code> menghilangkan seluruh kelas bug "object termutasi dari tempat tak terduga".
+      </div>
+
+      <h4>Mutating method pada struct</h4>
+<pre><code data-swift>struct Counter {
+    private(set) var value = 0
+    mutating func increment() { value += 1 }   // wajib `mutating`
+}
+var c = Counter()
+c.increment()        // OK karena `c` adalah var
+// let d = Counter(); d.increment()  // ERROR: d immutable</code></pre>
+    </section>
+
+    <!-- ENUMS -->
+    <section id="enums">
+      <h2><span class="sn">04</span>Enums & Pattern Matching — Sum Types yang Kuat</h2>
+      <p>Enum Swift jauh melampaui konstanta bernama. Dengan <strong>associated values</strong>, enum menjadi <em>sum type</em> sejati — alat utama untuk membuat <strong>invalid state tidak bisa direpresentasikan</strong>.</p>
+
+      <div class="code-label">Enum dengan associated value — memodelkan state</div>
+<pre><code data-swift>enum LoadState&lt;Value&gt; {
+    case idle
+    case loading
+    case loaded(Value)
+    case failed(Error)
+}
+
+// Tidak mungkin punya state "loaded tapi tanpa data" atau
+// "loading sekaligus failed". State ilegal hilang by design.
+func render(_ state: LoadState&lt;[Order]&gt;) {
+    switch state {
+    case .idle:               showPlaceholder()
+    case .loading:            showSpinner()
+    case .loaded(let orders): showList(orders)
+    case .failed(let error):  showError(error)
+    }
+}</code></pre>
+
+      <div class="note key">
+        <span class="nt">Prinsip Desain</span>
+        Pola <code>LoadState</code> di atas adalah idiom standar untuk view state di SwiftUI maupun UIKit. Ini menggantikan kombinasi flag boolean (<code>isLoading</code>, <code>hasError</code>, <code>data</code>) yang bisa menghasilkan kombinasi tak valid. <strong>Make illegal states unrepresentable</strong> — mantra arsitektur Swift.
+      </div>
+
+      <h3>Raw values & CaseIterable</h3>
+<pre><code data-swift>enum HTTPStatus: Int {
+    case ok = 200, notFound = 404, serverError = 500
+}
+let s = HTTPStatus(rawValue: 404)   // Optional&lt;HTTPStatus&gt; — .some(.notFound)
+
+enum Plan: String, CaseIterable {
+    case free, pro, enterprise
+}
+Plan.allCases.map(\.rawValue)       // ["free", "pro", "enterprise"]</code></pre>
+
+      <h3>Pattern matching lanjutan</h3>
+<pre><code data-swift>switch httpStatus {
+case .ok:
+    proceed()
+case .notFound, .serverError:           // multiple match
+    retry()
+}
+
+// `where` clause & value binding di switch
+switch order {
+case let o where o.total &gt; 1_000_000:   // `where` + numeric separator
+    flagForReview(o)
+default:
+    process(order)
+}
+
+// `if case` untuk single-case match
+if case .failed(let error) = state {
+    log(error)
+}</code></pre>
+    </section>
+
+    <!-- FUNCTIONS -->
+    <section id="functions">
+      <h2><span class="sn">05</span>Functions & Closures</h2>
+      <p>Fungsi Swift punya <strong>argument label</strong> yang membentuk call-site yang membaca seperti kalimat — bagian penting dari API design ala Apple.</p>
+
+      <div class="code-label">Argument label, default, variadic, inout</div>
+<pre><code data-swift>// `to` = external label, `recipient` = internal name
+func send(_ message: String, to recipient: UserID, priority: Int = 0) { }
+send("Hi", to: "u_123")               // call-site terbaca natural
+
+// Variadic
+func sum(_ numbers: Int...) -&gt; Int { numbers.reduce(0, +) }
+
+// inout — mutasi argumen asli (gunakan hemat)
+func reset(_ value: inout Int) { value = 0 }
+var x = 5; reset(&amp;x)   // x == 0</code></pre>
+
+      <h3>Closures — first-class & trailing syntax</h3>
+<pre><code data-swift>let numbers = [3, 1, 2]
+
+// Closure penuh
+let sorted = numbers.sorted(by: { (a: Int, b: Int) -&gt; Bool in a &lt; b })
+
+// Type inference + trailing closure + shorthand args
+let sorted2 = numbers.sorted { $0 &lt; $1 }
+
+// Multiple trailing closures (Swift 5.3+)
+fetchData { result in
+    handle(result)
+} onProgress: { pct in
+    updateBar(pct)
+}</code></pre>
+
+      <div class="note warn">
+        <span class="nt">Capture & Retain Cycle</span>
+        Closure <strong>meng-capture</strong> variabel dari lingkungannya. Jika closure disimpan (escaping) dan menangkap <code>self</code> (sebuah class), Anda berisiko <strong>retain cycle</strong>. Solusinya: capture list <code>[weak self]</code>. Detail ARC & memory dibahas di Module 02 — namun ingat polanya sekarang:
+      </div>
+<pre><code data-swift>service.fetch { [weak self] result in
+    guard let self else { return }
+    self.update(result)
+}</code></pre>
+
+      <h4>@escaping vs non-escaping</h4>
+      <p>Closure default <strong>non-escaping</strong> (dijalankan sebelum fungsi return). Tandai <code>@escaping</code> jika closure disimpan untuk dipanggil belakangan (mis. completion handler async). Di kode modern, banyak completion handler digantikan <code>async/await</code> (Module 02).</p>
+    </section>
+
+    <!-- ERRORS -->
+    <section id="errors">
+      <h2><span class="sn">06</span>Error Handling</h2>
+      <p>Swift memisahkan dengan tegas antara <strong>recoverable errors</strong> (pakai <code>throws</code>) dan <strong>programmer errors</strong> (pakai <code>precondition</code>/<code>fatalError</code>). Error adalah nilai biasa yang mengikuti protocol <code>Error</code>.</p>
+
+      <div class="code-label">Mendefinisikan & melempar error</div>
+<pre><code data-swift>enum PaymentError: Error {
+    case insufficientFunds(needed: Int)
+    case cardDeclined
+    case network(underlying: Error)
+}
+
+func charge(_ amount: Int, balance: Int) throws -&gt; Receipt {
+    guard balance &gt;= amount else {
+        throw PaymentError.insufficientFunds(needed: amount - balance)
+    }
+    return Receipt(amount: amount)
+}</code></pre>
+
+      <div class="code-label">Menangani error — do/catch & varian try</div>
+<pre><code data-swift>do {
+    let receipt = try charge(100, balance: 50)
+    show(receipt)
+} catch PaymentError.insufficientFunds(let needed) {
+    promptTopUp(needed)
+} catch {
+    log(error)                       // `error` tersedia otomatis
+}
+
+// Varian try:
+let r1 = try? charge(100, balance: 200)   // Receipt? — nil jika throw
+let r2 = try! charge(100, balance: 999)   // crash jika throw — hindari</code></pre>
+
+      <h3>Typed throws — Swift 6</h3>
+      <div class="onm">
+        <div class="onm-head">Old → New · Error Handling</div>
+        <div class="onm-grid">
+          <div class="onm-cell old">
+            <span class="onm-tag t-old">Old (Swift 5)</span>
+<pre><code data-swift>// Tipe error hilang —
+// selalu `any Error`
+func parse() throws -&gt; Record {
+   // caller tak tahu error apa
+}</code></pre>
+          </div>
+          <div class="onm-cell new">
+            <span class="onm-tag t-new">New (Swift 6+)</span>
+<pre><code data-swift>// Tipe error eksplisit
+func parse() throws(ParseError)
+     -&gt; Record {
+   // caller dapat ParseError
+}</code></pre>
+          </div>
+        </div>
+        <div class="onm-mig"><b>Migrasi:</b> Typed throws bersifat opt-in dan paling berguna di kode generik, library boundary, atau lingkungan resource-constrained (embedded). Untuk app code umum, <code>throws</code> (setara <code>throws(any Error)</code>) tetap idiomatik. Jangan over-engineer — gunakan typed throws hanya saat himpunan error benar-benar tertutup dan diketahui caller.</div>
+      </div>
+
+      <h3>Result type</h3>
+<pre><code data-swift>// Berguna saat error perlu disimpan/dioper sebagai nilai (mis. callback lama)
+func load(completion: (Result&lt;Data, NetworkError&gt;) -&gt; Void) { }
+
+// Konversi ke throwing:
+let data = try result.get()</code></pre>
+
+      <div class="note key">
+        <span class="nt">Swift 6.4 — async defer</span>
+        Sejak Swift 6.4 (WWDC 2026, SE-0493), <code>defer</code> mendukung pemanggilan async. Cleanup resource asinkron kini terjamin di semua jalur exit — termasuk saat throw:
+<pre style="margin-top:10px"><code data-swift>func fetch() async throws -&gt; Data {
+    let conn = try await open()
+    defer { await conn.close() }     // dijamin jalan, baru di 6.4
+    return try await conn.read()
+}</code></pre>
+      </div>
+
+      <div class="note danger">
+        <span class="nt">Recoverable vs Programmer Error</span>
+        Jangan pakai <code>throws</code> untuk bug logika. Precondition yang gagal (mis. index out of bounds yang seharusnya mustahil) memakai <code>precondition()</code>/<code>assert()</code> — bukan error yang di-catch. Membungkus programmer error sebagai recoverable error menyembunyikan bug, bukan menanganinya.
+      </div>
+    </section>
+
+    <!-- COLLECTIONS -->
+    <section id="collections">
+      <h2><span class="sn">07</span>Collections & Control Flow</h2>
+      <p>Tiga koleksi inti — semuanya value type — plus control flow yang berpusat pada keamanan (<code>guard</code>) dan ekspresivitas (<code>switch</code>).</p>
+
+      <div class="code-label">Array, Set, Dictionary</div>
+<pre><code data-swift>var orders: [Order] = []              // Array — terurut, boleh duplikat
+var tags: Set&lt;String&gt; = ["new"]       // Set — unik, tak terurut
+var prices: [String: Int] = [:]       // Dictionary — key→value
+
+prices["sku_1"] = 9_900
+let p = prices["sku_2"] ?? 0          // akses dictionary → optional
+
+// Functional transforms (lazy-aware, value-safe)
+let totals = orders
+    .filter { $0.isPaid }
+    .map(\.total)
+    .reduce(0, +)</code></pre>
+
+      <h3><code>guard</code> sebagai gaya default</h3>
+<pre><code data-swift>func handle(_ req: Request) {
+    guard let user = req.user else { return }
+    guard user.isActive else { return }
+    guard let payload = req.body else { return }
+    // happy path tetap rata, tidak ada nested pyramid of doom
+    process(user, payload)
+}</code></pre>
+
+      <div class="note key">
+        <span class="nt">Idiom Enterprise</span>
+        <strong>Prefer <code>guard</code> untuk validasi di awal fungsi.</strong> Ia memaksa early-return dan menjaga happy-path tetap di indentasi terluar. <code>if let</code> dipakai saat Anda butuh nilai hanya di scope kecil; <code>guard let</code> saat nilai dibutuhkan di sisa fungsi.
+      </div>
+
+      <h3>for-in, where, dan ranges</h3>
+<pre><code data-swift>for order in orders where order.isPaid {
+    receipt(for: order)
+}
+for i in 0..&lt;orders.count { }     // half-open range
+for i in stride(from: 0, to: 100, by: 10) { }</code></pre>
+
+      <div class="note warn">
+        <span class="nt">Swift 6.4 — Iterable protocol</span>
+        Untuk kode performance-critical, Swift 6.4 menambah protocol <code>Iterable</code> yang <em>meminjam</em> elemen (bukan menyalin) saat iterasi — relevan untuk noncopyable types seperti <code>Span</code>/<code>InlineArray</code>. Untuk app code biasa, <code>for-in</code> via <code>Sequence</code> tetap default. Disinggung di sini sebagai sinyal arah ekosistem; mendalam di Module 08 (Performance).
+      </div>
+    </section>
+
+    <!-- EXERCISES -->
+    <section id="exercises">
+      <h2><span class="sn">08</span>Latihan</h2>
+      <p>Kerjakan tanpa melihat solusi terlebih dahulu. Setiap latihan menargetkan kesalahpahaman umum di level senior.</p>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Refactor force-unwrap</h4></div>
+        <p>Diberi kode rapuh berikut, refactor agar bebas crash menggunakan idiom optional yang tepat.</p>
+<pre><code data-swift>func greeting(for id: String, in users: [String: String]) -&gt; String {
+    let name = users[id]!
+    return "Halo, " + name
+}</code></pre>
+        <details><summary>▸ Lihat solusi</summary>
+<pre><code data-swift>func greeting(for id: String, in users: [String: String]) -&gt; String {
+    guard let name = users[id] else { return "Halo, Guest" }
+    return "Halo, \(name)"
+}
+// Atau ringkas: "Halo, \(users[id] ?? "Guest")"</code></pre>
+        <p><em>Kunci:</em> <code>!</code> pada dictionary lookup selalu salah — hasilnya inherently optional.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Value vs reference</h4></div>
+        <p>Apa output kode ini, dan kenapa? Lalu ubah <code>Cart</code> menjadi <code>struct</code> — apa yang terjadi?</p>
+<pre><code data-swift>class Cart { var items: [String] = [] }
+let a = Cart(); a.items.append("apel")
+let b = a; b.items.append("jeruk")
+print(a.items)</code></pre>
+        <details><summary>▸ Lihat solusi</summary>
+        <p>Output: <code>["apel", "jeruk"]</code>. <code>a</code> dan <code>b</code> menunjuk objek <code>class</code> yang sama (reference), jadi mutasi via <code>b</code> terlihat di <code>a</code>.</p>
+        <p>Jika <code>Cart</code> diubah jadi <code>struct</code>, <code>let b = a</code> menyalin nilai. Tetapi karena <code>b</code> dideklarasikan <code>let</code>, <code>b.items.append</code> tidak akan compile — Anda perlu <code>var b = a</code>. Setelah itu, <code>a.items</code> tetap <code>["apel"]</code> karena salinan independen.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Modelkan state dengan enum</h4></div>
+        <p>Sebuah upload bisa: belum mulai, sedang berjalan (dengan progress 0–100), sukses (dengan URL), atau gagal (dengan error). Modelkan agar invalid state mustahil, lalu tulis <code>switch</code> yang menanganinya.</p>
+        <details><summary>▸ Lihat solusi</summary>
+<pre><code data-swift>enum UploadState {
+    case pending
+    case uploading(progress: Double)
+    case success(url: URL)
+    case failure(Error)
+}
+
+func describe(_ s: UploadState) -&gt; String {
+    switch s {
+    case .pending:                  return "Menunggu"
+    case .uploading(let p):         return "Mengunggah \(Int(p))%"
+    case .success(let url):         return "Selesai: \(url)"
+    case .failure(let e):           return "Gagal: \(e)"
+    }
+}</code></pre>
+        <p><em>Kunci:</em> progress hanya ada di <code>.uploading</code>, URL hanya di <code>.success</code>. Tidak mungkin "sukses tanpa URL".</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Error handling berlapis</h4></div>
+        <p>Tulis fungsi <code>withdraw(amount:from:)</code> yang melempar <code>PaymentError.insufficientFunds(needed:)</code> bila saldo kurang, lalu tangani di call-site dengan menampilkan jumlah top-up yang dibutuhkan.</p>
+        <details><summary>▸ Lihat solusi</summary>
+<pre><code data-swift>enum PaymentError: Error { case insufficientFunds(needed: Int) }
+
+func withdraw(amount: Int, from balance: Int) throws -&gt; Int {
+    guard balance &gt;= amount else {
+        throw PaymentError.insufficientFunds(needed: amount - balance)
+    }
+    return balance - amount
+}
+
+do {
+    let remaining = try withdraw(amount: 150, from: 100)
+    print("Sisa saldo: \(remaining)")
+} catch PaymentError.insufficientFunds(let needed) {
+    print("Top-up dibutuhkan: \(needed)")
+}</code></pre>
+        </details>
+      </div>
+    </section>
+
+    <!-- CHECKLIST -->
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 01</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang setiap item yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Memahami empat pilar Swift & baseline Swift 6.4 / language mode</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Memilih <code>let</code> by default; paham type safety tanpa implicit conversion</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Menguasai 5 cara membuka optional; menghindari force unwrap</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Menjelaskan value vs reference & memilih struct/class dengan benar</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Memodelkan state dengan enum + associated value (illegal states unrepresentable)</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Menulis fungsi ber-argument-label & closure dengan capture list yang aman</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Menangani error via do/catch; paham typed throws & async defer (6.4)</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menggunakan guard sebagai gaya validasi default</label></div>
+      <div class="check-item"><input type="checkbox" id="c8"><label for="c8">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="../index.html">← Daftar Modul</a>
+      <span class="next">Berikutnya: Module 02 — Swift Advanced (generics, async/await, actors)</span>
+    </div>
+
+  </main>
+</div>
+
+<script>
+/* ---------- Swift syntax highlighter (offline, dependency-free) ---------- */
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW = new Set(('let var func struct class enum protocol extension if else guard switch case default '+
+    'for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self '+
+    'Self nil true false some any where as is public private internal fileprivate open static final lazy '+
+    'mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set '+
+    'convenience required override indirect').split(' '));
+  function highlight(code){
+    let out='';
+    while(code.length){
+      let m;
+      if(m=code.match(/^\/\/[^\n]*/)){ out+='<span class="t-comment">'+esc(m[0])+'</span>'; }
+      else if(m=code.match(/^\/\*[\s\S]*?\*\//)){ out+='<span class="t-comment">'+esc(m[0])+'</span>'; }
+      else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)){ out+='<span class="t-string">'+esc(m[0])+'</span>'; }
+      else if(m=code.match(/^@\w+/)){ out+='<span class="t-attr">'+esc(m[0])+'</span>'; }
+      else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)){ out+='<span class="t-number">'+esc(m[0])+'</span>'; }
+      else if(m=code.match(/^[A-Za-z_]\w*/)){
+        const w=m[0];
+        if(KW.has(w)) out+='<span class="t-keyword">'+w+'</span>';
+        else if(/^[A-Z]/.test(w)) out+='<span class="t-type">'+w+'</span>';
+        else out+=w;
+      }
+      else { out+=esc(code[0]); code=code.slice(1); continue; }
+      code=code.slice(m[0].length);
+    }
+    return out;
+  }
+  document.querySelectorAll('code[data-swift]').forEach(el=>{
+    el.innerHTML = highlight(el.textContent);
+  });
+})();
+
+/* ---------- Progress checklist (localStorage) ---------- */
+(function(){
+  const KEY='ios-ws-m01';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};
+  try{ state=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){}
+  function render(){
+    let done=0;
+    boxes.forEach(b=>{
+      b.checked=!!state[b.id];
+      b.closest('.check-item').classList.toggle('done',b.checked);
+      if(b.checked) done++;
+    });
+    const pct=Math.round(done/boxes.length*100);
+    document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';
+  }
+  boxes.forEach(b=>b.addEventListener('change',()=>{
+    state[b.id]=b.checked;
+    localStorage.setItem(KEY,JSON.stringify(state));
+    render();
+  }));
+  render();
+})();
+
+/* ---------- Scrollspy ---------- */
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];
+  const map={};
+  links.forEach(l=>{ const id=l.getAttribute('href').slice(1); map[id]=l; });
+  const sections=[...document.querySelectorAll('section[id]')];
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        if(map[e.target.id]) map[e.target.id].classList.add('active');
+      }
+    });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  sections.forEach(s=>obs.observe(s));
+})();
+
+/* ---------- Mobile menu ---------- */
+(function(){
+  const btn=document.getElementById('menuBtn'), sb=document.getElementById('sidebar');
+  btn.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));
+})();
+</script>
+</body>
+</html>

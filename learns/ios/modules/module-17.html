@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 17 — Property Wrappers, Localization & Accessibility</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note.case{background:rgba(92,124,163,.10);border-left:4px solid var(--info)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+.onm{border:var(--border);border-radius:var(--radius-panel);overflow:hidden;margin:18px 0}
+.onm-head{background:var(--gray-100);padding:10px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500)}
+.onm-grid{display:grid;grid-template-columns:1fr 1fr}
+.onm-cell{padding:14px 16px}.onm-cell.old{border-right:1px solid var(--gray-300)}
+.onm-tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;display:inline-block}
+.onm-tag.t-old{color:var(--danger)}.onm-tag.t-new{color:var(--olive)}
+.onm-cell pre{margin:0;font-size:12px}
+.onm-mig{padding:12px 16px;background:var(--ivory);font-size:13.5px;border-top:1px solid var(--gray-300)}.onm-mig b{font-weight:600}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+  .onm-grid{grid-template-columns:1fr}.onm-cell.old{border-right:none;border-bottom:1px solid var(--gray-300)}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 17 · Pelengkap</div><h2>Wrappers · L10n · A11y</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Kenapa Modul Ini</a>
+      <a href="#wrapper"><span class="nidx">01</span>Custom Property Wrapper</a>
+      <a href="#projected"><span class="nidx">02</span>projectedValue</a>
+      <a href="#l10n"><span class="nidx">03</span>Localization</a>
+      <a href="#format"><span class="nidx">04</span>Locale Formatting</a>
+      <a href="#a11y"><span class="nidx">05</span>Accessibility</a>
+      <a href="#abk"><span class="nidx">06</span>A11y untuk ABK</a>
+      <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 17 · PELENGKAP — PRODUCTION READINESS</span>Property Wrappers, Localization & Accessibility</h2>
+      <p class="lead">Tiga kemampuan yang sering diabaikan tetapi menentukan apakah app Anda <em>bisa dirilis</em> dan <em>bisa dipakai semua orang</em> — termasuk yang paling relevan dengan vertikal ABK Anda: aksesibilitas.</p>
+      <div class="meta-row"><span class="badge accent">@propertyWrapper</span><span class="badge accent">String Catalog</span><span class="badge accent">VoiceOver</span><span class="badge neutral">~100 menit</span></div>
+      <div class="note key"><span class="nt">Relevansi langsung</span>Property wrapper eksplisit diminta di kurikulum Phase 1. Localization wajib untuk produk bilingual ID/EN Anda. Accessibility bukan opsional untuk aplikasi <strong>ABK (Anak Berkebutuhan Khusus)</strong> — app untuk anak dengan kebutuhan khusus <em>harus</em> aksesibel by design, dan Apple mengharuskannya untuk kategori tertentu.</div>
+    </section>
+
+    <section id="wrapper">
+      <h2><span class="sn">01</span>Custom Property Wrapper</h2>
+      <p>Property wrapper mengenkapsulasi logika akses sebuah properti (validasi, transformasi, penyimpanan) agar dapat dipakai ulang. Anda sudah memakai <code>@State</code>, <code>@Observable</code> — kini Anda membangun sendiri.</p>
+      <div class="code-label">@UserDefault — persist ke UserDefaults secara deklaratif</div>
+<pre><code data-swift>@propertyWrapper
+struct UserDefault&lt;Value&gt; {
+    let key: String
+    let defaultValue: Value
+    var wrappedValue: Value {
+        get { UserDefaults.standard.object(forKey: key) as? Value ?? defaultValue }
+        set { UserDefaults.standard.set(newValue, forKey: key) }
+    }
+}
+
+// Pemakaian — bersih & deklaratif
+enum AppFlags {
+    @UserDefault(key: "hasSeenOnboarding", defaultValue: false)
+    static var hasSeenOnboarding: Bool
+}
+AppFlags.hasSeenOnboarding = true   // otomatis tersimpan</code></pre>
+
+      <div class="code-label">@Clamped — batasi nilai ke rentang</div>
+<pre><code data-swift>@propertyWrapper
+struct Clamped&lt;T: Comparable&gt; {
+    private var value: T
+    private let range: ClosedRange&lt;T&gt;
+    init(wrappedValue: T, _ range: ClosedRange&lt;T&gt;) {
+        self.range = range
+        self.value = min(max(wrappedValue, range.lowerBound), range.upperBound)
+    }
+    var wrappedValue: T {
+        get { value }
+        set { value = min(max(newValue, range.lowerBound), range.upperBound) }
+    }
+}
+
+struct Player { @Clamped(0...100) var health: Int = 100 }
+var p = Player(); p.health = 250; print(p.health)   // 100 — otomatis di-clamp</code></pre>
+      <div class="note warn"><span class="nt">Anatomi wrapper</span>Wajib: <code>wrappedValue</code> (nilai yang diekspos). Opsional: <code>init(wrappedValue:...)</code> untuk parameter, dan <code>projectedValue</code> (bagian berikut). Compiler mengubah <code>@Clamped(0...100) var health</code> menjadi properti tersimpan bertipe <code>Clamped&lt;Int&gt;</code> + accessor yang memanggil <code>wrappedValue</code>.</div>
+    </section>
+
+    <section id="projected">
+      <h2><span class="sn">02</span><code>projectedValue</code> — Nilai Kedua via <code>$</code></h2>
+      <p><code>projectedValue</code> memberi "nilai tambahan" yang diakses dengan prefix <code>$</code> — inilah mekanisme di balik <code>$binding</code> SwiftUI.</p>
+<pre><code data-swift>@propertyWrapper
+struct Validated {
+    private var value: String
+    var wrappedValue: String { get { value } set { value = newValue } }
+    var projectedValue: Bool { value.contains("@") }   // $email = valid?
+    init(wrappedValue: String) { self.value = wrappedValue }
+}
+
+struct Form { @Validated var email: String = "" }
+var f = Form(); f.email = "a@b.com"
+print(f.$email)   // true — akses projectedValue lewat $</code></pre>
+      <div class="note key"><span class="nt">Untuk SwiftUI</span>Untuk state yang reaktif di SwiftUI, gunakan <code>@AppStorage</code> (bawaan, reaktif) alih-alih <code>@UserDefault</code> custom — <code>@UserDefault</code> tidak memicu re-render View. Custom wrapper tepat untuk logika non-UI (validasi, clamping, transformasi) atau utilitas di luar View.</div>
+    </section>
+
+    <section id="l10n">
+      <h2><span class="sn">03</span>Localization — String Catalog</h2>
+      <p>Sejak Xcode 15, <strong>String Catalog (<code>.xcstrings</code>)</strong> menggantikan file <code>.strings</code> manual. Teks di UI otomatis terlokalisasi; plural & variasi dikelola visual di editor.</p>
+      <div class="onm">
+        <div class="onm-head">Old → New · Localization</div>
+        <div class="onm-grid">
+          <div class="onm-cell old"><span class="onm-tag t-old">Old — .strings + macro</span>
+<pre><code data-swift>// Localizable.strings manual
+"greeting" = "Halo";
+// di kode:
+Text(NSLocalizedString(
+  "greeting", comment: ""))</code></pre></div>
+          <div class="onm-cell new"><span class="onm-tag t-new">New — String Catalog</span>
+<pre><code data-swift>// .xcstrings dikelola di Xcode
+Text("Halo")          // auto-localize
+let s = String(
+  localized: "Halo")  // di non-View</code></pre></div>
+        </div>
+        <div class="onm-mig"><b>Migrasi:</b> Tambahkan file String Catalog; Xcode mengekstrak string dari <code>Text("...")</code> & <code>String(localized:)</code> otomatis. Isi terjemahan per-bahasa di editor visual. <b>Alasan:</b> <code>.xcstrings</code> menyatukan ekstraksi, terjemahan, plural, dan status (butuh review/selesai) di satu tempat berbasis JSON yang version-control-friendly — menghapus sinkronisasi manual <code>.strings</code> yang rawan galat.</div>
+      </div>
+      <div class="code-label">Plural & interpolasi</div>
+<pre><code data-swift>// String Catalog menangani plural per-bahasa secara otomatis:
+Text("^[\(count) item](inflect: true)")   // "1 item" / "5 items"
+Text("Halo, \(user.name)")                 // interpolasi aman
+// Kunci untuk ID: locale id_ID punya aturan plural berbeda dari en</code></pre>
+      <div class="note warn"><span class="nt">Praktik bilingual ID/EN</span>Jangan pernah menyusun kalimat dengan konkatenasi (<code>"Anda punya " + count + " pesan"</code>) — urutan kata beda antar-bahasa. Gunakan string ber-placeholder utuh sebagai satu kunci. Sediakan bahasa dasar (development language) + terjemahan; set default via skema device.</div>
+    </section>
+
+    <section id="format">
+      <h2><span class="sn">04</span>Locale-Aware Formatting</h2>
+      <p>Angka, mata uang, dan tanggal <strong>berbeda format per-locale</strong>. Jangan format manual — pakai formatter locale-aware.</p>
+<pre><code data-swift>let amount = Decimal(1500000)
+amount.formatted(.currency(code: "IDR"))                       // "Rp1.500.000" (id)
+amount.formatted(.currency(code: "IDR").locale(Locale(identifier: "id_ID")))
+
+let date = Date()
+date.formatted(.dateTime.day().month().year().locale(Locale(identifier: "id_ID")))</code></pre>
+      <div class="note case"><span class="nt">Kasus produksi — Timezone WIB vs UTC</span>Server umumnya menyimpan waktu dalam <strong>UTC</strong>; device pengguna di <strong>WIB (UTC+7)</strong>. Bug klasik: parse tanggal UTC lalu tampilkan tanpa konversi → laporan transaksi bergeser 7 jam / salah hari. <strong>Aturan:</strong> simpan & kirim UTC (ISO 8601), konversi ke zona lokal <em>hanya saat menampilkan</em> memakai <code>TimeZone.current</code>. Untuk "transaksi hari ini", tentukan hari berdasarkan zona yang mana secara eksplisit (device atau server) — jangan ambigu.</div>
+      <div class="note case"><span class="nt">Kasus produksi — IDR & Decimal</span>Rupiah bernilai besar tanpa sen; <code>Double</code> menimbulkan galat pembulatan pada agregasi (M5). Selalu <code>Decimal</code> untuk uang, dan format via <code>.currency(code: "IDR")</code> agar pemisah ribuan & simbol benar per-locale.</div>
+    </section>
+
+    <section id="a11y">
+      <h2><span class="sn">05</span>Accessibility</h2>
+      <p>Accessibility membuat app dapat dipakai lewat VoiceOver (pembaca layar), Dynamic Type (ukuran teks), dan teknologi bantu lain. Ini syarat App Store untuk banyak kategori, dan hal yang benar.</p>
+      <table>
+        <thead><tr><th>Modifier</th><th>Fungsi</th></tr></thead>
+        <tbody>
+          <tr><td><code>.accessibilityLabel</code></td><td>Apa yang dibacakan VoiceOver (mis. ikon tanpa teks)</td></tr>
+          <tr><td><code>.accessibilityHint</code></td><td>Apa yang terjadi jika diaktifkan</td></tr>
+          <tr><td><code>.accessibilityValue</code></td><td>Nilai saat ini (mis. slider "70%")</td></tr>
+          <tr><td><code>.accessibilityAddTraits</code></td><td>Peran: <code>.isButton</code>, <code>.isHeader</code>, dll.</td></tr>
+          <tr><td><code>.accessibilityElement(children:)</code></td><td>Gabung/pisah elemen anak</td></tr>
+        </tbody>
+      </table>
+<pre><code data-swift>// Ikon-only button — WAJIB label, kalau tidak VoiceOver membaca "tombol" kosong
+Button(action: addToCart) { Image(systemName: "cart.badge.plus") }
+    .accessibilityLabel("Tambah ke keranjang")
+    .accessibilityHint("Menambahkan produk ini ke keranjang belanja")
+
+// Gabungkan kartu jadi satu elemen agar tidak dibaca terpisah-pisah
+VStack { Text(product.name); Text(product.price) }
+    .accessibilityElement(children: .combine)
+
+// Dynamic Type — pakai font semantik, JANGAN ukuran tetap
+Text("Judul").font(.headline)     // skala otomatis mengikuti setelan user
+// Hindari: .font(.system(size: 14)) — tidak menskala</code></pre>
+      <div class="note warn"><span class="nt">Uji dengan Accessibility Inspector</span>Jalankan Accessibility Inspector (Xcode → Open Developer Tool) dan nyalakan VoiceOver di device. Naikkan Dynamic Type ke ukuran terbesar — layout tidak boleh terpotong. Gunakan warna + ikon, bukan warna saja, untuk menyampaikan status (buta warna).</div>
+    </section>
+
+    <section id="abk">
+      <h2><span class="sn">06</span>Accessibility untuk Aplikasi ABK</h2>
+      <p>Untuk vertikal Anda — anak dengan ASD, ADHD, disleksia — aksesibilitas adalah <em>fitur inti</em>, bukan pelengkap. Pertimbangan spesifik:</p>
+      <ul>
+        <li><strong>Reduce Motion</strong> — hormati <code>@Environment(\.accessibilityReduceMotion)</code>; animasi berlebihan bisa memicu overstimulasi (ASD/ADHD).</li>
+        <li><strong>Target sentuh besar</strong> — minimal 44×44pt; anak dengan kesulitan motorik butuh area tap lebih besar.</li>
+        <li><strong>Dynamic Type + font ramah-disleksia</strong> — dukung teks besar; hindari font rapat/rumit.</li>
+        <li><strong>Kontras tinggi & konsisten</strong> — hormati <code>accessibilityReduceTransparency</code>; visual jelas mengurangi beban kognitif.</li>
+        <li><strong>Umpan balik multi-indera</strong> — visual + audio + haptic; jangan hanya satu kanal.</li>
+        <li><strong>Kesederhanaan</strong> — kurangi elemen per layar; alur prediktabel (visual schedule).</li>
+      </ul>
+<pre><code data-swift>@Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+withAnimation(reduceMotion ? nil : .spring) {   // matikan animasi bila diminta
+    isExpanded.toggle()
+}</code></pre>
+      <div class="note key"><span class="nt">Jembatan ke produk Anda</span>Prinsip ini langsung memandu Canva ABK Template Kits & app ABK Anda: sensory-friendly, jadwal visual, target besar, umpan balik multi-indera. Aksesibilitas di sini bukan compliance — ia adalah <strong>value proposition produk</strong>.</div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">07</span>Latihan</h2>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Property wrapper</h4></div>
+        <p>Buat <code>@Trimmed</code> yang otomatis memangkas whitespace dari string yang di-set.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>@propertyWrapper struct Trimmed {
+    private var value = ""
+    var wrappedValue: String {
+        get { value }
+        set { value = newValue.trimmingCharacters(in: .whitespacesAndNewlines) }
+    }
+    init(wrappedValue: String) { self.wrappedValue = wrappedValue }
+}</code></pre>
+        <p><em>Review:</em> Transformasi terjadi di <code>set</code>. Pastikan <code>init(wrappedValue:)</code> juga melewati setter (memanggil <code>self.wrappedValue =</code>) agar nilai awal ikut di-trim.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Localization aman</h4></div>
+        <p>Perbaiki: <code>Text("Anda punya " + String(count) + " pesan baru")</code></p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>Text("^[\(count) pesan baru](inflect: true)")
+// atau kunci ber-placeholder di String Catalog: "message_count"</code></pre>
+        <p><em>Review:</em> Konkatenasi mematahkan terjemahan (urutan kata & plural beda per-bahasa). Satu kunci utuh dengan placeholder memungkinkan penerjemah menyusun ulang kalimat.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Accessibility ikon</h4></div>
+        <p>Sebuah tombol favorit hanya ikon hati. Apa yang kurang untuk VoiceOver, dan bagaimana menyampaikan status aktif/nonaktif?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>Button(action: toggle) { Image(systemName: isFav ? "heart.fill" : "heart") }
+    .accessibilityLabel("Favorit")
+    .accessibilityValue(isFav ? "Aktif" : "Nonaktif")
+    .accessibilityAddTraits(.isButton)</code></pre>
+        <p><em>Review:</em> Ikon tanpa label dibaca kosong. <code>accessibilityValue</code> menyampaikan status tanpa mengandalkan warna/bentuk saja.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Reduce Motion (ABK)</h4></div>
+        <p>Layar reward anak punya animasi konfeti besar. Bagaimana menghormati anak yang sensitif terhadap gerakan?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Baca <code>@Environment(\.accessibilityReduceMotion)</code>; bila true, ganti konfeti dengan umpan balik statis (badge + suara lembut) alih-alih animasi penuh.</p>
+        <p><em>Review:</em> Untuk ABK, menghormati Reduce Motion mencegah overstimulasi — ini keputusan desain inklusif, bukan sekadar toggle teknis.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 17</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Membangun custom @propertyWrapper (wrappedValue, init)</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Memakai projectedValue via $; tahu @AppStorage untuk SwiftUI reaktif</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Localization via String Catalog; string ber-placeholder, bukan konkatenasi</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Format locale-aware (IDR/Decimal, tanggal id_ID)</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Menangani timezone UTC↔WIB dengan benar</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Accessibility: label/hint/value/traits, Dynamic Type, uji Inspector</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Pertimbangan A11y khusus ABK: Reduce Motion, target besar, multi-indera</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="../index.html">← Daftar Modul</a>
+      <a href="module-18.html">Module 18 — Migration, Privacy & Feature Flags →</a>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m17';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

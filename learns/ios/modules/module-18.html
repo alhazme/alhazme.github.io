@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 18 — Migration, Privacy & Feature Flags</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note.case{background:rgba(92,124,163,.10);border-left:4px solid var(--info)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+.onm{border:var(--border);border-radius:var(--radius-panel);overflow:hidden;margin:18px 0}
+.onm-head{background:var(--gray-100);padding:10px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500)}
+.onm-grid{display:grid;grid-template-columns:1fr 1fr}
+.onm-cell{padding:14px 16px}.onm-cell.old{border-right:1px solid var(--gray-300)}
+.onm-tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;display:inline-block}
+.onm-tag.t-old{color:var(--danger)}.onm-tag.t-new{color:var(--olive)}
+.onm-cell pre{margin:0;font-size:12px}
+.onm-mig{padding:12px 16px;background:var(--ivory);font-size:13.5px;border-top:1px solid var(--gray-300)}.onm-mig b{font-weight:600}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+  .onm-grid{grid-template-columns:1fr}.onm-cell.old{border-right:none;border-bottom:1px solid var(--gray-300)}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 18 · Pelengkap</div><h2>Migration · Privacy · Flags</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Tiga Blocker Produksi</a>
+      <a href="#migration"><span class="nidx">01</span>SwiftData Migration</a>
+      <a href="#migration-custom"><span class="nidx">02</span>Custom Migration</a>
+      <a href="#privacy"><span class="nidx">03</span>Privacy Manifest</a>
+      <a href="#att"><span class="nidx">04</span>App Tracking Transparency</a>
+      <a href="#flags"><span class="nidx">05</span>Feature Flags</a>
+      <a href="#killswitch"><span class="nidx">06</span>Kill-Switch & Rollout</a>
+      <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 18 · PELENGKAP — PRODUCTION READINESS</span>Migration, Privacy & Feature Flags</h2>
+      <p class="lead">Tiga hal yang tidak terlihat saat membangun tetapi <em>menggigit keras</em> saat rilis kedua: skema berubah dan app crash, App Review menolak karena privacy, dan fitur bermasalah tak bisa dimatikan. Modul ini menutup ketiganya.</p>
+      <div class="meta-row"><span class="badge accent">SchemaMigrationPlan</span><span class="badge accent">PrivacyInfo</span><span class="badge accent">Feature Flags</span><span class="badge neutral">~100 menit</span></div>
+      <div class="note key"><span class="nt">Kenapa krusial</span>Rilis pertama mudah. Rilis <em>kedua</em>-lah yang menguji: data user lama harus bermigrasi tanpa crash, binary harus lolos privacy check App Store, dan Anda butuh cara mematikan fitur dari server tanpa menunggu review. Ketiganya harus dirancang <strong>sebelum</strong> rilis pertama.</div>
+    </section>
+
+    <section id="migration">
+      <h2><span class="sn">01</span>SwiftData Migration</h2>
+      <p>Saat Anda mengubah <code>@Model</code> (menambah field, mengubah relasi), data user lama harus bermigrasi. Perubahan sederhana ditangani <strong>lightweight migration</strong> otomatis; perubahan kompleks butuh rencana eksplisit.</p>
+      <div class="note case"><span class="nt">Kasus produksi — crash saat launch v2</span>Anda rilis v1 dengan <code>Order</code>. v2 menambah field <strong>wajib</strong> <code>currency: String</code> tanpa default. User lama update → SwiftData tak bisa memetakan store lama → <strong>crash saat launch</strong>, dan tidak terdeteksi di testing karena Anda menguji dari database kosong. Selalu uji migrasi dari database versi sebelumnya yang berisi data.</div>
+      <div class="code-label">Versioned schema — dasar migrasi aman</div>
+<pre><code data-swift>enum SchemaV1: VersionedSchema {
+    static var versionIdentifier = Schema.Version(1, 0, 0)
+    static var models: [any PersistentModel.Type] { [OrderV1.self] }
+    @Model final class OrderV1 { var id: String; var total: Decimal
+        init(id: String, total: Decimal){ self.id = id; self.total = total } }
+}
+
+enum SchemaV2: VersionedSchema {
+    static var versionIdentifier = Schema.Version(2, 0, 0)
+    static var models: [any PersistentModel.Type] { [Order.self] }
+    @Model final class Order { var id: String; var total: Decimal
+        var currency: String = "IDR"        // default → lightweight-compatible
+        init(id: String, total: Decimal, currency: String = "IDR"){
+            self.id = id; self.total = total; self.currency = currency } }
+}</code></pre>
+      <div class="note warn"><span class="nt">Aturan lightweight</span>Migrasi otomatis (lightweight) berlaku bila perubahan aman: menambah field <strong>opsional atau ber-default</strong>, menambah model, menghapus field. TIDAK otomatis: mengubah tipe, rename tanpa penanda, atau menambah field wajib tanpa default. Untuk itu → custom migration (bagian berikut).</div>
+    </section>
+
+    <section id="migration-custom">
+      <h2><span class="sn">02</span>Custom Migration Plan</h2>
+<pre><code data-swift>enum AppMigrationPlan: SchemaMigrationPlan {
+    static var schemas: [any VersionedSchema.Type] { [SchemaV1.self, SchemaV2.self] }
+    static var stages: [MigrationStage] {
+        [ .custom(
+            fromVersion: SchemaV1.self,
+            toVersion: SchemaV2.self,
+            willMigrate: nil,
+            didMigrate: { context in
+                // isi currency untuk record lama sesuai logika bisnis
+                let orders = try context.fetch(FetchDescriptor&lt;SchemaV2.Order&gt;())
+                for o in orders where o.currency.isEmpty { o.currency = "IDR" }
+                try context.save()
+            }
+        ) ]
+    }
+}
+
+// Pasang saat setup container
+.modelContainer(for: Order.self, migrationPlan: AppMigrationPlan.self)</code></pre>
+      <div class="note key"><span class="nt">Disiplin migrasi</span>(1) Setiap perubahan skema = versi baru + stage. (2) <strong>Uji dari data nyata versi lama</strong>, bukan database kosong. (3) Simpan seed database tiap versi untuk regression test migrasi di CI (M14). (4) Karena akses lewat Repository (M9), logika bisnis tak terpengaruh detail migrasi. Core Data punya mekanisme setara (mapping model / progressive migration).</div>
+    </section>
+
+    <section id="privacy">
+      <h2><span class="sn">03</span>Privacy Manifest</h2>
+      <p>Apple mewajibkan <strong><code>PrivacyInfo.xcprivacy</code></strong>: mendeklarasikan data yang dikumpulkan, tujuan tracking, dan <em>alasan</em> pemakaian "required-reason API". Binary tanpa deklarasi yang benar <strong>ditolak</strong>.</p>
+      <div class="note case"><span class="nt">Kasus produksi — App Store menolak binary</span>App Anda memakai <code>UserDefaults</code>, timestamp file, atau <code>systemUptime</code> (termasuk lewat SDK pihak ketiga seperti Firebase). Ini "required-reason API". Tanpa deklarasi alasan di privacy manifest, upload ditolak dengan email otomatis — sering muncul <em>saat submit</em>, bukan saat build, jadi mengejutkan di menit terakhir.</div>
+      <table>
+        <thead><tr><th>Bagian manifest</th><th>Isi</th></tr></thead>
+        <tbody>
+          <tr><td>NSPrivacyCollectedDataTypes</td><td>Data dikumpulkan (email, ID, lokasi) + tujuan</td></tr>
+          <tr><td>NSPrivacyTracking</td><td>Apakah app melakukan tracking lintas-app</td></tr>
+          <tr><td>NSPrivacyAccessedAPITypes</td><td>Required-reason API + kode alasannya</td></tr>
+          <tr><td>NSPrivacyTrackingDomains</td><td>Domain yang dipakai untuk tracking</td></tr>
+        </tbody>
+      </table>
+      <div class="note warn"><span class="nt">SDK pihak ketiga</span>SDK (Firebase, Sentry, dll.) kini menyertakan privacy manifest sendiri + <strong>signature</strong>. Pastikan versi SDK Anda mendukungnya. App Privacy "nutrition label" di App Store Connect harus konsisten dengan manifest — ketidakcocokan memicu penolakan. Audit tiap dependency (M11) untuk kepatuhan privacy.</div>
+    </section>
+
+    <section id="att">
+      <h2><span class="sn">04</span>App Tracking Transparency</h2>
+      <p>Jika app melacak user lintas-app (mis. atribusi iklan via Firebase/IDFA), Anda <strong>wajib</strong> meminta izin ATT sebelum tracking.</p>
+<pre><code data-swift>import AppTrackingTransparency
+
+func requestTracking() async -&gt; Bool {
+    let status = await ATTrackingManager.requestTrackingAuthorization()
+    return status == .authorized      // hanya track bila diizinkan
+}
+// Info.plist WAJIB: NSUserTrackingUsageDescription (penjelasan ke user)</code></pre>
+      <div class="note case"><span class="nt">Kasus produksi — atribusi Firebase pecah</span>Tanpa prompt ATT (atau bila user menolak), IDFA tak tersedia → data atribusi/kampanye Firebase Analytics tidak lengkap. Banyak tim lupa <code>NSUserTrackingUsageDescription</code> di Info.plist → app <strong>crash</strong> saat memanggil ATT. Minta izin di momen yang tepat (setelah user paham nilainya), dan tangani penolakan tanpa merusak fungsi inti.</div>
+    </section>
+
+    <section id="flags">
+      <h2><span class="sn">05</span>Feature Flags & Remote Config</h2>
+      <p>Feature flag memisahkan <em>deploy</em> dari <em>release</em>: kode terpasang tapi fitur bisa dinyalakan/dimatikan dari server. Selalu di balik abstraksi (M11).</p>
+<pre><code data-swift>// Kontrak — domain tak tahu Firebase Remote Config / vendor
+protocol FeatureFlagProviding {
+    func isEnabled(_ flag: Feature) -&gt; Bool
+    func value&lt;T&gt;(_ key: String, default: T) -&gt; T
+}
+enum Feature: String { case newCheckout, aiRecommendations, promoBanner }
+
+// Pemakaian
+if flags.isEnabled(.newCheckout) {
+    NewCheckoutView()
+} else {
+    LegacyCheckoutView()          // fallback aman
+}</code></pre>
+      <div class="note key"><span class="nt">Kegunaan</span>Feature flag memungkinkan: <strong>gradual rollout</strong> (nyalakan untuk 5% user), <strong>A/B test</strong>, <strong>kill-switch</strong> (matikan fitur rusak instan), dan <strong>trunk-based development</strong> (merge kode belum selesai di belakang flag). Implementasi umum: Firebase Remote Config, atau endpoint config sendiri. Selalu punya <em>default aman</em> bila config gagal di-fetch (fail closed untuk fitur berisiko).</div>
+    </section>
+
+    <section id="killswitch">
+      <h2><span class="sn">06</span>Kill-Switch & Rollout Strategy</h2>
+      <p>Karena iOS tidak punya rollback instan (M14), kill-switch adalah jaring pengaman utama Anda.</p>
+      <ul>
+        <li><strong>Kill-switch per-fitur</strong> — tiap fitur berisiko punya flag; matikan dari server saat insiden tanpa rilis ulang.</li>
+        <li><strong>Force-update gate</strong> — flag versi minimum; bila server menandai versi app terlalu lama/berbahaya, tampilkan layar "wajib update".</li>
+        <li><strong>Gradual rollout</strong> — nyalakan bertahap (1% → 10% → 100%), pantau crash/metrik (M11) di tiap tahap.</li>
+        <li><strong>Maintenance mode</strong> — flag global untuk menampilkan layar maintenance saat backend down.</li>
+      </ul>
+      <div class="note case"><span class="nt">Kasus produksi — fitur baru crash di lapangan</span>Fitur checkout baru crash 3% user setelah rilis. Tanpa kill-switch: tunggu expedited review (jam–hari) sementara user terdampak. Dengan kill-switch: matikan <code>newCheckout</code> dari Remote Config → semua user seketika kembali ke checkout lama. Inilah kenapa flag + fallback aman dirancang <em>sebelum</em> insiden, bukan sesudah.</div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">07</span>Latihan</h2>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Migrasi aman vs butuh custom</h4></div>
+        <p>Mana yang lightweight, mana yang butuh custom migration: (a) tambah <code>note: String?</code>; (b) ubah <code>price: Int</code> → <code>price: Decimal</code>; (c) tambah <code>status: String</code> wajib tanpa default?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>(a) Lightweight — field opsional. (b) Custom — perubahan tipe butuh transformasi. (c) Custom (atau beri default → jadi lightweight).</p>
+        <p><em>Review:</em> Menambah field wajib tanpa default adalah penyebab crash migrasi #1. Beri default bila memungkinkan.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Privacy audit</h4></div>
+        <p>App Anda pakai Firebase Analytics + Crashlytics + menyimpan preferensi di UserDefaults. Apa yang harus ada sebelum submit?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p><code>PrivacyInfo.xcprivacy</code> mendeklarasikan: data dikumpulkan Firebase, required-reason untuk UserDefaults, tracking domains bila relevan. SDK Firebase versi ber-manifest. App Privacy label di App Store Connect konsisten. <code>NSUserTrackingUsageDescription</code> bila memakai ATT.</p>
+        <p><em>Review:</em> Ketidakcocokan manifest ↔ nutrition label = penolakan. Audit tiap SDK untuk kepatuhan.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Feature flag dengan fallback</h4></div>
+        <p>Rancang flag <code>aiRecommendations</code> yang aman bila config gagal di-fetch (offline saat launch).</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>func isEnabled(_ f: Feature) -&gt; Bool {
+    cachedConfig[f.rawValue] ?? f.safeDefault   // pakai cache lalu default aman
+}
+// aiRecommendations.safeDefault = false → fitur baru OFF bila ragu</code></pre>
+        <p><em>Review:</em> Fitur baru/berisiko default <strong>false</strong> (fail closed). Cache config terakhir agar tidak bergantung fetch saat launch offline.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Insiden produksi</h4></div>
+        <p>Fitur baru crash 5% user, 2 jam setelah rilis. Urutan tindakan Anda?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>(1) Matikan fitur via kill-switch (Remote Config) — instan. (2) Konfirmasi crash rate turun (Crashlytics/Sentry). (3) Hentikan phased rollout bila masih berjalan. (4) Perbaiki + rilis, ajukan expedited review bila perlu. (5) Post-mortem + tambah test regresi.</p>
+        <p><em>Review:</em> Kill-switch dulu (mitigasi cepat), perbaikan kemudian. Ini hanya mungkin bila flag dirancang sebelumnya — keputusan arsitektur, bukan reaksi.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 18</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Membedakan lightweight vs custom migration; menghindari field wajib tanpa default</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Menulis VersionedSchema + SchemaMigrationPlan; uji dari data versi lama</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Menyusun PrivacyInfo.xcprivacy (data, tracking, required-reason API)</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Memastikan SDK ber-manifest & konsisten dengan App Privacy label</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">ATT: request + NSUserTrackingUsageDescription; handle penolakan</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Feature flag di balik protocol dengan default aman (fail closed)</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Kill-switch, force-update gate, gradual rollout, maintenance mode</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-17.html">← Module 17 — Wrappers, L10n & A11y</a>
+      <a href="../index.html">Selesai · Kembali ke Daftar Modul →</a>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m18';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

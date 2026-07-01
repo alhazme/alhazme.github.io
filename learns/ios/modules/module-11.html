@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 11 — Ecosystem Libraries</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+.onm{border:var(--border);border-radius:var(--radius-panel);overflow:hidden;margin:18px 0}
+.onm-head{background:var(--gray-100);padding:10px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500)}
+.onm-grid{display:grid;grid-template-columns:1fr 1fr}
+.onm-cell{padding:14px 16px}.onm-cell.old{border-right:1px solid var(--gray-300)}
+.onm-tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;display:inline-block}
+.onm-tag.t-old{color:var(--danger)}.onm-tag.t-new{color:var(--olive)}
+.onm-cell pre{margin:0;font-size:12px}
+.onm-mig{padding:12px 16px;background:var(--ivory);font-size:13.5px;border-top:1px solid var(--gray-300)}.onm-mig b{font-weight:600}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.diagram{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px;margin:18px 0;text-align:center}
+.diagram svg{max-width:100%;height:auto}.dcap{font-size:12.5px;color:var(--gray-500);margin-top:10px;font-style:italic}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+  .onm-grid{grid-template-columns:1fr}.onm-cell.old{border-right:none;border-bottom:1px solid var(--gray-300)}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 11 · Phase 5</div><h2>Ecosystem Libraries</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Kriteria Memilih</a>
+      <a href="#di"><span class="nidx">01</span>DI — Swinject</a>
+      <a href="#reactive"><span class="nidx">02</span>Reactive — Combine/RxSwift</a>
+      <a href="#database"><span class="nidx">03</span>Database — CoreData/Realm</a>
+      <a href="#image"><span class="nidx">04</span>Image — Kingfisher</a>
+      <a href="#animation"><span class="nidx">05</span>Animation — Lottie</a>
+      <a href="#observability"><span class="nidx">06</span>Analytics & Crash</a>
+      <a href="#testing"><span class="nidx">07</span>Testing Libs & Latihan</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 11 · PHASE 5 — LIBRARY MASTERY</span>Ekosistem Library Production</h2>
+      <p class="lead">Library yang sering muncul di app enterprise — dan, yang lebih penting, apakah Anda masih membutuhkannya di 2026 ketika banyak fungsinya kini tersedia native.</p>
+      <div class="meta-row"><span class="badge accent">Swinject</span><span class="badge accent">Kingfisher</span><span class="badge accent">Sentry</span><span class="badge neutral">~110 menit</span></div>
+      <div class="note key"><span class="nt">Lima pertanyaan sebelum menambah dependency</span>(1) Masalah apa yang diselesaikan? (2) Apa padanan native-nya? (3) Seberapa aktif maintenance & berapa besar komunitasnya? (4) Berapa biaya ukuran binary & waktu build? (5) Seberapa sulit melepasnya nanti? Setiap dependency adalah utang jangka panjang — bayar hanya bila manfaatnya jelas melebihi biayanya.</div>
+    </section>
+
+    <section id="di">
+      <h2><span class="sn">01</span>Dependency Injection — Swinject</h2>
+      <p>Module 9 memakai composition root manual. Swinject menambah <strong>container</strong> dengan registrasi & resolusi terpusat — berguna saat graph dependency menjadi besar.</p>
+<pre><code data-swift>import Swinject
+
+let container = Container()
+container.register(NetworkService.self) { _ in AlamofireNetworkService() }
+    .inObjectScope(.container)                      // singleton dalam container
+container.register(OrderRepository.self) { r in
+    OrderRepositoryImpl(network: r.resolve(NetworkService.self)!)
+}
+container.register(OrderListViewModel.self) { r in
+    OrderListViewModel(fetchOrders: FetchOrdersUseCase(repository: r.resolve(OrderRepository.self)!))
+}
+
+let vm = container.resolve(OrderListViewModel.self)!</code></pre>
+      <div class="note warn"><span class="nt">Trade-off</span>Manfaat: registrasi terpusat, scope (singleton/transient) mudah. Biaya: resolusi runtime (force-unwrap <code>resolve</code> bisa crash bila lupa register — kesalahan yang ditemukan saat runtime, bukan compile-time). Untuk solo founder dengan graph sedang, <strong>composition root manual (Module 9) sering lebih aman</strong> karena dicek compiler. Pakai Swinject saat graph benar-benar besar & banyak scope.</div>
+    </section>
+
+    <section id="reactive">
+      <h2><span class="sn">02</span>Reactive — Combine & RxSwift</h2>
+      <div class="onm">
+        <div class="onm-head">Status 2026 · Reactive di iOS</div>
+        <div class="onm-grid">
+          <div class="onm-cell old"><span class="onm-tag t-old">Dulu dominan</span>
+          <p style="margin:0;font-size:13px"><b>RxSwift</b> — reactive lintas-platform, kaya operator. <b>Combine</b> — framework reactive Apple (iOS 13+).</p></div>
+          <div class="onm-cell new"><span class="onm-tag t-new">Tren 2026</span>
+          <p style="margin:0;font-size:13px"><b>async/await + Observation</b> menjadi default untuk mayoritas kebutuhan. Combine dipakai untuk kasus stream spesifik; RxSwift sebagian besar terbatas di codebase lama.</p></div>
+        </div>
+        <div class="onm-mig"><b>Arahan:</b> Untuk kode baru, gunakan async/await (Module 3) + Observation (Module 6) lebih dulu. Combine masih relevan untuk: debounce/throttle search input, menggabungkan beberapa publisher, dan binding Combine-native dari SDK. RxSwift jarang dipilih untuk proyek baru. <em>Apple memperlambat pengembangan Combine; verifikasi kebutuhan reactive Anda benar-benar tidak terpenuhi async/await sebelum menambah dependency reactive.</em></div>
+      </div>
+      <div class="code-label">Combine untuk debounce search — kasus yang masih pas</div>
+<pre><code data-swift>import Combine
+final class SearchModel {
+    @Published var query = ""
+    private var bag = Set&lt;AnyCancellable&gt;()
+    init() {
+        $query
+            .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
+            .removeDuplicates()
+            .sink { [weak self] term in Task { await self?.search(term) } }
+            .store(in: &bag)
+    }
+    func search(_ term: String) async { /* ... */ }
+}</code></pre>
+    </section>
+
+    <section id="database">
+      <h2><span class="sn">03</span>Database — Core Data & Realm</h2>
+      <p>Module 5 membahas SwiftData & Core Data native. Di sini posisi pihak ketiga:</p>
+      <div class="note danger"><span class="nt">Penting — status Realm 2026</span>MongoDB mengumumkan <strong>deprecation Atlas Device SDKs (Realm)</strong> dan <strong>Atlas Device Sync</strong>, dengan end-of-life sync pada <strong>30 September 2025</strong>. Database lokal Realm tetap ada sebagai proyek open-source (Apache 2.0), tetapi <em>tanpa dukungan resmi MongoDB</em> dan fitur sync sudah mati. <strong>Untuk proyek baru, jangan pilih Realm</strong> kecuali ada alasan kuat & Anda siap memelihara fork-nya. Default ke SwiftData (Module 5) atau Core Data. <em>Verifikasi status terkini sebelum mengandalkan Realm — situasi proyek open-source bisa berubah.</em></div>
+      <table>
+        <thead><tr><th>Pilihan</th><th>Status 2026</th><th>Rekomendasi</th></tr></thead>
+        <tbody>
+          <tr><td>SwiftData</td><td>Native, production-ready (greenfield)</td><td>Default proyek baru SwiftUI</td></tr>
+          <tr><td>Core Data</td><td>Native, matang, kompleks</td><td>Object graph kompleks, migration berat</td></tr>
+          <tr><td>Realm</td><td>Open-source, deprecated MongoDB, sync EOL</td><td>Hindari untuk proyek baru</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="image">
+      <h2><span class="sn">04</span>Image Loading — Kingfisher</h2>
+      <p>Memuat gambar remote dengan cache, downsampling, dan placeholder. Salah satu library yang manfaatnya masih jelas — menulisnya sendiri (cache disk+memory, cancellation, downsampling) memakan banyak kerja.</p>
+<pre><code data-swift>import Kingfisher
+
+// SwiftUI
+KFImage(URL(string: order.thumbnailURL))
+    .placeholder { ProgressView() }
+    .downsampling(size: CGSize(width: 120, height: 120))   // hemat memori
+    .cacheOriginalImage()
+    .fade(duration: 0.2)</code></pre>
+      <div class="note key"><span class="nt">Catatan</span>Apple punya <code>AsyncImage</code> native, tetapi Kingfisher unggul dalam kontrol cache, downsampling, dan prefetch untuk list panjang. Untuk app dengan banyak gambar (e-commerce, social), Kingfisher dibenarkan. Untuk beberapa gambar sederhana, <code>AsyncImage</code> native cukup.</div>
+    </section>
+
+    <section id="animation">
+      <h2><span class="sn">05</span>Animation — Lottie</h2>
+      <p>Menjalankan animasi vektor (JSON dari After Effects) untuk onboarding, empty state, loading. Memberi animasi kompleks tanpa menggambarnya di kode.</p>
+<pre><code data-swift>import Lottie
+
+struct LoadingAnimation: UIViewRepresentable {     // bungkus untuk SwiftUI
+    func makeUIView(context: Context) -&gt; LottieAnimationView {
+        let view = LottieAnimationView(name: "loading")
+        view.loopMode = .loop
+        view.play()
+        return view
+    }
+    func updateUIView(_ uiView: LottieAnimationView, context: Context) {}
+}</code></pre>
+      <div class="note warn"><span class="nt">Catatan UX</span>Lottie kuat untuk delight (onboarding, success state), tetapi animasi besar/banyak dapat membebani CPU & baterai. Gunakan terukur; untuk transisi UI biasa, animasi native SwiftUI (Module 6) lebih ringan.</div>
+    </section>
+
+    <section id="observability">
+      <h2><span class="sn">06</span>Analytics & Crash Reporting</h2>
+      <p>Wajib untuk app produksi: tahu apa yang dilakukan user (analytics) dan apa yang rusak (crash). Selalu bungkus di balik protocol agar vendor dapat diganti.</p>
+      <table>
+        <thead><tr><th>Kebutuhan</th><th>Pilihan umum</th></tr></thead>
+        <tbody>
+          <tr><td>Analytics</td><td>Firebase Analytics</td></tr>
+          <tr><td>Crash reporting</td><td>Firebase Crashlytics atau Sentry</td></tr>
+          <tr><td>Error + performance monitoring</td><td>Sentry (gabungan)</td></tr>
+        </tbody>
+      </table>
+      <div class="code-label">Abstraksi vendor-agnostic</div>
+<pre><code data-swift>// Kontrak — domain tidak tahu Firebase/Sentry
+protocol AnalyticsTracking {
+    func track(_ event: String, _ params: [String: Any])
+}
+protocol CrashReporting {
+    func record(_ error: Error)
+    func setUser(id: String)
+}
+
+// Implementasi — satu-satunya tempat import SDK vendor
+final class FirebaseAnalytics2: AnalyticsTracking { /* ... */ }
+final class SentryCrashReporter: CrashReporting { /* ... */ }</code></pre>
+      <div class="note key"><span class="nt">Prinsip</span>Tracking call tersebar di seluruh app, jadi jika terikat langsung ke SDK vendor, mengganti vendor berarti menyentuh ratusan tempat. Dengan protocol, ganti vendor = ganti satu implementasi. Ini sekaligus memudahkan mematikan tracking saat test.</div>
+    </section>
+
+    <section id="testing">
+      <h2><span class="sn">07</span>Testing Libraries & Latihan</h2>
+      <p><strong>Quick</strong> (BDD spec) & <strong>Nimble</strong> (matcher ekspresif) populer di era XCTest. Namun di 2026, <strong>Swift Testing</strong> native (Module 13) adalah default untuk proyek baru — lebih ringkas, terintegrasi, tanpa dependency. Quick/Nimble tetap Anda temui di codebase lama.</p>
+      <div class="note warn"><span class="nt">Arahan</span>Proyek baru: <strong>Swift Testing</strong> (native, dibahas Module 13). Pertahankan/pahami Quick+Nimble hanya untuk memelihara test suite lama. Nimble masih dipakai sebagian tim karena matcher-nya ekspresif, tetapi pertimbangkan biaya dependency vs ekspresivitas <code>#expect</code> native.</p></div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Native atau library?</h4></div>
+        <p>Untuk tiap kasus, native cukup atau perlu library: (a) memuat 1 avatar; (b) list e-commerce 500 gambar dengan prefetch; (c) debounce search; (d) reactive stream kompleks lintas 5 sumber.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>(a) <code>AsyncImage</code> native. (b) Kingfisher (cache + downsampling + prefetch). (c) Combine <code>debounce</code> (atau async + custom debounce). (d) Combine bila benar-benar kompleks; coba async/await dulu.</p>
+        <p><em>Review:</em> Library dibenarkan saat native jelas tak memadai (b), bukan kebiasaan. Selalu tanyakan lima pertanyaan di bagian intro.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Realm legacy</h4></div>
+        <p>Klien punya app dengan Realm + Device Sync. Apa nasihat Anda di 2026?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Device Sync sudah EOL (Sep 2025) — harus migrasi off sync (ke backend sync kustom atau alternatif seperti ObjectBox). Local Realm masih jalan tapi tanpa dukungan resmi. Rekomendasi: dekopel akses Realm di balik Repository (sudah seharusnya), lalu migrasikan persistence ke SwiftData/Core Data secara bertahap.</p>
+        <p><em>Review:</em> Karena akses data disembunyikan di Repository (Module 9), migrasi database hanya menyentuh data layer — bukti nyata manfaat abstraksi.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Abstraksi vendor</h4></div>
+        <p>Tim memanggil <code>Analytics.logEvent(...)</code> Firebase langsung di 80 tempat. Klien ingin pindah ke Sentry/Amplitude. Bagaimana seharusnya dari awal?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Definisikan <code>AnalyticsTracking</code> protocol; semua call lewat abstraksi; Firebase hanya di satu implementasi. Pindah vendor = tulis implementasi baru, ganti registrasi di composition root — nol perubahan di 80 call-site.</p>
+        <p><em>Review:</em> SDK vendor adalah detail. Memanggilnya langsung di seluruh app adalah kopling yang mahal dilepas. Bungkus sejak awal.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Audit dependency</h4></div>
+        <p>App mewarisi 14 dependency. Bagaimana Anda memutuskan mana yang dipangkas?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Untuk tiap dependency, evaluasi lima pertanyaan (intro): apakah ada padanan native sekarang (mis. AsyncImage, async/await menggantikan beberapa), seberapa aktif maintenance, biaya build/binary, dan kesulitan melepas. Pangkas yang sudah ada padanan native & jarang dipakai.</p>
+        <p><em>Review:</em> Setiap dependency = utang. Mengurangi dependency menurunkan permukaan serangan (Module 15), waktu build, dan risiko library tak terawat seperti Realm.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 11</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Menerapkan lima pertanyaan sebelum menambah dependency</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Swinject vs composition root manual; sadar trade-off resolusi runtime</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Memilih async/await/Observation vs Combine vs RxSwift sesuai 2026</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Mengetahui status deprecation Realm & nasihat migrasi</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Kingfisher untuk image-heavy; AsyncImage untuk kasus sederhana</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Lottie terukur untuk delight; sadar biaya CPU/baterai</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Membungkus analytics/crash SDK di balik protocol vendor-agnostic</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-10.html">← Module 10 — Networking Stack</a>
+      <span class="next">Phase 5 selesai. Berikutnya: Phase 6 — Module 12 (Enterprise SaaS Build)</span>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m11';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

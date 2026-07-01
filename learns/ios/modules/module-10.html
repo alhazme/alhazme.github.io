@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 10 — Networking Stack & Libraries</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+.onm{border:var(--border);border-radius:var(--radius-panel);overflow:hidden;margin:18px 0}
+.onm-head{background:var(--gray-100);padding:10px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500)}
+.onm-grid{display:grid;grid-template-columns:1fr 1fr}
+.onm-cell{padding:14px 16px}.onm-cell.old{border-right:1px solid var(--gray-300)}
+.onm-tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;display:inline-block}
+.onm-tag.t-old{color:var(--danger)}.onm-tag.t-new{color:var(--olive)}
+.onm-cell pre{margin:0;font-size:12px}
+.onm-mig{padding:12px 16px;background:var(--ivory);font-size:13.5px;border-top:1px solid var(--gray-300)}.onm-mig b{font-weight:600}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.diagram{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px;margin:18px 0;text-align:center}
+.diagram svg{max-width:100%;height:auto}.dcap{font-size:12.5px;color:var(--gray-500);margin-top:10px;font-style:italic}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+  .onm-grid{grid-template-columns:1fr}.onm-cell.old{border-right:none;border-bottom:1px solid var(--gray-300)}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 10 · Phase 5</div><h2>Networking Stack</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Native vs Library</a>
+      <a href="#compare"><span class="nidx">01</span>URLSession · Alamofire · Moya</a>
+      <a href="#layered"><span class="nidx">02</span>Arsitektur Berlapis</a>
+      <a href="#auth"><span class="nidx">03</span>Auth, Refresh, Interceptor</a>
+      <a href="#retry"><span class="nidx">04</span>Retry Mechanism</a>
+      <a href="#parsing"><span class="nidx">05</span>Parsing & Pagination</a>
+      <a href="#abstraction"><span class="nidx">06</span>Abstraksi & Test</a>
+      <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 10 · PHASE 5 — LIBRARY MASTERY</span>Networking Stack Production</h2>
+      <p class="lead">Module 5 membangun networking native. Di sini kita naik ke level stack production: kapan library dibenarkan, bagaimana menyusunnya berlapis, dan bagaimana menangani auth/refresh/retry yang tak bisa dihindari di app nyata.</p>
+      <div class="meta-row"><span class="badge accent">URLSession</span><span class="badge accent">Alamofire 5</span><span class="badge neutral">~110 menit</span><span class="badge success">Auth refresh</span></div>
+      <div class="note key"><span class="nt">Filosofi memilih library</span>Untuk setiap library, tanyakan: <strong>masalah apa yang diselesaikan, apa alternatif native-nya, dan apa biaya dependency-nya?</strong> URLSession async sudah menangani 80% kebutuhan. Library seperti Alamofire dibenarkan saat Anda butuh interceptor chain, retry policy, multipart upload, request adapter, dan monitoring yang kalau ditulis sendiri akan memakan waktu & rawan bug.</div>
+    </section>
+
+    <section id="compare">
+      <h2><span class="sn">01</span>URLSession · Alamofire · Moya</h2>
+      <table>
+        <thead><tr><th>Pilihan</th><th>Tingkat</th><th>Tepat saat</th></tr></thead>
+        <tbody>
+          <tr><td><strong>URLSession</strong></td><td>Native, low-level</td><td>Kebutuhan standar, ingin nol dependency, kontrol penuh</td></tr>
+          <tr><td><strong>Alamofire</strong></td><td>Library di atas URLSession</td><td>Butuh interceptor, retry, multipart, monitoring out-of-the-box</td></tr>
+          <tr><td><strong>Moya</strong></td><td>Abstraksi di atas Alamofire</td><td>Ingin endpoint sebagai enum type-safe, tim besar, konsistensi tinggi</td></tr>
+        </tbody>
+      </table>
+      <div class="code-label">Alamofire — request dengan async</div>
+<pre><code data-swift>import Alamofire
+
+let orders: [Order] = try await AF
+    .request("https://api.app.com/orders", method: .get)
+    .validate()                          // cek status 2xx otomatis
+    .serializingDecodable([Order].self)
+    .value</code></pre>
+      <div class="code-label">Moya — endpoint sebagai enum type-safe</div>
+<pre><code data-swift>enum OrderAPI { case list, detail(id: String), create(OrderBody) }
+
+extension OrderAPI: TargetType {
+    var baseURL: URL { URL(string: "https://api.app.com")! }
+    var path: String {
+        switch self {
+        case .list: "/orders"
+        case .detail(let id): "/orders/\(id)"
+        case .create: "/orders"
+        }
+    }
+    var method: Moya.Method { self == .list ? .get : .post }
+    // task, headers, dst.
+}</code></pre>
+      <div class="note warn"><span class="nt">Keputusan Principal</span>Default ke <strong>URLSession</strong> untuk proyek kecil/solo (nol dependency = nol risiko maintenance). Naik ke <strong>Alamofire</strong> saat butuh interceptor/retry chain yang matang. <strong>Moya</strong> menambah lapisan abstraksi lagi — bagus untuk konsistensi tim besar, tetapi overhead untuk solo founder. Apa pun pilihannya, sembunyikan di balik protocol (bagian 06) agar dapat ditukar.</div>
+    </section>
+
+    <section id="layered">
+      <h2><span class="sn">02</span>Arsitektur Networking Berlapis</h2>
+      <p>Kesalahan terbesar: memanggil Alamofire langsung dari ViewModel. Stack production menyusunnya berlapis sesuai Clean Architecture (Module 8).</p>
+      <div class="diagram">
+        <svg viewBox="0 0 240 320" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, monospace" font-size="11">
+          <g>
+            <rect x="50" y="10" width="140" height="30" rx="6" fill="rgba(217,119,87,.14)" stroke="#D97757"/><text x="120" y="29" text-anchor="middle">View</text>
+            <rect x="50" y="55" width="140" height="30" rx="6" fill="#FAF9F5" stroke="#D1CFC5"/><text x="120" y="74" text-anchor="middle">ViewModel</text>
+            <rect x="50" y="100" width="140" height="30" rx="6" fill="#FAF9F5" stroke="#D1CFC5"/><text x="120" y="119" text-anchor="middle">UseCase</text>
+            <rect x="50" y="145" width="140" height="30" rx="6" fill="rgba(120,140,93,.16)" stroke="#788C5D"/><text x="120" y="164" text-anchor="middle">Repository</text>
+            <rect x="50" y="190" width="140" height="30" rx="6" fill="rgba(92,124,163,.12)" stroke="#5C7CA3"/><text x="120" y="209" text-anchor="middle">NetworkService</text>
+            <rect x="50" y="235" width="140" height="30" rx="6" fill="#F0EEE6" stroke="#D1CFC5"/><text x="120" y="254" text-anchor="middle">Alamofire / URLSession</text>
+          </g>
+          <g stroke="#87867F" stroke-width="1.2">
+            <path d="M120 40 V55" marker-end="url(#a)"/><path d="M120 85 V100" marker-end="url(#a)"/>
+            <path d="M120 130 V145" marker-end="url(#a)"/><path d="M120 175 V190" marker-end="url(#a)"/>
+            <path d="M120 220 V235" marker-end="url(#a)"/>
+          </g>
+          <text x="120" y="290" text-anchor="middle" font-size="10" fill="#87867F">Hanya NetworkService yang tahu library;</text>
+          <text x="120" y="305" text-anchor="middle" font-size="10" fill="#87867F">lapisan atas hanya tahu protocol</text>
+          <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#87867F"/></marker></defs>
+        </svg>
+        <div class="dcap">Library terisolasi di lapisan terbawah. Mengganti Alamofire→URLSession hanya menyentuh satu file.</div>
+      </div>
+    </section>
+
+    <section id="auth">
+      <h2><span class="sn">03</span>Authentication: Bearer, Refresh, Interceptor</h2>
+      <p>Pola universal: setiap request menyertakan Bearer token; saat 401, refresh token sekali, lalu ulangi request. Alamofire menyediakan <code>RequestInterceptor</code> (gabungan adapter + retrier) untuk ini.</p>
+<pre><code data-swift>final class AuthInterceptor: @unchecked Sendable, RequestInterceptor {
+    private let tokenStore: TokenStore         // Keychain (Module 5)
+
+    // ADAPT: sisipkan Bearer token ke setiap request
+    func adapt(_ urlRequest: URLRequest, for session: Session,
+               completion: @escaping (Result&lt;URLRequest, Error&gt;) -&gt; Void) {
+        var req = urlRequest
+        if let token = tokenStore.accessToken {
+            req.headers.add(.authorization(bearerToken: token))
+        }
+        completion(.success(req))
+    }
+
+    // RETRY: tangani 401 dengan refresh lalu ulangi
+    func retry(_ request: Request, for session: Session, dueTo error: Error,
+               completion: @escaping (RetryResult) -&gt; Void) {
+        guard let resp = request.task?.response as? HTTPURLResponse,
+              resp.statusCode == 401 else { return completion(.doNotRetry) }
+        Task {
+            do { try await tokenStore.refresh(); completion(.retry) }
+            catch { completion(.doNotRetryWithError(error)) }
+        }
+    }
+}</code></pre>
+      <div class="note danger"><span class="nt">Jebakan kritis: refresh storm</span>Jika 10 request gagal 401 bersamaan, jangan refresh 10 kali. Serialisasikan refresh: satu refresh in-flight, request lain menunggu hasilnya. Gunakan <code>actor</code> (Module 3) untuk men-coalesce refresh — ini mencegah server menolak refresh ganda dan race condition token.</div>
+    </section>
+
+    <section id="retry">
+      <h2><span class="sn">04</span>Retry Mechanism</h2>
+      <p>Selain 401, retry juga relevan untuk kegagalan jaringan sementara (timeout, 5xx). Gunakan <strong>exponential backoff</strong> dengan batas.</p>
+<pre><code data-swift>func retry(_ request: Request, for session: Session, dueTo error: Error,
+           completion: @escaping (RetryResult) -&gt; Void) {
+    guard request.retryCount &lt; 3 else { return completion(.doNotRetry) }   // batas
+    if let resp = request.task?.response as? HTTPURLResponse, (500...599).contains(resp.statusCode) {
+        let delay = pow(2.0, Double(request.retryCount))                   // 1s, 2s, 4s
+        completion(.retryWithDelay(delay))
+    } else {
+        completion(.doNotRetry)
+    }
+}</code></pre>
+      <div class="note warn"><span class="nt">Aturan retry</span>Hanya retry operasi <strong>idempoten</strong> (GET, PUT, DELETE) secara default. POST (mis. pembayaran) tidak boleh di-retry buta — bisa menyebabkan transaksi ganda. Gunakan idempotency key dari server bila perlu meng-retry POST. Selalu batasi jumlah retry dan beri backoff agar tidak membanjiri server yang sedang bermasalah.</div>
+    </section>
+
+    <section id="parsing">
+      <h2><span class="sn">05</span>Parsing: Nested JSON, Pagination, Error Model</h2>
+      <p>API nyata mengembalikan struktur ber-envelope, paginasi, dan error model. Modelkan semuanya dengan Codable.</p>
+<pre><code data-swift>// Envelope + pagination umum
+struct Page&lt;T: Decodable&gt;: Decodable {
+    let data: [T]
+    let meta: Meta
+    struct Meta: Decodable { let page: Int; let totalPages: Int; let nextCursor: String? }
+}
+
+// Error model dari server
+struct APIErrorBody: Decodable, Error { let code: String; let message: String }
+
+func loadPage(cursor: String?) async throws -&gt; Page&lt;Order&gt; {
+    var url = "https://api.app.com/orders"
+    if let cursor { url += "?cursor=\(cursor)" }
+    return try await network.get(url)        // generic decode ke Page&lt;Order&gt;
+}</code></pre>
+      <div class="note key"><span class="nt">Pagination di Repository</span>Logika "ambil halaman berikutnya, gabung, hentikan saat <code>nextCursor == nil</code>" hidup di Repository — bukan di ViewModel. ViewModel hanya memanggil <code>loadMore()</code> dan menerima daftar gabungan. Ini menjaga presentation tipis dan pagination teruji.</div>
+    </section>
+
+    <section id="abstraction">
+      <h2><span class="sn">06</span>Abstraksi & Testability</h2>
+      <p>Aturan inti seluruh modul: <strong>library tidak pernah bocor ke atas</strong>. Definisikan protocol; library hanya muncul di implementasinya.</p>
+<pre><code data-swift>// Domain/Core — kontrak, tanpa import Alamofire
+protocol NetworkService {
+    func get&lt;T: Decodable&gt;(_ path: String) async throws -&gt; T
+    func post&lt;B: Encodable, T: Decodable&gt;(_ path: String, body: B) async throws -&gt; T
+}
+
+// Data — implementasi Alamofire (satu-satunya tempat import Alamofire)
+final class AlamofireNetworkService: NetworkService { /* ... */ }
+
+// Test — mock tanpa jaringan
+struct MockNetworkService: NetworkService {
+    var stub: Any
+    func get&lt;T: Decodable&gt;(_ path: String) async throws -&gt; T { stub as! T }
+    func post&lt;B: Encodable, T: Decodable&gt;(_ path: String, body: B) async throws -&gt; T { stub as! T }
+}</code></pre>
+      <div class="note key"><span class="nt">Hasil</span>Repository & use case diuji dengan <code>MockNetworkService</code> — deterministik, tanpa jaringan, cepat. Mengganti Alamofire ke Moya atau kembali ke URLSession hanya mengganti satu implementasi. Inilah yang membuat stack networking Anda tahan-waktu & reusable lintas proyek.</div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">07</span>Latihan</h2>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Pilih tool</h4></div>
+        <p>Untuk tiap kasus pilih URLSession / Alamofire / Moya: (a) app solo 4 endpoint; (b) app dengan auth refresh + multipart upload + retry; (c) app tim besar, 60+ endpoint, ingin konsistensi.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>(a) URLSession — cukup, nol dependency. (b) Alamofire — interceptor/retry/multipart matang. (c) Moya — endpoint type-safe enum + konsistensi tim.</p>
+        <p><em>Review:</em> Apa pun pilihannya, semuanya disembunyikan di balik <code>NetworkService</code> protocol. Tool adalah detail implementasi, bukan keputusan arsitektur lapisan atas.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Coalesce refresh</h4></div>
+        <p>Sepuluh request gagal 401 bersamaan. Rancang mekanisme agar token hanya di-refresh sekali.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+<pre><code data-swift>actor TokenRefresher {
+    private var inFlight: Task&lt;Void, Error&gt;?
+    func refresh() async throws {
+        if let inFlight { return try await inFlight.value }   // ikut yang sedang jalan
+        let task = Task { try await performRefresh() }
+        inFlight = task
+        defer { inFlight = nil }
+        try await task.value
+    }
+}</code></pre>
+        <p><em>Review:</em> <code>actor</code> menjamin akses <code>inFlight</code> aman. Request kedua–kesepuluh menunggu task refresh yang sama, bukan memicu refresh baru. Mencegah refresh storm & race token.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Retry yang aman</h4></div>
+        <p>Endpoint pembayaran (POST) gagal dengan timeout. Apakah boleh di-retry otomatis? Jelaskan.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Tidak buta. POST tidak idempoten — retry bisa membuat pembayaran ganda. Solusi: minta server menyediakan <strong>idempotency key</strong>; retry hanya aman bila server men-deduplikasi berdasarkan key tersebut.</p>
+        <p><em>Review:</em> Retry default hanya untuk operasi idempoten (GET/PUT/DELETE). Untuk POST kritis, idempotency adalah tanggung jawab kontrak API, bukan asumsi klien.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Abstraksi anti-bocor</h4></div>
+        <p>Seorang engineer menulis <code>func fetch() -&gt; DataRequest</code> (tipe Alamofire) di protocol Repository. Apa masalahnya?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p><code>DataRequest</code> adalah tipe Alamofire yang bocor ke kontrak domain. Repository kini terikat Alamofire — tak bisa di-mock tanpa library, tak bisa ganti tool. Perbaiki: kembalikan tipe domain (<code>[Order]</code>) via <code>async throws</code>.</p>
+        <p><em>Review:</em> Kontrak harus berbicara dalam tipe domain/Foundation, tidak pernah tipe library. Library berhenti di lapisan implementasi.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 10</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Memilih URLSession vs Alamofire vs Moya berdasarkan masalah & biaya dependency</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Menyusun networking berlapis: VM → UseCase → Repository → NetworkService → library</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Implementasi Bearer + refresh via RequestInterceptor (adapt + retry)</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Mencegah refresh storm dengan coalescing (actor)</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Retry dengan backoff & batas; hanya operasi idempoten</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Parsing envelope, pagination cursor, error model; logika pagination di Repository</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Menyembunyikan library di balik protocol; mock untuk test</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-09.html">← Module 09 — Modularization & DI</a>
+      <a href="module-11.html">Module 11 — Ecosystem Libraries →</a>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m10';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>
