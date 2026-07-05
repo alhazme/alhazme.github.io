@@ -116,6 +116,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#bundle"><span class="nidx">04</span>Bundle & Resources</a>
       <a href="#permissions"><span class="nidx">05</span>Permissions</a>
       <a href="#exercises"><span class="nidx">06</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -324,6 +325,50 @@ func ensureCamera() async -&gt; CameraResult {
         <p><em>Review:</em> Saat <code>.denied</code>, jangan ulangi dialog (sistem tak akan menampilkannya lagi). Arahkan user ke <code>UIApplication.openSettingsURLString</code> dan sediakan fitur alternatif. Pastikan <code>NSCameraUsageDescription</code> ada di Info.plist atau app crash sebelum dialog muncul.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>App vs Scene lifecycle</h4></div>
+        <p>Apa beda app lifecycle dan scene lifecycle, dan kenapa scene penting?</p>
+        <details><summary>▸ Jawaban</summary><p>App lifecycle mengatur proses aplikasi keseluruhan (launch, terminate). Scene lifecycle mengatur tiap UI scene (foreground/background) — penting untuk multi-window (iPad) dan mengelola state per-scene. SwiftUI App + WindowGroup mengabstraksi ini; SceneDelegate dipakai di UIKit lama.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Target vs scheme</h4></div>
+        <p>Apa beda target dan scheme di Xcode?</p>
+        <details><summary>▸ Jawaban</summary><p>Target mendefinisikan satu produk build (app, extension, test bundle) dengan setting & file-nya. Scheme mendefinisikan bagaimana target di-build/run/test (konfigurasi, argumen, environment). Satu target bisa punya banyak scheme.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Info.plist</h4></div>
+        <p>Kenapa string izin di Info.plist wajib, dan apa akibat bila absen?</p>
+        <details><summary>▸ Jawaban</summary><p>iOS mewajibkan usage description string untuk tiap izin sensitif; bila API izin dipanggil tanpa string yang sesuai, app crash. Ini kontrak privasi Apple — deklarasikan alasan pemakaian yang jujur (juga diperiksa App Review).</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: setup project produksi</span>Buat project baru dengan struktur folder rapi (Features/, Core/, Resources/), dua scheme (Dev/Prod) dengan konfigurasi berbeda (base URL via xcconfig), dan Info.plist dengan minimal satu izin. <strong>Tujuan:</strong> menguasai anatomi project sebelum menulis fitur.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan build configuration ketiga (Staging) + xcconfig terpisah, dan wiring agar base URL/flag berubah otomatis per-scheme tanpa mengubah kode. Tantangan: pisahkan secret dari repo (jangan commit kunci) — fondasi menuju DevOps (M14).</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Menaruh konfigurasi environment di dalam kode (hardcode URL) alih-alih xcconfig/scheme.</li>
+        <li>Mengabaikan string Info.plist hingga crash saat runtime.</li>
+        <li>Mencampur semua file dalam satu folder tanpa struktur — sulit skala.</li>
+        <li>Meng-commit kredensial/API key ke repo.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>Managing your app's life cycle</em>, <em>Scenes</em>.</li>
+        <li>Apple Developer Documentation — <em>Xcode</em> (build configurations, schemes).</li>
+        <li>Apple — <em>Information Property List</em> key reference (usage description keys).</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

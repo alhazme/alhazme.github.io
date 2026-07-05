@@ -116,6 +116,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#flags"><span class="nidx">05</span>Feature Flags</a>
       <a href="#killswitch"><span class="nidx">06</span>Kill-Switch & Rollout</a>
       <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">08</span>Quiz, Project &amp; Referensi</a>
     </nav>
   </aside>
 
@@ -275,6 +276,51 @@ if flags.isEnabled(.newCheckout) {
         <p><em>Review:</em> Kill-switch dulu (mitigasi cepat), perbaikan kemudian. Ini hanya mungkin bila flag dirancang sebelumnya — keputusan arsitektur, bukan reaksi.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">08</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>SwiftData migration</h4></div>
+        <p>Bagaimana menangani perubahan skema SwiftData tanpa merusak data user?</p>
+        <details><summary>▸ Jawaban</summary><p>Gunakan VersionedSchema untuk tiap versi skema + SchemaMigrationPlan (lightweight untuk perubahan sederhana, custom untuk transformasi kompleks). Uji migrasi dengan seed DB tiap versi di CI agar tak ada kehilangan data saat upgrade.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Privacy Manifest</h4></div>
+        <p>Apa fungsi PrivacyInfo.xcprivacy?</p>
+        <details><summary>▸ Jawaban</summary><p>Mendeklarasikan jenis data yang dikumpulkan, tujuan, dan penggunaan required-reason API — diwajibkan Apple untuk transparansi privasi & App Review. Beberapa API (mis. akses timestamp file) butuh alasan terdaftar.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Kill-switch vs feature flag</h4></div>
+        <p>Apa beda keduanya dan kenapa memisahkan deploy dari release?</p>
+        <details><summary>▸ Jawaban</summary><p>Feature flag mengontrol ketersediaan fitur (rollout bertahap, A/B). Kill-switch mematikan fitur bermasalah secara darurat tanpa rilis ulang. Memisahkan deploy (kirim kode) dari release (aktifkan fitur) mengurangi risiko & mempercepat mitigasi.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: skema berversi + flag</span>Ambil model SwiftData dan buat VersionedSchema v1→v2 (mis. tambah field) dengan SchemaMigrationPlan. Tambahkan feature flag remote (abstraksi) untuk satu fitur + kill-switch. <strong>Tujuan:</strong> migrasi aman + kontrol rilis.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan Privacy Manifest untuk data yang app kumpulkan + required-reason API yang dipakai, dan rancang rollout bertahap (mis. 10%→50%→100%) dengan jalur rollback. Tantangan: rilis berisiko-rendah dengan mitigasi cepat.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Mengubah skema tanpa VersionedSchema/migration plan (kehilangan data).</li>
+        <li>Tak menguji migrasi dengan data versi lama sebelum rilis.</li>
+        <li>Mengabaikan Privacy Manifest / required-reason API (penolakan App Review).</li>
+        <li>Fitur berisiko tanpa kill-switch.</li>
+        <li>Rilis 100% langsung tanpa rollout bertahap.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>SwiftData</em> (schema migration, VersionedSchema).</li>
+        <li>Apple Developer Documentation — <em>Privacy manifest files</em>, <em>Describing use of required reason API</em>.</li>
+        <li>Apple — App Tracking Transparency documentation (verifikasi versi).</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

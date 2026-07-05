@@ -118,6 +118,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#result"><span class="nidx">06</span>Result & Error Flow</a>
       <a href="#closures"><span class="nidx">07</span>Advanced Closures</a>
       <a href="#exercises"><span class="nidx">08</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -410,6 +411,48 @@ func syncAll(from repo: some Repository&lt;Order&gt;) async throws -&gt; [Order]
         <p><em>Review:</em> <code>some Repository&lt;Order&gt;</code> jauh lebih ringkas daripada generic <code>&lt;R: Repository&gt; where R.Entity == Order</code>, dan tetap nol overhead.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge & Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>some vs any</h4></div>
+        <p>Apa beda mengembalikan <code>some Collection</code> vs <code>any Collection</code>? Mana yang lebih murah?</p>
+        <details><summary>▸ Jawaban</summary><p><code>some</code> = opaque type: satu tipe konkret tetap (diketahui compiler), tanpa overhead existential — lebih cepat. <code>any</code> = existential: boks tipe apa pun yang konform, fleksibel tetapi ada overhead dynamic dispatch/boxing. Utamakan <code>some</code>; pakai <code>any</code> hanya saat butuh heterogenitas nyata.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Associated type</h4></div>
+        <p>Kenapa protocol dengan <code>associatedtype</code> tak bisa langsung dipakai sebagai tipe variabel biasa di gaya lama?</p>
+        <details><summary>▸ Jawaban</summary><p>Karena tipe asosiatifnya belum ditentukan (PAT — protocol with associated type). Solusi: generic constraint (<code>&lt;T: Sequence&gt;</code>), <code>some</code>/<code>any</code> (Swift modern mengizinkan <code>any</code> dengan batasan), atau type erasure. Utamakan generic constraint untuk performa.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>POP vs inheritance</h4></div>
+        <p>Kapan protocol + extension lebih baik daripada base class?</p>
+        <details><summary>▸ Jawaban</summary><p>Saat butuh komposisi perilaku tanpa hierarki kaku, berlaku ke value types (struct/enum tak punya inheritance), dan menghindari masalah base class gemuk. Protocol extension memberi implementasi default; tipe memilih konformansi yang dibutuhkan.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: repository generik</span>Definisikan <code>protocol Repository { associatedtype Entity; func all() -&gt; [Entity]; func find(id: String) -&gt; Entity? }</code>. Buat implementasi in-memory generik <code>InMemoryRepository&lt;T: Identifiable&gt;</code>. Uji dengan dua entity berbeda (mis. Product, User). <strong>Tujuan:</strong> melatih generics + associated type + constraint — pola yang langsung dipakai di data layer (M9).</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan operasi <code>filter</code> yang menerima predikat dan kembalikan <code>some Sequence</code>, serta buat type-erased wrapper <code>AnyRepository&lt;T&gt;</code> agar beragam implementasi repository dapat disimpan dalam satu array. Tantangan: pahami kapan <code>some</code> cukup vs kapan type erasure (<code>any</code>/AnyXxx) benar-benar diperlukan.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li><strong>Memakai <code>any</code> di mana <code>some</code> cukup</strong> — overhead existential tak perlu. Default <code>some</code>.</li>
+        <li><strong>Protocol gemuk</strong> — satu protocol dengan banyak requirement memaksa konformansi berlebih. Pecah menjadi protocol kecil terfokus (Interface Segregation).</li>
+        <li><strong>Type erasure prematur</strong> — menambah AnyXxx sebelum benar dibutuhkan menambah kompleksitas. Mulai dari generic constraint.</li>
+        <li><strong>Generic berlebihan</strong> — men-generic-kan hal yang hanya dipakai satu tipe menurunkan keterbacaan tanpa manfaat.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (verifikasi versi terkini):</p>
+      <ul>
+        <li><em>The Swift Programming Language</em> — bab "Generics", "Protocols", "Opaque and Boxed Protocol Types" (swift.org).</li>
+        <li>Apple Developer Documentation — artikel/WWDC tentang protocol-oriented programming & opaque types (verifikasi tahun sesi).</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 25 — Extensions & Connectivity</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note.case{background:rgba(92,124,163,.10);border-left:4px solid var(--info)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 25 · Native Frameworks</div><h2>Extensions & Connectivity</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Katalog & Model Extension</a>
+      <a href="#appext"><span class="nidx">01</span>App Extension</a>
+      <a href="#shareext"><span class="nidx">02</span>Share Extension</a>
+      <a href="#sirikit"><span class="nidx">03</span>SiriKit vs App Intents</a>
+      <a href="#multipeer"><span class="nidx">04</span>MultipeerConnectivity</a>
+      <a href="#pencilkit"><span class="nidx">05</span>PencilKit</a>
+      <a href="#bestpractice"><span class="nidx">06</span>Best Practice</a>
+      <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">08</span>Quiz, Project &amp; Referensi</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 25 · NATIVE FRAMEWORK MASTERY</span>Extensions & Connectivity</h2>
+      <p class="lead">Memperluas app ke dalam sistem (extension point), muncul di share sheet, menerima perintah Siri, berkomunikasi peer-to-peer tanpa internet, dan menangkap input Apple Pencil.</p>
+      <div class="meta-row"><span class="badge accent">App Extension</span><span class="badge accent">Share Extension</span><span class="badge accent">SiriKit</span><span class="badge accent">MultipeerConnectivity</span><span class="badge neutral">~120 menit</span></div>
+      <table>
+        <thead><tr><th>Framework</th><th>Untuk</th><th>Relevansi vertikal</th></tr></thead>
+        <tbody>
+          <tr><td><strong>App Extension</strong></td><td>Model umum semua extension (proses terpisah)</td><td>Fondasi Widget/Share/dsb.</td></tr>
+          <tr><td><strong>Share Extension</strong></td><td>Terima konten dari app lain via share sheet</td><td>"Simpan ke app", clip produk, catat</td></tr>
+          <tr><td><strong>SiriKit / App Intents</strong></td><td>Perintah suara & otomasi sistem</td><td>Aksi cepat, aksesibilitas</td></tr>
+          <tr><td><strong>MultipeerConnectivity</strong></td><td>Komunikasi P2P tanpa internet (Wi-Fi/Bluetooth)</td><td>POS offline, berbagi antar-device di lokasi</td></tr>
+          <tr><td><strong>PencilKit</strong></td><td>Gambar/tulis tangan dengan Apple Pencil</td><td>Tanda tangan, anotasi, ABK (menulis/mewarnai)</td></tr>
+        </tbody>
+      </table>
+      <div class="note key"><span class="nt">Model extension (fondasi, sambung M20)</span>Setiap extension adalah <strong>proses & bundle terpisah</strong> dari app utama — memori tak dibagi, siklus hidup pendek (sistem bisa mematikannya kapan saja), dan berbagi data lewat <strong>App Group</strong> (M20). Prinsip yang sama berlaku untuk Widget (M20), Share Extension, dan lainnya: logika bisnis diletakkan di framework/paket bersama agar app & extension memakai kode yang sama (build once, M8).</div>
+    </section>
+
+    <section id="appext">
+      <h2><span class="sn">01</span>App Extension — Model Umum</h2>
+      <p>iOS mendefinisikan banyak <em>extension point</em> (Widget, Share, Action, Notification Service/Content, Keyboard, dll.). Semua berbagi karakteristik inti yang wajib Anda pahami sebelum membangun salah satunya.</p>
+      <ul>
+        <li><strong>Proses terpisah</strong> — extension tak berbagi memori dengan app; komunikasi via App Group / shared container.</li>
+        <li><strong>Siklus hidup pendek & dibatasi</strong> — sistem memberi waktu/memori terbatas; jangan lakukan kerja berat berkepanjangan.</li>
+        <li><strong>Kode bersama via framework/paket</strong> — logika domain di modul bersama (M9), bukan diduplikasi antara app & extension.</li>
+        <li><strong>Entitlement & Info.plist per-extension</strong> — tiap extension punya target, bundle ID, dan konfigurasi sendiri.</li>
+      </ul>
+      <div class="note warn"><span class="nt">Anti-pattern</span>(1) Menaruh logika bisnis penting <em>hanya</em> di dalam extension — sulit di-test & tak reusable; letakkan di paket bersama. (2) Mengasumsikan extension bisa berjalan lama / mengakses semua resource app — ia dibatasi. (3) Berbagi data lewat mekanisme selain App Group (mis. menulis ke Documents app utama) — takkan terlihat lintas proses.</div>
+    </section>
+
+    <section id="shareext">
+      <h2><span class="sn">02</span>Share Extension</h2>
+      <p>Share Extension membuat app Anda muncul di <strong>share sheet</strong> sistem — user membagikan URL/gambar/teks dari app lain langsung ke app Anda.</p>
+<pre><code data-swift>import UniformTypeIdentifiers
+
+// Di dalam Share Extension: ambil item yang dibagikan
+func handleShared(_ extensionContext: NSExtensionContext?) {
+    guard let item = extensionContext?.inputItems.first as? NSExtensionItem,
+          let provider = item.attachments?.first else { return }
+
+    if provider.hasItemConformingToTypeIdentifier(UTType.url.identifier) {
+        provider.loadItem(forTypeIdentifier: UTType.url.identifier) { data, _ in
+            guard let url = data as? URL else { return }
+            // Simpan ke App Group agar app utama memprosesnya nanti
+            let d = UserDefaults(suiteName: "group.com.alhazme.app")
+            d?.set(url.absoluteString, forKey: "pendingSharedURL")
+            self.extensionContext?.completeRequest(returningItems: nil)
+        }
+    }
+}</code></pre>
+      <div class="note case"><span class="nt">Kasus vertikal — "clip produk" / catat cepat</span>E-commerce/UMKM: user melihat produk di Safari → share ke app Anda → Share Extension menyimpan URL ke App Group → app utama mengambil & memprosesnya (fetch metadata, simpan ke wishlist). Karena extension berumur pendek, pola yang benar: <strong>simpan minimal ke App Group, proses berat di app utama</strong> (atau via background task M5). Deklarasikan tipe konten yang diterima (<code>NSExtensionActivationRule</code>) agar app hanya muncul untuk konten relevan.</div>
+    </section>
+
+    <section id="sirikit">
+      <h2><span class="sn">03</span>SiriKit vs App Intents</h2>
+      <p>Untuk integrasi Siri & otomasi, ada dua jalur. Memilih yang tepat penting agar tak membangun di atas API yang salah.</p>
+      <table>
+        <thead><tr><th>Jalur</th><th>Kapan</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>App Intents</strong> (M20)</td><td>Mayoritas app baru — aksi kustom, Shortcuts, Spotlight, widget interaktif</td><td>Modern, direkomendasikan</td></tr>
+          <tr><td><strong>SiriKit (Intents domain)</strong></td><td>Domain bawaan spesifik (messaging, VoIP, pembayaran, workout, media, ride)</td><td>Untuk domain yang App Intents belum cakup</td></tr>
+        </tbody>
+      </table>
+      <div class="note key"><span class="nt">Old → New → Alasan</span><strong>Old:</strong> SiriKit dengan <code>INIntent</code> kustom (Intents/IntentsUI extension) untuk aksi umum. <strong>New:</strong> <strong>App Intents</strong> (Swift-native, tanpa extension terpisah untuk banyak kasus) — inilah yang sudah Anda pelajari di M20. <strong>Migration:</strong> untuk aksi kustom, gunakan App Intents; pertahankan SiriKit hanya bila memakai <em>system intent domain</em> bawaan (mis. app pesan/VoIP yang butuh integrasi telepon). <strong>Alasan:</strong> App Intents lebih sederhana, satu definisi melayani Siri + Shortcuts + Spotlight + widget, dan arah investasi Apple. <em>Batas domain SiriKit vs cakupan App Intents berubah antar versi — verifikasi untuk kebutuhan spesifik Anda.</em></div>
+    </section>
+
+    <section id="multipeer">
+      <h2><span class="sn">04</span>MultipeerConnectivity</h2>
+      <p>Komunikasi <strong>peer-to-peer tanpa internet</strong> — menemukan device terdekat lewat Wi-Fi/Bluetooth dan bertukar data. Ideal untuk skenario lokal/offline.</p>
+<pre><code data-swift>import MultipeerConnectivity
+
+final class PeerSession: NSObject, MCSessionDelegate {
+    private let peerID = MCPeerID(displayName: UIDevice.current.name)
+    private lazy var session = MCSession(peer: peerID, securityIdentity: nil,
+        encryptionPreference: .required)   // WAJIB enkripsi
+
+    func send(_ data: Data) throws {
+        guard !session.connectedPeers.isEmpty else { return }
+        try session.send(data, toPeers: session.connectedPeers, with: .reliable)
+    }
+    // discovery: MCNearbyServiceAdvertiser + MCNearbyServiceBrowser
+    // delegate: session(_:didReceive:fromPeer:) → terima data
+    func session(_ s: MCSession, peer: MCPeerID, didChange state: MCSessionState) {}
+    func session(_ s: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {}
+    func session(_ s: MCSession, didReceive stream: InputStream, withName n: String, fromPeer p: MCPeerID) {}
+    func session(_ s: MCSession, didStartReceivingResourceWithName n: String, fromPeer p: MCPeerID, with progress: Progress) {}
+    func session(_ s: MCSession, didFinishReceivingResourceWithName n: String, fromPeer p: MCPeerID, at localURL: URL?, withError e: Error?) {}
+}</code></pre>
+      <div class="note warn"><span class="nt">Keamanan & izin</span>(1) Set <code>encryptionPreference: .required</code> — jangan kirim data tanpa enkripsi. (2) iOS terbaru menuntut string izin <strong>Local Network</strong> (<code>NSLocalNetworkUsageDescription</code>) + deklarasi Bonjour service; tanpa itu discovery gagal/crash. (3) Jangan percaya peer secara implisit — validasi & otorisasi data yang diterima (zero-trust: peer lain bukan berarti tepercaya). (4) Untuk data sensitif, lapisi enkripsi aplikasi sendiri (CryptoKit M21) di atas transport.</div>
+      <div class="note case"><span class="nt">Kasus vertikal — POS/berbagi offline di lokasi</span>Logistik/retail: dua device di gudang/toko bertukar data (transfer stok, sinkron pesanan) <strong>tanpa internet</strong> — berguna di area sinyal buruk. Atau berbagi katalog antar sales di lapangan. Tetap terapkan validasi & enkripsi; MultipeerConnectivity menyediakan transport, keamanan aplikatif tetap tanggung jawab Anda.</div>
+    </section>
+
+    <section id="pencilkit">
+      <h2><span class="sn">05</span>PencilKit</h2>
+      <p>PencilKit memberi kanvas menggambar/menulis tangan siap-pakai (<code>PKCanvasView</code>) dengan dukungan Apple Pencil, tool picker, dan low-latency inking.</p>
+<pre><code data-swift>import PencilKit
+
+// UIKit canvas — bungkus via UIViewRepresentable untuk SwiftUI
+func makeCanvas() -&gt; PKCanvasView {
+    let canvas = PKCanvasView()
+    canvas.drawingPolicy = .anyInput          // Pencil + jari
+    canvas.tool = PKInkingTool(.pen, color: .black, width: 4)
+    return canvas
+}
+
+// Simpan hasil gambar sebagai data (persist ke file/App Group)
+func exportDrawing(_ canvas: PKCanvasView) -&gt; Data {
+    canvas.drawing.dataRepresentation()       // simpan; muat kembali dengan PKDrawing(data:)
+}
+
+// Render ke gambar (mis. untuk tanda tangan di PDF, M23)
+func renderImage(_ canvas: PKCanvasView) -&gt; UIImage {
+    canvas.drawing.image(from: canvas.drawing.bounds, scale: UIScreen.main.scale)
+}</code></pre>
+      <div class="note case"><span class="nt">Kasus vertikal — tanda tangan, anotasi & ABK</span>(1) <strong>Tanda tangan digital</strong> pada dokumen/kontrak: PencilKit → render ke gambar → sisipkan ke PDF (PDFKit M23). (2) <strong>Anotasi</strong> pada invoice/foto. (3) <strong>ABK</strong>: aktivitas menulis/mewarnai/tracing untuk latihan motorik halus — pasangkan dengan umpan balik multi-indera & target sentuh besar (aksesibilitas M17). Simpan <code>PKDrawing.dataRepresentation()</code> agar dapat dimuat & diedit ulang. <em>Beberapa fitur (mis. dukungan latency/predictive) bergantung perangkat & versi — verifikasi bila kritis.</em></div>
+    </section>
+
+    <section id="bestpractice">
+      <h2><span class="sn">06</span>Best Practice Lintas-Framework</h2>
+      <ul>
+        <li><strong>Logika bersama, bukan di extension</strong> — domain di paket bersama; app & extension memakai kode yang sama (M8/M9).</li>
+        <li><strong>Berbagi data via App Group</strong> — extension proses terpisah; simpan minimal, proses berat di app utama.</li>
+        <li><strong>App Intents untuk aksi kustom</strong> — SiriKit hanya untuk system intent domain bawaan.</li>
+        <li><strong>P2P: enkripsi wajib + zero-trust</strong> — <code>encryptionPreference: .required</code>, izin Local Network, validasi data peer.</li>
+        <li><strong>PencilKit: persist dataRepresentation</strong> — dapat dimuat & diedit ulang; render ke gambar untuk tanda tangan/PDF.</li>
+        <li><strong>Bungkus di balik protocol</strong> — <code>SharedContentStore</code>, <code>PeerTransport</code>, <code>DrawingStore</code> agar testable.</li>
+      </ul>
+      <div class="note warn"><span class="nt">Epistemik</span>Cakupan App Intents vs SiriKit, persyaratan izin Local Network untuk MultipeerConnectivity, dan kapabilitas PencilKit berkembang antar versi iOS. <strong>Verifikasi terhadap dokumentasi Apple & WWDC terkini</strong> — contoh di modul ini menunjukkan pola stabil, konfirmasikan detail untuk iOS target Anda.</div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">07</span>Latihan</h2>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Logika di extension</h4></div>
+        <p>Share Extension Anda berisi seluruh logika parsing & penyimpanan produk. Kenapa ini keliru?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Logika terkunci di extension: tak reusable oleh app utama, sulit di-test, dan extension berumur pendek (bisa mati sebelum selesai). Perbaiki: letakkan domain di paket bersama; extension hanya menyimpan input minimal ke App Group; app utama memproses.</p>
+        <p><em>Review:</em> Extension = permukaan tipis. Build once — satu logika dipakai app & semua extension.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Siri: jalur mana?</h4></div>
+        <p>Anda ingin menambah perintah suara "Cek stok gudang". SiriKit atau App Intents?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>App Intents (M20) — aksi kustom, satu definisi melayani Siri + Shortcuts + Spotlight. SiriKit hanya bila memakai system intent domain bawaan (pesan, VoIP, pembayaran, workout, dll.), yang tak berlaku di sini.</p>
+        <p><em>Review:</em> Default modern = App Intents. SiriKit adalah pengecualian untuk domain sistem tertentu.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>P2P tanpa enkripsi</h4></div>
+        <p>Fitur transfer stok antar-device memakai MultipeerConnectivity dengan <code>encryptionPreference: .none</code> "agar lebih cepat". Risiko?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Data (termasuk yang sensitif) dikirim tanpa enkripsi di jaringan lokal — dapat disadap. Set <code>.required</code>. Selain itu jangan percaya peer secara implisit: validasi & otorisasi data yang diterima; untuk data sangat sensitif, lapisi enkripsi CryptoKit (M21).</p>
+        <p><em>Review:</em> Zero-trust + defense-in-depth berlaku juga di P2P. Transport terenkripsi adalah baseline, bukan opsi.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Persist gambar PencilKit</h4></div>
+        <p>Anda menyimpan gambar PencilKit sebagai PNG lalu ingin membiarkan user mengeditnya lagi nanti, tetapi guratan tak bisa diubah. Kenapa & fix?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>PNG adalah raster — kehilangan data guratan. Untuk edit ulang, simpan <code>drawing.dataRepresentation()</code> (<code>PKDrawing</code>) dan muat dengan <code>PKDrawing(data:)</code>. Render ke PNG hanya untuk output final (tanda tangan di PDF, thumbnail).</p>
+        <p><em>Review:</em> Simpan representasi vektor asli untuk editabilitas; raster hanya untuk presentasi akhir.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">08</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Logika extension</h4></div>
+        <p>Kenapa logika bisnis tak boleh tinggal di dalam extension?</p>
+        <details><summary>▸ Jawaban</summary><p>Extension berumur pendek (bisa mati sebelum selesai), tak reusable oleh app, dan sulit diuji. Letakkan domain di paket bersama; extension hanya menyimpan input minimal ke App Group; app utama memproses.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>SiriKit vs App Intents</h4></div>
+        <p>Untuk aksi kustom (mis. 'cek stok'), yang mana?</p>
+        <details><summary>▸ Jawaban</summary><p>App Intents — satu definisi melayani Siri + Shortcuts + Spotlight + widget. SiriKit hanya untuk system intent domain bawaan (pesan, VoIP, pembayaran, workout, media, ride).</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>MultipeerConnectivity</h4></div>
+        <p>Apa dua hal wajib untuk P2P yang aman?</p>
+        <details><summary>▸ Jawaban</summary><p>encryptionPreference: .required (transport terenkripsi) dan validasi/otorisasi data dari peer (zero-trust — peer lain bukan berarti tepercaya). Plus izin Local Network + deklarasi Bonjour service.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: share + tanda tangan</span>Buat Share Extension yang menerima URL dari app lain → simpan ke App Group → app utama memproses. Tambahkan kanvas PencilKit untuk tanda tangan yang dirender ke gambar dan disisipkan ke PDF (M23). <strong>Tujuan:</strong> extension tipis + input Pencil.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan pertukaran data P2P (MultipeerConnectivity, enkripsi wajib, validasi peer) untuk skenario offline (mis. transfer stok antar-device). Tantangan: build-once logic + zero-trust P2P.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Logika bisnis terkunci di extension (tak reusable, rawan mati).</li>
+        <li>Kerja berat di extension berumur pendek (harusnya host app).</li>
+        <li>Custom SiriKit intent untuk aksi yang cukup dengan App Intents.</li>
+        <li>MultipeerConnectivity tanpa enkripsi / tanpa validasi peer.</li>
+        <li>PencilKit disimpan hanya sebagai raster (kehilangan editabilitas).</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>App Extensions</em>, <em>Sharing</em> (Share Extension).</li>
+        <li>Apple Developer Documentation — <em>App Intents</em>, <em>SiriKit</em>.</li>
+        <li>Apple Developer Documentation — <em>Multipeer Connectivity</em>, <em>PencilKit</em>.</li>
+      </ul>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 25</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Model extension: proses terpisah, siklus pendek, App Group, kode bersama</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Share Extension: ambil item, simpan minimal ke App Group, proses di app utama</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">SiriKit vs App Intents: default App Intents; SiriKit untuk system domain</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">MultipeerConnectivity: enkripsi wajib, izin Local Network, validasi peer</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">PencilKit: PKCanvasView, persist dataRepresentation, render untuk tanda tangan/PDF</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Kasus vertikal: clip produk, POS offline, tanda tangan, aktivitas ABK</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Best practice: logika bersama, abstraksi protocol, zero-trust P2P</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-24.html">← Module 24 — Data & System</a>
+      <span class="next">Berikutnya: Module 26 — Graphics & Immersive (Core Graphics, Core Animation, Metal, SceneKit, RealityKit, ARKit, GameKit)</span>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m25';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

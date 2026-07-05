@@ -117,6 +117,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#tca"><span class="nidx">05</span>TCA</a>
       <a href="#decision"><span class="nidx">06</span>Matriks Keputusan</a>
       <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -314,6 +315,51 @@ struct PlaceOrderUseCase {
         <p><em>Review:</em> Kesalahan umum: memaksakan TCA/VIPER pada (a) → memperlambat solo founder; memakai MVVM polos pada (b) → boundary kabur saat skala tim.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>MVC problem</h4></div>
+        <p>Apa 'Massive View Controller' dan kenapa MVVM membantu?</p>
+        <details><summary>▸ Jawaban</summary><p>Di MVC iOS, VC menampung UI + logika + state → membengkak & sulit diuji. MVVM memindahkan logika presentasi & state ke view model yang dapat diuji terpisah dari UI, VC/View jadi tipis.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Clean Architecture</h4></div>
+        <p>Apa aturan dependency di Clean Architecture?</p>
+        <details><summary>▸ Jawaban</summary><p>Dependency mengarah ke dalam: presentation → domain ← data. Domain (entity, use case) tak bergantung pada framework/UI/DB. Detail (UI, network, DB) bergantung pada abstraksi domain, bukan sebaliknya (Dependency Inversion).</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Kapan TCA/VIPER</h4></div>
+        <p>Kapan memilih TCA atau VIPER daripada MVVM?</p>
+        <details><summary>▸ Jawaban</summary><p>VIPER: tim besar butuh boundary sangat tegas (biaya boilerplate tinggi). TCA: butuh state management dapat diuji & komposabel dengan unidirectional flow (kurva belajar). MVVM + Clean cukup untuk mayoritas; jangan over-engineer.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: fitur dalam Clean Architecture</span>Ambil satu fitur (mis. daftar produk) dan strukturkan berlapis: Entity + UseCase (domain), Repository impl + DTO (data), ViewModel + View (presentation). Dependency mengarah ke domain. <strong>Tujuan:</strong> merasakan boundary & arah dependency secara konkret.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Buat matriks trade-off (MVVM vs Clean vs VIPER vs TCA) untuk konteks spesifik: tim solo (Anda), app SaaS menengah. Argumentasikan pilihan. Tantangan: keputusan arsitektur berbasis konteks, bukan tren — inti peran principal architect.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Menerapkan VIPER/TCA pada app kecil (over-engineering).</li>
+        <li>Domain yang meng-import UIKit/SwiftUI/DB (kebocoran boundary).</li>
+        <li>Repository yang mengembalikan DTO mentah ke domain, bukan entity.</li>
+        <li>ViewModel yang tahu detail network/DB langsung.</li>
+        <li>Memilih arsitektur karena tren, bukan konteks tim/proyek.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — panduan arsitektur SwiftUI/UIKit (verifikasi artikel terkini).</li>
+        <li>Sumber Clean Architecture (Robert C. Martin) — konsep umum, bukan spesifik iOS.</li>
+        <li>The Composable Architecture — dokumentasi resmi repo Point-Free (verifikasi versi bila dipakai).</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

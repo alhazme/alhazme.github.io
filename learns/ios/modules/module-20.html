@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 20 — Extension Ecosystem</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note.case{background:rgba(92,124,163,.10);border-left:4px solid var(--info)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 20 · Pelengkap</div><h2>Extension Ecosystem</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Katalog & App Group</a>
+      <a href="#widgetkit"><span class="nidx">01</span>WidgetKit</a>
+      <a href="#appintents"><span class="nidx">02</span>App Intents</a>
+      <a href="#widgetintent"><span class="nidx">03</span>Interactive Widget</a>
+      <a href="#activitykit"><span class="nidx">04</span>ActivityKit / Live Activity</a>
+      <a href="#passkit"><span class="nidx">05</span>PassKit</a>
+      <a href="#carplay"><span class="nidx">06</span>CarPlay</a>
+      <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">08</span>Quiz, Project &amp; Referensi</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 20 · PELENGKAP — SYSTEM SURFACES</span>Extension Ecosystem</h2>
+      <p class="lead">Framework yang memperluas app Anda ke luar layar utama — home screen, Lock Screen, Siri, Dynamic Island, Apple Wallet, dan dasbor mobil. Inilah yang menaikkan engagement & retensi produk.</p>
+      <div class="meta-row"><span class="badge accent">WidgetKit</span><span class="badge accent">App Intents</span><span class="badge accent">ActivityKit</span><span class="badge accent">PassKit</span><span class="badge neutral">~130 menit</span></div>
+      <table>
+        <thead><tr><th>Framework</th><th>Kapan pakai</th><th>Relevansi vertikal Anda</th></tr></thead>
+        <tbody>
+          <tr><td><strong>WidgetKit</strong></td><td>Info sekilas di home/Lock Screen</td><td>E-commerce (promo), hospitality (status), ABK (jadwal harian)</td></tr>
+          <tr><td><strong>App Intents</strong></td><td>Aksi via Siri, Shortcuts, Spotlight</td><td>"Pesan ulang", "Cek poin", automasi UMKM</td></tr>
+          <tr><td><strong>ActivityKit</strong></td><td>Status real-time di Lock Screen/Dynamic Island</td><td>Logistik (tracking pesanan/pengiriman)</td></tr>
+          <tr><td><strong>PassKit</strong></td><td>Kartu di Apple Wallet</td><td>Hospitality/membership (kartu loyalty), tiket, kupon</td></tr>
+          <tr><td><strong>CarPlay</strong></td><td>UI di dasbor mobil</td><td>Logistik/driver app, navigasi</td></tr>
+        </tbody>
+      </table>
+      <div class="note key"><span class="nt">Fondasi: App Group & shared container</span>Extension berjalan di <strong>proses terpisah</strong> dari app utama — tidak berbagi memori. Untuk berbagi data (widget menampilkan data app), gunakan <strong>App Group</strong>: shared <code>UserDefaults(suiteName:)</code> atau shared file container, atau SwiftData/Core Data dengan <code>ModelConfiguration(groupContainer:)</code>. Ini prasyarat hampir semua extension.</div>
+    </section>
+
+    <section id="widgetkit">
+      <h2><span class="sn">01</span>WidgetKit</h2>
+      <p>Widget adalah view SwiftUI yang di-render sistem pada interval yang Anda tentukan lewat <strong>timeline</strong>. Widget tidak "hidup" terus — sistem meminta snapshot & timeline, lalu me-render sendiri.</p>
+<pre><code data-swift>import WidgetKit
+import SwiftUI
+
+// 1. Entry — satu titik waktu data
+struct OrderEntry: TimelineEntry {
+    let date: Date
+    let activeOrders: Int
+    let nextDelivery: String
+}
+
+// 2. Provider — memasok timeline
+struct OrderProvider: TimelineProvider {
+    func placeholder(in context: Context) -&gt; OrderEntry {
+        OrderEntry(date: .now, activeOrders: 0, nextDelivery: "—")
+    }
+    func getSnapshot(in context: Context, completion: @escaping (OrderEntry) -&gt; Void) {
+        completion(loadEntry())          // untuk preview cepat
+    }
+    func getTimeline(in context: Context, completion: @escaping (Timeline&lt;OrderEntry&gt;) -&gt; Void) {
+        let entry = loadEntry()          // baca dari App Group
+        // refresh lagi ~30 menit; sistem yang memutuskan waktu persisnya
+        let next = Calendar.current.date(byAdding: .minute, value: 30, to: .now)!
+        completion(Timeline(entries: [entry], policy: .after(next)))
+    }
+    private func loadEntry() -&gt; OrderEntry {
+        // Fail closed: App Group bisa salah konfigurasi — jangan force-unwrap.
+        guard let d = UserDefaults(suiteName: "group.com.alhazme.app") else {
+            return OrderEntry(date: .now, activeOrders: 0, nextDelivery: "—")
+        }
+        return OrderEntry(date: .now,
+            activeOrders: d.integer(forKey: "activeOrders"),
+            nextDelivery: d.string(forKey: "nextDelivery") ?? "—")
+    }
+}
+
+// 3. View — SwiftUI, subset terbatas
+struct OrderWidgetView: View {
+    let entry: OrderEntry
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("\(entry.activeOrders) pesanan aktif").font(.headline)
+            Text("Kirim berikutnya: \(entry.nextDelivery)").font(.caption)
+        }
+        .containerBackground(.fill.tertiary, for: .widget)   // wajib iOS 17+
+    }
+}
+
+// 4. Widget declaration
+struct OrderWidget: Widget {
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: "OrderWidget", provider: OrderProvider()) { entry in
+            OrderWidgetView(entry: entry)
+        }
+        .configurationDisplayName("Status Pesanan")
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular])
+    }
+}</code></pre>
+      <div class="note warn"><span class="nt">Batas & disiplin</span>Sistem membatasi frekuensi refresh widget (hemat baterai) — <strong>jangan andalkan widget untuk data real-time</strong> (itu tugas Live Activity). Widget diperbarui dari App Group; app utama menulis data, panggil <code>WidgetCenter.shared.reloadTimelines(ofKind:)</code> saat data berubah. View widget hanya subset SwiftUI (tanpa scroll/interaksi bebas — kecuali Button/Toggle via App Intents, bagian 03).</div>
+    </section>
+
+    <section id="appintents">
+      <h2><span class="sn">02</span>App Intents</h2>
+      <p>App Intents mengekspos aksi app ke <strong>Siri, Shortcuts, Spotlight</strong>, dan widget interaktif. Ganti SiriKit lama untuk mayoritas kasus.</p>
+      <div class="code-label">Definisi intent — satu aksi yang dapat dipanggil sistem</div>
+<pre><code data-swift>import AppIntents
+
+struct ReorderIntent: AppIntent {
+    static var title: LocalizedStringResource = "Pesan Ulang"
+    static var description = IntentDescription("Membuat ulang pesanan terakhir Anda.")
+
+    @Parameter(title: "Produk")
+    var product: ProductEntity
+
+    func perform() async throws -&gt; some IntentResult &amp; ProvidesDialog {
+        try await OrderService.shared.reorder(product.id)
+        return .result(dialog: "Pesanan \(product.name) dibuat.")
+    }
+}
+
+// Ekspos ke Shortcuts otomatis
+struct AppShortcuts: AppShortcutsProvider {
+    static var appShortcuts: [AppShortcut] {
+        AppShortcut(intent: ReorderIntent(),
+            phrases: ["Pesan ulang di \(.applicationName)"],
+            shortTitle: "Pesan Ulang", systemImageName: "cart")
+    }
+}</code></pre>
+      <div class="note key"><span class="nt">AppEntity & konsistensi</span>Tipe domain yang dipakai intent (mis. <code>ProductEntity</code>) mengadopsi <code>AppEntity</code> + punya <code>EntityQuery</code> agar sistem bisa mencari/menyarankannya. Karena logika bisnis ada di use case (M8), <code>perform()</code> cukup memanggil use case yang sama dengan yang dipakai UI — <strong>satu sumber logika, banyak permukaan</strong> (UI, Siri, Shortcuts, widget).</div>
+    </section>
+
+    <section id="widgetintent">
+      <h2><span class="sn">03</span>Interactive Widget (Button/Toggle)</h2>
+      <p>Sejak iOS 17, widget bisa punya <code>Button</code>/<code>Toggle</code> yang menjalankan App Intent langsung tanpa membuka app.</p>
+<pre><code data-swift>struct ToggleTaskIntent: AppIntent {
+    static var title: LocalizedStringResource = "Tandai Selesai"
+    @Parameter(title: "Task ID") var taskID: String
+    func perform() async throws -&gt; some IntentResult {
+        await TaskStore.shared.complete(taskID)      // tulis ke App Group
+        return .result()
+    }
+}
+
+// Di dalam view widget — tombol langsung
+Button(intent: ToggleTaskIntent(taskID: task.id)) {
+    Image(systemName: task.done ? "checkmark.circle.fill" : "circle")
+}</code></pre>
+      <div class="note case"><span class="nt">Kasus vertikal — jadwal ABK</span>Widget jadwal harian anak (ABK) dengan tombol centang per aktivitas: anak/orang tua menandai selesai langsung dari home screen tanpa membuka app. <code>ToggleTaskIntent</code> menulis ke App Group, lalu <code>WidgetCenter.shared.reloadTimelines</code> memperbarui tampilan. Sederhana, minim friksi — selaras prinsip aksesibilitas M17.</div>
+    </section>
+
+    <section id="activitykit">
+      <h2><span class="sn">04</span>ActivityKit — Live Activity</h2>
+      <p>Live Activity menampilkan status <strong>real-time</strong> di Lock Screen & Dynamic Island — sempurna untuk tracking pesanan/pengiriman (vertikal logistik Anda).</p>
+<pre><code data-swift>import ActivityKit
+
+// 1. Attributes — data statis + dynamic state
+struct DeliveryAttributes: ActivityAttributes {
+    public struct ContentState: Codable, Hashable {
+        var status: String        // "Dikemas" → "Dikirim" → "Tiba"
+        var etaMinutes: Int
+    }
+    var orderID: String           // statis selama activity
+}
+
+// 2. Mulai activity (dari app utama)
+func startDelivery(orderID: String) throws {
+    let attributes = DeliveryAttributes(orderID: orderID)
+    let state = DeliveryAttributes.ContentState(status: "Dikemas", etaMinutes: 30)
+    _ = try Activity.request(
+        attributes: attributes,
+        content: .init(state: state, staleDate: nil),
+        pushType: .token)         // update via push (APNs)
+}
+
+// 3. Update (dari server via push, atau lokal)
+func update(_ activity: Activity&lt;DeliveryAttributes&gt;, status: String, eta: Int) async {
+    await activity.update(.init(state: .init(status: status, etaMinutes: eta), staleDate: nil))
+}
+func end(_ activity: Activity&lt;DeliveryAttributes&gt;) async {
+    await activity.end(nil, dismissalPolicy: .default)
+}</code></pre>
+      <div class="note key"><span class="nt">Update via push</span>Live Activity paling kuat di-update dari <strong>server via APNs</strong> (<code>pushType: .token</code>) — server kirim update status pengiriman, Lock Screen berubah tanpa app dibuka. UI-nya deklarasikan di widget extension yang sama (varian Dynamic Island: compact/minimal/expanded). Wajib entitlement <code>NSSupportsLiveActivities = YES</code> di Info.plist. Ada batas durasi (activity tidak boleh berjalan tak terbatas). <em>Verifikasi batas & kebijakan terkini karena berubah antar versi iOS.</em></div>
+    </section>
+
+    <section id="passkit">
+      <h2><span class="sn">05</span>PassKit — Apple Wallet</h2>
+      <p>PassKit menambahkan pass (kartu loyalty, tiket, kupon, boarding pass) ke Apple Wallet — relevan langsung untuk membership/hospitality Anda.</p>
+      <div class="note warn"><span class="nt">Arsitektur pass — sisi server</span>File <code>.pkpass</code> harus <strong>ditandatangani</strong> dengan sertifikat Pass Type ID Anda — ini dilakukan di <strong>server</strong> (butuh private key; jangan di klien). Struktur: <code>pass.json</code> (field, warna, barcode) + gambar (logo/icon) + manifest + signature, di-zip menjadi <code>.pkpass</code>. Klien hanya mengunduh & mempresentasikannya.</p></div>
+<pre><code data-swift>import PassKit
+
+// Klien: tambahkan pass yang sudah ditandatangani server ke Wallet
+func addToWallet(passData: Data, from presenter: UIViewController) throws {
+    let pass = try PKPass(data: passData)                  // .pkpass dari server
+    guard let addVC = PKAddPassesViewController(pass: pass) else { return }
+    // present dari view controller pemanggil (mis. self di UIKit,
+    // atau via UIViewControllerRepresentable/koordinator di SwiftUI).
+    // Catatan: `topViewController` BUKAN API bawaan — jangan diasumsikan ada.
+    presenter.present(addVC, animated: true)
+}
+
+// Cek apakah pass sudah ada di library
+let library = PKPassLibrary()
+let alreadyAdded = library.containsPass(pass)</code></pre>
+      <div class="note case"><span class="nt">Kasus vertikal — kartu loyalty hospitality</span>Kartu membership JHL/hotel di Apple Wallet: server generate <code>.pkpass</code> bertanda tangan dengan barcode member + saldo poin. <strong>Push update</strong> memungkinkan saldo/tier di kartu berubah otomatis (mis. setelah transaksi) via web service pass. Update dinamis inilah nilai utama dibanding kartu statis.</div>
+    </section>
+
+    <section id="carplay">
+      <h2><span class="sn">06</span>CarPlay</h2>
+      <p>CarPlay memproyeksikan UI app ke dasbor mobil. Sangat terbatas & ter-template demi keselamatan — hanya kategori tertentu yang diizinkan (navigasi, audio, komunikasi, EV charging, driving task, parking, quick food ordering).</p>
+<pre><code data-swift>import CarPlay
+
+// Scene delegate khusus CarPlay — UI via template, BUKAN SwiftUI/UIKit bebas
+class CarPlaySceneDelegate: UIResponder, CPTemplateApplicationSceneDelegate {
+    func templateApplicationScene(_ scene: CPTemplateApplicationScene,
+        didConnect interfaceController: CPInterfaceController) {
+        let items = [CPListItem(text: "Order #1024", detailText: "Antar ke Kemang")]
+        let section = CPListSection(items: items)
+        let list = CPListTemplate(title: "Pengiriman", sections: [section])
+        interfaceController.setRootTemplate(list, animated: true, completion: nil)
+    }
+}</code></pre>
+      <div class="note danger"><span class="nt">Batas keras CarPlay</span>(1) Butuh <strong>entitlement khusus dari Apple</strong> (request terpisah, tidak otomatis) sesuai kategori app. (2) UI <strong>hanya template sistem</strong> (<code>CPListTemplate</code>, <code>CPGridTemplate</code>, <code>CPMapTemplate</code>, dll.) — bukan view bebas, demi keselamatan mengemudi. (3) Relevan untuk vertikal Anda hanya bila ada <em>driver/logistics app</em>. Untuk mayoritas app e-commerce/hospitality, CarPlay tidak berlaku. <em>Ketersediaan kategori berubah; verifikasi ke dokumentasi Apple terkini sebelum berkomitmen.</em></div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">07</span>Latihan</h2>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Data widget ↔ app</h4></div>
+        <p>Widget Anda menampilkan jumlah pesanan aktif tetapi tidak pernah update setelah app mengubah data. Apa yang kurang?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>(1) App & widget harus berbagi App Group (<code>UserDefaults(suiteName:)</code> atau shared container). (2) App menulis data ke sana. (3) Panggil <code>WidgetCenter.shared.reloadTimelines(ofKind:)</code> saat data berubah agar sistem me-render ulang.</p>
+        <p><em>Review:</em> Extension proses terpisah — tanpa App Group, widget tak melihat data app. reload memicu refresh di luar jadwal timeline biasa.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Satu logika banyak permukaan</h4></div>
+        <p>Aksi "Pesan Ulang" harus tersedia di UI, Siri, dan widget. Bagaimana menghindari duplikasi logika?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Letakkan logika di use case (M8). UI button, <code>ReorderIntent.perform()</code>, dan tombol widget semuanya memanggil use case yang sama. Intent hanya adaptor tipis ke logika domain.</p>
+        <p><em>Review:</em> "Build once, scale many" — App Intents menjadi permukaan tambahan di atas domain yang sama, bukan implementasi paralel.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Widget vs Live Activity</h4></div>
+        <p>Anda ingin menampilkan status pengiriman yang berubah tiap beberapa menit. Widget atau Live Activity?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Live Activity (ActivityKit) — dirancang untuk status real-time berdurasi terbatas, di-update via push, tampil di Lock Screen/Dynamic Island. Widget dibatasi frekuensi refresh-nya dan tidak untuk real-time.</p>
+        <p><em>Review:</em> Widget = info sekilas yang jarang berubah; Live Activity = status berlangsung yang aktif berubah. Pilih sesuai sifat data.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Menandatangani pass</h4></div>
+        <p>Seorang engineer ingin generate & tandatangani <code>.pkpass</code> di dalam app iOS. Kenapa ini keliru?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Penandatanganan butuh private key Pass Type ID — menaruh private key di klien = kebocoran kredensial (M15). Pass harus di-generate & ditandatangani di <strong>server</strong>; klien hanya mengunduh <code>.pkpass</code> jadi dan mempresentasikannya via <code>PKAddPassesViewController</code>.</p>
+        <p><em>Review:</em> Prinsip "klien tak dipercaya" berlaku: rahasia penandatanganan tidak pernah di device.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">08</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>App Group</h4></div>
+        <p>Kenapa widget/extension butuh App Group untuk berbagi data dengan app?</p>
+        <details><summary>▸ Jawaban</summary><p>Extension berjalan di proses terpisah — tak berbagi memori. App Group menyediakan shared container (UserDefaults suite / file / SwiftData groupContainer) sebagai jembatan data antara app & extension.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Widget vs Live Activity</h4></div>
+        <p>Kapan Widget, kapan Live Activity?</p>
+        <details><summary>▸ Jawaban</summary><p>Widget: info sekilas yang jarang berubah (refresh di-throttle sistem). Live Activity: status real-time berdurasi terbatas di Lock Screen/Dynamic Island, di-update via push. Pilih sesuai sifat data.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>PassKit signing</h4></div>
+        <p>Kenapa .pkpass ditandatangani di server, bukan klien?</p>
+        <details><summary>▸ Jawaban</summary><p>Penandatanganan butuh private key Pass Type ID; menaruh private key di klien = kebocoran kredensial. Server generate & tandatangani; klien hanya mengunduh & mempresentasikan.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: widget + intent</span>Buat widget yang membaca data dari App Group (mis. jumlah pesanan) dengan TimelineProvider, dan satu App Intent (aksi 'pesan ulang') yang memanggil use case yang sama dengan UI. <strong>Tujuan:</strong> extension + build-once logic.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan Live Activity tracking pengiriman (di-update via push) dan widget interaktif (Button/Toggle intent) yang menulis ke App Group lalu reloadTimelines. Tantangan: satu logika domain melayani UI + Siri + widget.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Extension mengasumsikan akses memori app (bukan App Group).</li>
+        <li>Widget untuk data real-time (harusnya Live Activity).</li>
+        <li>App Intent menduplikasi logika bisnis alih-alih memanggil use case.</li>
+        <li>Menandatangani .pkpass di klien (kebocoran private key).</li>
+        <li>Lupa reloadTimelines setelah data App Group berubah.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>WidgetKit</em>, <em>App Intents</em>, <em>ActivityKit</em>.</li>
+        <li>Apple Developer Documentation — <em>PassKit</em> (Wallet), <em>Configuring App Groups</em>.</li>
+        <li>Apple Developer Documentation — <em>CarPlay</em> (entitlement & templates).</li>
+      </ul>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 20</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">App Group untuk berbagi data app ↔ extension</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">WidgetKit: TimelineEntry, Provider, view, reloadTimelines; sadar batas refresh</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">App Intents: AppIntent + AppShortcuts + AppEntity; memanggil use case yang sama</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Interactive widget (Button/Toggle intent) tanpa membuka app</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">ActivityKit: attributes/state, request/update/end, update via push</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">PassKit: pass ditandatangani di server; klien present via PKAddPassesViewController</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">CarPlay: entitlement khusus, hanya template sistem, kategori terbatas</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-19.html">← Module 19 — Native Frameworks & Permissions</a>
+      <a href="../index.html">Selesai · Kembali ke Daftar Modul →</a>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m20';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

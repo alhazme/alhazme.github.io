@@ -108,6 +108,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#flavors"><span class="nidx">05</span>Build Flavors</a>
       <a href="#release"><span class="nidx">06</span>TestFlight & Release</a>
       <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -210,7 +211,7 @@ jobs:
       - name: Test + Coverage
         run: fastlane test
       - name: Coverage gate
-        run: ./scripts/check_coverage.sh 70   # PR gagal bila domain coverage < 70%
+        run: ./scripts/check_coverage.sh 70   # contoh ambang — tetapkan sesuai konteks tim/proyek, bukan angka baku
 
   deploy:
     needs: quality
@@ -299,6 +300,51 @@ end</code></pre>
         <p><em>Review:</em> <code>phased_release</code> menyebar rilis bertahap; <code>automatic_release: false</code> memberi kontrol waktu go-live. Metadata & screenshot bisa disertakan di lane yang sama.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Trunk-based</h4></div>
+        <p>Apa keuntungan trunk-based development untuk tim kecil?</p>
+        <details><summary>▸ Jawaban</summary><p>Integrasi sering ke main (branch pendek), mengurangi merge hell & drift, cocok dengan CI/CD & feature flag. Untuk solo/tim kecil, mengurangi overhead branching kompleks (mis. GitFlow).</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>match (signing)</h4></div>
+        <p>Masalah apa yang dipecahkan fastlane match?</p>
+        <details><summary>▸ Jawaban</summary><p>Menyimpan & menyinkronkan sertifikat/provisioning profile secara terpusat (repo terenkripsi) agar signing konsisten lintas mesin & CI. Menghindari 'signing hell' manual di Xcode.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Kill-switch</h4></div>
+        <p>Kenapa kill-switch/feature flag penting untuk rilis?</p>
+        <details><summary>▸ Jawaban</summary><p>Memungkinkan mematikan fitur bermasalah tanpa rilis ulang (yang butuh review App Store). Mengurangi risiko rilis; memisahkan deploy dari release (M18).</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: pipeline CI dasar</span>Buat GitHub Actions workflow: pada PR jalankan lint (SwiftLint) + test; pada tag jalankan build + (mock) upload TestFlight via Fastlane. Signing via match (konsep). <strong>Tujuan:</strong> automasi quality gate & distribusi.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan phased release + rollback protocol dan integrasi kill-switch (feature flag remote) untuk fitur berisiko. Tantangan: pisahkan deploy dari release; siapkan jalur mundur cepat.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Menyimpan sertifikat/secret di repo tanpa enkripsi.</li>
+        <li>Tanpa quality gate (lint/test) sebelum merge.</li>
+        <li>Signing manual tak konsisten lintas mesin.</li>
+        <li>Rilis tanpa jalur rollback/kill-switch.</li>
+        <li>Menjalankan langkah manual yang berulang (harusnya diautomasi).</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>fastlane — dokumentasi resmi (match, gym, pilot) — verifikasi versi.</li>
+        <li>GitHub Actions — dokumentasi resmi workflow.</li>
+        <li>Apple Developer Documentation — <em>TestFlight</em>, App Store Connect (phased release).</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

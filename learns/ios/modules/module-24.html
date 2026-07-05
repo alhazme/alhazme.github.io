@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 24 — Data & System</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note.case{background:rgba(92,124,163,.10);border-left:4px solid var(--info)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 24 · Native Frameworks</div><h2>Data & System</h2></div>
+    <div class="side-prog" id="sideProg">0 / 9 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Katalog</a>
+      <a href="#foundation"><span class="nidx">01</span>Foundation (Deep)</a>
+      <a href="#filemanager"><span class="nidx">02</span>FileManager & Sandbox</a>
+      <a href="#dates"><span class="nidx">03</span>Tanggal & Format</a>
+      <a href="#corefoundation"><span class="nidx">04</span>Core Foundation</a>
+      <a href="#contacts"><span class="nidx">05</span>Contacts</a>
+      <a href="#eventkit"><span class="nidx">06</span>EventKit</a>
+      <a href="#fileprovider"><span class="nidx">07</span>FileProvider</a>
+      <a href="#exercises"><span class="nidx">08</span>Best Practice & Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project &amp; Referensi</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 24 · NATIVE FRAMEWORK MASTERY</span>Data & System</h2>
+      <p class="lead">Lapisan fondasi yang dipakai setiap app: primitif Foundation, sistem file & sandbox, tanggal/format yang benar, serta integrasi data sistem — kontak, kalender, dan file provider.</p>
+      <div class="meta-row"><span class="badge accent">Foundation</span><span class="badge accent">Contacts</span><span class="badge accent">EventKit</span><span class="badge accent">FileProvider</span><span class="badge neutral">~125 menit</span></div>
+      <table>
+        <thead><tr><th>Framework</th><th>Untuk</th><th>Izin</th><th>Relevansi vertikal</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Foundation</strong></td><td>Primitif: Data, URL, FileManager, Date, Measurement, NotificationCenter</td><td>—</td><td>Semua app</td></tr>
+          <tr><td><strong>Core Foundation</strong></td><td>Lapisan C di bawah Foundation (jarang disentuh langsung)</td><td>—</td><td>Interop legacy/C API</td></tr>
+          <tr><td><strong>Contacts</strong></td><td>Baca/tulis kontak</td><td><code>NSContactsUsageDescription</code></td><td>Undang teman, CRM, share</td></tr>
+          <tr><td><strong>EventKit</strong></td><td>Kalender & reminder</td><td>Calendar/Reminders (baru: full vs write-only)</td><td>Booking hospitality, jadwal</td></tr>
+          <tr><td><strong>FileProvider</strong></td><td>Ekspos dokumen app ke Files app</td><td>—</td><td>Manajemen dokumen enterprise/UMKM</td></tr>
+        </tbody>
+      </table>
+      <div class="note key"><span class="nt">Penempatan arsitektur</span>Framework ini adalah <strong>detail infrastruktur</strong> — di Clean Architecture (M8/M9) mereka berada di <em>data layer</em> di balik protocol (<code>ContactsRepository</code>, <code>CalendarService</code>, <code>FileStore</code>). Domain & presentation tak pernah meng-import Contacts/EventKit langsung. Ini menjaga testability (mock di test, M13) & memungkinkan penggantian implementasi.</div>
+    </section>
+
+    <section id="foundation">
+      <h2><span class="sn">01</span>Foundation (Deep)</h2>
+      <p>Foundation menyediakan primitif yang Anda pakai tiap hari. Beberapa yang sering salah dipakai:</p>
+      <table>
+        <thead><tr><th>Tipe</th><th>Gunakan untuk</th><th>Catatan</th></tr></thead>
+        <tbody>
+          <tr><td><code>URL</code></td><td>Path file & endpoint</td><td>Untuk path file gunakan <code>URL(filePath:)</code>, bukan string mentah; komposisi via <code>appending(path:)</code></td></tr>
+          <tr><td><code>Data</code></td><td>Byte mentah</td><td>Baca file besar dengan <code>.mappedIfSafe</code> (hemat memori)</td></tr>
+          <tr><td><code>Measurement</code></td><td>Satuan (jarak, berat, suhu)</td><td>Konversi & format lokal otomatis — jangan hitung unit manual</td></tr>
+          <tr><td><code>NotificationCenter</code></td><td>Event broadcast in-process</td><td>Untuk komunikasi longgar; hindari untuk alur inti (pakai async/Observation, M6)</td></tr>
+          <tr><td><code>FileManager</code></td><td>Operasi file sistem</td><td>Lihat bagian 02 — sandbox & direktori</td></tr>
+        </tbody>
+      </table>
+      <div class="note warn"><span class="nt">Anti-pattern umum</span>(1) Manipulasi path file dengan string concatenation (<code>"\(dir)/\(name)"</code>) — rapuh; gunakan API <code>URL</code>. (2) <code>NotificationCenter</code> sebagai pengganti arsitektur (event bus untuk segalanya) — sulit dilacak; batasi ke notifikasi sistem (keyboard, lifecycle). (3) Menyimpan angka satuan tanpa konteks unit — pakai <code>Measurement</code> agar konversi & lokalisasi benar (sambung M17).</div>
+    </section>
+
+    <section id="filemanager">
+      <h2><span class="sn">02</span>FileManager & Sandbox</h2>
+      <p>App iOS berjalan dalam <strong>sandbox</strong>. Pilih direktori sesuai sifat data — ini menentukan backup, pembersihan sistem, dan App Review.</p>
+      <table>
+        <thead><tr><th>Direktori</th><th>Untuk</th><th>Di-backup?</th><th>Bisa dihapus sistem?</th></tr></thead>
+        <tbody>
+          <tr><td><code>Documents</code></td><td>Data user yang dibuat & tak bisa dibuat ulang</td><td>Ya</td><td>Tidak</td></tr>
+          <tr><td><code>Application Support</code></td><td>Data app (DB, file dukungan)</td><td>Ya</td><td>Tidak</td></tr>
+          <tr><td><code>Caches</code></td><td>Data yang dapat dibuat ulang</td><td>Tidak</td><td>Ya (saat storage menipis)</td></tr>
+          <tr><td><code>tmp</code></td><td>Sementara</td><td>Tidak</td><td>Ya (kapan saja)</td></tr>
+        </tbody>
+      </table>
+<pre><code data-swift>import Foundation
+
+enum FileStore {
+    static func supportDir() throws -&gt; URL {
+        let url = try FileManager.default.url(for: .applicationSupportDirectory,
+            in: .userDomainMask, appropriateFor: nil, create: true)
+        return url
+    }
+    static func write(_ data: Data, to name: String) throws {
+        let url = try supportDir().appending(path: name)
+        try data.write(to: url, options: [.atomic, .completeFileProtection]) // enkripsi at-rest
+    }
+}</code></pre>
+      <div class="note danger"><span class="nt">Keamanan & App Review</span>(1) Gunakan <code>.completeFileProtection</code> untuk data sensitif — file terenkripsi saat device terkunci (defense-in-depth, M15). (2) Jangan taruh cache/data yang dapat dibuat ulang di <code>Documents</code> — Apple menolak app yang menyalahgunakan Documents/iCloud backup. (3) Kredensial/token <strong>bukan</strong> di file — pakai Keychain (M5). (4) Tulis atomik (<code>.atomic</code>) agar tak korup saat interupsi.</div>
+    </section>
+
+    <section id="dates">
+      <h2><span class="sn">03</span>Tanggal & Format — Sumber Bug Klasik</h2>
+      <p>Penanganan tanggal salah adalah bug produksi paling umum. Aturan: <strong>simpan UTC/ISO8601, tampilkan lokal</strong> (sambung M17).</p>
+<pre><code data-swift>import Foundation
+
+// SIMPAN / TRANSPORT: ISO8601 (stabil, tak tergantung locale)
+let iso = ISO8601DateFormatter()
+let stamp = iso.string(from: .now)            // "2026-07-04T09:12:00Z"
+let parsed = iso.date(from: stamp)
+
+// TAMPILKAN ke user: Date.FormatStyle (modern, locale-aware, otomatis WIB)
+let shown = Date.now.formatted(
+    .dateTime.day().month(.wide).year().hour().minute())
+// "4 Juli 2026 pukul 16.12" untuk locale id-ID
+
+// Uang / angka: jangan format manual
+let harga = 150000.formatted(.currency(code: "IDR"))   // "Rp150.000"</code></pre>
+      <div class="note warn"><span class="nt">Aturan tanggal & angka</span>(1) <strong>Jangan</strong> pakai <code>DateFormatter</code> dengan pola string (<code>"yyyy-MM-dd"</code>) untuk transport — gunakan <code>ISO8601DateFormatter</code>. (2) <code>DateFormatter</code> mahal dibuat — cache instance-nya bila dipakai berulang. (3) Untuk tampilan, <code>Date.FormatStyle</code> / <code>.formatted()</code> modern menangani locale, zona waktu, & kalender otomatis — jangan rakit string tanggal manual. (4) Uang: <code>Decimal</code> + <code>.currency(code:)</code>, jangan <code>Double</code> untuk perhitungan finansial (presisi, relevan fintech Anda).</div>
+    </section>
+
+    <section id="corefoundation">
+      <h2><span class="sn">04</span>Core Foundation (Overview)</h2>
+      <p>Core Foundation adalah lapisan <strong>C</strong> di bawah Foundation (<code>CFString</code>, <code>CFArray</code>, <code>CFDictionary</code>, dll.). Di Swift modern Anda <strong>jarang</strong> menyentuhnya langsung.</p>
+      <div class="note key"><span class="nt">Kapan masih relevan</span>(1) <strong>Toll-free bridging</strong>: banyak tipe CF otomatis "menjembatani" ke Foundation (<code>CFString</code> ↔ <code>String</code>) — Anda memakainya tanpa sadar. (2) API C/legacy tertentu (mis. beberapa API Keychain, Core Graphics, Core Text) mengembalikan tipe CF — Anda mem-bridge ke Swift. (3) Manajemen memori CF manual (<code>CFRetain</code>/<code>CFRelease</code>) hampir tak pernah diperlukan di Swift (ARC menangani via bridging). <strong>Best practice: tetap di Foundation/Swift;</strong> sentuh CF hanya saat API memaksanya, lalu bridge secepatnya ke tipe Swift. <em>Ini overview — kedalaman CF di luar kebutuhan app bisnis modern.</em></div>
+    </section>
+
+    <section id="contacts">
+      <h2><span class="sn">05</span>Contacts</h2>
+      <p>Framework Contacts membaca/menulis kontak via <code>CNContactStore</code>. Butuh izin — <strong>kecuali</strong> Anda memakai <code>CNContactPickerViewController</code> (picker sistem, tanpa izin, mirip PHPicker M19).</p>
+<pre><code data-swift>import Contacts
+
+// Dengan izin: baca kontak (mis. cari teman yang pakai app)
+func fetchContacts() async throws -&gt; [CNContact] {
+    let store = CNContactStore()
+    let granted = try await store.requestAccess(for: .contacts)  // NSContactsUsageDescription wajib
+    guard granted else { throw ContactError.denied }
+
+    let keys = [CNContactGivenNameKey, CNContactPhoneNumbersKey] as [CNKeyDescriptor]
+    let request = CNContactFetchRequest(keysToFetch: keys)
+    var result: [CNContact] = []
+    try store.enumerateContacts(with: request) { contact, _ in result.append(contact) }
+    return result
+}</code></pre>
+      <div class="note key"><span class="nt">Picker tanpa izin (utamakan ini)</span>Bila hanya butuh <em>satu kontak yang dipilih user</em> (mis. "pilih penerima"), pakai <code>CNContactPickerViewController</code> — <strong>tanpa izin</strong>, karena user memilih eksplisit. Sama seperti PHPicker untuk foto (M19): pilih permukaan yang tak butuh akses penuh bila memungkinkan. Minimisasi izin = privasi + friksi lebih rendah + App Review lebih mulus. Untuk sinkronisasi massal (CRM), baru minta akses penuh dengan penjelasan jelas.</div>
+    </section>
+
+    <section id="eventkit">
+      <h2><span class="sn">06</span>EventKit</h2>
+      <p>EventKit mengakses kalender & reminder via <code>EKEventStore</code>. Model izin <strong>berubah signifikan di iOS 17</strong>: kini terpisah <em>full access</em> vs <em>write-only</em>.</p>
+<pre><code data-swift>import EventKit
+
+func addBooking(title: String, start: Date, end: Date) async throws {
+    let store = EKEventStore()
+    // iOS 17+: write-only cukup untuk SEKADAR menambah event (privasi lebih baik)
+    let granted = try await store.requestWriteOnlyAccessToEvents()
+    guard granted else { throw CalendarError.denied }
+
+    let event = EKEvent(eventStore: store)
+    event.title = title
+    event.startDate = start
+    event.endDate = end
+    event.calendar = store.defaultCalendarForNewEvents
+    try store.save(event, span: .thisEvent)
+}</code></pre>
+      <div class="note danger"><span class="nt">Izin EventKit (baru & mudah salah)</span>Sejak iOS 17, Apple memisah: <strong>write-only</strong> (hanya menambah event — butuh <code>NSCalendarsWriteOnlyAccessUsageDescription</code>) vs <strong>full access</strong> (baca+tulis — <code>NSCalendarsFullAccessUsageDescription</code>). Reminder punya <code>NSRemindersFullAccessUsageDescription</code>. <strong>Prinsip least-privilege:</strong> jika hanya menambah booking ke kalender, minta write-only — jangan minta full access. String Info.plist yang salah/absen = crash. <em>Model & nama key ini spesifik versi — verifikasi terhadap dokumentasi Apple untuk iOS target Anda.</em></div>
+      <div class="note case"><span class="nt">Kasus vertikal — booking hospitality</span>User memesan kamar/meja → tambahkan otomatis ke kalender mereka (write-only, tanpa membaca kalender pribadi mereka = privasi terjaga). Untuk reminder pembayaran/check-in, EventKit Reminders. Bungkus di balik <code>CalendarService</code> protocol agar domain tak tahu EventKit.</div>
+    </section>
+
+    <section id="fileprovider">
+      <h2><span class="sn">07</span>FileProvider (Overview)</h2>
+      <p>FileProvider mengekspos dokumen app Anda ke <strong>Files app</strong> (dan app lain) — atau mengintegrasikan penyimpanan cloud kustom ke sistem file iOS. Diimplementasikan sebagai <strong>extension</strong>.</p>
+      <div class="note key"><span class="nt">Dua kebutuhan berbeda</span>(1) <strong>Ekspos dokumen app ke Files</strong> — sering cukup dengan <code>UISupportsDocumentBrowser</code>/<code>LSSupportsOpeningDocumentsInPlace</code> di Info.plist + Document-Based App, tanpa FileProvider penuh. (2) <strong>File Provider Extension</strong> penuh — saat Anda membangun penyedia penyimpanan (seperti Dropbox/Drive) yang muncul di Files app dengan sinkronisasi. Untuk mayoritas app bisnis (menyimpan invoice/dokumen agar bisa dibuka di Files), opsi (1) sudah cukup. FileProvider Extension penuh adalah proyek besar tersendiri.</div>
+      <div class="note warn"><span class="nt">Kapan tidak dipakai</span>Jangan bangun File Provider Extension kecuali produk Anda memang penyedia penyimpanan. Untuk berbagi file ke app lain sesekali, <code>UIActivityViewController</code> (share sheet) atau document picker jauh lebih sederhana. <em>Ini overview; implementasi extension penuh di luar cakupan modul ini — pertimbangkan hanya bila jadi kebutuhan produk inti.</em></div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">08</span>Best Practice & Latihan</h2>
+      <ul>
+        <li><strong>Direktori sesuai sifat data</strong> — Documents (user, tak-reproducible), Application Support (data app), Caches (reproducible). Salah pilih = ditolak App Review / data hilang.</li>
+        <li><strong>Enkripsi at-rest</strong> — <code>.completeFileProtection</code> untuk data sensitif; kredensial di Keychain, bukan file.</li>
+        <li><strong>Tanggal: simpan ISO8601/UTC, tampilkan lokal</strong>; uang pakai <code>Decimal</code> + FormatStyle.</li>
+        <li><strong>Least-privilege izin</strong> — picker tanpa izin (Contacts/Photos) &gt; akses penuh; EventKit write-only &gt; full access.</li>
+        <li><strong>Bungkus di balik protocol</strong> — Contacts/EventKit/FileManager di data layer; domain tak meng-import framework sistem.</li>
+        <li><strong>Tetap di Swift/Foundation</strong> — sentuh Core Foundation hanya saat API C memaksa, bridge secepatnya.</li>
+      </ul>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Pilih direktori</h4></div>
+        <p>Untuk tiap data, direktori mana: (a) database SwiftData app; (b) thumbnail hasil-unduh yang bisa diunduh ulang; (c) invoice PDF yang dibuat user; (d) file zip sementara saat ekspor.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>(a) Application Support. (b) Caches. (c) Documents. (d) tmp.</p>
+        <p><em>Review:</em> Reproducible → Caches/tmp (boleh dihapus sistem). User-created tak-reproducible → Documents. Data app pendukung → Application Support. Salah pilih memicu penolakan App Review atau kehilangan data user.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Bug tanggal</h4></div>
+        <p>Server menerima tanggal berbeda-beda tergantung device user. Penyebab paling mungkin & fix?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p><code>DateFormatter</code> dengan pola string tanpa locale/timezone tetap → hasil bergantung setelan device. Fix: pakai <code>ISO8601DateFormatter</code> (atau set <code>locale = en_US_POSIX</code> + timezone UTC) untuk transport. Tampilan tetap pakai FormatStyle lokal.</p>
+        <p><em>Review:</em> Transport = deterministik (ISO8601/UTC); tampilan = lokal. Memisahkan keduanya menghilangkan seluruh kelas bug ini.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Izin berlebih</h4></div>
+        <p>App menambah booking ke kalender user dan meminta <em>full access</em> EventKit. Kenapa keliru & apa yang benar?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Menambah event hanya butuh <strong>write-only</strong> (iOS 17+). Meminta full access = akses baca ke seluruh kalender pribadi user tanpa perlu → melanggar least-privilege, menakuti user, berisiko di App Review. Fix: <code>requestWriteOnlyAccessToEvents()</code> + <code>NSCalendarsWriteOnlyAccessUsageDescription</code>.</p>
+        <p><em>Review:</em> Minta izin seminimal yang dibutuhkan fungsi. Privasi = kepercayaan = konversi lebih baik.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Kontak tanpa izin</h4></div>
+        <p>Fitur "pilih penerima transfer" perlu satu kontak. Haruskah minta akses Contacts penuh?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Tidak. Pakai <code>CNContactPickerViewController</code> — user memilih satu kontak eksplisit, tanpa dialog izin & tanpa akses ke seluruh buku alamat. Minta akses penuh hanya untuk sinkronisasi massal.</p>
+        <p><em>Review:</em> Sama seperti PHPicker (M19). Utamakan permukaan sistem yang tak butuh izin — privasi + friksi lebih rendah.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Direktori sandbox</h4></div>
+        <p>Data yang dapat dibuat ulang (cache) disimpan di mana, dan kenapa bukan Documents?</p>
+        <details><summary>▸ Jawaban</summary><p>Di Caches/tmp (boleh dihapus sistem saat storage menipis — benar untuk data reproducible). Documents untuk data user tak-reproducible yang di-backup; menyalahgunakan Documents menyebabkan penolakan App Review & backup membengkak.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Tanggal</h4></div>
+        <p>Kenapa memisahkan format transport (ISO8601) dari display (FormatStyle)?</p>
+        <details><summary>▸ Jawaban</summary><p>Transport butuh deterministik lintas device (ISO8601/UTC, tak tergantung locale). Display butuh locale-aware (WIB, kalender). Memisahkan keduanya menghapus seluruh kelas bug tanggal. Uang: Decimal + currency, bukan Double.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>EventKit izin</h4></div>
+        <p>Untuk sekadar menambah booking ke kalender, izin apa yang benar?</p>
+        <details><summary>▸ Jawaban</summary><p>Write-only (iOS 17+: requestWriteOnlyAccessToEvents + NSCalendarsWriteOnlyAccessUsageDescription) — least-privilege, tak membaca kalender pribadi. Full access hanya bila perlu baca.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: penyimpanan + kalender</span>Buat FileStore yang memilih direktori sesuai sifat data + .completeFileProtection untuk data sensitif, dan CalendarService (EventKit write-only) untuk menambah booking. Format tanggal ISO8601 (transport) & FormatStyle (display). <strong>Tujuan:</strong> fondasi data yang benar + least-privilege.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan pemilih kontak tanpa izin (CNContactPicker) untuk fitur 'pilih penerima', dan pastikan uang memakai Decimal di seluruh alur. Tantangan: minimisasi izin di setiap permukaan sistem.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Menaruh cache di Documents (App Review menolak).</li>
+        <li>DateFormatter pola string untuk transport (hasil bergantung device).</li>
+        <li>Double untuk uang (galat presisi).</li>
+        <li>Minta full access EventKit/Contacts saat write-only/picker cukup.</li>
+        <li>Kredensial di file, bukan Keychain.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>File System Programming Guide</em>, <em>FileManager</em>.</li>
+        <li>Apple Developer Documentation — <em>Date.FormatStyle</em>, <em>ISO8601DateFormatter</em>.</li>
+        <li>Apple Developer Documentation — <em>Contacts</em>, <em>EventKit</em>, <em>File Provider</em>.</li>
+      </ul>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 24</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Foundation: URL vs string path, Data mapped, Measurement, NotificationCenter secukupnya</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">FileManager: pilih direktori (Documents/App Support/Caches/tmp) sesuai sifat data</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Enkripsi at-rest (.completeFileProtection), tulis atomik, kredensial di Keychain</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Tanggal: ISO8601 untuk transport, FormatStyle lokal untuk tampilan; Decimal untuk uang</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Core Foundation: toll-free bridging; tetap di Swift, sentuh CF hanya bila dipaksa</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Contacts: CNContactStore + izin; utamakan CNContactPicker tanpa izin</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">EventKit: write-only vs full access (iOS 17+); string Info.plist yang benar</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">FileProvider: kapan cukup Document-Based App vs extension penuh</label></div>
+      <div class="check-item"><input type="checkbox" id="c8"><label for="c8">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-23.html">← Module 23 — Auth, Web & Documents</a>
+      <span class="next">Berikutnya: Module 25 — Extensions & Connectivity (App/Share Extension, SiriKit, MultipeerConnectivity, PencilKit)</span>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m24';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

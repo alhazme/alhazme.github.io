@@ -160,6 +160,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#errors"><span class="nidx">06</span>Error Handling</a>
       <a href="#collections"><span class="nidx">07</span>Collections & Control Flow</a>
       <a href="#exercises"><span class="nidx">08</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -547,7 +548,7 @@ let data = try result.get()</code></pre>
 
       <div class="note key">
         <span class="nt">Swift 6.4 — async defer</span>
-        Sejak Swift 6.4 (WWDC 2026, SE-0493), <code>defer</code> mendukung pemanggilan async. Cleanup resource asinkron kini terjamin di semua jalur exit — termasuk saat throw:
+        Swift 6.4 (WWDC 2026) dilaporkan menambahkan dukungan <code>defer</code> async (mis. via proposal Swift Evolution terkait), sehingga cleanup resource asinkron terjamin di semua jalur exit — termasuk saat throw. <em>Detail ini melewati basis pengetahuan terverifikasi saya; konfirmasikan nomor proposal & ketersediaan persisnya ke swift.org/Xcode release notes sebelum mengandalkannya:</em>
 <pre style="margin-top:10px"><code data-swift>func fetch() async throws -&gt; Data {
     let conn = try await open()
     defer { await conn.close() }     // dijamin jalan, baru di 6.4
@@ -689,6 +690,51 @@ do {
     </section>
 
     <!-- CHECKLIST -->
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge & Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban. Bila ada yang meleset, ulangi bagian terkait.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Value vs reference</h4></div>
+        <p>Anda menyalin sebuah <code>struct</code> ke variabel lain lalu mengubah salinannya. Apakah aslinya ikut berubah? Bagaimana bila <code>class</code>?</p>
+        <details><summary>▸ Jawaban</summary><p><code>struct</code> = value type: salinan independen, asli tak berubah. <code>class</code> = reference type: keduanya menunjuk instance sama, perubahan terlihat di keduanya. Default pilih <code>struct</code>; pakai <code>class</code> saat butuh identitas/berbagi state.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Optional</h4></div>
+        <p>Apa beda <code>if let</code>, <code>guard let</code>, dan <code>??</code> dalam menangani optional?</p>
+        <details><summary>▸ Jawaban</summary><p><code>if let</code>: bind di dalam scope kecil. <code>guard let</code>: bind & keluar lebih awal bila nil (early return, mengurangi nesting). <code>??</code>: beri nilai default. Utamakan <code>guard</code> untuk validasi di awal fungsi.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Error handling</h4></div>
+        <p>Kapan memakai <code>throws</code> vs mengembalikan <code>Result</code> vs optional?</p>
+        <details><summary>▸ Jawaban</summary><p><code>throws</code>: alur sinkron dengan propagasi error natural (do/catch). <code>Result</code>: saat error perlu disimpan/dilewatkan sebagai nilai (mis. callback lama). Optional: saat ketiadaan nilai bukan "error" bermakna. Di kode async modern, <code>async throws</code> adalah default.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: model domain e-commerce mini</span>Buat model tipe untuk keranjang belanja: <code>Product</code> (struct: id, name, price sebagai <code>Decimal</code>), <code>CartItem</code> (product + quantity), dan <code>Cart</code> (kumpulan item) dengan computed property <code>total</code>. Tambahkan enum <code>CartError</code> (mis. <code>emptyCart</code>, <code>invalidQuantity</code>) dan fungsi <code>checkout() throws</code> yang memvalidasi. Gunakan value types, optional yang tepat, dan error handling. <strong>Tujuan:</strong> melatih pemilihan struct vs class, Decimal untuk uang, dan throws untuk validasi.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Perluas <code>Cart</code> agar mendukung diskon polimorfik: definisikan <code>protocol Discount { func apply(to subtotal: Decimal) -&gt; Decimal }</code> dengan beberapa implementasi (persentase, potongan tetap, beli-N-gratis-1). <code>Cart.total</code> menerapkan daftar diskon berurutan. Tantangan: rancang agar penambahan jenis diskon baru tak mengubah kode <code>Cart</code> (Open/Closed Principle) — fondasi menuju protocol-oriented (M02).</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li><strong>Memakai <code>class</code> sebagai default</strong> — kebiasaan dari bahasa lain; di Swift utamakan <code>struct</code>, gunakan <code>class</code> hanya saat butuh identitas/warisan/berbagi state.</li>
+        <li><strong>Force-unwrap <code>!</code> sembarangan</strong> — crash saat nil. Gunakan <code>guard let</code>/<code>if let</code>/<code>??</code>; simpan <code>!</code> hanya untuk invarian yang benar-benar dijamin.</li>
+        <li><strong><code>Double</code> untuk uang</strong> — galat presisi. Pakai <code>Decimal</code> (relevan fintech/e-commerce).</li>
+        <li><strong>Menelan error dengan <code>try?</code> di mana-mana</strong> — menyembunyikan kegagalan. Tangani atau propagasikan secara sadar.</li>
+        <li><strong>Optional bersarang dalam</strong> — pertimbangkan model tipe yang lebih baik (enum, tipe non-opsional) alih-alih <code>??</code> berlapis.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li><em>The Swift Programming Language</em> — bab "The Basics", "Optional Chaining", "Error Handling", "Structures and Classes" (swift.org).</li>
+        <li>Apple Developer Documentation — <em>Swift Standard Library</em> (Decimal, Result).</li>
+        <li>Swift Evolution — proposal terkait diakses via forum/repo Swift Evolution (verifikasi nomor SE sebelum dikutip).</li>
+      </ul>
+    </section>
+
     <div class="checklist" id="checklist">
       <h3>Mastery Checklist — Module 01</h3>
       <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang setiap item yang sudah Anda kuasai. Progress tersimpan otomatis.</p>

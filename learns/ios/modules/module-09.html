@@ -116,6 +116,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#container"><span class="nidx">04</span>DI Container</a>
       <a href="#repository"><span class="nidx">05</span>Repository Pattern</a>
       <a href="#exercises"><span class="nidx">06</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -312,6 +313,51 @@ final class OrderRepositoryImpl: OrderRepository {
         <p><em>Review:</em> Tidak ada fitur yang depend ke fitur lain. Core & DesignSystem reusable lintas klien — modal utama model bisnis "build once, scale many".</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Kenapa modularisasi</h4></div>
+        <p>Apa manfaat memecah app ke modul SPM?</p>
+        <details><summary>▸ Jawaban</summary><p>Build time lebih cepat (incremental), boundary tegas (mencegah coupling), reusabilitas lintas app, dan kepemilikan jelas. Modul memaksa dependency eksplisit via interface.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>DI</h4></div>
+        <p>Apa manfaat dependency injection dibanding singleton global?</p>
+        <details><summary>▸ Jawaban</summary><p>DI membuat dependency eksplisit & dapat ditukar (mock di test), menghindari state global tersembunyi, dan memudahkan konfigurasi berbeda per environment. Singleton global menyulitkan test & menyembunyikan coupling.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Dependency direction</h4></div>
+        <p>Bagaimana modul Feature, Domain, dan Core Network seharusnya saling bergantung?</p>
+        <details><summary>▸ Jawaban</summary><p>Feature → Domain (abstraksi) ← Data/Network. Feature & Data bergantung pada Domain; Domain tak bergantung pada keduanya. Core Network adalah detail yang mengimplementasikan abstraksi Domain.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: pisahkan ke modul SPM</span>Pecah fitur dari mini-project M08 menjadi paket SPM: DomainModule (entity/usecase/protocol), DataModule (impl repository), FeatureModule (UI). Wiring DI via init injection atau container. <strong>Tujuan:</strong> boundary modular nyata + arah dependency benar.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan DI container (mis. dengan factory) yang merakit graph dependency di composition root, dan buat konfigurasi test yang menyuntik mock repository. Tantangan: composition root tunggal tanpa service locator tersebar — bersih & dapat diuji.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Dependency mengarah salah (Domain bergantung pada Data/UI).</li>
+        <li>Singleton global sebagai pengganti DI.</li>
+        <li>Circular dependency antar modul.</li>
+        <li>Service locator tersebar (bukan composition root terpusat).</li>
+        <li>Modul terlalu halus/terlalu kasar — granularitas tak seimbang.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>Swift Package Manager</em> (organizing code with packages).</li>
+        <li>swift.org — Package Manager documentation (targets, dependencies).</li>
+        <li>Prinsip Dependency Inversion & Inversion of Control — konsep umum (bukan spesifik vendor).</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

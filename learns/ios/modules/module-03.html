@@ -118,6 +118,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#arc"><span class="nidx">06</span>ARC & Memory</a>
       <a href="#spm"><span class="nidx">07</span>Swift Package Manager</a>
       <a href="#exercises"><span class="nidx">08</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -451,6 +452,51 @@ let package = Package(
         <p><em>Review:</em> <code>self</code> me-retain closure (<code>onRefresh</code>), closure me-retain <code>self</code> → cycle, <code>Feed</code> tak pernah deinit. <code>[weak self]</code> memutusnya. Verifikasi dengan menambahkan <code>deinit { print("gone") }</code> dan Memory Graph Debugger (dibahas di Module 15).</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge & Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Actor</h4></div>
+        <p>Bagaimana actor mencegah data race, dan apa konsekuensinya pada cara memanggil method-nya?</p>
+        <details><summary>▸ Jawaban</summary><p>Actor menyerialkan akses ke state mutable-nya (isolation) — hanya satu tugas mengaksesnya pada satu waktu. Konsekuensi: memanggil method actor dari luar bersifat <code>async</code> (<code>await</code>) karena mungkin menunggu giliran. State di dalam actor aman diakses sinkron.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Sendable</h4></div>
+        <p>Apa arti <code>Sendable</code>, dan kenapa penting di Swift 6 language mode?</p>
+        <details><summary>▸ Jawaban</summary><p><code>Sendable</code> menandai tipe yang aman dilewatkan antar-konteks konkuren. Di Swift 6 dengan data-race safety, compiler menolak melewatkan tipe non-Sendable melintasi batas isolation — mencegah data race saat kompilasi. Value types immutable umumnya Sendable otomatis.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Retain cycle</h4></div>
+        <p>Kapan closure menyebabkan retain cycle, dan bagaimana memutusnya?</p>
+        <details><summary>▸ Jawaban</summary><p>Saat closure meng-capture <code>self</code> secara kuat sementara <code>self</code> juga memegang closure itu (mis. stored property). Putus dengan capture list <code>[weak self]</code> (lalu <code>guard let self</code>) atau <code>[unowned self]</code> bila dijamin hidup. ARC tak mendeteksi siklus otomatis.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: image loader konkuren</span>Buat <code>actor ImageCache</code> yang menyimpan <code>[URL: Data]</code> dan method <code>image(for: URL) async throws -&gt; Data</code> yang mengembalikan dari cache atau mengunduh (simulasikan dengan delay) lalu menyimpan. Pastikan tak ada data race pada cache. Panggil dari beberapa task paralel dengan <code>async let</code>/TaskGroup. <strong>Tujuan:</strong> melatih actor isolation, async/await, dan struktur konkuren.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan <strong>coalescing</strong>: bila dua permintaan untuk URL sama datang bersamaan, hanya satu unduhan berjalan dan keduanya menunggu hasil yang sama (hindari unduhan ganda). Tantangan: kelola in-flight tasks di dalam actor (mis. <code>[URL: Task&lt;Data, Error&gt;]</code>) — pola nyata di networking layer (M10).</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li><strong><code>Task.detached</code> tanpa alasan</strong> — melepas isolation & prioritas konteks. Utamakan <code>Task {}</code> yang mewarisi konteks.</li>
+        <li><strong>Meng-capture <code>self</code> kuat di closure yang disimpan</strong> — retain cycle. Pakai <code>[weak self]</code>.</li>
+        <li><strong>Membungkus segalanya di actor</strong> — over-serialization menurunkan paralelisme. Isolasi hanya state yang benar butuh.</li>
+        <li><strong>Melawan compiler Sendable dengan <code>@unchecked</code></strong> — escape hatch berbahaya; hanya bila Anda menjamin thread-safety manual (mis. actor/lock internal).</li>
+        <li><strong>Mengira <code>@MainActor</code> gratis</strong> — memindah kerja berat ke main actor membekukan UI; offload dengan <code>@concurrent</code>/nonisolated.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (verifikasi versi terkini):</p>
+      <ul>
+        <li><em>The Swift Programming Language</em> — bab "Concurrency", "Automatic Reference Counting" (swift.org).</li>
+        <li>Apple Developer Documentation — <em>Swift Concurrency</em> (async/await, actors, Sendable, Task).</li>
+        <li>Swift Migration Guide untuk Swift 6 data-race safety (swift.org — verifikasi versi).</li>
+        <li>Swift Package Manager documentation (swift.org) untuk bagian SPM.</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

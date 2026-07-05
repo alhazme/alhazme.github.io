@@ -117,6 +117,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#security"><span class="nidx">05</span>Security — MASVS</a>
       <a href="#pinning"><span class="nidx">06</span>Certificate Pinning</a>
       <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -288,6 +289,51 @@ final class PinningDelegate: NSObject, URLSessionDelegate {
         <p><em>Review:</em> Pinning menaikkan keamanan tapi menambah risiko operasional. Selalu rencanakan rotasi sebelum menerapkan.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Instruments</h4></div>
+        <p>Instrument mana untuk mendiagnosis: (a) memory leak, (b) jank scroll, (c) waktu launch?</p>
+        <details><summary>▸ Jawaban</summary><p>(a) Leaks/Allocations. (b) Time Profiler / Core Animation (hitches). (c) App Launch instrument. Ukur dulu sebelum optimasi — jangan menebak.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Certificate pinning</h4></div>
+        <p>Apa yang dilindungi certificate pinning dan apa risikonya?</p>
+        <details><summary>▸ Jawaban</summary><p>Melindungi dari MITM dengan memvalidasi sertifikat server terhadap yang di-pin. Risiko: bila sertifikat berubah (rotasi) tanpa update app, koneksi putus — kelola rotasi & sediakan mekanisme update.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>MASVS</h4></div>
+        <p>Apa fokus utama OWASP MASVS?</p>
+        <details><summary>▸ Jawaban</summary><p>Standar verifikasi keamanan aplikasi mobile: penyimpanan data, kripto, autentikasi, komunikasi jaringan, interaksi platform, kualitas kode, dan resistensi reverse-engineering. Pakai sebagai checklist.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: audit performa + keamanan mini</span>Ambil fitur daftar+gambar, profil dengan Time Profiler & Allocations, terapkan downsampling gambar & caching, lalu tambahkan certificate pinning + simpan token di Keychain. <strong>Tujuan:</strong> siklus ukur→optimasi + baseline keamanan.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Jalankan checklist MASVS ringkas pada app Anda, dokumentasikan temuan & mitigasi (ADR bila perlu). Tantangan: berpikir seperti penyerang (attack surface) — inti peran DevSecOps/QA principal.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Optimasi tanpa mengukur dulu (menebak bottleneck).</li>
+        <li>Menampilkan gambar full-res tanpa downsampling (memori membengkak).</li>
+        <li>Certificate pinning tanpa rencana rotasi (koneksi putus).</li>
+        <li>Menyimpan secret di UserDefaults/kode.</li>
+        <li>Menganggap keamanan hanya perimeter (bukan defense-in-depth).</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>Instruments</em>, <em>Improving app performance</em>.</li>
+        <li>Apple Developer Documentation — <em>Preventing insecure network connections</em> (ATS), <em>Keychain Services</em>.</li>
+        <li>OWASP — <em>Mobile Application Security Verification Standard (MASVS)</em> (verifikasi versi).</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

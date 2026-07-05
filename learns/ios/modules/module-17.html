@@ -116,6 +116,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#a11y"><span class="nidx">05</span>Accessibility</a>
       <a href="#abk"><span class="nidx">06</span>A11y untuk ABK</a>
       <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">08</span>Quiz, Project &amp; Referensi</a>
     </nav>
   </aside>
 
@@ -322,6 +323,51 @@ withAnimation(reduceMotion ? nil : .spring) {   // matikan animasi bila diminta
         <p><em>Review:</em> Untuk ABK, menghormati Reduce Motion mencegah overstimulasi — ini keputusan desain inklusif, bukan sekadar toggle teknis.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">08</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Property wrapper</h4></div>
+        <p>Apa yang ditambahkan sebuah <code>@propertyWrapper</code>, dan kapan membuatnya sendiri?</p>
+        <details><summary>▸ Jawaban</summary><p>Property wrapper membungkus logika akses/penyimpanan properti (get/set + wrappedValue, opsional projectedValue via $). Buat sendiri untuk pola berulang lintas properti — mis. clamping nilai, UserDefaults-backed, atau trimming string. Jangan buat bila hanya dipakai sekali.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>String Catalog</h4></div>
+        <p>Kenapa String Catalog lebih baik daripada Localizable.strings manual?</p>
+        <details><summary>▸ Jawaban</summary><p>String Catalog (.xcstrings) mengelola terjemahan terpusat dengan status per-string, pluralization, dan ekstraksi otomatis dari kode — mengurangi kesalahan sinkronisasi. Menggantikan pengelolaan .strings manual yang rawan drift.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Aksesibilitas ABK</h4></div>
+        <p>Sebutkan tiga pertimbangan aksesibilitas penting untuk pengguna ABK.</p>
+        <details><summary>▸ Jawaban</summary><p>Reduce Motion (kurangi animasi bagi sensitivitas vestibular), target sentuh besar & jelas (motorik halus), dan umpan balik multi-indera (visual+audio+haptic). Plus Dynamic Type & label VoiceOver bermakna. Aksesibilitas adalah desain inti, bukan tambahan.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: format lokal + wrapper</span>Buat @propertyWrapper untuk trimming/validasi string, terapkan pada model form. Tambahkan format IDR (Decimal + currency) dan tanggal WIB (FormatStyle), serta pindahkan semua string UI ke String Catalog. <strong>Tujuan:</strong> lokalisasi benar + property wrapper reusable.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Audit satu layar untuk aksesibilitas: Dynamic Type (layout tak putus di ukuran besar), VoiceOver (label & urutan bermakna), Reduce Motion, dan target sentuh. Tantangan: rancang untuk ABK sejak awal — target besar, multi-indera, minim distraksi.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Membuat property wrapper untuk hal yang hanya dipakai sekali (over-engineering).</li>
+        <li>Hardcode string UI alih-alih String Catalog.</li>
+        <li>Format uang dengan Double / string manual, bukan Decimal + FormatStyle.</li>
+        <li>Mengabaikan Dynamic Type (layout putus di ukuran besar).</li>
+        <li>Menganggap aksesibilitas fitur tambahan, bukan desain inti.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>Localizing and varying text with a string catalog</em>.</li>
+        <li>Apple Developer Documentation — <em>Accessibility</em> (VoiceOver, Dynamic Type, Reduce Motion).</li>
+        <li>The Swift Programming Language — bab "Properties" (property wrappers) (swift.org).</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

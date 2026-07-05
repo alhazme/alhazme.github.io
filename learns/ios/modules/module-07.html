@@ -117,6 +117,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#interop"><span class="nidx">05</span>SwiftUI ↔ UIKit</a>
       <a href="#decision"><span class="nidx">06</span>Kapan Pakai Apa</a>
       <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -339,6 +340,51 @@ navigationController.pushViewController(host, animated: true)</code></pre>
         <p><em>Review:</em> <code>UIHostingController</code> membungkus View menjadi UIViewController. Inilah mekanisme inti migrasi bertahap dari UIKit ke SwiftUI tanpa rewrite.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Kapan UIKit</h4></div>
+        <p>Kapan masih memilih UIKit daripada SwiftUI di 2026?</p>
+        <details><summary>▸ Jawaban</summary><p>Saat butuh kontrol halus (kolaborasi text kompleks, kamera kustom, transisi/gesture rumit), integrasi library UIKit besar yang belum SwiftUI, atau maintenance codebase UIKit. Interop dua arah (UIViewControllerRepresentable / UIHostingController) memungkinkan campur keduanya.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Coordinator</h4></div>
+        <p>Masalah apa yang dipecahkan Coordinator pattern?</p>
+        <details><summary>▸ Jawaban</summary><p>Memindahkan logika navigasi keluar dari view controller (yang seharusnya fokus UI), menjadikan flow navigasi terpusat, dapat diuji, dan view controller reusable. Menghindari VC yang saling tahu & tightly-coupled.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Auto Layout</h4></div>
+        <p>Apa penyebab umum konflik/ambiguous layout?</p>
+        <details><summary>▸ Jawaban</summary><p>Constraint kurang (ambiguous) atau bertentangan (conflict); prioritas tak diset saat butuh fleksibilitas; content hugging/compression resistance salah. Debug via view hierarchy & log constraint.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: flow dengan Coordinator</span>Bangun flow login→home memakai Coordinator: AppCoordinator memegang navigasi, view controller hanya menampilkan UI & memanggil delegate/closure. Sisipkan satu layar SwiftUI via UIHostingController. <strong>Tujuan:</strong> menguasai navigasi terstruktur + interop.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan child coordinator (mis. onboarding) dengan lifecycle yang benar (start/finish, hindari retain cycle antar coordinator). Tantangan: kelola array child coordinator & pembersihan — pola nyata di app besar.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Menaruh logika navigasi di dalam view controller (VC saling coupling).</li>
+        <li>Retain cycle antar coordinator (parent↔child) tanpa weak reference.</li>
+        <li>Massive view controller — semua logika di satu VC.</li>
+        <li>Auto Layout ambiguous karena constraint kurang.</li>
+        <li>Memaksa UIKit untuk hal yang SwiftUI lebih sederhana.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>UIViewController</em>, <em>Auto Layout Guide</em>.</li>
+        <li>Apple Developer Documentation — <em>UICollectionView</em> (diffable data source), <em>UITableView</em>.</li>
+        <li>Apple Developer Documentation — <em>UIHostingController</em>, <em>UIViewControllerRepresentable</em> (interop).</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

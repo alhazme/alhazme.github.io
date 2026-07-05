@@ -117,6 +117,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#upload"><span class="nidx">05</span>File Upload</a>
       <a href="#payment"><span class="nidx">06</span>Payment</a>
       <a href="#observability"><span class="nidx">07</span>Observability & Latihan</a>
+      <a href="#reinforce"><span class="nidx">08</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -344,6 +345,51 @@ crashReporter.record(error)                    // non-fatal untuk error yang ter
         <p><em>Review:</em> Menyatukan parsing link di satu fungsi murni membuatnya teruji unit — bukti nilai memisahkan navigasi dari View.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">08</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>RBAC</h4></div>
+        <p>Bagaimana menerapkan role permission dengan aman di klien + server?</p>
+        <details><summary>▸ Jawaban</summary><p>Server adalah otoritas: setiap request divalidasi terhadap role/permission di backend. Klien hanya menyesuaikan UI (sembunyikan aksi tak berizin) demi UX — tak pernah sebagai penegakan keamanan. Zero-trust: jangan percaya klaim role dari klien.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Offline + idempotency</h4></div>
+        <p>Kenapa operasi offline yang disinkron perlu idempotency key?</p>
+        <details><summary>▸ Jawaban</summary><p>Agar retry (setelah koneksi kembali) tak menghasilkan duplikat (mis. order ganda). Klien mengirim idempotency key unik per operasi; server mengabaikan duplikat dengan key sama. Fondasi offline mode andal.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Deep link</h4></div>
+        <p>Apa risiko keamanan deep link dan bagaimana menanganinya?</p>
+        <details><summary>▸ Jawaban</summary><p>Deep link bisa memicu aksi/otentikasi — validasi & otorisasi tujuannya, jangan percaya parameter mentah. Untuk aksi sensitif, verifikasi sesi & izin sebelum mengeksekusi.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: irisan fitur SaaS end-to-end</span>Ambil satu alur (mis. buat order) dan bangun lengkap: auth+RBAC (UI menyesuaikan role), simpan offline dengan idempotency key, sinkron saat online, kirim push saat sukses, dan log terstruktur. <strong>Tujuan:</strong> menyatukan pilar produksi dalam satu irisan vertikal.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan payment (StoreKit 2 untuk konten digital ATAU gateway untuk barang/jasa fisik — pahami perbedaan kebijakan Apple) dan feature flag/kill-switch untuk fitur berisiko. Tantangan: keputusan payment yang benar secara kebijakan + observability sejak awal.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Menegakkan RBAC hanya di klien (server tak memvalidasi).</li>
+        <li>Sinkron offline tanpa idempotency (duplikat data).</li>
+        <li>Deep link mengeksekusi aksi tanpa validasi/otorisasi.</li>
+        <li>Memakai gateway pihak ketiga untuk konten digital yang seharusnya StoreKit (penolakan App Review).</li>
+        <li>Tanpa observability (log/trace) sejak awal — sulit debug produksi.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>StoreKit</em>, <em>Handling universal links</em>, <em>User Notifications</em>.</li>
+        <li>Apple — App Store Review Guidelines (in-app purchase vs external — verifikasi versi terkini).</li>
+        <li>OWASP MASVS — kontrol keamanan mobile (verifikasi versi).</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

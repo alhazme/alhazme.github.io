@@ -117,6 +117,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#animation"><span class="nidx">05</span>Animation — Lottie</a>
       <a href="#observability"><span class="nidx">06</span>Analytics & Crash</a>
       <a href="#testing"><span class="nidx">07</span>Testing Libs & Latihan</a>
+      <a href="#reinforce"><span class="nidx">08</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -287,6 +288,51 @@ final class SentryCrashReporter: CrashReporting { /* ... */ }</code></pre>
         <p><em>Review:</em> Setiap dependency = utang. Mengurangi dependency menurunkan permukaan serangan (Module 15), waktu build, dan risiko library tak terawat seperti Realm.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">08</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Kriteria adopsi library</h4></div>
+        <p>Bagaimana memutuskan memakai library pihak ketiga vs native?</p>
+        <details><summary>▸ Jawaban</summary><p>Timbang: masalah yang dipecahkan, kematangan/maintenance, ukuran, dependency transitif, kemudahan penggantian (abstraksi), dan risiko lock-in. Utamakan native bila memadai; adopsi library bila menghemat waktu signifikan pada masalah non-inti dan dapat diabstraksi.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Realm deprecated</h4></div>
+        <p>Kenapa Realm tak disarankan untuk proyek baru?</p>
+        <details><summary>▸ Jawaban</summary><p>MongoDB men-deprecate Atlas Device Sync (EOL Sep 2025) dan mengurangi investasi. Untuk greenfield, SwiftData/Core Data lebih aman jangka panjang. Verifikasi status terkini sebelum memutuskan.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Abstraksi library</h4></div>
+        <p>Kenapa membungkus library pihak ketiga di balik protocol?</p>
+        <details><summary>▸ Jawaban</summary><p>Agar dapat ditukar tanpa menyentuh domain, dapat di-mock di test, dan mengisolasi risiko lock-in. Mis. image loader (Kingfisher) di balik protocol ImageLoading.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: abstraksi dua library</span>Integrasikan satu image loader (mis. Kingfisher) dan satu crash reporter (mis. Sentry) — keduanya di balik protocol (ImageLoading, CrashReporting). Tunjukkan dapat diganti dengan implementasi lain/mock. <strong>Tujuan:</strong> disiplin abstraksi & anti lock-in.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Buat tabel keputusan untuk stack Anda: untuk tiap kategori (DI, reactive, image, analytics, crash, testing) pilih native-vs-library dengan alasan konteks Alhazme. Tantangan: keputusan berbasis trade-off, bukan popularitas.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Memakai library untuk hal yang native sudah cukup (dependency bloat).</li>
+        <li>Memakai library langsung di domain tanpa abstraksi (lock-in).</li>
+        <li>Mengadopsi Realm untuk greenfield tanpa cek status deprecation.</li>
+        <li>Mengabaikan ukuran & dependency transitif.</li>
+        <li>Tak memantau maintenance/keamanan dependency (M15/M18).</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Dokumentasi resmi masing-masing library (repo/website) — verifikasi versi & status terkini.</li>
+        <li>MongoDB — pengumuman status Atlas Device Sync/Realm (verifikasi tanggal EOL terkini).</li>
+        <li>Apple Developer Documentation — alternatif native (SwiftData, Combine, Observation).</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

@@ -13,8 +13,11 @@ Baseline ekosistem: **Juni 2026** — Swift 6.4, Xcode 27 (MainActor-by-default 
 ```
 ios-native-workshop/
 ├─ index.html              # course hub + progress tracker
-├─ modules/                # 18 lesson HTML (module-01 … module-18)
-└─ .claude/skills/         # 18 SKILL.md untuk Claude Code
+├─ README.md               # peta modul & skill, cheat sheet, cara install
+├─ CHANGELOG.md            # evolusi kurikulum & perbaikan
+├─ modules/                # 21 lesson HTML (module-01 … module-21)
+├─ docs/                   # ADR & referensi (ADR-001 contoh nyata)
+└─ .claude/skills/         # 21 SKILL.md untuk Claude Code
 ```
 
 ## Peta Modul
@@ -31,18 +34,28 @@ ios-native-workshop/
 | 8 — DevOps | 14 | Git, Fastlane & CI/CD |
 | 9 — Advanced | 15 | Performance & Security |
 | 10 — Senior Engineer | 16 | System Design & Leadership |
-| Pelengkap — Production Readiness | 17–19 | Property Wrappers, L10n & A11y · Migration, Privacy & Feature Flags · Native Frameworks & Permissions |
+| Pelengkap & Native Mastery | 17–26 | + AI/ML · Auth,Web&Docs · Data&System · Extensions&Connectivity · Graphics&Immersive |
 
 ## Cara Memakai Skill di Claude Code
 
 Skill membuat AI agent bekerja pada standar principal (review per-isu bertingkat severity, generate sesuai pola workshop).
 
-1. Salin folder skill ke lokasi yang dibaca Claude Code:
-   ```
-   cp -r .claude/skills/* ~/.claude/skills/     # global
-   # atau taruh .claude/skills/ di root project   # per-project
-   ```
-2. Skill fire otomatis saat konteks relevan (mis. review kode Swift → `swift-code-review`).
+Claude Code membaca skill dari dua lokasi (terverifikasi terhadap dokumentasi resmi, per 2026):
+
+| Lokasi | Scope | Prioritas |
+|---|---|---|
+| `.claude/skills/<nama>/SKILL.md` | Project (di-commit ke repo) | **Tertinggi** (menang saat konflik nama) |
+| `~/.claude/skills/<nama>/SKILL.md` | Personal (semua project) | Lebih rendah |
+
+```bash
+# Personal (dipakai lintas semua project Anda):
+cp -r .claude/skills/* ~/.claude/skills/
+
+# ATAU project-scoped (commit .claude/skills/ ke repo — dibagikan ke kolaborator):
+# cukup taruh folder .claude/skills/ ini di root repo
+```
+
+Verifikasi termuat: mulai sesi baru lalu jalankan `/skills`. Setiap folder skill WAJIB berisi `SKILL.md` di root folder-nya (jangan ter-nesting dua level). Skill fire otomatis saat konteks relevan (mis. review kode Swift → `swift-code-review`).
 
 ### Peta Skill → Modul
 
@@ -67,6 +80,13 @@ Skill membuat AI agent bekerja pada standar principal (review per-isu bertingkat
 | `ios-localization-accessibility-auditor` | 17 | L10n, a11y, property wrapper |
 | `ios-release-readiness-auditor` | 18 | Migration, privacy manifest, kill-switch |
 | `ios-permissions-frameworks-auditor` | 19 | Izin & framework native (kamera/lokasi/foto/notif/StoreKit) |
+| `ios-extension-ecosystem-architect` | 20 | WidgetKit, App Intents, ActivityKit, PassKit, CarPlay |
+| `ios-system-frameworks-advisor` | 21 | CloudKit, MapKit, Core Image/Audio/Motion/Bluetooth, HealthKit, HomeKit, CryptoKit, Network |
+| `ios-ml-intelligence-advisor` | 22 | Vision, VisionKit, Core ML, Create ML, Natural Language, Speech |
+| `ios-auth-web-document-advisor` | 23 | AuthenticationServices, SafariServices, WebKit, PDFKit, QuickLook |
+| `ios-data-system-advisor` | 24 | Foundation, Core Foundation, Contacts, EventKit, FileProvider |
+| `ios-extensions-connectivity-advisor` | 25 | App/Share Extension, SiriKit, MultipeerConnectivity, PencilKit |
+| `ios-graphics-immersive-advisor` | 26 | Core Graphics, Core Animation, Metal, SceneKit, RealityKit/ARKit, GameKit |
 
 ---
 

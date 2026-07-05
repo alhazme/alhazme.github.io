@@ -117,6 +117,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#parsing"><span class="nidx">05</span>Parsing & Pagination</a>
       <a href="#abstraction"><span class="nidx">06</span>Abstraksi & Test</a>
       <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -193,7 +194,10 @@ extension OrderAPI: TargetType {
     <section id="auth">
       <h2><span class="sn">03</span>Authentication: Bearer, Refresh, Interceptor</h2>
       <p>Pola universal: setiap request menyertakan Bearer token; saat 401, refresh token sekali, lalu ulangi request. Alamofire menyediakan <code>RequestInterceptor</code> (gabungan adapter + retrier) untuk ini.</p>
-<pre><code data-swift>final class AuthInterceptor: @unchecked Sendable, RequestInterceptor {
+<pre><code data-swift>// @unchecked Sendable = escape hatch: Anda BERJANJI thread-safe, compiler tak cek.
+// Dibenarkan di sini hanya jika tokenStore sendiri thread-safe (mis. actor/Keychain
+// terserialisasi). Di Swift 6 strict, utamakan tipe Sendable asli bila memungkinkan.
+final class AuthInterceptor: @unchecked Sendable, RequestInterceptor {
     private let tokenStore: TokenStore         // Keychain (Module 5)
 
     // ADAPT: sisipkan Bearer token ke setiap request
@@ -325,6 +329,51 @@ struct MockNetworkService: NetworkService {
         <p><em>Review:</em> Kontrak harus berbicara dalam tipe domain/Foundation, tidak pernah tipe library. Library berhenti di lapisan implementasi.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>URLSession vs Alamofire</h4></div>
+        <p>Kapan Alamofire/Moya sepadan dibanding URLSession murni?</p>
+        <details><summary>▸ Jawaban</summary><p>URLSession async modern sudah kuat untuk mayoritas kasus. Alamofire memberi kenyamanan (interceptor, retry, validation, multipart) bila Anda butuh banyak fitur itu tanpa menulis sendiri. Moya menambah abstraksi target berbasis enum. Untuk app kecil, URLSession + lapisan tipis cukup.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Refresh token</h4></div>
+        <p>Bagaimana menangani token expired tanpa membuat user login ulang?</p>
+        <details><summary>▸ Jawaban</summary><p>Interceptor menangkap 401, memanggil refresh token (sekali, dengan coalescing agar tak paralel), lalu retry request asli dengan token baru. Bila refresh gagal, baru logout. Simpan token di Keychain.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Retry & coalescing</h4></div>
+        <p>Kenapa request identik yang bersamaan perlu di-coalesce?</p>
+        <details><summary>▸ Jawaban</summary><p>Menghindari pekerjaan/beban server ganda (mis. dua layar minta data sama). Satu request in-flight; pemanggil lain menunggu hasil yang sama. Pola sama dipakai untuk refresh token.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: networking layer berlapis</span>Bangun View→ViewModel→UseCase→Repository→NetworkService dengan interceptor auth (inject token), penanganan 401+refresh, dan retry untuk error transien. Bungkus semua di balik protocol. <strong>Tujuan:</strong> stack networking produksi berlapis dengan arah dependency benar.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan pagination (cursor/offset) + coalescing untuk refresh token dan request duplikat. Tantangan: kelola in-flight requests dengan aman (actor) — menghindari race & duplikasi.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Menaruh logika auth/refresh tersebar di banyak tempat, bukan interceptor terpusat.</li>
+        <li>Refresh token paralel tanpa coalescing (badai refresh).</li>
+        <li>@unchecked Sendable tanpa jaminan thread-safety nyata.</li>
+        <li>Menyimpan token di UserDefaults.</li>
+        <li>Retry membabi buta pada error non-transien (mis. 400).</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>URLSession</em> (async, tasks, retries konsep).</li>
+        <li>Alamofire — dokumentasi resmi repo (interceptor, retry) bila dipakai; verifikasi versi.</li>
+        <li>Moya — dokumentasi resmi repo bila dipakai; verifikasi versi.</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

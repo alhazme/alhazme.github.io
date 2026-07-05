@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 26 — Graphics & Immersive</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note.case{background:rgba(92,124,163,.10);border-left:4px solid var(--info)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 26 · Native Frameworks</div><h2>Graphics & Immersive</h2></div>
+    <div class="side-prog" id="sideProg">0 / 8 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Katalog & Peta Keputusan</a>
+      <a href="#coregraphics"><span class="nidx">01</span>Core Graphics</a>
+      <a href="#coreanimation"><span class="nidx">02</span>Core Animation</a>
+      <a href="#metal"><span class="nidx">03</span>Metal</a>
+      <a href="#scenekit"><span class="nidx">04</span>SceneKit</a>
+      <a href="#ar"><span class="nidx">05</span>RealityKit & ARKit</a>
+      <a href="#gamekit"><span class="nidx">06</span>GameKit</a>
+      <a href="#exercises"><span class="nidx">07</span>Best Practice & Latihan</a>
+      <a href="#reinforce"><span class="nidx">08</span>Quiz, Project &amp; Referensi</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 26 · NATIVE FRAMEWORK MASTERY</span>Graphics & Immersive</h2>
+      <p class="lead">Spektrum grafis iOS — dari menggambar 2D kustom & animasi layer, hingga rendering GPU, 3D, dan AR. Modul penutup Gap A: kedalaman pada yang relevan produk bisnis, overview jujur pada yang khusus.</p>
+      <div class="meta-row"><span class="badge accent">Core Graphics</span><span class="badge accent">Core Animation</span><span class="badge neutral">Metal · 3D · AR (overview)</span><span class="badge neutral">~110 menit</span></div>
+      <div class="note key"><span class="nt">Peta keputusan — pakai yang setinggi mungkin</span>Aturan emas grafis iOS: <strong>gunakan abstraksi setinggi mungkin</strong> yang memenuhi kebutuhan. SwiftUI/UIKit menutup 95% UI. Turun ke Core Graphics untuk gambar 2D kustom, Core Animation untuk animasi layer halus, dan hanya turun ke Metal/3D/AR bila produk memang menuntutnya. Menulis Metal untuk hal yang bisa dilakukan SwiftUI adalah over-engineering.</div>
+      <table>
+        <thead><tr><th>Framework</th><th>Level</th><th>Relevansi vertikal Anda</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Core Graphics</strong></td><td>Gambar 2D kustom (Quartz)</td><td><strong>Tinggi</strong> — chart, badge, watermark, PDF (M23)</td></tr>
+          <tr><td><strong>Core Animation</strong></td><td>Animasi & komposisi layer</td><td><strong>Sedang</strong> — micro-interaction, loading kustom</td></tr>
+          <tr><td><strong>Metal</strong></td><td>GPU low-level</td><td>Rendah — jarang untuk app bisnis</td></tr>
+          <tr><td><strong>SceneKit</strong></td><td>3D high-level</td><td>Rendah — preview produk 3D (kadang)</td></tr>
+          <tr><td><strong>RealityKit / ARKit</strong></td><td>Augmented Reality</td><td>Rendah-Sedang — "lihat produk di ruangan" e-commerce</td></tr>
+          <tr><td><strong>GameKit</strong></td><td>Game services (leaderboard, achievement)</td><td>Rendah — gamifikasi (jarang)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="coregraphics">
+      <h2><span class="sn">01</span>Core Graphics (Quartz 2D)</h2>
+      <p>API menggambar 2D vektor: path, gradient, teks, gambar — dipakai untuk visual kustom yang tak disediakan komponen standar. Di SwiftUI, sering cukup <code>Canvas</code>/<code>Path</code>; Core Graphics langsung dipakai saat butuh kontrol context penuh (mis. generate gambar/PDF).</p>
+<pre><code data-swift>import UIKit
+
+// Render badge/watermark kustom ke UIImage (off-screen)
+func makeBadge(_ text: String, size: CGSize) -&gt; UIImage {
+    let renderer = UIGraphicsImageRenderer(size: size)
+    return renderer.image { ctx in
+        let cg = ctx.cgContext
+        cg.setFillColor(UIColor(red: 0.85, green: 0.47, blue: 0.34, alpha: 1).cgColor) // clay
+        cg.fillEllipse(in: CGRect(origin: .zero, size: size))
+        let attrs: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: UIFont.boldSystemFont(ofSize: size.height * 0.4)]
+        let str = NSAttributedString(string: text, attributes: attrs)
+        let bounds = str.boundingRect(with: size, options: .usesLineFragmentOrigin, context: nil)
+        str.draw(at: CGPoint(x: (size.width - bounds.width)/2, y: (size.height - bounds.height)/2))
+    }
+}</code></pre>
+      <div class="note case"><span class="nt">Kasus vertikal — chart, watermark, invoice</span>(1) Chart kustom sederhana tanpa dependency (memperluas SVG/Canvas). (2) Watermark/badge pada gambar produk. (3) Menggambar konten <strong>invoice PDF</strong> (M23) memakai context Core Graphics. Untuk grafik data kompleks, pertimbangkan Swift Charts (framework terpisah) sebelum menggambar manual. Core Graphics mahal bila dipanggil berulang di main thread — cache hasil (M15).</div>
+    </section>
+
+    <section id="coreanimation">
+      <h2><span class="sn">02</span>Core Animation</h2>
+      <p>Sistem layer (<code>CALayer</code>) & animasi di bawah UIKit. SwiftUI/UIKit menganimasikan lewat ini secara otomatis; Anda menyentuhnya langsung untuk kontrol halus (path animation, layer khusus).</p>
+<pre><code data-swift>import UIKit
+
+// Animasi stroke kustom (mis. loading indicator melingkar)
+func animateRing(on layer: CAShapeLayer) {
+    let anim = CABasicAnimation(keyPath: "strokeEnd")
+    anim.fromValue = 0
+    anim.toValue = 1
+    anim.duration = 1.2
+    anim.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+    anim.repeatCount = .infinity
+    layer.add(anim, forKey: "ring")
+}</code></pre>
+      <div class="note key"><span class="nt">Kapan langsung ke Core Animation</span>Utamakan animasi SwiftUI (<code>withAnimation</code>, <code>.animation</code>) / UIView untuk mayoritas kasus — lebih sederhana & deklaratif. Turun ke <code>CALayer</code>/<code>CAAnimation</code> untuk: animasi path (stroke, morph), efek layer (mask, shadow kustom, gradient animatif), atau performa spesifik. Untuk animasi vektor kompleks siap-pakai, Lottie (M11) sering lebih cepat dari membangun manual. Hormati <em>Reduce Motion</em> (aksesibilitas M17) — kurangi/hilangkan animasi bila user memintanya.</div>
+    </section>
+
+    <section id="metal">
+      <h2><span class="sn">03</span>Metal (Overview)</h2>
+      <p>API GPU low-level untuk rendering & compute berperforma tinggi. Sangat kuat, sangat kompleks — jarang dibutuhkan app bisnis.</p>
+      <div class="note warn"><span class="nt">Kapan dipakai & kapan tidak</span><strong>Dipakai:</strong> game, pemrosesan gambar/video real-time kustom, visualisasi data masif, shader efek khusus, ML compute custom. <strong>Tidak dipakai:</strong> UI biasa, animasi standar, filter gambar (pakai Core Image M21). Untuk kebutuhan efek gambar, <strong>Core Image sudah GPU-accelerated di atas Metal</strong> — Anda dapat manfaat GPU tanpa menulis Metal. <strong>Best practice bagi Anda:</strong> hampir tak pernah menulis Metal langsung untuk app e-commerce/hospitality/SaaS; bila muncul kebutuhan berat, evaluasi apakah Core Image/Metal Performance Shaders (siap-pakai) cukup sebelum shader kustom. <em>Ini overview; kedalaman Metal adalah spesialisasi tersendiri di luar cakupan app bisnis.</em></div>
+    </section>
+
+    <section id="scenekit">
+      <h2><span class="sn">04</span>SceneKit (Overview)</h2>
+      <p>Framework 3D high-level (scene graph: node, geometry, material, cahaya, kamera). Lebih mudah dari Metal untuk konten 3D.</p>
+      <div class="note key"><span class="nt">Posisi & alternatif</span>SceneKit cocok untuk 3D non-AR sederhana (mis. <strong>preview produk 3D</strong> yang dapat diputar). Namun arah Apple untuk konten 3D & AR modern condong ke <strong>RealityKit</strong> (bagian 05). Untuk sekadar menampilkan model 3D produk, pertimbangkan <strong>QuickLook 3D</strong> (preview file USDZ tanpa kode 3D) — jauh lebih sederhana dari membangun scene sendiri. Bangun SceneKit/RealityKit hanya bila butuh interaksi 3D kustom. <em>Verifikasi arah framework terkini; ekosistem 3D/AR Apple berevolusi.</em></div>
+    </section>
+
+    <section id="ar">
+      <h2><span class="sn">05</span>RealityKit & ARKit (Overview)</h2>
+      <p><strong>ARKit</strong> melacak dunia nyata (posisi, permukaan, cahaya); <strong>RealityKit</strong> me-render & mensimulasikan objek 3D di atasnya. Bersama: Augmented Reality.</p>
+      <div class="note case"><span class="nt">Kasus vertikal — "lihat produk di ruangan Anda"</span>Relevansi tertinggi AR untuk vertikal Anda: <strong>e-commerce furnitur/dekor</strong> — user menempatkan model 3D produk (USDZ) di ruangan via kamera sebelum membeli. Jalur <strong>termudah</strong>: <strong>AR Quick Look</strong> — tampilkan file USDZ dengan preview AR bawaan sistem (via QuickLook M23), <em>tanpa menulis ARKit/RealityKit sama sekali</em>. Bangun ARKit/RealityKit kustom hanya bila butuh pengalaman AR interaktif khusus (mis. konfigurator produk). Untuk mayoritas kasus "coba di ruangan", AR Quick Look sudah cukup.</div>
+      <div class="note warn"><span class="nt">Pertimbangan</span>AR menuntut perangkat mumpuni, izin kamera (M19), dan berat baterai/termal. Uji di device nyata (bukan simulator). ROI membangun AR kustom tinggi biayanya — validasi kebutuhan bisnis sebelum investasi. <em>ARKit/RealityKit berkembang cepat tiap tahun; verifikasi kapabilitas terkini.</em></div>
+    </section>
+
+    <section id="gamekit">
+      <h2><span class="sn">06</span>GameKit (Overview)</h2>
+      <p>Layanan game: Game Center (leaderboard, achievement, matchmaking, multiplayer). Untuk app bisnis, relevansi utama hanyalah <strong>elemen gamifikasi</strong> — dan itu pun jarang butuh GameKit penuh.</p>
+      <div class="note key"><span class="nt">Kapan & alternatif</span>GameKit penuh untuk game sebenarnya. Untuk <strong>gamifikasi app bisnis</strong> (poin, badge, papan peringkat loyalty) — biasanya lebih baik dibangun di <strong>backend Anda sendiri</strong> (kontrol penuh, lintas-platform, terintegrasi data bisnis) daripada mengikat ke Game Center. Gunakan GameKit hanya bila Anda memang ingin integrasi Game Center native (achievement iOS, leaderboard global). Untuk loyalty hospitality Anda, papan peringkat backend + PassKit (M20) lebih tepat. <em>Overview — kedalaman GameKit di luar fokus app bisnis.</em></div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">07</span>Best Practice & Latihan</h2>
+      <ul>
+        <li><strong>Abstraksi setinggi mungkin</strong> — SwiftUI/UIKit → Core Graphics/Animation → (jarang) Metal/3D/AR. Jangan turun level tanpa kebutuhan nyata.</li>
+        <li><strong>Manfaatkan jalur siap-pakai</strong> — Core Image (bukan Metal) untuk filter; AR Quick Look (bukan ARKit) untuk "coba di ruangan"; QuickLook 3D (bukan SceneKit) untuk preview model; Swift Charts untuk grafik.</li>
+        <li><strong>Hormati Reduce Motion</strong> — animasi kustom harus menyesuaikan preferensi aksesibilitas (M17).</li>
+        <li><strong>Performa</strong> — gambar Core Graphics berulang di-cache; kerja GPU/AR berat menguras baterai/termal (M15); uji AR di device nyata.</li>
+        <li><strong>ROI dulu</strong> — Metal/AR/3D kustom mahal; validasi kebutuhan bisnis sebelum investasi engineering.</li>
+      </ul>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Level yang tepat</h4></div>
+        <p>Untuk tiap kebutuhan, framework mana: (a) filter kecerahan foto produk; (b) "lihat sofa di ruangan"; (c) loading ring kustom; (d) preview model 3D produk yang bisa diputar.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>(a) Core Image (M21), bukan Metal. (b) AR Quick Look (USDZ via QuickLook), bukan ARKit kustom. (c) Core Animation (CAShapeLayer strokeEnd) atau SwiftUI. (d) QuickLook 3D / SceneKit sederhana.</p>
+        <p><em>Review:</em> Setiap kasus punya jalur siap-pakai yang menghindari level rendah. Turun ke Metal/ARKit hanya bila jalur tinggi tak cukup.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Over-engineering</h4></div>
+        <p>Seorang engineer mengusulkan menulis renderer Metal untuk menampilkan galeri gambar produk dengan efek fade. Tanggapan Anda?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Berlebihan. Galeri + fade dilakukan SwiftUI/UIKit + Core Animation dengan mudah; Core Image bila butuh efek gambar. Metal menambah kompleksitas besar tanpa manfaat di sini. Tolak; arahkan ke abstraksi tinggi.</p>
+        <p><em>Review:</em> "Gunakan abstraksi setinggi mungkin." Metal dibenarkan hanya oleh kebutuhan performa/efek yang tak terpenuhi level atas.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Gamifikasi loyalty</h4></div>
+        <p>Klien hospitality ingin papan peringkat poin loyalty lintas iOS & Android. GameKit?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Tidak. GameKit/Game Center terikat ekosistem Apple — tak lintas-platform & terpisah dari data bisnis. Bangun leaderboard di <strong>backend sendiri</strong> (poin, tier), tampilkan di kedua platform; kartu di Apple Wallet via PassKit (M20).</p>
+        <p><em>Review:</em> Untuk gamifikasi bisnis lintas-platform, backend sendiri memberi kontrol & konsistensi; GameKit hanya untuk integrasi Game Center native.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Animasi & aksesibilitas</h4></div>
+        <p>Animasi ring loading kustom Anda berputar terus. Apa yang wajib dipertimbangkan untuk sebagian user?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p><strong>Reduce Motion</strong> (M17): sebagian user (termasuk sensitivitas vestibular & sebagian ABK) memerlukan animasi minimal. Cek preferensi (<code>UIAccessibility.isReduceMotionEnabled</code> / environment SwiftUI) dan sediakan alternatif statis/halus.</p>
+        <p><em>Review:</em> Animasi kustom tak boleh mengabaikan aksesibilitas. Hormati preferensi sistem selalu.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">08</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Peta keputusan</h4></div>
+        <p>Aturan emas memilih layer grafis iOS?</p>
+        <details><summary>▸ Jawaban</summary><p>Gunakan abstraksi setinggi mungkin yang memenuhi kebutuhan: SwiftUI/UIKit → Core Graphics/Animation → (jarang) Metal/3D/AR. Turun level hanya bila kebutuhan performa/efek tak terpenuhi di atas.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Core Image vs Metal</h4></div>
+        <p>Untuk filter gambar, Metal atau Core Image?</p>
+        <details><summary>▸ Jawaban</summary><p>Core Image — sudah GPU-accelerated di atas Metal. Anda dapat manfaat GPU tanpa menulis shader Metal. Metal langsung hanya untuk game/compute berat/efek sangat kustom.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>AR view-in-room</h4></div>
+        <p>Cara termudah 'lihat produk di ruangan' tanpa menulis ARKit?</p>
+        <details><summary>▸ Jawaban</summary><p>AR Quick Look — tampilkan file USDZ dengan preview AR bawaan sistem (via QuickLook). Bangun ARKit/RealityKit kustom hanya untuk pengalaman AR interaktif khusus.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: visual kustom + preview</span>Buat badge/watermark kustom dengan Core Graphics (UIGraphicsImageRenderer) untuk gambar produk, dan loading ring dengan Core Animation yang menghormati Reduce Motion. <strong>Tujuan:</strong> grafis 2D kustom + animasi aksesibel.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan preview produk 3D via AR Quick Look (USDZ) tanpa menulis ARKit, dan evaluasi (tolak/terima) usulan memakai Metal untuk galeri sederhana. Tantangan: pilih level yang tepat & hindari over-engineering.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Menulis Metal untuk hal yang SwiftUI/Core Image bisa (over-engineering).</li>
+        <li>ARKit kustom untuk 'view in room' yang cukup dengan AR Quick Look.</li>
+        <li>GameKit untuk gamifikasi lintas-platform (harusnya backend sendiri).</li>
+        <li>Animasi kustom mengabaikan Reduce Motion.</li>
+        <li>Render Core Graphics berulang di main thread tanpa cache.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>Core Graphics</em>, <em>Core Animation</em>.</li>
+        <li>Apple Developer Documentation — <em>Adding an AR experience with Quick Look</em> (USDZ).</li>
+        <li>Apple Developer Documentation — <em>Metal</em>, <em>RealityKit</em>, <em>SceneKit</em>, <em>GameKit</em> (overview).</li>
+      </ul>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 26</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Peta keputusan: abstraksi setinggi mungkin; jangan turun level tanpa kebutuhan</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Core Graphics: render 2D kustom (badge, watermark, konten PDF); cache hasil</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Core Animation: CALayer/CAAnimation untuk path & efek layer; hormati Reduce Motion</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Metal: kapan (game/compute berat) vs tidak; Core Image sudah GPU di atas Metal</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">SceneKit/QuickLook 3D: preview model 3D; arah ke RealityKit</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">AR: AR Quick Look (USDZ) untuk "coba di ruangan" tanpa menulis ARKit</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">GameKit: gamifikasi bisnis lintas-platform → backend sendiri, bukan Game Center</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-25.html">← Module 25 — Extensions & Connectivity</a>
+      <a href="../index.html">Selesai · Gap A tuntas — Kembali ke Daftar Modul →</a>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m26';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

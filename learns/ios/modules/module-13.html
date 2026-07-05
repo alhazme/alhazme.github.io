@@ -117,6 +117,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#snapshot"><span class="nidx">05</span>Snapshot Test</a>
       <a href="#architecture"><span class="nidx">06</span>Test Architecture & Coverage</a>
       <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -320,6 +321,51 @@ func passwordStrength(_ input: String, _ expected: Bool) {
         <p><em>Review:</em> Ikuti piramida. Investasi terbesar di unit (nilai tinggi, biaya rendah); UI test hanya untuk jalur yang kegagalannya fatal.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Swift Testing vs XCTest</h4></div>
+        <p>Apa keunggulan Swift Testing dan kapan XCTest masih dipakai?</p>
+        <details><summary>▸ Jawaban</summary><p>Swift Testing (@Test/#expect/#require/@Suite, parameterized) lebih ekspresif, terintegrasi konkurensi, dan modern. XCTest masih dipakai untuk UI test (XCUITest) dan codebase lama. Keduanya bisa berdampingan.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Mock/stub/spy/fake</h4></div>
+        <p>Apa beda keempatnya?</p>
+        <details><summary>▸ Jawaban</summary><p>Stub: kembalikan nilai tetap. Mock: verifikasi interaksi (dipanggil?). Spy: rekam pemanggilan untuk diperiksa. Fake: implementasi ringan yang berfungsi (mis. in-memory repo). Pilih sesuai apa yang diuji.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Apa yang diuji</h4></div>
+        <p>Lapisan mana yang paling berharga diuji unit di Clean Architecture?</p>
+        <details><summary>▸ Jawaban</summary><p>Domain (use case) & view model — logika murni tanpa framework, cepat & stabil. UI test (mahal/lambat) untuk alur kritis saja. Repository diuji dengan fake/mock dependency.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: uji use case + view model</span>Tulis unit test (Swift Testing) untuk satu use case dan view model dari mini-project sebelumnya, memakai mock/fake repository. Sertakan kasus sukses, gagal, dan edge. <strong>Tujuan:</strong> menguji lapisan berharga dengan test double yang tepat.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan snapshot test untuk satu komponen UI dan satu UI test (XCUITest) untuk alur kritis (mis. login). Tetapkan ambang coverage sebagai contoh tim (bukan angka baku). Tantangan: piramida test seimbang — banyak unit, sedikit UI.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Menguji detail implementasi, bukan perilaku (test rapuh).</li>
+        <li>Terlalu banyak UI test lambat, sedikit unit test (piramida terbalik).</li>
+        <li>Test bergantung urutan/state global.</li>
+        <li>Mock berlebihan hingga test tak bermakna.</li>
+        <li>Menjadikan angka coverage tujuan, bukan indikator.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>Swift Testing</em> (@Test, #expect, #require, @Suite).</li>
+        <li>Apple Developer Documentation — <em>XCTest</em>, <em>XCUITest</em> (UI testing).</li>
+        <li>swift.org — Swift Testing documentation (verifikasi versi).</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

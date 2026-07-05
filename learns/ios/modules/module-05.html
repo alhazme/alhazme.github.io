@@ -117,6 +117,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#swiftdata"><span class="nidx">05</span>SwiftData & Core Data</a>
       <a href="#background"><span class="nidx">06</span>Background Tasks</a>
       <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -419,6 +420,51 @@ struct NotesView: View {
         <p><em>Review:</em> <code>@Query</code> reaktif otomatis memperbarui View saat data berubah. Jangan lupa <code>.modelContainer(for: Note.self)</code> di App agar context tersedia.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>async URLSession</h4></div>
+        <p>Kenapa <code>URLSession</code> async/await lebih disukai daripada completion handler?</p>
+        <details><summary>▸ Jawaban</summary><p>async/await menghilangkan callback nesting, membuat error handling natural (try/catch), dan integrasi dengan structured concurrency (pembatalan, prioritas). Completion handler rawan callback hell & lupa memanggil completion.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Keychain vs UserDefaults</h4></div>
+        <p>Data apa yang wajib di Keychain, bukan UserDefaults?</p>
+        <details><summary>▸ Jawaban</summary><p>Kredensial/token/secret. UserDefaults tak terenkripsi & mudah dibaca; Keychain terenkripsi & didukung Secure Enclave. Jangan pernah menyimpan token di UserDefaults.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Codable nested</h4></div>
+        <p>Bagaimana menangani JSON dengan struktur berbeda dari model Swift Anda?</p>
+        <details><summary>▸ Jawaban</summary><p>Pakai CodingKeys untuk memetakan nama; nested struct untuk objek bersarang; custom init(from:) untuk transformasi kompleks; container/nestedContainer untuk struktur tak lazim. Utamakan model bersih yang mencerminkan domain, bukan meniru JSON mentah.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: layer persistence + fetch</span>Buat service yang fetch daftar produk via URLSession async, decode dengan Codable, cache ke SwiftData, dan simpan token auth ke Keychain. Bungkus di balik protocol Repository. <strong>Tujuan:</strong> menyatukan networking + persistence + secure storage dalam satu alur bersih.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan offline-first: baca dari SwiftData dulu (tampil cepat), lalu refresh dari network di background dan update cache. Tangani konflik & kegagalan network dengan anggun. Tantangan: jalur data yang benar (cache→UI, network→cache→UI) — fondasi offline mode (M12).</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Menyimpan token di UserDefaults, bukan Keychain.</li>
+        <li>Membuat model Codable yang meniru JSON mentah alih-alih domain bersih.</li>
+        <li>Menaruh DB/cache yang dapat dibuat ulang di Documents (App Review menolak).</li>
+        <li>Menelan error network dengan try? tanpa fallback/log.</li>
+        <li>Blocking main thread saat decode payload besar.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>URLSession</em>, <em>Fetching website data using async/await</em>.</li>
+        <li>Apple Developer Documentation — <em>Encoding and decoding custom types</em> (Codable).</li>
+        <li>Apple Developer Documentation — <em>Keychain Services</em>, <em>SwiftData</em>.</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

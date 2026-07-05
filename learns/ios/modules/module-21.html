@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 21 — System Frameworks</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note.case{background:rgba(92,124,163,.10);border-left:4px solid var(--info)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 21 · Pelengkap</div><h2>System Frameworks</h2></div>
+    <div class="side-prog" id="sideProg">0 / 11 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Katalog</a>
+      <a href="#cloudkit"><span class="nidx">01</span>CloudKit</a>
+      <a href="#mapkit"><span class="nidx">02</span>MapKit</a>
+      <a href="#coreimage"><span class="nidx">03</span>Core Image</a>
+      <a href="#coreaudio"><span class="nidx">04</span>Core Audio</a>
+      <a href="#coremotion"><span class="nidx">05</span>Core Motion</a>
+      <a href="#corebluetooth"><span class="nidx">06</span>Core Bluetooth</a>
+      <a href="#healthkit"><span class="nidx">07</span>HealthKit</a>
+      <a href="#homekit"><span class="nidx">08</span>HomeKit</a>
+      <a href="#cryptokit"><span class="nidx">09</span>CryptoKit</a>
+      <a href="#network"><span class="nidx">10</span>Network + Latihan</a>
+      <a href="#reinforce"><span class="nidx">11</span>Quiz, Project &amp; Referensi</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 21 · PELENGKAP — SYSTEM FRAMEWORKS</span>Sepuluh Framework Sistem</h2>
+      <p class="lead">Deep-dive framework sistem yang melengkapi peta native Anda: sinkronisasi cloud, peta, media, sensor, konektivitas, kesehatan, rumah pintar, dan kriptografi — masing-masing dengan izin/entitlement & jebakan produksinya.</p>
+      <div class="meta-row"><span class="badge accent">CloudKit</span><span class="badge accent">MapKit</span><span class="badge accent">CryptoKit</span><span class="badge accent">HealthKit</span><span class="badge neutral">~140 menit</span></div>
+      <table>
+        <thead><tr><th>Framework</th><th>Untuk</th><th>Izin / Entitlement</th><th>Relevansi vertikal</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CloudKit</strong></td><td>Sync data ke iCloud lintas device</td><td>iCloud entitlement</td><td>Sync ABK templates, backup UMKM</td></tr>
+          <tr><td><strong>MapKit</strong></td><td>Peta, anotasi, rute, geocoding</td><td>Lokasi (M19) bila user-location</td><td>Logistik, lokasi toko</td></tr>
+          <tr><td><strong>Core Image</strong></td><td>Filter & pemrosesan gambar</td><td>—</td><td>Edit foto produk e-commerce</td></tr>
+          <tr><td><strong>Core Audio / AVAudioEngine</strong></td><td>Rekam & putar audio</td><td>Mikrofon (M19)</td><td>Voice note, terapi audio ABK</td></tr>
+          <tr><td><strong>Core Motion</strong></td><td>Accelerometer, pedometer, aktivitas</td><td><code>NSMotionUsageDescription</code></td><td>Fitness, deteksi gerak</td></tr>
+          <tr><td><strong>Core Bluetooth</strong></td><td>BLE central/peripheral</td><td><code>NSBluetoothAlwaysUsageDescription</code></td><td>IoT, perangkat pembayaran</td></tr>
+          <tr><td><strong>HealthKit</strong></td><td>Data kesehatan & kebugaran</td><td>Entitlement + izin granular per-tipe</td><td>Health/wellness apps</td></tr>
+          <tr><td><strong>HomeKit</strong></td><td>Aksesori rumah pintar</td><td>Entitlement + <code>NSHomeKitUsageDescription</code></td><td>Smart home / hospitality kamar</td></tr>
+          <tr><td><strong>CryptoKit</strong></td><td>Hash, enkripsi, signing</td><td>—</td><td>Keamanan fintech, integritas data</td></tr>
+          <tr><td><strong>Network</strong></td><td>Path monitoring, koneksi low-level</td><td>Local Network (bila LAN)</td><td>Deteksi offline (M12), WebSocket</td></tr>
+        </tbody>
+      </table>
+      <div class="note key"><span class="nt">Prinsip lintas-framework</span>Ketiga pola dari modul sebelumnya tetap berlaku: (1) izin/entitlement + string Info.plist wajib (M19); (2) bungkus di balik protocol agar testable & tak bocor ke ViewModel (M9); (3) klien tak dipercaya untuk keamanan otoritatif (M15). Modul ini menerapkannya per-framework.</div>
+    </section>
+
+    <section id="cloudkit">
+      <h2><span class="sn">01</span>CloudKit</h2>
+      <p>Sinkronisasi data ke iCloud milik user — tanpa server sendiri. Tiga database: <strong>private</strong> (data user, di kuota iCloud mereka), <strong>public</strong> (dibagikan semua user), <strong>shared</strong> (dibagikan antar user tertentu).</p>
+<pre><code data-swift>import CloudKit
+
+let container = CKContainer.default()
+let db = container.privateCloudDatabase
+
+// Simpan record
+func save(_ template: ABKTemplate) async throws {
+    let record = CKRecord(recordType: "ABKTemplate")
+    record["title"] = template.title as CKRecordValue
+    record["json"]  = template.jsonData as CKRecordValue
+    _ = try await db.save(record)
+}
+
+// Query
+func fetchTemplates() async throws -&gt; [CKRecord] {
+    let query = CKQuery(recordType: "ABKTemplate", predicate: NSPredicate(value: true))
+    let (results, _) = try await db.records(matching: query)
+    return results.compactMap { try? $0.1.get() }
+}</code></pre>
+      <div class="note key"><span class="nt">SwiftData + CloudKit (jalur termudah)</span>Untuk app SwiftUI, cara paling ringkas adalah <strong>SwiftData dengan sync CloudKit otomatis</strong> — set <code>ModelConfiguration(cloudKitDatabase: .automatic)</code> (M5/M18). Anda menulis SwiftData biasa, sync ke private DB berjalan otomatis. Gunakan CloudKit API langsung hanya bila butuh public/shared DB atau kontrol granular.</div>
+      <div class="note case"><span class="nt">Kasus produksi — konflik & akun iCloud</span>(1) User bisa <strong>tidak login iCloud</strong> — cek <code>accountStatus()</code> dulu; degradasi ke lokal bila tak tersedia. (2) Sync bersifat <strong>eventual</strong> — jangan asumsikan data langsung ada di device lain. (3) Konflik ditangani dengan <code>CKRecord</code> <code>recordChangeTag</code>/server-record — mirip strategi offline M12. Untuk ABK templates yang dipakai lintas device orang tua/terapis, uji skenario tanpa iCloud & sync tertunda.</div>
+    </section>
+
+    <section id="mapkit">
+      <h2><span class="sn">02</span>MapKit</h2>
+      <p>Peta native dengan anotasi, overlay, rute, dan geocoding. Di SwiftUI, <code>Map</code> kini deklaratif.</p>
+<pre><code data-swift>import MapKit
+import SwiftUI
+
+struct StoreMap: View {
+    @State private var camera: MapCameraPosition = .automatic
+    let stores: [Store]
+    var body: some View {
+        Map(position: $camera) {
+            ForEach(stores) { store in
+                Marker(store.name, coordinate: store.coordinate)   // anotasi
+            }
+            UserAnnotation()                                       // posisi user (butuh izin lokasi M19)
+        }
+        .mapControls { MapUserLocationButton(); MapCompass() }
+    }
+}
+
+// Geocoding: alamat → koordinat
+func geocode(_ address: String) async throws -&gt; CLLocationCoordinate2D? {
+    let placemarks = try await CLGeocoder().geocodeAddressString(address)
+    return placemarks.first?.location?.coordinate
+}</code></pre>
+      <div class="note warn"><span class="nt">Rute & batas kuota</span>Untuk rute/ETA gunakan <code>MKDirections</code> (<code>MKDirections.Request</code> dengan source/destination). Geocoding & directions punya <strong>rate limit</strong> sistem — jangan panggil per-keystroke; debounce (Combine, M11) & cache hasil. <code>UserAnnotation</code> menuntut izin lokasi (M19); tangani penolakan (tampilkan peta tanpa titik user).</div>
+      <div class="note case"><span class="nt">Kasus vertikal — logistik & lokasi toko</span>Peta multi-toko + rute pengiriman: plot semua mini-warehouse (relevan Weemes Anda), hitung rute dengan <code>MKDirections</code>, tampilkan ETA. Untuk banyak titik, kelompokkan anotasi (clustering via <code>MKClusterAnnotation</code> di MapKit UIKit) agar peta tak penuh.</div>
+    </section>
+
+    <section id="coreimage">
+      <h2><span class="sn">03</span>Core Image</h2>
+      <p>Pemrosesan gambar GPU-accelerated: filter, koreksi, deteksi. Pipeline: <code>CIImage</code> → <code>CIFilter</code> → render via <code>CIContext</code>.</p>
+<pre><code data-swift>import CoreImage
+import CoreImage.CIFilterBuiltins
+
+func enhance(_ input: UIImage) -&gt; UIImage? {
+    guard let ci = CIImage(image: input) else { return nil }
+    let filter = CIFilter.colorControls()
+    filter.inputImage = ci
+    filter.saturation = 1.1
+    filter.contrast = 1.05
+    guard let output = filter.outputImage else { return nil }
+
+    let context = CIContext()        // mahal — buat SEKALI, reuse
+    guard let cg = context.createCGImage(output, from: output.extent) else { return nil }
+    return UIImage(cgImage: cg)
+}</code></pre>
+      <div class="note warn"><span class="nt">Performa (sambung M15)</span><code>CIContext</code> mahal dibuat — instansiasi <strong>sekali</strong> & pakai ulang, jangan per-gambar. Pemrosesan berat jangan di main thread — offload dengan <code>@concurrent</code> (M3). Untuk thumbnail, downsample dulu (M15) sebelum filter agar hemat memori. Core Image juga punya deteksi (wajah, barcode via <code>CIDetector</code>), tapi untuk scan barcode real-time, Vision/AVFoundation metadata lebih tepat.</div>
+    </section>
+
+    <section id="coreaudio">
+      <h2><span class="sn">04</span>Core Audio / AVAudioEngine</h2>
+      <p>Untuk mayoritas kasus (rekam, putar, mixing), <strong>AVAudioEngine</strong> (high-level) cukup — Core Audio mentah hanya untuk latensi sangat rendah / DSP kustom.</p>
+<pre><code data-swift>import AVFoundation
+
+final class AudioRecorder {
+    private let engine = AVAudioEngine()
+
+    func startRecording(to url: URL) throws {
+        let session = AVAudioSession.sharedInstance()
+        try session.setCategory(.record, mode: .default)
+        try session.setActive(true)                        // butuh izin mikrofon (M19)
+
+        let input = engine.inputNode
+        let format = input.outputFormat(forBus: 0)
+        // Init AVAudioFile untuk menulis; verifikasi label parameter terhadap
+        // SDK terkini (signature commonFormat/interleaved bisa berubah antar versi).
+        let file = try AVAudioFile(forWriting: url, settings: format.settings,
+                                   commonFormat: .pcmFormatFloat32, interleaved: false)
+
+        input.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, _ in
+            try? file.write(from: buffer)
+        }
+        try engine.start()
+    }
+    func stop() { engine.inputNode.removeTap(onBus: 0); engine.stop() }
+}</code></pre>
+      <div class="note key"><span class="nt">AVAudioSession — inti yang sering terlupakan</span>Konfigurasi <code>AVAudioSession</code> (category/mode) menentukan perilaku: apakah audio ter-mix dengan app lain, main saat silent switch, atau lanjut di background. Salah kategori = audio tak keluar atau app lain terputus. Untuk pemutaran sederhana, <code>AVAudioPlayer</code> lebih ringkas dari engine. Rekam butuh izin mikrofon (M19).</div>
+    </section>
+
+    <section id="coremotion">
+      <h2><span class="sn">05</span>Core Motion</h2>
+      <p>Akses sensor gerak: accelerometer, gyroscope, pedometer, dan klasifikasi aktivitas.</p>
+<pre><code data-swift>import CoreMotion
+
+final class MotionService {
+    private let pedometer = CMPedometer()
+
+    func todaySteps() async throws -&gt; Int {
+        guard CMPedometer.isStepCountingAvailable() else { return 0 }
+        let start = Calendar.current.startOfDay(for: .now)
+        return try await withCheckedThrowingContinuation { cont in
+            pedometer.queryPedometerData(from: start, to: .now) { data, err in
+                if let err { cont.resume(throwing: err) }
+                else { cont.resume(returning: data?.numberOfSteps.intValue ?? 0) }
+            }
+        }
+    }
+}</code></pre>
+      <div class="note warn"><span class="nt">Ketersediaan & izin</span>Selalu cek <code>isStepCountingAvailable()</code> / <code>isActivityAvailable()</code> — tidak semua device punya co-processor gerak. Pedometer/motion butuh <code>NSMotionUsageDescription</code>. Untuk data historis, pedometer bisa query mundur beberapa hari (disimpan sistem). Streaming realtime (accelerometer) menguras baтерai — hentikan saat tak dipakai (M15).</div>
+    </section>
+
+    <section id="corebluetooth">
+      <h2><span class="sn">06</span>Core Bluetooth</h2>
+      <p>Komunikasi Bluetooth Low Energy. App biasanya berperan <strong>central</strong> (memindai & connect ke peripheral seperti sensor/perangkat IoT).</p>
+<pre><code data-swift>import CoreBluetooth
+
+final class BLEScanner: NSObject, CBCentralManagerDelegate {
+    private var central: CBCentralManager!
+    override init() { super.init(); central = CBCentralManager(delegate: self, queue: nil) }
+
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        guard central.state == .poweredOn else { return }        // cek state dulu
+        central.scanForPeripherals(withServices: [myServiceUUID]) // filter by service
+    }
+    func centralManager(_ c: CBCentralManager, didDiscover p: CBPeripheral,
+        advertisementData: [String: Any], rssi RSSI: NSNumber) {
+        c.stopScan(); c.connect(p)                                // connect lalu discover services/characteristics
+    }
+}</code></pre>
+      <div class="note warn"><span class="nt">Delegate-heavy & izin</span>Core Bluetooth sangat berbasis delegate: state → scan → discover → connect → discover services → characteristics → read/notify. Butuh <code>NSBluetoothAlwaysUsageDescription</code>. Selalu tangani <code>centralManagerDidUpdateState</code> (jangan scan sebelum <code>.poweredOn</code>). Bungkus rantai delegate ini di balik service class dengan API async/closure yang bersih agar tak bocor ke UI. BLE menguras baterai — batasi durasi scan.</div>
+    </section>
+
+    <section id="healthkit">
+      <h2><span class="sn">07</span>HealthKit</h2>
+      <p>Baca/tulis data kesehatan dari Health app. Izin bersifat <strong>granular per tipe data</strong> (langkah, detak jantung, dll.) dan <strong>terpisah baca vs tulis</strong>.</p>
+<pre><code data-swift>import HealthKit
+
+let store = HKHealthStore()
+
+func requestAuth() async throws {
+    guard HKHealthStore.isHealthDataAvailable() else { return }   // iPad umumnya tak ada
+    let steps = HKQuantityType(.stepCount)
+    try await store.requestAuthorization(toShare: [steps], read: [steps])
+}</code></pre>
+      <div class="note danger"><span class="nt">Privasi HealthKit — aturan ketat</span>(1) Butuh <strong>HealthKit entitlement</strong> + dua string Info.plist: <code>NSHealthShareUsageDescription</code> (baca) & <code>NSHealthUpdateUsageDescription</code> (tulis). (2) <strong>Anda tak bisa tahu apakah user menolak baca</strong> — demi privasi, query hanya mengembalikan kosong; jangan asumsikan "kosong = tidak ada data". (3) Data kesehatan tak boleh dipakai untuk iklan/dijual — pelanggaran = penolakan App Review keras. (4) <code>isHealthDataAvailable()</code> wajib dicek.</div>
+    </section>
+
+    <section id="homekit">
+      <h2><span class="sn">08</span>HomeKit</h2>
+      <p>Kontrol aksesori rumah pintar (lampu, kunci, termostat) via <code>HMHomeManager</code>. Relevan untuk skenario hospitality (kontrol kamar) atau smart home.</p>
+<pre><code data-swift>import HomeKit
+
+final class HomeController: NSObject, HMHomeManagerDelegate {
+    private let manager = HMHomeManager()
+    override init() { super.init(); manager.delegate = self }
+
+    func homeManagerDidUpdateHomes(_ mgr: HMHomeManager) {
+        guard let home = mgr.primaryHome else { return }
+        // akses accessories → services → characteristics untuk kontrol
+    }
+}</code></pre>
+      <div class="note warn"><span class="nt">Entitlement & niche</span>Butuh <strong>HomeKit entitlement</strong> + <code>NSHomeKitUsageDescription</code>. Model: Home → Room → Accessory → Service → Characteristic. Untuk vertikal Anda, HomeKit hanya relevan pada kasus spesifik (mis. app hospitality yang mengontrol perangkat kamar) — untuk mayoritas proyek, ini tak berlaku. Testing butuh aksesori nyata atau HomeKit Accessory Simulator. <em>Verifikasi kebutuhan sebelum berkomitmen — ini area niche.</em></div>
+    </section>
+
+    <section id="cryptokit">
+      <h2><span class="sn">09</span>CryptoKit</h2>
+      <p>Kriptografi modern & aman: hashing, symmetric/asymmetric encryption, signing — API tinggi yang sulit disalahgunakan. Relevan langsung untuk keamanan fintech Anda.</p>
+<pre><code data-swift>import CryptoKit
+
+// Hashing (mis. integritas / fingerprint)
+let digest = SHA256.hash(data: Data("payload".utf8))
+let hex = digest.map { String(format: "%02x", $0) }.joined()
+
+// Symmetric encryption (AES-GCM)
+let key = SymmetricKey(size: .bits256)                     // simpan key di Keychain (M5)!
+let sealed = try AES.GCM.seal(Data("rahasia".utf8), using: key)
+guard let ciphertext = sealed.combined else { throw CryptoError.sealFailed }  // .combined optional
+let decrypted = try AES.GCM.open(AES.GCM.SealedBox(combined: ciphertext), using: key)
+
+// Signing (Ed25519 / P256)
+let signingKey = Curve25519.Signing.PrivateKey()
+let signature = try signingKey.signature(for: Data("data".utf8))
+let valid = signingKey.publicKey.isValidSignature(signature, for: Data("data".utf8))</code></pre>
+      <div class="note danger"><span class="nt">Aturan kriptografi (sambung M15)</span>(1) <strong>Kunci hidup di Keychain / Secure Enclave</strong>, tak pernah hardcode atau di UserDefaults. Untuk perlindungan hardware, pakai <code>SecureEnclave.P256</code> — private key tak pernah keluar dari chip. (2) <strong>Jangan gulung kripto sendiri</strong> — CryptoKit sudah menyediakan primitif aman; gunakan AES-GCM (authenticated), bukan mode manual. (3) Hashing untuk integritas/fingerprint, <strong>bukan</strong> untuk password (untuk password gunakan mekanisme server + salt). (4) Kripto klien melengkapi, bukan menggantikan, keamanan server (M15).</div>
+    </section>
+
+    <section id="network">
+      <h2><span class="sn">10</span>Network Framework & Latihan</h2>
+      <p>Untuk deteksi konektivitas & koneksi low-level (di bawah URLSession). Paling umum: <strong>NWPathMonitor</strong> untuk memantau status jaringan (menyambung offline mode M12).</p>
+<pre><code data-swift>import Network
+
+final class ConnectivityMonitor {
+    private let monitor = NWPathMonitor()
+    private let queue = DispatchQueue(label: "net.monitor")
+    var onChange: ((Bool) -&gt; Void)?
+
+    func start() {
+        monitor.pathUpdateHandler = { [weak self] path in
+            self?.onChange?(path.status == .satisfied)   // online / offline
+        }
+        monitor.start(queue: queue)
+    }
+    func stop() { monitor.cancel() }
+}</code></pre>
+      <div class="note key"><span class="nt">Kapan pakai apa</span><strong>URLSession</strong> (M5/M10) untuk HTTP — default. <strong>NWPathMonitor</strong> untuk deteksi online/offline (memicu sync queue M12). <strong>URLSessionWebSocketTask</strong> untuk WebSocket (chat/notifikasi live). <strong>NWConnection</strong> mentah hanya untuk protokol kustom TCP/UDP (jarang di app bisnis). Koneksi LAN (mis. temukan device di jaringan lokal) butuh <code>NSLocalNetworkUsageDescription</code> + Bonjour service.</p></div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Sync tanpa server</h4></div>
+        <p>ABK templates harus tersinkron antar iPhone & iPad milik terapis, tanpa Anda mengelola server. Pendekatan?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>SwiftData + CloudKit private DB (<code>cloudKitDatabase: .automatic</code>). Cek <code>accountStatus()</code>; bila tak login iCloud, degradasi ke lokal + beri tahu user. Sync eventual — jangan asumsikan instan.</p>
+        <p><em>Review:</em> CloudKit memakai kuota iCloud user, jadi gratis untuk Anda & privat untuk mereka. Uji skenario tanpa iCloud & sync tertunda.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Enkripsi data sensitif lokal</h4></div>
+        <p>Anda perlu menyimpan blob data sensitif terenkripsi di device. Bagaimana dengan CryptoKit + di mana kuncinya?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>AES-GCM (<code>AES.GCM.seal</code>) untuk enkripsi authenticated. Kunci: <code>SymmetricKey</code> disimpan di <strong>Keychain</strong>, atau gunakan <code>SecureEnclave</code> untuk kunci yang tak pernah keluar hardware. Jangan hardcode kunci.</p>
+        <p><em>Review:</em> Keamanan kripto = kekuatan penyimpanan kunci. AES-GCM authenticated mencegah tampering. Ini melengkapi, bukan menggantikan, keamanan server.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>CIContext boros</h4></div>
+        <p>App edit foto lag & memori membengkak saat menerapkan filter ke banyak gambar. Apa penyebab umum & fix?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Membuat <code>CIContext</code> baru per-gambar (mahal). Fix: buat satu <code>CIContext</code> & reuse. Offload filter dari main thread (<code>@concurrent</code>, M3). Downsample sebelum filter untuk thumbnail (M15).</p>
+        <p><em>Review:</em> CIContext adalah objek berat GPU — instansiasi sekali. Sambungan langsung ke disiplin performa M15.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>HealthKit "kosong"</h4></div>
+        <p>Query langkah HealthKit mengembalikan kosong. Apakah aman menyimpulkan user tak punya data langkah?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Tidak. Demi privasi, HealthKit tak memberi tahu apakah izin baca ditolak — query hanya mengembalikan kosong. "Kosong" bisa berarti ditolak ATAU benar-benar tak ada data. Rancang UI yang tak menghukum ketiadaan data; jelaskan cara memberi izin di Settings > Privacy > Health.</p>
+        <p><em>Review:</em> Model privasi HealthKit unik — ketidaktahuan status baca disengaja. Jangan bangun logika yang mengandalkan pembedaan itu.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">11</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>CloudKit sync</h4></div>
+        <p>Apa yang harus dicek sebelum mengandalkan sync CloudKit?</p>
+        <details><summary>▸ Jawaban</summary><p>Status akun iCloud (accountStatus) — user mungkin tak login; degradasi ke lokal. Sync bersifat eventual (jangan asumsikan instan). Untuk kasus sederhana, SwiftData+CloudKit .automatic lebih ringkas daripada CloudKit API langsung.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>CryptoKit key storage</h4></div>
+        <p>Di mana kunci kripto disimpan, dan kenapa AES-GCM?</p>
+        <details><summary>▸ Jawaban</summary><p>Kunci di Keychain atau Secure Enclave (private key tak keluar hardware) — tak pernah hardcode/UserDefaults. AES-GCM adalah authenticated encryption (mencegah tampering). Jangan gulung kripto sendiri.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>CIContext</h4></div>
+        <p>Kenapa CIContext harus dibuat sekali dan dipakai ulang?</p>
+        <details><summary>▸ Jawaban</summary><p>CIContext adalah objek GPU berat; membuatnya per-gambar boros memori & lambat. Instansiasi sekali, reuse; offload pemrosesan dari main thread; downsample untuk thumbnail.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: fitur sistem terintegrasi</span>Pilih dua: sync SwiftData+CloudKit (cek accountStatus), enkripsi blob sensitif (AES-GCM, kunci di Keychain), atau peta multi-lokasi (MapKit + MKDirections dengan debounce). Bungkus di balik protocol. <strong>Tujuan:</strong> integrasi framework sistem dengan disiplin keamanan/performa.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan NWPathMonitor untuk memicu sinkronisasi saat online kembali (menyambung offline mode M12) dan tangani konflik CloudKit. Tantangan: alur data online/offline yang tangguh.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Mengandalkan CloudKit tanpa cek accountStatus (user tak login iCloud).</li>
+        <li>Hardcode kunci kripto / menyimpan di UserDefaults.</li>
+        <li>Membuat CIContext baru per-gambar (boros).</li>
+        <li>Geocoding/directions per-keystroke tanpa debounce (rate limit).</li>
+        <li>Mengasumsikan sync CloudKit instan (padahal eventual).</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>CloudKit</em>, <em>MapKit</em>, <em>Core Image</em>.</li>
+        <li>Apple Developer Documentation — <em>CryptoKit</em> (AES-GCM, Secure Enclave), <em>Keychain Services</em>.</li>
+        <li>Apple Developer Documentation — <em>Network</em> (NWPathMonitor), <em>HealthKit</em>, <em>Core Bluetooth</em>.</li>
+      </ul>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 21</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">CloudKit: private/public/shared DB; SwiftData+CloudKit; cek accountStatus & sync eventual</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">MapKit: Map deklaratif, anotasi, geocoding, MKDirections; debounce & rate limit</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Core Image: pipeline CIImage→CIFilter→CIContext; reuse context; offload</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Core Audio: AVAudioEngine rekam/putar; konfigurasi AVAudioSession</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Core Motion: pedometer/aktivitas; cek availability; NSMotionUsageDescription</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Core Bluetooth: rantai delegate central; cek poweredOn; bungkus service</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">HealthKit: izin granular baca/tulis; "kosong≠ditolak"; aturan privasi ketat</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">HomeKit: model Home→Accessory→Characteristic; entitlement; niche</label></div>
+      <div class="check-item"><input type="checkbox" id="c8"><label for="c8">CryptoKit: SHA/AES-GCM/signing; kunci di Keychain/Secure Enclave; jangan gulung sendiri</label></div>
+      <div class="check-item"><input type="checkbox" id="c9"><label for="c9">Network: NWPathMonitor untuk offline; WebSocket via URLSession; kapan NWConnection</label></div>
+      <div class="check-item"><input type="checkbox" id="c10"><label for="c10">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-20.html">← Module 20 — Extension Ecosystem</a>
+      <a href="../index.html">Selesai · Kembali ke Daftar Modul →</a>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m21';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

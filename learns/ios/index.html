@@ -55,6 +55,19 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--gray-300);fon
 .stack-item{background:var(--white);border:var(--border);border-radius:var(--radius-row);padding:12px 14px}
 .stack-item .k{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em}
 .stack-item .v{font-size:14px;color:var(--slate);margin-top:3px}
+.search-panel{margin-top:28px;position:relative}
+.search-box{display:flex;align-items:center;gap:10px;background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:12px 16px;box-shadow:var(--shadow-sm)}
+.search-box:focus-within{border-color:var(--clay);box-shadow:0 0 0 3px rgba(217,119,87,.12)}
+.search-box svg{flex-shrink:0;color:var(--gray-500)}
+.search-box input{flex:1;border:none;outline:none;background:transparent;font-family:var(--sans);font-size:15px;color:var(--slate)}
+.search-box input::placeholder{color:var(--gray-500)}
+.search-clear{border:none;background:var(--gray-100);color:var(--gray-700);width:24px;height:24px;border-radius:var(--radius-pill);cursor:pointer;font-size:14px;line-height:1;display:none}
+.search-clear.show{display:inline-flex;align-items:center;justify-content:center}
+.search-meta{font-size:12px;color:var(--gray-500);font-family:var(--mono);margin-top:8px;min-height:16px}
+.mod-card mark{background:rgba(217,119,87,.22);color:var(--slate);border-radius:3px;padding:0 2px}
+.phase.hidden,.mod-card.hidden{display:none}
+.no-results{display:none;background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:24px;text-align:center;color:var(--gray-500);margin-top:16px}
+.no-results.show{display:block}
 @media(max-width:640px){.hero h1{font-size:32px}.wrap{padding:40px 18px 72px}}
 </style>
 </head>
@@ -63,7 +76,7 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--gray-300);fon
   <div class="hero">
     <div class="eyebrow">iOS Native Engineering · Staff / Principal Track</div>
     <h1>iOS Native dari Nol hingga Expert Production-Grade</h1>
-    <p class="lead">Workshop internal 10 fase + pelengkap · 19 modul. Membangun aplikasi iOS production — fintech, e-commerce, SaaS, enterprise — dengan scalable architecture, clean code, testing, CI/CD, security, dan performance optimization.</p>
+    <p class="lead">Workshop internal 10 fase + pelengkap · 26 modul. Membangun aplikasi iOS production — fintech, e-commerce, SaaS, enterprise — dengan scalable architecture, clean code, testing, CI/CD, security, dan performance optimization.</p>
     <div class="meta-row">
       <span class="badge accent">Swift 6.4</span>
       <span class="badge accent">Xcode 27</span>
@@ -79,6 +92,16 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--gray-300);fon
     <div class="progress-bar"><div class="progress-fill" id="globalFill"></div></div>
     <div class="progress-meta" id="globalMeta">Memuat progress…</div>
   </div>
+
+  <div class="search-panel">
+    <div class="search-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="searchInput" placeholder="Cari modul atau topik — mis. actor, keychain, OCR, PDF, offline, izin…" autocomplete="off" aria-label="Cari modul atau topik">
+      <button class="search-clear" id="searchClear" aria-label="Bersihkan pencarian">✕</button>
+    </div>
+    <div class="search-meta" id="searchMeta"></div>
+  </div>
+  <div class="no-results" id="noResults">Tidak ada modul yang cocok. Coba kata kunci lain — mis. <strong>concurrency</strong>, <strong>CI/CD</strong>, <strong>Vision</strong>, <strong>CloudKit</strong>, atau <strong>aksesibilitas</strong>.</div>
 
   <div class="callout">
     <strong>Baseline ecosystem (Juni 2026).</strong> Swift 6.4 (rilis WWDC 2026), Xcode 27, Swift 6 language mode dengan data-race safety aktif. Default project Xcode 27: Approachable Concurrency + Default Actor Isolation = MainActor + Strict Concurrency = Complete. Pattern deprecated (DispatchQueue manual untuk state, ObservableObject klasik, completion-handler-only networking) ditandai blok <em>Old → New → Migration → Alasan</em>.
@@ -179,6 +202,13 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--gray-300);fon
       <a class="mod-card available" href="modules/module-17.html"><div class="mod-index">17</div><div class="mod-body"><h4>Property Wrappers, L10n &amp; A11y</h4><p>Custom @propertyWrapper, String Catalog, format locale (IDR/WIB), VoiceOver, Dynamic Type, aksesibilitas ABK</p></div><span class="mod-status s-ready">Tersedia</span></a>
       <a class="mod-card available" href="modules/module-18.html"><div class="mod-index">18</div><div class="mod-body"><h4>Migration, Privacy &amp; Feature Flags</h4><p>SwiftData migration, PrivacyInfo.xcprivacy, ATT, feature flags, kill-switch &amp; rollout</p></div><span class="mod-status s-ready">Tersedia</span></a>
       <a class="mod-card available" href="modules/module-19.html"><div class="mod-index">19</div><div class="mod-body"><h4>Native Frameworks &amp; Permissions</h4><p>Kamera, lokasi, foto, notifikasi, StoreKit 2; siklus izin, handle penolakan, best practice</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-20.html"><div class="mod-index">20</div><div class="mod-body"><h4>Extension Ecosystem</h4><p>WidgetKit, App Intents, ActivityKit / Live Activity, PassKit (Apple Wallet), CarPlay</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-21.html"><div class="mod-index">21</div><div class="mod-body"><h4>System Frameworks</h4><p>CloudKit, MapKit, Core Image/Audio/Motion/Bluetooth, HealthKit, HomeKit, CryptoKit, Network</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-22.html"><div class="mod-index">22</div><div class="mod-body"><h4>AI / ML Frameworks</h4><p>Vision (OCR/barcode), VisionKit, Core ML, Create ML, Natural Language, Speech — on-device intelligence</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-23.html"><div class="mod-index">23</div><div class="mod-body"><h4>Auth, Web &amp; Documents</h4><p>AuthenticationServices (Sign in with Apple, OAuth), SafariServices, WebKit, PDFKit, QuickLook</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-24.html"><div class="mod-index">24</div><div class="mod-body"><h4>Data &amp; System</h4><p>Foundation (deep), Core Foundation, Contacts, EventKit, FileProvider — sandbox, tanggal, izin least-privilege</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-25.html"><div class="mod-index">25</div><div class="mod-body"><h4>Extensions &amp; Connectivity</h4><p>App/Share Extension, SiriKit vs App Intents, MultipeerConnectivity (P2P), PencilKit</p></div><span class="mod-status s-ready">Tersedia</span></a>
+      <a class="mod-card available" href="modules/module-26.html"><div class="mod-index">26</div><div class="mod-body"><h4>Graphics &amp; Immersive</h4><p>Core Graphics, Core Animation, Metal, SceneKit, RealityKit/ARKit, GameKit — peta keputusan grafis</p></div><span class="mod-status s-ready">Tersedia</span></a>
     </div>
   </div>
 
@@ -198,7 +228,7 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--gray-300);fon
 
 <script>
 (function(){
-  const MODULE_ITEMS={m01:9,m02:8,m03:8,m04:7,m05:8,m06:8,m07:8,m08:8,m09:8,m10:8,m11:8,m12:8,m13:8,m14:8,m15:8,m16:8,m17:8,m18:8,m19:9};
+  const MODULE_ITEMS={m01:9,m02:8,m03:8,m04:7,m05:8,m06:8,m07:8,m08:8,m09:8,m10:8,m11:8,m12:8,m13:8,m14:8,m15:8,m16:8,m17:8,m18:8,m19:9,m20:8,m21:11,m22:9,m23:9,m24:9,m25:8,m26:8};
   let done=0,total=0;
   for(const k in MODULE_ITEMS){
     total+=MODULE_ITEMS[k];
@@ -206,7 +236,86 @@ footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--gray-300);fon
   }
   const pct=total?Math.round(done/total*100):0;
   document.getElementById('globalFill').style.width=pct+'%';
-  document.getElementById('globalMeta').textContent=done+' / '+total+' item selesai · '+pct+'% · 19 dari 19 modul — workshop lengkap + pelengkap 🎓';
+  document.getElementById('globalMeta').textContent=done+' / '+total+' item selesai · '+pct+'% · 26 dari 26 modul — workshop lengkap + pelengkap 🎓';
+})();
+
+/* ---- Search: filter modul + topik secara live, offline ---- */
+(function(){
+  // Index kata kunci tambahan per modul (di luar judul/deskripsi yang sudah di kartu)
+  const KW={
+    '01':'swift syntax optional enum struct value reference type function closure error handling guard',
+    '02':'generics associated type protocol oriented pop opaque existential some any result closure escaping',
+    '03':'concurrency async await actor sendable mainactor task structured arc memory retain cycle weak spm swift package',
+    '04':'xcode project target scheme bundle info plist lifecycle scene appdelegate permission',
+    '05':'urlsession codable networking keychain persistence file storage background task swiftdata json decode',
+    '06':'swiftui observation observable state binding navigation navigationstack animation component design system',
+    '07':'uikit uiviewcontroller auto layout tableview collectionview coordinator interop diffable',
+    '08':'architecture mvc mvvm clean architecture viper tca pattern trade off use case',
+    '09':'modular modularization dependency injection di repository pattern spm dependency direction',
+    '10':'networking stack alamofire moya interceptor auth refresh token retry pagination parsing layered',
+    '11':'library swinject combine rxswift coredata realm kingfisher lottie firebase sentry quick nimble crashlytics analytics',
+    '12':'saas auth rbac role offline sync idempotency push notification deep link upload payment storekit observability',
+    '13':'testing pengujian swift testing unit ui xcuitest snapshot mock stub spy fake coverage test architecture',
+    '14':'git fastlane ci cd github actions signing match testflight app store release phased kill switch devops',
+    '15':'performance performa security keamanan instruments memory memori battery baterai owasp masvs certificate pinning biometric biometrik downsampling',
+    '16':'system design architecture decision record adr code review rfc scaling team leadership senior',
+    '17':'property wrapper localization l10n lokalisasi string catalog idr wib accessibility aksesibilitas a11y voiceover dynamic type abk reduce motion difabel',
+    '18':'migration swiftdata versioned schema privacy manifest privacyinfo att tracking feature flag kill switch rollout',
+    '19':'permission izin camera kamera microphone mikrofon location lokasi photos foto phpicker notification notifikasi storekit purchase pembelian entitlement info plist denied ditolak',
+    '20':'widgetkit app intents siri shortcuts activitykit live activity dynamic island passkit wallet carplay app group extension',
+    '21':'cloudkit mapkit core image audio motion bluetooth ble healthkit homekit cryptokit network nwpathmonitor sync encryption',
+    '22':'vision ocr barcode visionkit datascanner core ml create ml natural language sentiment speech recognition on-device ai ml intelligence',
+    '23':'authenticationservices sign in with apple oauth pkce webauthenticationsession safariservices webkit wkwebview pdfkit pdf quicklook',
+    '24':'foundation core foundation contacts eventkit calendar reminders fileprovider sandbox filemanager date iso8601 decimal least privilege',
+    '25':'app extension share extension sirikit app intents multipeerconnectivity peer to peer p2p pencilkit drawing signature offline',
+    '26':'core graphics quartz 2d core animation calayer metal gpu scenekit realitykit arkit ar quick look usdz gamekit gamification chart'
+  };
+  const cards=[...document.querySelectorAll('.mod-card')];
+  // Simpan HTML asli judul & deskripsi untuk highlight/restore
+  cards.forEach(c=>{
+    const h=c.querySelector('h4'), p=c.querySelector('.mod-body p');
+    if(h) h.dataset.orig=h.textContent;
+    if(p) p.dataset.orig=p.textContent;
+    const idx=(c.querySelector('.mod-index')||{}).textContent||'';
+    c.dataset.kw=(KW[idx.trim()]||'')+' '+(h?h.textContent.toLowerCase():'')+' '+(p?p.textContent.toLowerCase():'');
+  });
+  const input=document.getElementById('searchInput');
+  const clear=document.getElementById('searchClear');
+  const meta=document.getElementById('searchMeta');
+  const noRes=document.getElementById('noResults');
+  const phases=[...document.querySelectorAll('.phase')];
+  const progressPanel=document.querySelector('.progress-panel');
+
+  function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+  function highlight(el){
+    if(!el||!el.dataset.orig) return;
+    const orig=el.dataset.orig;
+    if(!current){el.textContent=orig;return;}
+    const re=new RegExp('('+esc(current)+')','ig');
+    el.innerHTML=orig.replace(re,'<mark>$1</mark>');
+  }
+  let current='';
+  function run(q){
+    current=q.trim().toLowerCase();
+    clear.classList.toggle('show', current.length>0);
+    let shown=0;
+    cards.forEach(c=>{
+      const match=!current || c.dataset.kw.indexOf(current)!==-1;
+      c.classList.toggle('hidden', !match);
+      if(match){shown++; highlight(c.querySelector('h4')); highlight(c.querySelector('.mod-body p'));}
+    });
+    // Sembunyikan phase yang tak punya kartu tampil
+    phases.forEach(ph=>{
+      const any=[...ph.querySelectorAll('.mod-card')].some(c=>!c.classList.contains('hidden'));
+      ph.classList.toggle('hidden', !any);
+    });
+    noRes.classList.toggle('show', current.length>0 && shown===0);
+    if(progressPanel) progressPanel.style.display = current.length>0 ? 'none':'';
+    meta.textContent = current.length>0 ? (shown+' modul cocok untuk "'+q.trim()+'"') : '';
+  }
+  input.addEventListener('input', e=>run(e.target.value));
+  clear.addEventListener('click', ()=>{input.value='';run('');input.focus();});
+  input.addEventListener('keydown', e=>{ if(e.key==='Escape'){input.value='';run('');} });
 })();
 </script>
 </body>

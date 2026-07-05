@@ -117,6 +117,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#animation"><span class="nidx">05</span>Animation</a>
       <a href="#components"><span class="nidx">06</span>Component & Design System</a>
       <a href="#exercises"><span class="nidx">07</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -389,6 +390,51 @@ struct StatusBadge: View {
         <p><em>Review:</em> Logika warna terpusat di satu computed property. Ganti palet = satu tempat. Komponen kecil & murni seperti ini ideal untuk Widgetbook/preview catalog.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>@Observable</h4></div>
+        <p>Apa keunggulan <code>@Observable</code> dibanding ObservableObject/@Published lama?</p>
+        <details><summary>▸ Jawaban</summary><p>@Observable (Observation framework) melacak dependency pada level property secara otomatis — view hanya re-render saat property yang benar-benar dibaca berubah, lebih efisien. Tak perlu @Published per property; mengurangi boilerplate & re-render tak perlu.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>State ownership</h4></div>
+        <p>Kapan pakai @State, @Binding, dan tipe @Observable?</p>
+        <details><summary>▸ Jawaban</summary><p>@State: sumber kebenaran lokal milik view. @Binding: referensi dua arah ke state milik view lain. Tipe @Observable (via @State atau diinject): model/state yang dibagikan lintas view. Pilih kepemilikan state sedekat mungkin dengan penggunanya.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>NavigationStack</h4></div>
+        <p>Kenapa NavigationStack menggantikan NavigationView?</p>
+        <details><summary>▸ Jawaban</summary><p>NavigationStack memberi navigasi berbasis path yang dapat diprogram (data-driven), mendukung deep link & restore state, dan API yang lebih jelas. NavigationView lama ambigu & terbatas. Gunakan NavigationStack + navigationDestination.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: layar daftar→detail</span>Buat daftar produk (List) dengan @Observable view model, navigasi NavigationStack ke detail, dan state loading/empty/error yang eksplisit. Terapkan design token (warna/spacing) konsisten. <strong>Tujuan:</strong> alur SwiftUI idiomatik dengan Observation & navigasi modern.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan pencarian + filter reaktif dan deep link (buka detail produk via path terprogram). Tantangan: kelola navigation path sebagai state yang dapat direstore — menyambung deep link produksi (M12).</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Memakai ObservableObject/@Published untuk kode baru alih-alih @Observable.</li>
+        <li>Menaruh logika bisnis di dalam View, bukan view model/use case.</li>
+        <li>State loading/error implisit — UI tak menangani semua kondisi.</li>
+        <li>NavigationView untuk kode baru.</li>
+        <li>Mengabaikan Dynamic Type/aksesibilitas (M17).</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>SwiftUI</em>, <em>Observation</em> (@Observable).</li>
+        <li>Apple Developer Documentation — <em>Migrating from the Observable Object protocol to the Observable macro</em>.</li>
+        <li>Apple Developer Documentation — <em>NavigationStack</em>, <em>navigationDestination</em>.</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

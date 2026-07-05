@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 22 — AI / ML Frameworks</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note.case{background:rgba(92,124,163,.10);border-left:4px solid var(--info)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 22 · Native Frameworks</div><h2>AI / ML Frameworks</h2></div>
+    <div class="side-prog" id="sideProg">0 / 9 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>On-Device Intelligence</a>
+      <a href="#vision"><span class="nidx">01</span>Vision</a>
+      <a href="#visionkit"><span class="nidx">02</span>VisionKit</a>
+      <a href="#coreml"><span class="nidx">03</span>Core ML</a>
+      <a href="#createml"><span class="nidx">04</span>Create ML</a>
+      <a href="#nl"><span class="nidx">05</span>Natural Language</a>
+      <a href="#speech"><span class="nidx">06</span>Speech</a>
+      <a href="#bestpractice"><span class="nidx">07</span>Best Practice</a>
+      <a href="#exercises"><span class="nidx">08</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project &amp; Referensi</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 22 · NATIVE FRAMEWORK MASTERY</span>AI / ML Frameworks</h2>
+      <p class="lead">Kecerdasan on-device: analisis gambar, OCR, klasifikasi ML, pemrosesan bahasa, dan pengenalan suara — semua berjalan di perangkat, privat, dan sering gratis (tanpa server AI).</p>
+      <div class="meta-row"><span class="badge accent">Vision</span><span class="badge accent">Core ML</span><span class="badge accent">Natural Language</span><span class="badge accent">Speech</span><span class="badge neutral">~130 menit</span></div>
+      <table>
+        <thead><tr><th>Framework</th><th>Untuk</th><th>Izin</th><th>Relevansi vertikal</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Vision</strong></td><td>OCR, barcode, deteksi wajah/objek pada gambar</td><td>—*</td><td>Scan struk/KTP e-commerce, verifikasi UMKM</td></tr>
+          <tr><td><strong>VisionKit</strong></td><td>Live scanner & pemindai dokumen siap-pakai</td><td>Kamera (M19)</td><td>Scan dokumen, input cepat</td></tr>
+          <tr><td><strong>Core ML</strong></td><td>Menjalankan model ML on-device</td><td>—</td><td>Klasifikasi produk, rekomendasi lokal</td></tr>
+          <tr><td><strong>Create ML</strong></td><td>Melatih model (di Mac)</td><td>—</td><td>Model kustom domain Anda</td></tr>
+          <tr><td><strong>Natural Language</strong></td><td>Deteksi bahasa, tokenisasi, sentimen, embedding</td><td>—</td><td>Analisis review, moderasi, pencarian ID/EN</td></tr>
+          <tr><td><strong>Speech</strong></td><td>Speech-to-text</td><td>Speech + Mikrofon</td><td>Input suara, aksesibilitas ABK</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:13px;color:var(--gray-500)">*Vision memproses gambar yang sudah Anda miliki; izin muncul dari sumbernya (kamera/foto, M19), bukan dari Vision.</p>
+      <div class="note key"><span class="nt">Prinsip: on-device dulu (selaras AI-Native)</span>Kekuatan framework ini: inferensi <strong>di perangkat</strong> — privat (data tak keluar device), cepat (tanpa latensi jaringan), murah (tanpa biaya API), dan berfungsi offline (M12). Untuk banyak fitur "AI" (OCR, klasifikasi, deteksi bahasa), Anda <em>tidak butuh</em> LLM/server sama sekali. Naik ke Claude API/server hanya saat butuh reasoning kompleks yang tak bisa dilakukan model on-device.</div>
+    </section>
+
+    <section id="vision">
+      <h2><span class="sn">01</span>Vision — Analisis Gambar</h2>
+      <p>Vision menganalisis gambar: <strong>OCR</strong> (baca teks), <strong>barcode/QR</strong>, deteksi wajah, rectangle, dan menjalankan model Core ML pada gambar. Pola: buat <em>request</em> → jalankan lewat <em>handler</em> → baca <em>observations</em>.</p>
+      <div class="code-label">OCR — baca teks dari gambar (mis. struk)</div>
+<pre><code data-swift>import Vision
+
+func recognizeText(in cgImage: CGImage) async throws -&gt; [String] {
+    try await withCheckedThrowingContinuation { cont in
+        let request = VNRecognizeTextRequest { req, err in
+            if let err { cont.resume(throwing: err); return }
+            let lines = (req.results as? [VNRecognizedTextObservation] ?? [])
+                .compactMap { $0.topCandidates(1).first?.string }
+            cont.resume(returning: lines)
+        }
+        request.recognitionLevel = .accurate
+        request.recognitionLanguages = ["id-ID", "en-US"]   // dukung ID + EN
+        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        do { try handler.perform([request]) } catch { cont.resume(throwing: error) }
+    }
+}</code></pre>
+      <div class="code-label">Barcode / QR</div>
+<pre><code data-swift>let barcodeRequest = VNDetectBarcodesRequest { req, _ in
+    let codes = (req.results as? [VNBarcodeObservation] ?? [])
+        .compactMap { $0.payloadStringValue }
+    // codes: isi barcode/QR
+}</code></pre>
+      <div class="note warn"><span class="nt">API klasik vs Swift baru</span>Contoh di atas memakai API <strong>klasik</strong> (<code>VNRecognizeTextRequest</code> + handler) yang stabil & terdokumentasi luas. Versi iOS terbaru memperkenalkan <strong>Vision Swift API baru</strong> yang lebih idiomatik (struct request + async). Keduanya valid; <em>verifikasi nama tipe & ketersediaan terhadap dokumentasi Apple untuk iOS target Anda</em> sebelum memilih — jangan asumsikan satu gaya tersedia di semua versi. Offload pemrosesan dari main thread (M3); untuk banyak gambar, downsample dulu (M15).</div>
+      <div class="note case"><span class="nt">Kasus vertikal — scan struk/KTP</span>E-commerce/UMKM: user memotret struk → Vision OCR mengekstrak total & tanggal; verifikasi identitas → OCR KTP. Semua on-device: <strong>data sensitif tak pernah dikirim ke server</strong> (defense-in-depth, selaras doktrin security-first Anda). Bungkus Vision di balik protocol <code>TextRecognizer</code> (M9) agar testable & dapat ditukar.</div>
+    </section>
+
+    <section id="visionkit">
+      <h2><span class="sn">02</span>VisionKit — Scanner Siap-Pakai</h2>
+      <p>VisionKit memberi UI scanner jadi: <strong>DataScannerViewController</strong> (pindai teks/barcode <em>live</em> dari kamera) dan <strong>VNDocumentCameraViewController</strong> (pemindai dokumen multi-halaman dengan auto-crop).</p>
+<pre><code data-swift>import VisionKit
+
+// Live text & barcode scanning
+func makeScanner() throws -&gt; DataScannerViewController {
+    guard DataScannerViewController.isSupported,
+          DataScannerViewController.isAvailable else { throw ScanError.unavailable }
+    return DataScannerViewController(
+        recognizedDataTypes: [.text(), .barcode()],   // apa yang dipindai
+        qualityLevel: .balanced,
+        isHighlightingEnabled: true)
+}
+// delegate: dataScanner(_:didAdd:allItems:) → terima item terdeteksi realtime
+// Butuh izin kamera (M19) + NSCameraUsageDescription</code></pre>
+      <div class="note key"><span class="nt">Kapan VisionKit vs Vision</span><strong>VisionKit</strong> = UI scanner instan (live scan, pemindai dokumen) — hemat waktu, UX konsisten Apple. <strong>Vision</strong> = kontrol penuh atas pemrosesan gambar yang sudah Anda miliki (tanpa UI). Untuk "user scan sesuatu sekarang", pakai VisionKit. Untuk "proses gambar yang diunggah/dipotret", pakai Vision. Cek <code>isSupported</code>/<code>isAvailable</code> — tidak semua device mendukung DataScanner.</div>
+    </section>
+
+    <section id="coreml">
+      <h2><span class="sn">03</span>Core ML — Menjalankan Model On-Device</h2>
+      <p>Core ML menjalankan model machine learning (klasifikasi gambar, prediksi, dll.) langsung di perangkat. Xcode meng-generate kelas Swift dari file <code>.mlmodel</code>/<code>.mlpackage</code>.</p>
+<pre><code data-swift>import CoreML
+import Vision
+
+// Pola umum: Core ML model dijalankan lewat Vision untuk input gambar
+func classify(_ cgImage: CGImage, model: VNCoreMLModel) async throws -&gt; String? {
+    try await withCheckedThrowingContinuation { cont in
+        let request = VNCoreMLRequest(model: model) { req, err in
+            if let err { cont.resume(throwing: err); return }
+            let top = (req.results as? [VNClassificationObservation])?.first
+            cont.resume(returning: top?.identifier)
+        }
+        let handler = VNImageRequestHandler(cgImage: cgImage)
+        do { try handler.perform([request]) } catch { cont.resume(throwing: error) }
+    }
+}
+
+// Model non-gambar: pakai kelas ter-generate langsung
+// let output = try model.prediction(input: ...)</code></pre>
+      <div class="note warn"><span class="nt">Ukuran & pembaruan model</span>Model besar menaikkan ukuran app. Pertimbangkan <strong>on-demand resources</strong> atau unduh model saat runtime + cache. Core ML memakai Neural Engine bila tersedia (cepat, hemat daya) — set <code>MLModelConfiguration.computeUnits</code>. Untuk memperbarui model tanpa rilis app, unduh <code>.mlmodel</code> baru & kompilasi runtime (<code>MLModel.compileModel(at:)</code>). <em>Verifikasi kompatibilitas format model terhadap versi Core ML target.</em></div>
+    </section>
+
+    <section id="createml">
+      <h2><span class="sn">04</span>Create ML (Overview)</h2>
+      <p>Create ML adalah alat <strong>melatih</strong> model kustom — dijalankan di <strong>Mac</strong> (app Create ML atau framework), bukan di device. Anda memberi data berlabel; ia menghasilkan <code>.mlmodel</code> untuk dipakai Core ML.</p>
+<pre><code data-swift>// Dijalankan di Mac (mis. Swift Playground / CLI), BUKAN di app iOS
+import CreateML
+
+let data = try MLImageClassifier.DataSource.labeledDirectories(at: trainingURL)
+let classifier = try MLImageClassifier(trainingData: data)
+try classifier.write(to: outputModelURL)   // hasil: .mlmodel → dipakai di app via Core ML</code></pre>
+      <div class="note key"><span class="nt">Kapan relevan</span>Create ML tepat untuk model domain-spesifik sederhana (klasifikasi gambar/teks/tabular) tanpa keahlian ML mendalam — mis. mengklasifikasi kategori produk dari foto. Untuk kebutuhan kompleks, tim ML melatih model (Core ML Tools mengonversi dari PyTorch/TensorFlow). Sebagai solo founder, Create ML memberi jalur cepat "model kustom" tanpa infrastruktur training. <em>Ini overview; kedalaman training di luar cakupan workshop iOS.</em></div>
+    </section>
+
+    <section id="nl">
+      <h2><span class="sn">05</span>Natural Language</h2>
+      <p>Pemrosesan bahasa on-device: identifikasi bahasa, tokenisasi, part-of-speech, named entity, sentimen, dan <strong>word embedding</strong> (kemiripan makna).</p>
+<pre><code data-swift>import NaturalLanguage
+
+// Deteksi bahasa (mis. auto-pilih ID vs EN)
+let recognizer = NLLanguageRecognizer()
+recognizer.processString("Selamat datang di toko kami")
+let lang = recognizer.dominantLanguage   // .indonesian
+
+// Sentimen (skor -1..1)
+let tagger = NLTagger(tagSchemes: [.sentimentScore])
+tagger.string = review
+let (sentiment, _) = tagger.tag(at: review.startIndex, unit: .paragraph, scheme: .sentimentScore)
+// sentiment?.rawValue → "0.8" (positif)
+
+// Named entity (orang/tempat/organisasi)
+let nerTagger = NLTagger(tagSchemes: [.nameType])
+nerTagger.string = text
+nerTagger.enumerateTags(in: text.startIndex..&lt;text.endIndex, unit: .word,
+    scheme: .nameType, options: [.omitWhitespace]) { tag, range in
+    if let tag { /* .personalName / .placeName / .organizationName */ }
+    return true
+}</code></pre>
+      <div class="note case"><span class="nt">Kasus vertikal — analisis review & pencarian</span>E-commerce: skor sentimen otomatis pada review produk (moderasi/prioritas). <code>NLEmbedding</code> memberi pencarian semantik ("kemeja" ≈ "baju") on-device. Deteksi bahasa memilih pipeline ID vs EN otomatis. Semua tanpa server — cepat & privat. Karena hasil sentimen adalah heuristik model, <em>jangan jadikan satu-satunya dasar keputusan bisnis kritis; verifikasi pada data Anda</em>.</div>
+    </section>
+
+    <section id="speech">
+      <h2><span class="sn">06</span>Speech — Pengenalan Suara</h2>
+      <p>Speech mengubah ucapan menjadi teks (<code>SFSpeechRecognizer</code>) — dari audio live atau file. Butuh <strong>dua izin</strong>: Speech Recognition + Mikrofon (M19).</p>
+<pre><code data-swift>import Speech
+
+// 1. Izin (WAJIB: NSSpeechRecognitionUsageDescription + NSMicrophoneUsageDescription)
+func requestSpeechAuth() async -&gt; Bool {
+    await withCheckedContinuation { cont in
+        SFSpeechRecognizer.requestAuthorization { status in
+            cont.resume(returning: status == .authorized)
+        }
+    }
+}
+
+// 2. Kenali dari audio live (ringkas)
+let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "id-ID"))
+let request = SFSpeechAudioBufferRecognitionRequest()
+request.requiresOnDeviceRecognition = true   // privasi: proses di device bila didukung
+// pasang audio engine tap → request.append(buffer)
+// recognizer?.recognitionTask(with: request) { result, error in ... transkrip ... }</code></pre>
+      <div class="note key"><span class="nt">On-device & aksesibilitas ABK</span>Set <code>requiresOnDeviceRecognition = true</code> agar audio <strong>tidak dikirim ke server Apple</strong> (privasi; tersedia untuk locale/model yang didukung). Untuk vertikal <strong>ABK</strong>, input suara adalah jalur aksesibilitas penting bagi anak yang kesulitan mengetik — pasangkan dengan umpan balik multi-indera (M17). Locale <code>id-ID</code> mendukung Bahasa Indonesia; <em>verifikasi dukungan on-device untuk locale target</em>. Hentikan recognition saat selesai (baterai, M15).</div>
+    </section>
+
+    <section id="bestpractice">
+      <h2><span class="sn">07</span>Best Practice Lintas-Framework</h2>
+      <ul>
+        <li><strong>On-device dulu</strong> — coba Vision/NL/Speech/Core ML sebelum memanggil server AI; lebih privat, cepat, murah, offline-capable.</li>
+        <li><strong>Offload dari main thread</strong> — inferensi berat via <code>@concurrent</code> (M3); jangan bekukan UI (M15).</li>
+        <li><strong>Bungkus di balik protocol</strong> — <code>TextRecognizer</code>, <code>Classifier</code>, <code>SpeechTranscriber</code> (M9) → testable, dapat ditukar, mock di test (M13).</li>
+        <li><strong>Perlakukan hasil sebagai probabilistik</strong> — OCR/klasifikasi/sentimen bisa salah; sediakan koreksi manual & tangani confidence rendah.</li>
+        <li><strong>Privasi & manifest</strong> — data sensitif (KTP, suara) diproses on-device; deklarasikan pemakaian di Privacy Manifest bila relevan (M18).</li>
+        <li><strong>Cek ketersediaan</strong> — <code>isSupported</code>/locale/Neural Engine bervariasi antar-device; degradasi anggun (M19).</li>
+      </ul>
+      <div class="note warn"><span class="nt">Epistemik — API ML bergerak cepat</span>Framework AI/ML Apple berevolusi tiap tahun (Vision Swift API baru, model system, dsb.). Nama tipe, ketersediaan locale, dan format model dapat berubah antar versi iOS/Xcode. <strong>Verifikasi terhadap dokumentasi Apple & WWDC terkini</strong> saat mengimplementasi — contoh di modul ini menunjukkan pola stabil, tetapi konfirmasikan detail untuk iOS target Anda.</div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">08</span>Latihan</h2>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>On-device atau server?</h4></div>
+        <p>Untuk tiap fitur, on-device (Vision/NL/Speech) atau butuh server/LLM: (a) baca total dari foto struk; (b) deteksi bahasa review; (c) menjawab pertanyaan kompleks pelanggan; (d) transkrip voice note.</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>(a) Vision OCR on-device. (b) Natural Language on-device. (c) Server/LLM (reasoning kompleks). (d) Speech on-device (<code>requiresOnDeviceRecognition</code>).</p>
+        <p><em>Review:</em> Default on-device untuk OCR/klasifikasi/deteksi/transkrip — privat & murah. Naik ke server hanya untuk reasoning yang model on-device tak mampu.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>Abstraksi Vision</h4></div>
+        <p>Anda memakai <code>VNRecognizeTextRequest</code> langsung di ViewModel. Kenapa keliru & bagaimana memperbaiki?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Vision bocor ke presentation → sulit di-test & ditukar. Perbaiki: definisikan <code>protocol TextRecognizer { func recognize(_ image: CGImage) async throws -&gt; [String] }</code>; implementasi Vision di data layer; ViewModel bergantung pada protocol; mock di test.</p>
+        <p><em>Review:</em> Sama seperti networking (M10) — framework adalah detail implementasi di balik boundary domain (M8/M9).</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Privasi scan KTP</h4></div>
+        <p>Fitur verifikasi memotret KTP. Bagaimana memastikan sesuai doktrin security-first?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Proses OCR <strong>on-device</strong> (Vision) — data KTP tak dikirim ke server. Kirim hanya hasil terverifikasi minimal yang dibutuhkan (bukan foto mentah). Deklarasikan pemakaian di Privacy Manifest (M18); simpan sementara di memori, jangan tulis ke disk tanpa enkripsi (CryptoKit + Keychain, M21/M15).</p>
+        <p><em>Review:</em> On-device processing = minimisasi data = defense-in-depth. Kirim data mentah sensitif ke server bila tak perlu adalah kesalahan desain.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>Hasil probabilistik</h4></div>
+        <p>OCR total struk kadang salah baca "8" jadi "3". Bagaimana desain UX yang bertanggung jawab?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Tampilkan hasil OCR sebagai <em>draf yang dapat diedit</em>, bukan final; minta konfirmasi user untuk nilai kritis (jumlah uang); manfaatkan confidence (<code>topCandidates</code>) untuk menandai bagian ragu. Jangan pernah memproses transaksi dari OCR tanpa verifikasi.</p>
+        <p><em>Review:</em> Output ML probabilistik — perlakukan sebagai bantuan, bukan kebenaran. Human-in-the-loop untuk nilai kritis (selaras workflow review Anda).</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>On-device vs server</h4></div>
+        <p>Untuk OCR struk, deteksi bahasa, dan reasoning kompleks — mana on-device, mana server?</p>
+        <details><summary>▸ Jawaban</summary><p>OCR (Vision) & deteksi bahasa (Natural Language) on-device — privat, cepat, murah, offline. Reasoning kompleks → server/LLM. Default on-device untuk OCR/klasifikasi/NLP/speech; naik ke server hanya bila model on-device tak mampu.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Hasil probabilistik</h4></div>
+        <p>Kenapa output OCR/klasifikasi tak boleh dipercaya mutlak?</p>
+        <details><summary>▸ Jawaban</summary><p>Model bersifat probabilistik & bisa salah (mis. '8' terbaca '3'). Untuk nilai kritis (uang, identitas), tampilkan sebagai draf yang dapat diedit + konfirmasi user (human-in-the-loop). Manfaatkan confidence/topCandidates.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Privasi Speech</h4></div>
+        <p>Bagaimana menjaga privasi saat speech-to-text?</p>
+        <details><summary>▸ Jawaban</summary><p>Set requiresOnDeviceRecognition = true agar audio tak dikirim ke server (untuk locale yang didukung). Butuh izin Speech + Mikrofon. Hentikan recognition saat selesai (baterai).</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: scan struk on-device</span>Buat fitur: potret struk → Vision OCR (id-ID/en-US) mengekstrak total & tanggal, ditampilkan sebagai draf yang dapat diedit. Bungkus Vision di balik protocol TextRecognizer. <strong>Tujuan:</strong> AI on-device + privasi + hasil probabilistik yang benar.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan analisis sentimen review (Natural Language) dan input suara (Speech, on-device) sebagai jalur aksesibilitas. Tantangan: pilih on-device vs server secara sadar per fitur; jaga data sensitif tetap di device.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Mengirim gambar KTP/struk mentah ke server padahal OCR bisa on-device.</li>
+        <li>Vision/Speech bocor ke ViewModel (bukan di balik protocol).</li>
+        <li>Memproses transaksi dari OCR tanpa konfirmasi user.</li>
+        <li>Speech tanpa requiresOnDeviceRecognition (audio ke server).</li>
+        <li>Tak mengecek isSupported/locale (degradasi tak anggun).</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>Vision</em>, <em>VisionKit</em> (DataScanner).</li>
+        <li>Apple Developer Documentation — <em>Core ML</em>, <em>Natural Language</em>, <em>Speech</em>.</li>
+        <li>Apple Developer Documentation — <em>Create ML</em> (overview training).</li>
+      </ul>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 22</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Prinsip on-device-dulu: privat, cepat, murah, offline; kapan naik ke server</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Vision: OCR (ID/EN), barcode; pola request→handler→observations</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">VisionKit: DataScanner live & document scanner; cek isSupported</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Core ML: jalankan model via Vision/kelas ter-generate; computeUnits & ukuran</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Create ML: melatih model kustom di Mac (overview)</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Natural Language: deteksi bahasa, sentimen, NER, embedding on-device</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Speech: SFSpeechRecognizer, dua izin, requiresOnDeviceRecognition, aksesibilitas ABK</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Best practice: offload, abstraksi protocol, hasil probabilistik, privasi</label></div>
+      <div class="check-item"><input type="checkbox" id="c8"><label for="c8">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-21.html">← Module 21 — System Frameworks</a>
+      <span class="next">Berikutnya: Module 23 — Graphics & Immersive (Core Graphics, Core Animation, Metal, SceneKit, RealityKit, ARKit)</span>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m22';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

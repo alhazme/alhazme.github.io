@@ -119,6 +119,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#storekit"><span class="nidx">06</span>StoreKit 2</a>
       <a href="#practices"><span class="nidx">07</span>Best Practices</a>
       <a href="#exercises"><span class="nidx">08</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project &amp; Referensi</a>
     </nav>
   </aside>
 
@@ -328,13 +329,19 @@ func hasPro() async -&gt; Bool {
     return false
 }
 
-// Dengarkan transaksi di luar app (renewal, pembelian di device lain) — pasang saat launch
-func listenForTransactions() -&gt; Task&lt;Void, Never&gt; {
-    Task.detached {
-        for await update in Transaction.updates {
-            if case .verified(let t) = update { await t.finish() /* grant */ }
+// Dengarkan transaksi di luar app (renewal, pembelian di device lain) — pasang saat launch.
+// Pakai Task {} (bukan Task.detached — detached melepas isolation & prioritas tanpa alasan),
+// simpan handle-nya, dan batalkan saat deinit.
+@MainActor final class StoreObserver {
+    private var updates: Task&lt;Void, Never&gt;?
+    func start() {
+        updates = Task {
+            for await update in Transaction.updates {
+                if case .verified(let t) = update { await t.finish() /* grant entitlement */ }
+            }
         }
     }
+    deinit { updates?.cancel() }
 }
 
 // Restore — user pindah device / reinstall
@@ -399,6 +406,51 @@ func restore() async throws { try await AppStore.sync() }</code></pre>
         <p><em>Review:</em> Entitlement bukan disimpan lokal saja; ia diverifikasi dari StoreKit tiap launch. Tanpa restore + currentEntitlements, user yang sah kehilangan akses berbayar.</p>
         </details>
       </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Status izin</h4></div>
+        <p>Sebutkan status izin utama dan arti 'limited' / 'provisional'.</p>
+        <details><summary>▸ Jawaban</summary><p>notDetermined, authorized, denied, restricted. 'limited' (Photos): akses hanya sebagian yang dipilih user. 'provisional' (Notifikasi): dikirim diam-diam tanpa prompt awal. Tangani semua status; jangan asumsikan hanya authorized/denied.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>Info.plist izin</h4></div>
+        <p>Apa akibat memanggil API izin tanpa usage description?</p>
+        <details><summary>▸ Jawaban</summary><p>App crash. iOS mewajibkan string usage description sebelum API sensitif dipanggil. Deklarasikan alasan jujur (diperiksa App Review).</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>StoreKit 2 verify</h4></div>
+        <p>Kenapa transaksi StoreKit 2 perlu diverifikasi?</p>
+        <details><summary>▸ Jawaban</summary><p>Untuk memastikan transaksi asli & tak dimanipulasi. Gunakan hasil VerificationResult (.verified/.unverified); untuk keamanan tinggi, verifikasi juga di server. currentEntitlements memberi hak yang aktif; Transaction.updates memantau perubahan.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: alur izin tangguh</span>Implementasikan permintaan izin kamera & foto (PHPicker bila cukup) dengan penanganan semua status, termasuk arahan ke Settings saat denied. Bungkus di balik protocol PermissionService. <strong>Tujuan:</strong> siklus izin lengkap + degradasi anggun.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan pembelian StoreKit 2 lengkap: products→purchase→verify→currentEntitlements→restore + listener Transaction.updates (Task, bukan Task.detached; batalkan di deinit). Tantangan: entitlement yang benar & tahan-manipulasi.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Memanggil API izin tanpa string Info.plist (crash).</li>
+        <li>Hanya menangani authorized/denied, mengabaikan limited/provisional/restricted.</li>
+        <li>Tak menyediakan jalur ke Settings saat izin denied.</li>
+        <li>Meminta akses penuh saat picker tanpa izin sudah cukup (Photos/Contacts).</li>
+        <li>Tak memverifikasi transaksi StoreKit / Task.detached untuk listener.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>Requesting authorization to access sensitive data</em>.</li>
+        <li>Apple Developer Documentation — <em>PhotoKit</em> (PHPicker), <em>AVFoundation</em> (capture), <em>Core Location</em>.</li>
+        <li>Apple Developer Documentation — <em>StoreKit</em> (In-App Purchase, Transaction, entitlements).</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">

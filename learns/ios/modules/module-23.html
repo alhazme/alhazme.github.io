@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 23 — Auth, Web & Documents</title>
+<style>
+:root{
+  --ivory:#FAF9F5;--slate:#141413;--clay:#D97757;--oat:#E3DACC;--olive:#788C5D;--rust:#B04A3F;
+  --gray-100:#F0EEE6;--gray-300:#D1CFC5;--gray-500:#87867F;--gray-700:#3D3D3A;--white:#FFFFFF;
+  --success:#788C5D;--warning:#C78E3F;--danger:#B04A4A;--info:#5C7CA3;
+  --serif:ui-serif,Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --radius-row:8px;--radius-panel:12px;--radius-pill:999px;--border:1.5px solid var(--gray-300);
+  --shadow-sm:0 1px 2px rgba(20,20,19,.06);--shadow-md:0 4px 10px rgba(20,20,19,.08);--shadow-lg:0 12px 28px rgba(20,20,19,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--slate);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500}
+a{color:var(--clay);text-decoration:none}
+code{font-family:var(--mono);font-size:.92em}
+.layout{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--white);border-right:var(--border);padding:28px 20px}
+.content{max-width:820px;margin:0 auto;padding:48px 32px 120px}
+.side-top{margin-bottom:20px}
+.side-top .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay)}
+.side-top h2{font-size:19px;margin-top:4px;line-height:1.25}
+.side-back{font-size:12px;color:var(--gray-500);font-family:var(--mono);display:inline-block;margin-bottom:18px}
+.side-prog{font-size:11px;font-family:var(--mono);color:var(--gray-500);margin-bottom:6px}
+.side-bar{height:6px;background:var(--gray-100);border-radius:var(--radius-pill);overflow:hidden;margin-bottom:22px}
+.side-bar i{display:block;height:100%;width:0;background:var(--clay);transition:width .3s}
+.nav a{display:block;font-size:13.5px;color:var(--gray-700);padding:7px 10px;border-radius:var(--radius-row);margin-bottom:2px;border-left:2px solid transparent}
+.nav a:hover{background:var(--ivory)}
+.nav a.active{background:var(--ivory);border-left:2px solid var(--clay);color:var(--slate);font-weight:500}
+.nav .nidx{font-family:var(--mono);font-size:11px;color:var(--gray-500);margin-right:7px}
+.lead{font-size:18px;color:var(--gray-700);margin:14px 0 8px;max-width:680px}
+.badge{display:inline-flex;align-items:center;height:24px;padding:0 11px;font-size:12px;font-weight:500;border-radius:var(--radius-pill)}
+.badge.accent{background:rgba(217,119,87,.14);color:var(--clay)}
+.badge.neutral{background:var(--gray-100);color:var(--gray-700)}
+.badge.success{background:rgba(120,140,93,.16);color:var(--olive)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+section{padding-top:40px;margin-top:8px;border-top:1px solid var(--gray-300)}
+section:first-of-type{border-top:none}
+section h2{font-size:30px;letter-spacing:-.01em;margin-bottom:4px}
+section h2 .sn{font-family:var(--mono);font-size:14px;color:var(--gray-500);display:block;margin-bottom:6px;letter-spacing:.04em}
+section h3{font-size:20px;margin:30px 0 10px}
+section h4{font-size:16px;margin:22px 0 8px}
+p{margin:12px 0;max-width:720px}
+ul,ol{margin:12px 0 12px 22px;max-width:700px}li{margin:6px 0}
+strong{font-weight:600}em{color:var(--gray-700)}
+pre{background:var(--slate);color:#E8E6DF;border-radius:var(--radius-panel);padding:18px 20px;overflow-x:auto;margin:14px 0;font-size:13px;line-height:1.65;box-shadow:var(--shadow-sm)}
+pre code{font-family:var(--mono);font-size:13px}
+.t-keyword{color:#E0A07A;font-weight:600}.t-type{color:#A9C18C}.t-string{color:#E0928A}
+.t-comment{color:#8A8A82;font-style:italic}.t-number{color:#8FB0CE}.t-attr{color:#D9B36B}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.06em;margin:18px 0 -6px}
+.note{border-radius:var(--radius-panel);padding:16px 18px;margin:16px 0;font-size:14.5px}
+.note.key{background:var(--oat)}
+.note.warn{background:rgba(199,142,63,.13);border-left:4px solid var(--warning)}
+.note.danger{background:rgba(176,74,74,.10);border-left:4px solid var(--danger)}
+.note.case{background:rgba(92,124,163,.10);border-left:4px solid var(--info)}
+.note .nt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--gray-700)}
+table{border-collapse:separate;border-spacing:0;border:var(--border);border-radius:var(--radius-panel);overflow:hidden;width:100%;margin:18px 0;font-size:14px}
+thead th{background:var(--gray-100);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);text-align:left;padding:11px 14px;font-weight:600}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--gray-100);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:var(--ivory)}
+td code{background:var(--gray-100);padding:1px 5px;border-radius:4px}
+.exercise{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;margin:16px 0;box-shadow:var(--shadow-sm)}
+.exercise .xh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.exercise .xnum{font-family:var(--mono);font-size:11px;background:var(--clay);color:#fff;padding:3px 9px;border-radius:var(--radius-pill);letter-spacing:.04em}
+.exercise h4{margin:0;font-size:15px}
+details{margin-top:12px;border-top:1px solid var(--gray-100);padding-top:10px}
+details summary{cursor:pointer;font-size:13px;color:var(--clay);font-weight:500;font-family:var(--mono);letter-spacing:.03em}
+details[open] summary{margin-bottom:8px}
+.checklist{background:var(--white);border:var(--border);border-radius:var(--radius-panel);padding:20px 22px;margin:22px 0}
+.checklist h3{margin:0 0 12px;font-size:18px}
+.check-item{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--gray-100)}
+.check-item:last-child{border-bottom:none}
+.check-item input{width:18px;height:18px;margin-top:2px;accent-color:var(--clay);cursor:pointer;flex-shrink:0}
+.check-item label{font-size:14px;cursor:pointer}
+.check-item.done label{color:var(--gray-500);text-decoration:line-through}
+.foot-nav{display:flex;justify-content:space-between;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--gray-300)}
+.foot-nav a,.foot-nav span{font-size:14px}.foot-nav .next{color:var(--gray-500)}
+.menu-btn{display:none}
+@media(max-width:880px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:280px;transform:translateX(-100%);transition:transform .25s;z-index:50;box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:inline-flex;position:fixed;top:14px;right:14px;z-index:60;height:40px;width:40px;align-items:center;justify-content:center;background:var(--clay);color:#fff;border:none;border-radius:var(--radius-row);font-size:18px;box-shadow:var(--shadow-md);cursor:pointer}
+  .content{padding:60px 20px 100px}section h2{font-size:25px}
+}
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰</button>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="side-back" href="../index.html">← Daftar Modul</a>
+    <div class="side-top"><div class="eyebrow">Module 23 · Native Frameworks</div><h2>Auth, Web & Documents</h2></div>
+    <div class="side-prog" id="sideProg">0 / 9 selesai</div>
+    <div class="side-bar"><i id="sideFill"></i></div>
+    <nav class="nav" id="nav">
+      <a href="#intro"><span class="nidx">00</span>Katalog</a>
+      <a href="#authservices"><span class="nidx">01</span>AuthenticationServices</a>
+      <a href="#webauth"><span class="nidx">02</span>OAuth (Web Auth Session)</a>
+      <a href="#safari"><span class="nidx">03</span>SafariServices</a>
+      <a href="#webkit"><span class="nidx">04</span>WebKit</a>
+      <a href="#pdfkit"><span class="nidx">05</span>PDFKit</a>
+      <a href="#quicklook"><span class="nidx">06</span>QuickLook</a>
+      <a href="#bestpractice"><span class="nidx">07</span>Best Practice</a>
+      <a href="#exercises"><span class="nidx">08</span>Latihan</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project &amp; Referensi</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h2><span class="sn">MODULE 23 · NATIVE FRAMEWORK MASTERY</span>Auth, Web & Documents</h2>
+      <p class="lead">Framework untuk otentikasi native (Sign in with Apple, OAuth), menampilkan konten web dengan aman, dan menangani dokumen (PDF, preview file) — tiga kebutuhan yang muncul di hampir setiap app produksi.</p>
+      <div class="meta-row"><span class="badge accent">AuthenticationServices</span><span class="badge accent">WebKit</span><span class="badge accent">PDFKit</span><span class="badge accent">QuickLook</span><span class="badge neutral">~130 menit</span></div>
+      <table>
+        <thead><tr><th>Framework</th><th>Untuk</th><th>Relevansi vertikal</th></tr></thead>
+        <tbody>
+          <tr><td><strong>AuthenticationServices</strong></td><td>Sign in with Apple, OAuth, passkeys, autofill kredensial</td><td>Login semua app — fintech/e-commerce/SaaS</td></tr>
+          <tr><td><strong>SafariServices</strong></td><td>In-app browser (SFSafariViewController)</td><td>Tampilkan T&C, artikel, halaman eksternal</td></tr>
+          <tr><td><strong>WebKit</strong></td><td>Embed & kontrol konten web (WKWebView), bridge JS↔native</td><td>Konten hybrid, dashboard web, hospitality</td></tr>
+          <tr><td><strong>PDFKit</strong></td><td>Tampilkan, anotasi, generate PDF</td><td>Invoice e-commerce, laporan, kontrak</td></tr>
+          <tr><td><strong>QuickLook</strong></td><td>Preview file (PDF, gambar, dokumen) instan</td><td>Preview lampiran, dokumen UMKM</td></tr>
+        </tbody>
+      </table>
+      <div class="note key"><span class="nt">Prinsip lintas-framework: klien tak dipercaya</span>Ketiga area ini menyentuh keamanan langsung (M15): (1) hasil otentikasi <strong>diverifikasi di server</strong>, bukan dipercaya dari klien; (2) konten web di-<em>sandbox</em> & navigasi divalidasi; (3) dokumen dari sumber tak tepercaya diperlakukan hati-hati. Doktrin zero-trust & fail-closed berlaku penuh di modul ini.</div>
+    </section>
+
+    <section id="authservices">
+      <h2><span class="sn">01</span>AuthenticationServices — Sign in with Apple</h2>
+      <p>Sign in with Apple memberi login privat (Apple menyembunyikan email asli via relay). Alur: minta kredensial → terima <code>identityToken</code> (JWT) → <strong>verifikasi di server</strong>.</p>
+<pre><code data-swift>import AuthenticationServices
+
+final class AppleSignInCoordinator: NSObject, ASAuthorizationControllerDelegate {
+    func start() {
+        let provider = ASAuthorizationAppleIDProvider()
+        let request = provider.createRequest()
+        request.requestedScopes = [.fullName, .email]   // hanya diberikan SEKALI (login pertama)
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.performRequests()
+    }
+
+    func authorizationController(controller: ASAuthorizationController,
+        didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let cred = authorization.credential as? ASAuthorizationAppleIDCredential,
+              let tokenData = cred.identityToken,
+              let idToken = String(data: tokenData, encoding: .utf8) else { return }
+        // KIRIM idToken ke server → server verifikasi tanda tangan JWT ke kunci publik Apple,
+        // cek `aud`/`iss`/`exp`, baru buat sesi. JANGAN percaya klien.
+        Task { await AuthService.shared.exchangeAppleToken(idToken) }
+    }
+}</code></pre>
+      <div class="note danger"><span class="nt">Aturan App Review & keamanan</span>(1) Jika app menawarkan <strong>login sosial pihak ketiga</strong> (Google/Facebook), Apple <strong>mewajibkan</strong> Sign in with Apple juga tersedia — pelanggaran = penolakan rilis. (2) <code>fullName</code> & <code>email</code> hanya dikirim pada <strong>login pertama</strong> — simpan di server saat itu; login berikutnya tak mengirimnya lagi. (3) Verifikasi <code>identityToken</code> <strong>di server</strong> terhadap kunci publik Apple; klien hanya kurir. (4) Cek status kredensial saat launch (<code>getCredentialState</code>) untuk mendeteksi user mencabut akses. <em>Kebijakan App Review berubah; verifikasi ke pedoman terkini.</em></div>
+    </section>
+
+    <section id="webauth">
+      <h2><span class="sn">02</span>OAuth via ASWebAuthenticationSession</h2>
+      <p>Untuk OAuth/OIDC (login Google, provider kustom), <code>ASWebAuthenticationSession</code> membuka sesi web aman yang berbagi cookie dengan Safari & menangani callback via URL scheme — cara yang benar (bukan WKWebView mentah, yang tak boleh untuk OAuth).</p>
+<pre><code data-swift>import AuthenticationServices
+
+func startOAuth(authURL: URL, callbackScheme: String) async throws -&gt; URL {
+    try await withCheckedThrowingContinuation { cont in
+        let session = ASWebAuthenticationSession(
+            url: authURL, callbackURLScheme: callbackScheme) { callbackURL, error in
+            if let error { cont.resume(throwing: error) }
+            else if let callbackURL { cont.resume(returning: callbackURL) }
+        }
+        session.prefersEphemeralWebBrowserSession = true   // tak berbagi cookie (privasi)
+        session.presentationContextProvider = self
+        session.start()
+    }
+    // callbackURL berisi `code` → tukar ke token di server dengan PKCE
+}</code></pre>
+      <div class="note warn"><span class="nt">PKCE & jangan pakai WebView untuk OAuth</span>Gunakan <strong>PKCE</strong> (code challenge/verifier) untuk public client — mencegah intersepsi kode. <strong>Jangan</strong> lakukan OAuth di <code>WKWebView</code>: provider memblokirnya (dianggap tak aman, rentan phishing) dan tak berbagi sesi Safari. <code>ASWebAuthenticationSession</code> adalah mekanisme resmi. Pertukaran <code>code</code>→token idealnya di server (client secret tak di device, M15).</div>
+    </section>
+
+    <section id="safari">
+      <h2><span class="sn">03</span>SafariServices — SFSafariViewController</h2>
+      <p>Untuk menampilkan halaman web eksternal (T&C, artikel, kebijakan) <strong>tanpa membuat browser sendiri</strong>: <code>SFSafariViewController</code> memberi Safari penuh (reader, autofill, keamanan) di dalam app.</p>
+<pre><code data-swift>import SafariServices
+
+func openTerms(from presenter: UIViewController) {
+    guard let url = URL(string: "https://alhaz.me/terms") else { return }
+    let safariVC = SFSafariViewController(url: url)
+    safariVC.dismissButtonStyle = .close
+    presenter.present(safariVC, animated: true)
+}</code></pre>
+      <div class="note key"><span class="nt">SFSafariViewController vs WKWebView</span><strong>SFSafariViewController</strong>: halaman eksternal apa adanya — dapat keamanan/fitur Safari gratis, tak bisa dikustomisasi/di-inject JS (justru itu amannya). Pakai untuk konten yang Anda tak kontrol. <strong>WKWebView</strong>: saat Anda perlu kontrol penuh (embed konten milik sendiri, bridge JS). Untuk sekadar "buka link", SFSafariViewController hampir selalu pilihan tepat — lebih aman & hemat kerja.</div>
+    </section>
+
+    <section id="webkit">
+      <h2><span class="sn">04</span>WebKit — WKWebView</h2>
+      <p><code>WKWebView</code> meng-embed konten web dengan kontrol penuh: navigasi, bridge JavaScript↔native, injeksi skrip. Kekuatan besar = tanggung jawab keamanan besar.</p>
+<pre><code data-swift>import WebKit
+
+final class BridgedWebView: NSObject, WKScriptMessageHandler, WKNavigationDelegate {
+    lazy var webView: WKWebView = {
+        let config = WKWebViewConfiguration()
+        // Bridge: JS memanggil window.webkit.messageHandlers.native.postMessage(...)
+        config.userContentController.add(self, name: "native")
+        let wv = WKWebView(frame: .zero, configuration: config)
+        wv.navigationDelegate = self
+        return wv
+    }()
+
+    // Terima pesan dari JS
+    func userContentController(_ ucc: WKUserContentController,
+        didReceive message: WKScriptMessage) {
+        guard message.name == "native" else { return }
+        // VALIDASI payload — jangan percaya isi dari web
+    }
+
+    // Kontrol navigasi — cegah membuka URL berbahaya
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
+        decisionHandler: @escaping (WKNavigationActionPolicy) -&gt; Void) {
+        guard let url = navigationAction.request.url,
+              url.scheme == "https" else { decisionHandler(.cancel); return }
+        // whitelist domain bila hanya konten sendiri yang diizinkan
+        decisionHandler(.allow)
+    }
+}</code></pre>
+      <div class="note danger"><span class="nt">Keamanan WKWebView (kritis)</span>(1) Hanya muat konten <strong>HTTPS</strong> dan idealnya <strong>whitelist domain</strong> via <code>decidePolicyFor</code>. (2) Bridge JS↔native adalah <strong>attack surface</strong> — validasi ketat setiap pesan; jangan ekspos fungsi sensitif (akses file, kredensial) ke konten web tak tepercaya. (3) Jangan <code>evaluateJavaScript</code> dengan string yang menyertakan input tak tepercaya (injeksi). (4) Untuk OAuth, gunakan <code>ASWebAuthenticationSession</code>, bukan WKWebView (bagian 02). (5) Isolasi skrip via <code>WKContentWorld</code> bila perlu. Ini penerapan langsung defense-in-depth (M15).</div>
+    </section>
+
+    <section id="pdfkit">
+      <h2><span class="sn">05</span>PDFKit</h2>
+      <p>PDFKit menampilkan, menganotasi, dan membuat PDF. Untuk vertikal Anda: <strong>invoice, laporan, kontrak</strong>.</p>
+      <div class="code-label">Menampilkan PDF</div>
+<pre><code data-swift>import PDFKit
+
+func makePDFView(url: URL) -&gt; PDFView {
+    let view = PDFView()
+    view.document = PDFDocument(url: url)
+    view.autoScales = true
+    return view   // sisipkan via UIViewRepresentable di SwiftUI
+}</code></pre>
+      <div class="code-label">Membuat PDF invoice (render dari konten)</div>
+<pre><code data-swift>import UIKit
+
+func renderInvoicePDF(to url: URL, draw: (CGContext, CGRect) -&gt; Void) throws {
+    let pageRect = CGRect(x: 0, y: 0, width: 595, height: 842)   // A4 @72dpi
+    let renderer = UIGraphicsPDFRenderer(bounds: pageRect)
+    try renderer.writePDF(to: url) { ctx in
+        ctx.beginPage()
+        draw(ctx.cgContext, pageRect)   // gambar teks/tabel/logo invoice
+    }
+}</code></pre>
+      <div class="note case"><span class="nt">Kasus vertikal — invoice e-commerce/UMKM</span>Generate invoice/nota PDF on-device dari data order (nomor, item, total, pajak) lalu bagikan/simpan. Untuk template kompleks, render lewat layout terstruktur. Tanda tangan/anotasi via <code>PDFAnnotation</code>. Karena dibuat on-device, tak perlu server rendering untuk kasus sederhana — hemat & cepat. Untuk dokumen legal/bernilai tinggi, pertimbangkan penandatanganan resmi di server.</div>
+    </section>
+
+    <section id="quicklook">
+      <h2><span class="sn">06</span>QuickLook</h2>
+      <p>QuickLook memberi <strong>preview file instan</strong> (PDF, gambar, Office, dll.) dengan UI sistem — tanpa Anda menulis viewer sendiri.</p>
+<pre><code data-swift>import QuickLook
+
+final class PreviewSource: NSObject, QLPreviewControllerDataSource {
+    let urls: [URL]
+    init(urls: [URL]) { self.urls = urls }
+    func numberOfPreviewItems(in c: QLPreviewController) -&gt; Int { urls.count }
+    func previewController(_ c: QLPreviewController,
+        previewItemAt index: Int) -&gt; QLPreviewItem { urls[index] as NSURL }
+}
+
+// Presentasikan:
+let preview = QLPreviewController()
+preview.dataSource = previewSource   // simpan referensi kuat!
+presenter.present(preview, animated: true)</code></pre>
+      <div class="note warn"><span class="nt">Detail penting</span>(1) <code>dataSource</code> di-hold <strong>weak</strong> oleh controller — simpan referensi kuat sendiri agar tak dealokasi. (2) File harus tersedia lokal (unduh dulu bila remote). (3) QuickLook = preview cepat multi-format; PDFKit = saat butuh kontrol PDF (anotasi, ekstraksi, generate). Untuk "user mau lihat lampiran", QuickLook lebih ringkas.</div>
+    </section>
+
+    <section id="bestpractice">
+      <h2><span class="sn">07</span>Best Practice Lintas-Framework</h2>
+      <ul>
+        <li><strong>Auth diverifikasi di server</strong> — <code>identityToken</code>/OAuth code ditukar & diverifikasi server-side; klien kurir, bukan otoritas.</li>
+        <li><strong>Sign in with Apple wajib</strong> bila ada login sosial lain — desain sejak awal (App Review).</li>
+        <li><strong>OAuth via ASWebAuthenticationSession + PKCE</strong> — jangan pernah di WKWebView.</li>
+        <li><strong>WKWebView di-sandbox</strong> — HTTPS + whitelist domain + validasi bridge; jangan ekspos API sensitif ke web tak tepercaya.</li>
+        <li><strong>SFSafariViewController untuk link eksternal</strong> — lebih aman & hemat kerja dari WKWebView untuk konten tak dikontrol.</li>
+        <li><strong>Bungkus di balik protocol</strong> — <code>AuthProvider</code>, <code>DocumentPreviewer</code> (M9) → testable, dapat ditukar.</li>
+        <li><strong>Dokumen dari sumber tak tepercaya</strong> — perlakukan hati-hati; QuickLook mengisolasi rendering.</li>
+      </ul>
+      <div class="note warn"><span class="nt">Epistemik</span>Kebijakan App Review (Sign in with Apple), detail passkey/AutoFill di AuthenticationServices, dan API WebKit berkembang tiap tahun. <strong>Verifikasi terhadap dokumentasi Apple & pedoman App Review terkini</strong> saat implementasi — contoh di modul ini menunjukkan pola stabil, konfirmasikan detail untuk iOS target Anda.</div>
+    </section>
+
+    <section id="exercises">
+      <h2><span class="sn">08</span>Latihan</h2>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 01</span><h4>Verifikasi Sign in with Apple</h4></div>
+        <p>Junior Anda memvalidasi login Apple dengan mem-parse <code>identityToken</code> di klien lalu langsung membuat sesi lokal. Apa masalahnya?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Klien bisa dipalsukan — token harus diverifikasi <strong>di server</strong>: cek tanda tangan JWT ke kunci publik Apple, validasi <code>iss</code>/<code>aud</code>/<code>exp</code>/<code>nonce</code>, baru buat sesi. Klien hanya meneruskan token.</p>
+        <p><em>Review:</em> Zero-trust: otoritas otentikasi ada di server. Parsing klien untuk UI boleh, tapi bukan dasar kepercayaan.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 02</span><h4>OAuth di WebView</h4></div>
+        <p>Tim ingin login Google via <code>WKWebView</code> agar "tetap di dalam app". Kenapa ini keliru & apa gantinya?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Google (dan banyak provider) memblokir OAuth di WebView mentah (rentan phishing, tak berbagi sesi). Gunakan <code>ASWebAuthenticationSession</code> + PKCE — sesi web aman resmi yang tetap terasa in-app.</p>
+        <p><em>Review:</em> WebView OAuth adalah anti-pattern keamanan yang diketahui. ASWebAuthenticationSession memenuhi tujuan UX tanpa risiko.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 03</span><h4>Bridge WKWebView</h4></div>
+        <p>WKWebView Anda mengekspos handler <code>native</code> yang, saat dipanggil JS, mengembalikan token sesi user. Apa risikonya?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>Jika konten web (atau iframe pihak ketiga/ XSS di dalamnya) memanggil handler, token bocor. Jangan ekspos API sensitif ke web; whitelist domain via <code>decidePolicyFor</code>; validasi & minimalkan permukaan bridge; pertimbangkan <code>WKContentWorld</code> terisolasi.</p>
+        <p><em>Review:</em> Bridge = attack surface. Prinsip least-privilege: web hanya boleh memanggil operasi tak sensitif yang tervalidasi.</p>
+        </details>
+      </div>
+
+      <div class="exercise">
+        <div class="xh"><span class="xnum">EX 04</span><h4>PDFKit vs QuickLook</h4></div>
+        <p>Kapan memilih PDFKit, kapan QuickLook, untuk (a) preview lampiran email user, (b) generate invoice dari order, (c) viewer PDF dengan anotasi?</p>
+        <details><summary>▸ Lihat solusi & review</summary>
+        <p>(a) QuickLook — preview cepat multi-format tanpa viewer kustom. (b) PDFKit/UIGraphicsPDFRenderer — generate. (c) PDFKit — kontrol anotasi & interaksi.</p>
+        <p><em>Review:</em> QuickLook = preview instan; PDFKit = saat butuh membuat/mengontrol/menganotasi PDF.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Verifikasi Sign in with Apple</h4></div>
+        <p>Di mana identityToken diverifikasi dan kenapa?</p>
+        <details><summary>▸ Jawaban</summary><p>Di server: verifikasi tanda tangan JWT ke kunci publik Apple + validasi iss/aud/exp/nonce, baru buat sesi. Klien bisa dipalsukan — ia hanya kurir token, bukan otoritas.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>OAuth mekanisme</h4></div>
+        <p>Kenapa OAuth harus lewat ASWebAuthenticationSession, bukan WKWebView?</p>
+        <details><summary>▸ Jawaban</summary><p>Provider memblokir OAuth di WebView (rentan phishing, tak berbagi sesi Safari). ASWebAuthenticationSession + PKCE adalah mekanisme resmi & aman yang tetap terasa in-app.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>WKWebView bridge</h4></div>
+        <p>Kenapa bridge JS↔native adalah attack surface?</p>
+        <details><summary>▸ Jawaban</summary><p>Konten web (atau XSS/iframe di dalamnya) dapat memanggil handler native. Jangan ekspos API sensitif; whitelist domain via decidePolicyFor; validasi & minimalkan bridge; HTTPS only.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: login + invoice</span>Implementasikan Sign in with Apple (kirim token ke server untuk verifikasi — mock server) dan generate invoice PDF (PDFKit/UIGraphicsPDFRenderer) dari data order, dapat di-preview via QuickLook. <strong>Tujuan:</strong> auth aman + dokumen produksi.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tambahkan OAuth provider kedua via ASWebAuthenticationSession + PKCE (pastikan Sign in with Apple tetap ada — aturan App Review) dan WKWebView ter-sandbox untuk konten milik sendiri. Tantangan: zero-trust auth + web aman.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Memverifikasi token Apple/OAuth di klien, bukan server.</li>
+        <li>OAuth di WKWebView (diblokir provider, rawan phishing).</li>
+        <li>Mengekspos API sensitif ke konten web via bridge.</li>
+        <li>WKWebView memuat URL non-HTTPS / tanpa whitelist domain.</li>
+        <li>Menawarkan login sosial tanpa Sign in with Apple (penolakan App Review).</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — <em>Sign in with Apple</em>, <em>Authentication Services</em>.</li>
+        <li>Apple Developer Documentation — <em>WebKit</em> (WKWebView), <em>Safari Services</em>.</li>
+        <li>Apple Developer Documentation — <em>PDFKit</em>, <em>Quick Look</em>.</li>
+      </ul>
+    </section>
+
+    <div class="checklist" id="checklist">
+      <h3>Mastery Checklist — Module 23</h3>
+      <p style="font-size:13.5px;color:var(--gray-500);margin:0 0 8px">Centang yang sudah Anda kuasai. Progress tersimpan otomatis.</p>
+      <div class="check-item"><input type="checkbox" id="c0"><label for="c0">Sign in with Apple: alur, scope sekali-kirim, wajib bila ada login sosial</label></div>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Verifikasi identityToken di server (JWT, iss/aud/exp/nonce)</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">OAuth via ASWebAuthenticationSession + PKCE; jangan di WKWebView</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">SFSafariViewController untuk link eksternal; kapan vs WKWebView</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">WKWebView: HTTPS + whitelist domain + validasi bridge + isolasi</label></div>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">PDFKit: tampilkan & generate invoice; anotasi</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">QuickLook: preview multi-format; hold dataSource kuat</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Best practice: auth server-verified, sandbox web, abstraksi protocol</label></div>
+      <div class="check-item"><input type="checkbox" id="c8"><label for="c8">Menyelesaikan keempat latihan tanpa melihat solusi</label></div>
+    </div>
+
+    <div class="foot-nav">
+      <a href="module-22.html">← Module 22 — AI / ML Frameworks</a>
+      <span class="next">Berikutnya: Module 24 — Data & System (Foundation deep, Contacts, EventKit, FileProvider)</span>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  const KW=new Set(('let var func struct class enum protocol extension if else guard switch case default for in while repeat return throw throws rethrows try catch do defer async await actor init deinit self Self nil true false some any where as is public private internal fileprivate open static final lazy mutating nonmutating weak unowned inout associatedtype typealias import subscript willSet didSet get set convenience required override indirect nonisolated').split(' '));
+  function hl(code){let out='';while(code.length){let m;
+    if(m=code.match(/^\/\/[^\n]*/)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\/\*[\s\S]*?\*\//)) out+='<span class="t-comment">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^"(?:[^"\\]|\\.)*"/)) out+='<span class="t-string">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^@\w+/)) out+='<span class="t-attr">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^\b\d[\d_]*(?:\.\d+)?\b/)) out+='<span class="t-number">'+esc(m[0])+'</span>';
+    else if(m=code.match(/^[A-Za-z_]\w*/)){const w=m[0];if(KW.has(w))out+='<span class="t-keyword">'+w+'</span>';else if(/^[A-Z]/.test(w))out+='<span class="t-type">'+w+'</span>';else out+=w;}
+    else{out+=esc(code[0]);code=code.slice(1);continue;}
+    code=code.slice(m[0].length);}return out;}
+  document.querySelectorAll('code[data-swift]').forEach(el=>{el.innerHTML=hl(el.textContent);});
+})();
+(function(){
+  const KEY='ios-ws-m23';
+  const boxes=[...document.querySelectorAll('#checklist input[type=checkbox]')];
+  let state={};try{state=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){}
+  function render(){let done=0;boxes.forEach(b=>{b.checked=!!state[b.id];b.closest('.check-item').classList.toggle('done',b.checked);if(b.checked)done++;});
+    const pct=Math.round(done/boxes.length*100);document.getElementById('sideFill').style.width=pct+'%';
+    document.getElementById('sideProg').textContent=done+' / '+boxes.length+' selesai · '+pct+'%';}
+  boxes.forEach(b=>b.addEventListener('change',()=>{state[b.id]=b.checked;localStorage.setItem(KEY,JSON.stringify(state));render();}));
+  render();
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];const map={};
+  links.forEach(l=>{map[l.getAttribute('href').slice(1)]=l;});
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));if(map[e.target.id])map[e.target.id].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+})();
+(function(){const b=document.getElementById('menuBtn'),sb=document.getElementById('sidebar');
+  b.addEventListener('click',()=>sb.classList.toggle('open'));
+  document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>sb.classList.remove('open')));})();
+</script>
+</body>
+</html>

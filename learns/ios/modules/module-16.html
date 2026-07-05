@@ -110,6 +110,7 @@ details[open] summary{margin-bottom:8px}
       <a href="#scaling"><span class="nidx">05</span>Scaling Team</a>
       <a href="#exercises"><span class="nidx">06</span>Latihan</a>
       <a href="#capstone"><span class="nidx">07</span>Penutup</a>
+      <a href="#reinforce"><span class="nidx">09</span>Quiz, Project & Referensi</a>
     </nav>
   </aside>
 
@@ -282,6 +283,51 @@ Core Data (lebih matang, lebih verbose), Realm (deprecated — ditolak).</code><
         <li>Verifikasi versi terkini (Swift/Xcode/library) saat mulai proyek — ekosistem bergerak; disclaimer epistemik di beberapa modul menandai area yang perlu dicek ulang.</li>
       </ul>
       <div class="note key"><span class="nt">Terakhir</span>Menjadi principal bukan tentang mengetahui setiap API, melainkan tentang <strong>menghubungkan keputusan ke konteks, menyatakan trade-off, dan memampukan orang lain</strong>. Workshop ini memberi fondasi; penguasaan datang dari menerapkannya pada masalah nyata, berulang kali.</div>
+    </section>
+
+    <section id="reinforce">
+      <h2><span class="sn">09</span>Quiz, Mini-Project, Challenge &amp; Referensi</h2>
+
+      <h3>Quiz Cepat</h3>
+      <p style="font-size:13.5px;color:var(--gray-500)">Jawab dulu di kepala, lalu buka jawaban.</p>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q1</span><h4>Alur system design</h4></div>
+        <p>Bagaimana struktur menjawab pertanyaan iOS system design (mis. 'desain feed offline-capable')?</p>
+        <details><summary>▸ Jawaban</summary><p>Klarifikasi requirement & constraint → definisikan API/data model → arsitektur klien (lapisan, caching, sync) → offline & konflik → performa & skala → observability & failure modes → trade-off. Komunikasikan keputusan & alternatif, bukan hanya solusi.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q2</span><h4>ADR</h4></div>
+        <p>Kapan menulis Architecture Decision Record?</p>
+        <details><summary>▸ Jawaban</summary><p>Saat mengambil keputusan desain signifikan dengan trade-off (mis. SwiftData vs Core Data). ADR mencatat konteks, keputusan, konsekuensi, alternatif — immutable; keputusan baru men-supersede, bukan mengedit.</p></details>
+      </div>
+      <div class="exercise">
+        <div class="xh"><span class="xnum">Q3</span><h4>Code review at scale</h4></div>
+        <p>Apa fokus code review yang efektif?</p>
+        <details><summary>▸ Jawaban</summary><p>Korektnes, boundary arsitektur, keamanan, dan keterbacaan/maintainability — dengan komentar spesifik & actionable (severity + perbaikan konkret), bukan gaya subjektif. Otomasi hal mekanis (lint/format) agar review fokus ke substansi.</p></details>
+      </div>
+
+      <h3>Mini-Project</h3>
+      <div class="note case"><span class="nt">Bangun: satu latihan system design tertulis</span>Pilih satu skenario (mis. 'app e-commerce offline-capable dengan sync') dan tulis dokumen system design ringkas: requirement, data model, arsitektur klien, strategi offline/sync, observability, trade-off. <strong>Tujuan:</strong> melatih artikulasi keputusan level senior.</div>
+
+      <h3>Challenge</h3>
+      <div class="note warn"><span class="nt">Naik level</span>Tulis satu ADR nyata untuk keputusan di dokumen tersebut (format: status, context, decision, consequences, alternatives) dan satu rubrik code review untuk tim. Tantangan: mengkomunikasikan keputusan secara tertulis & dapat diaudit — inti peran principal/tech lead.</div>
+
+      <h3>Common Mistakes</h3>
+      <ul>
+        <li>Langsung ke solusi tanpa mengklarifikasi requirement/constraint.</li>
+        <li>Mengabaikan failure modes & observability.</li>
+        <li>Keputusan arsitektur tanpa dokumentasi (ADR) — konteks hilang.</li>
+        <li>Code review subjektif tanpa kriteria/actionability.</li>
+        <li>Tak mempertimbangkan trade-off & alternatif.</li>
+      </ul>
+
+      <h3>Referensi Resmi</h3>
+      <p style="font-size:13px;color:var(--gray-500)">Cari via judul resmi (URL Apple kerap berubah path; verifikasi ke versi terkini):</p>
+      <ul>
+        <li>Apple Developer Documentation — panduan arsitektur & performa (rujukan desain klien).</li>
+        <li>Konsep Architecture Decision Record (ADR) — Michael Nygard (konsep umum).</li>
+        <li>Prinsip system design umum (bukan spesifik vendor) — verifikasi klaim spesifik sebelum dikutip.</li>
+      </ul>
     </section>
 
     <div class="checklist" id="checklist">
