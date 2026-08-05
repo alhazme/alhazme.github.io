@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growing Practice - Bene Pyto Tanijaya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        },
+        colors: {
+          primary: {
+            DEFAULT: '#33B550',
+            50: '#EBF8EE',
+            500: '#33B550',
+            700: '#289140',
+          },
+          secondary: {
+            DEFAULT: '#F38524',
+            50: '#FEF3E9',
+            500: '#F38524',
+            700: '#D66D13',
+          },
+          tertiary: {
+            DEFAULT: '#137FC3',
+            50: '#E7F2F9',
+            500: '#137FC3',
+            700: '#0E6197',
+          },
+          text: {
+            primary: '#0A0A0A',
+            secondary: '#4A4A4A',
+            tertiary: '#9A9A9A',
+          },
+        },
+        fontSize: {
+          'hero': ['72px', { lineHeight: '110%', fontWeight: '800' }],
+          'display': ['48px', { lineHeight: '115%', fontWeight: '700' }],
+          'h1': ['40px', { lineHeight: '120%', fontWeight: '700' }],
+          'h2': ['32px', { lineHeight: '125%', fontWeight: '700' }],
+          'h3': ['24px', { lineHeight: '130%', fontWeight: '600' }],
+          'h4': ['20px', { lineHeight: '140%', fontWeight: '600' }],
+          'h5': ['18px', { lineHeight: '140%', fontWeight: '600' }],
+          'h6': ['16px', { lineHeight: '145%', fontWeight: '600' }],
+          'body-xl': ['18px', { lineHeight: '140%', fontWeight: '400' }],
+          'body-l': ['16px', { lineHeight: '140%', fontWeight: '400' }],
+          'body-m': ['14px', { lineHeight: '155%', fontWeight: '400' }],
+          'body-s': ['12px', { lineHeight: '150%', fontWeight: '400' }],
+          'label-xl': ['16px', { lineHeight: '145%', fontWeight: '600' }],
+          'label-l': ['14px', { lineHeight: '145%', fontWeight: '600' }],
+          'label-m': ['12px', { lineHeight: '145%', fontWeight: '500' }],
+          'label-s': ['11px', { lineHeight: '140%', fontWeight: '500' }],
+        },
+      },
+    },
+  };
+</script>
+</head>
+<body class="font-sans text-text-primary bg-white">
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-20 bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
+  <div class="max-w-7xl mx-auto relative flex items-center justify-between px-6 h-[50px] md:h-auto md:py-6">
+    <div class="flex items-center">
+      <button id="menu-toggle" class="md:hidden text-text-primary" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav class="hidden md:flex items-center gap-8 text-label-l text-text-secondary">
+        <a href="index.html#home" class="hover:text-text-primary transition-colors">Home</a>
+        <a href="growing-practice-list.html" class="hover:text-text-primary transition-colors">Growing Practice</a>
+        <a href="product-list.html" class="hover:text-text-primary transition-colors">Product</a>
+        <a href="about-us.html" class="hover:text-text-primary transition-colors">About Us</a>
+      </nav>
+    </div>
+    <div class="absolute left-1/2 -translate-x-1/2">
+      <a href="index.html#home"><img src="images/logo.svg" alt="Bene Pyto Tanijaya" class="h-10 w-auto"></a>
+    </div>
+    <a href="https://api.whatsapp.com/send?phone=6285219395264&text=Halo%20Bene%20Pyto%20Tanijaya..%20Aku%20mau%20pesan%20Bensil%2B%20dong" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 md:gap-2 bg-primary text-white text-label-m md:text-label-l px-3 py-2 md:px-5 md:py-3 rounded-[9999px]">
+      Contact Us
+    </a>
+  </div>
+</header>
+
+<!-- Mobile sidebar -->
+<div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-30 hidden"></div>
+<aside id="mobile-sidebar" class="fixed top-0 left-0 h-full w-64 bg-white z-40 -translate-x-full transition-transform duration-300 p-6">
+  <div class="flex items-center justify-between mb-10">
+    <img src="images/logo.svg" alt="Bene Pyto Tanijaya" class="h-8 w-auto">
+    <button id="menu-close" aria-label="Close menu" class="text-text-primary">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+    </button>
+  </div>
+  <nav class="flex flex-col gap-6 text-label-l text-text-primary">
+    <a href="index.html#home">Home</a>
+    <a href="product-list.html">Product</a>
+    <a href="about-us.html">About Us</a>
+    <a href="index.html#blog">Blog</a>
+  </nav>
+</aside>
+
+<script>
+  const sidebar = document.getElementById('mobile-sidebar');
+  const overlay = document.getElementById('mobile-overlay');
+  function openMenu() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeMenu() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  document.getElementById('menu-toggle').addEventListener('click', openMenu);
+  document.getElementById('menu-close').addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+</script>
+
+<!-- Growing Practice List -->
+<main class="max-w-7xl mx-auto px-6 pt-[74px] md:pt-32 pb-20">
+  <nav class="flex flex-wrap items-center gap-2 text-body-s text-text-tertiary mb-6">
+    <a href="index.html#home" class="flex items-center gap-1 hover:text-text-primary transition-colors">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4h4v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1V10"/></svg>
+      Home
+    </a>
+    <span>/</span>
+    <span class="text-text-secondary">Growing Practice</span>
+  </nav>
+
+  <div class="flex flex-col gap-6 mb-10">
+    <div class="w-full">
+      <span class="inline-block border border-black/10 text-label-m px-4 py-2 rounded-[9999px] mb-5">Growing Practice</span>
+      <h1 class="text-h1 md:text-display w-full">All Growing Practices</h1>
+    </div>
+    <p class="w-full text-body-l text-text-secondary max-w-2xl">
+      Every technique our agronomists recommend to keep yields high and soil healthy season after season, from soil health and pest management to harvest quality.
+    </p>
+  </div>
+
+  <div class="flex flex-col md:flex-row gap-3 mb-4">
+    <div class="relative flex-1">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-4 top-1/2 -translate-y-1/2 text-text-tertiary pointer-events-none"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="search-input" type="search" placeholder="Search by title or tag" class="w-full pl-11 pr-4 py-3 rounded-[9999px] border border-[#E5E5E5] text-body-m text-text-primary outline-none focus:ring-2 focus:ring-primary-500">
+    </div>
+    <select id="tag-filter" class="px-5 py-3 rounded-[9999px] border border-[#E5E5E5] text-body-m text-text-primary outline-none focus:ring-2 focus:ring-primary-500 bg-white">
+      <option value="all">All Tags</option>
+      <option value="Soil Health">Soil Health</option>
+      <option value="Pest Management">Pest Management</option>
+      <option value="Water Management">Water Management</option>
+      <option value="Nutrient Management">Nutrient Management</option>
+      <option value="Crop Planning">Crop Planning</option>
+      <option value="Harvest Quality">Harvest Quality</option>
+    </select>
+    <select id="sort-select" class="px-5 py-3 rounded-[9999px] border border-[#E5E5E5] text-body-m text-text-primary outline-none focus:ring-2 focus:ring-primary-500 bg-white">
+      <option value="default">Featured</option>
+      <option value="title-asc">Title A-Z</option>
+      <option value="title-desc">Title Z-A</option>
+      <option value="date-desc">Date Latest First</option>
+      <option value="date-asc">Date Oldest First</option>
+    </select>
+  </div>
+
+  <p id="result-count" class="text-body-s text-text-tertiary mb-6"></p>
+
+  <div id="practice-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  <p id="empty-state" class="hidden text-center text-body-l text-text-secondary py-20">No growing practices match your search.</p>
+</main>
+
+<!-- Footer -->
+<footer class="bg-[#F4F4F4]">
+<div class="max-w-7xl mx-auto px-6 py-16">
+  <div class="grid md:grid-cols-2 gap-10 mb-16">
+    <div>
+      <p class="text-h4 font-extrabold mb-4">Bene Pyto Tanijaya</p>
+      <p class="text-body-l text-text-secondary max-w-sm">
+        Chemical fertilizers and crop nutrition solutions for stronger, healthier harvests, trusted by farmers across Indonesia.
+      </p>
+    </div>
+    <div class="grid grid-cols-3 gap-6">
+      <div>
+        <p class="text-label-l mb-4">Explore</p>
+        <ul class="space-y-3 text-body-m text-text-secondary">
+          <li><a href="growing-practice-list.html">Growing Practice</a></li>
+          <li><a href="product-list.html">Product</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-label-l mb-4">Connect</p>
+        <ul class="space-y-3 text-body-m text-text-secondary">
+          <li><a href="mailto:halo@benetanijaya.com">Email</a></li>
+          <li><a href="https://www.facebook.com/benepyto/">Facebook</a></li>
+          <li><a href="https://www.instagram.com/benepyto">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@benetanijaya">Tiktok</a></li>
+          <li><a href="https://www.youtube.com/@wangsatani.">Youtube</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-label-l mb-4">Addresses</p>
+        <ul class="space-y-3 text-body-m text-text-secondary">
+          <li>Jalan Alpukat</li>
+          <li>RT.07/RW.06, Sindangbarang</li>
+          <li>Bogor Barat, Kota Bogor</li>
+          <li>Jawa Barat, Indonesia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center justify-center gap-4 pt-8 border-t border-[#E5E5E5] text-body-s text-text-tertiary">
+    <p>Bene Pyto Tanijaya &copy; 2026. All rights reserved.</p>
+  </div>
+</div>
+</footer>
+
+<script>
+  const tagStyles = {
+    'Soil Health': 'bg-tertiary-500',
+    'Pest Management': 'bg-secondary-500',
+    'Water Management': 'bg-primary-500',
+    'Nutrient Management': 'bg-tertiary-500',
+    'Crop Planning': 'bg-secondary-500',
+    'Harvest Quality': 'bg-primary-500',
+  };
+
+  const practices = [
+    { slug: 'crop-rotation', tag: 'Soil Health', image: 'images/growing-practice/soil-growing-practice.jpg', title: 'Crop Rotation', date: '2026-08-04', dateDisplay: '4 Agustus 2026', readTime: '5 min read', author: 'Administrator', description: 'Rotating crops season to season breaks pest cycles and restores nutrients naturally, keeping soil productive for longer.' },
+    { slug: 'cover-cropping', tag: 'Soil Health', image: 'images/growing-practice/soil-growing-practice.jpg', title: 'Cover Cropping', date: '2026-08-04', dateDisplay: '4 Agustus 2026', readTime: '5 min read', author: 'Administrator', description: 'Planting cover crops between main seasons protects bare soil, adds organic matter, and suppresses weeds without a single pass of herbicide.' },
+    { slug: 'organic-pest-control', tag: 'Pest Management', image: 'images/growing-practice/pest-management-growing-practice.jpg', title: 'Organic Pest Control', date: '2026-08-04', dateDisplay: '4 Agustus 2026', readTime: '5 min read', author: 'Administrator', description: 'Companion planting and natural predators reduce reliance on chemical pesticides while protecting biodiversity.' },
+    { slug: 'beneficial-insect-habitats', tag: 'Pest Management', image: 'images/growing-practice/pest-management-growing-practice.jpg', title: 'Beneficial Insect Habitats', date: '2026-08-04', dateDisplay: '4 Agustus 2026', readTime: '5 min read', author: 'Administrator', description: 'Planting flowering borders and leaving strips of habitat gives natural predators a place to live, cutting pest pressure before it ever reaches the crop.' },
+    { slug: 'water-efficient-irrigation', tag: 'Water Management', image: 'images/growing-practice/water-management-growing-practice.jpg', title: 'Water-Efficient Irrigation', date: '2026-08-04', dateDisplay: '4 Agustus 2026', readTime: '5 min read', author: 'Administrator', description: 'Drip irrigation and moisture sensors cut water waste while keeping crops hydrated through dry spells.' },
+    { slug: 'mulching-moisture-retention', tag: 'Water Management', image: 'images/growing-practice/water-management-growing-practice.jpg', title: 'Mulching for Moisture Retention', date: '2026-08-04', dateDisplay: '4 Agustus 2026', readTime: '5 min read', author: 'Administrator', description: 'A layer of organic mulch slows evaporation, keeps roots cooler, and cuts how often fields need to be irrigated during dry stretches.' },
+    { slug: 'soil-testing-fertilization', tag: 'Nutrient Management', image: 'images/growing-practice/nutrient-management-growing-practice.jpg', title: 'Soil Testing & Fertilization', date: '2026-08-04', dateDisplay: '4 Agustus 2026', readTime: '5 min read', author: 'Administrator', description: "Regular soil testing reveals nutrient gaps early, so fertilizer goes exactly where it's needed instead of being wasted or washed away." },
+    { slug: 'composting-organic-matter', tag: 'Nutrient Management', image: 'images/growing-practice/nutrient-management-growing-practice.jpg', title: 'Composting & Organic Matter', date: '2026-08-04', dateDisplay: '4 Agustus 2026', readTime: '5 min read', author: 'Administrator', description: 'Working compost and organic residue back into the soil rebuilds fertility naturally, reducing how much synthetic fertilizer a field needs season over season.' },
+    { slug: 'companion-planting', tag: 'Crop Planning', image: 'images/growing-practice/crop-planning-growing-practice.jpg', title: 'Companion Planting', date: '2026-08-04', dateDisplay: '4 Agustus 2026', readTime: '5 min read', author: 'Administrator', description: 'Pairing compatible crops in the same bed improves pollination, deters pests naturally, and makes better use of every square meter.' },
+    { slug: 'seasonal-crop-calendars', tag: 'Crop Planning', image: 'images/growing-practice/crop-planning-growing-practice.jpg', title: 'Seasonal Crop Calendars', date: '2026-08-04', dateDisplay: '4 Agustus 2026', readTime: '5 min read', author: 'Administrator', description: 'Planning what goes in the ground and when, season by season, keeps land in continuous productive use instead of sitting idle between plantings.' },
+    { slug: 'post-harvest-handling', tag: 'Harvest Quality', image: 'images/growing-practice/harvest-quality-growing-practice.jpg', title: 'Post-Harvest Handling', date: '2026-08-04', dateDisplay: '4 Agustus 2026', readTime: '5 min read', author: 'Administrator', description: 'Harvesting at peak ripeness and cooling produce quickly cuts spoilage and keeps quality high from field to market.' },
+    { slug: 'proper-storage-curing', tag: 'Harvest Quality', image: 'images/growing-practice/harvest-quality-growing-practice.jpg', title: 'Proper Storage & Curing', date: '2026-08-04', dateDisplay: '4 Agustus 2026', readTime: '5 min read', author: 'Administrator', description: 'Curing and storing harvested crops correctly locks in quality after the field work is done, protecting the value of a harvest all the way to market.' },
+  ];
+
+  function buildCard(practice) {
+    const article = document.createElement('article');
+    article.className = 'group';
+
+    const link = document.createElement('a');
+    link.href = 'growing-practice-detail.html?slug=' + practice.slug;
+    link.setAttribute('aria-label', 'Read ' + practice.title + ' article');
+    link.className = 'block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2 rounded-[16px]';
+
+    const imageWrap = document.createElement('div');
+    imageWrap.className = 'relative aspect-square rounded-[16px] overflow-hidden';
+
+    const image = document.createElement('div');
+    image.className = 'absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-out group-hover:scale-110';
+    image.style.backgroundImage = "url('" + practice.image + "')";
+    imageWrap.appendChild(image);
+
+    const tag = document.createElement('span');
+    tag.className = 'absolute top-4 left-4 ' + tagStyles[practice.tag] + ' text-white text-label-m px-3 py-1.5 rounded-[9999px]';
+    tag.textContent = practice.tag;
+    imageWrap.appendChild(tag);
+
+    link.appendChild(imageWrap);
+
+    const meta = document.createElement('p');
+    meta.className = 'text-label-s text-text-tertiary mt-4';
+    meta.textContent = practice.dateDisplay + ' - ' + practice.readTime;
+    link.appendChild(meta);
+
+    const title = document.createElement('h3');
+    title.className = 'text-h6 mt-1';
+    title.textContent = practice.title;
+    link.appendChild(title);
+
+    const author = document.createElement('p');
+    author.className = 'text-body-s text-text-tertiary mt-1';
+    author.textContent = practice.author;
+    link.appendChild(author);
+
+    const description = document.createElement('p');
+    description.className = 'text-body-m text-text-secondary mt-2';
+    description.textContent = practice.description;
+    link.appendChild(description);
+
+    const learnMore = document.createElement('span');
+    learnMore.className = 'inline-block text-label-l text-primary-700 mt-3';
+    learnMore.textContent = 'Learn More';
+    link.appendChild(learnMore);
+
+    article.appendChild(link);
+    return article;
+  }
+
+  const grid = document.getElementById('practice-grid');
+  const emptyState = document.getElementById('empty-state');
+  const resultCount = document.getElementById('result-count');
+  const searchInput = document.getElementById('search-input');
+  const tagFilter = document.getElementById('tag-filter');
+  const sortSelect = document.getElementById('sort-select');
+
+  function applyFilters() {
+    const query = searchInput.value.trim().toLowerCase();
+    const tag = tagFilter.value;
+    const sort = sortSelect.value;
+
+    let filtered = practices.filter((practice) => {
+      const matchesQuery = !query || practice.title.toLowerCase().includes(query) || practice.tag.toLowerCase().includes(query);
+      const matchesTag = tag === 'all' || practice.tag === tag;
+      return matchesQuery && matchesTag;
+    });
+
+    if (sort === 'title-asc') {
+      filtered.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sort === 'title-desc') {
+      filtered.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (sort === 'date-desc') {
+      filtered.sort((a, b) => b.date.localeCompare(a.date));
+    } else if (sort === 'date-asc') {
+      filtered.sort((a, b) => a.date.localeCompare(b.date));
+    }
+
+    grid.innerHTML = '';
+    filtered.forEach((practice) => grid.appendChild(buildCard(practice)));
+
+    grid.classList.toggle('hidden', filtered.length === 0);
+    emptyState.classList.toggle('hidden', filtered.length > 0);
+    resultCount.textContent = filtered.length + (filtered.length === 1 ? ' practice found' : ' practices found');
+  }
+
+  searchInput.addEventListener('input', applyFilters);
+  tagFilter.addEventListener('change', applyFilters);
+  sortSelect.addEventListener('change', applyFilters);
+
+  applyFilters();
+</script>
+
+</body>
+</html>

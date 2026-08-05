@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bene Pyto Tanijaya - Grow the Future of Agriculture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  html {
+    scroll-padding-top: 50px;
+  }
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 96px;
+    }
+  }
+</style>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        },
+        colors: {
+          primary: {
+            DEFAULT: '#33B550',
+            50: '#EBF8EE',
+            500: '#33B550',
+            700: '#289140',
+          },
+          secondary: {
+            DEFAULT: '#F38524',
+            50: '#FEF3E9',
+            500: '#F38524',
+            700: '#D66D13',
+          },
+          tertiary: {
+            DEFAULT: '#137FC3',
+            50: '#E7F2F9',
+            500: '#137FC3',
+            700: '#0E6197',
+          },
+          text: {
+            primary: '#0A0A0A',
+            secondary: '#4A4A4A',
+            tertiary: '#9A9A9A',
+          },
+        },
+        fontSize: {
+          'hero': ['72px', { lineHeight: '110%', fontWeight: '800' }],
+          'display': ['48px', { lineHeight: '115%', fontWeight: '700' }],
+          'h1': ['40px', { lineHeight: '120%', fontWeight: '700' }],
+          'h2': ['32px', { lineHeight: '125%', fontWeight: '700' }],
+          'h3': ['24px', { lineHeight: '130%', fontWeight: '600' }],
+          'h4': ['20px', { lineHeight: '140%', fontWeight: '600' }],
+          'h5': ['18px', { lineHeight: '140%', fontWeight: '600' }],
+          'h6': ['16px', { lineHeight: '145%', fontWeight: '600' }],
+          'body-xl': ['18px', { lineHeight: '140%', fontWeight: '400' }],
+          'body-l': ['16px', { lineHeight: '140%', fontWeight: '400' }],
+          'body-m': ['14px', { lineHeight: '155%', fontWeight: '400' }],
+          'body-s': ['12px', { lineHeight: '150%', fontWeight: '400' }],
+          'label-xl': ['16px', { lineHeight: '145%', fontWeight: '600' }],
+          'label-l': ['14px', { lineHeight: '145%', fontWeight: '600' }],
+          'label-m': ['12px', { lineHeight: '145%', fontWeight: '500' }],
+          'label-s': ['11px', { lineHeight: '140%', fontWeight: '500' }],
+        },
+      },
+    },
+  };
+</script>
+</head>
+<body class="font-sans text-text-primary bg-white">
+
+<!-- Header -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-20 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto relative flex items-center justify-between px-6 h-[50px] md:h-auto md:py-6">
+    <div class="flex items-center">
+      <button id="menu-toggle" class="md:hidden text-white transition-colors duration-300" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav id="site-nav" class="hidden md:flex items-center gap-8 text-label-l text-white/80 transition-colors duration-300">
+        <a href="#home" id="nav-home" class="text-white transition-colors duration-300">Home</a>
+        <a href="growing-practice-list.html" class="nav-link-hover hover:text-white transition-colors duration-300">Growing Practice</a>
+        <a href="product-list.html" class="nav-link-hover hover:text-white transition-colors duration-300">Product</a>
+        <a href="about-us.html" class="nav-link-hover hover:text-white transition-colors duration-300">About Us</a>
+      </nav>
+    </div>
+    <div class="absolute left-1/2 -translate-x-1/2">
+      <img src="images/logo.svg" alt="Bene Pyto Tanijaya" class="h-10 w-auto">
+    </div>
+    <a href="https://api.whatsapp.com/send?phone=6285219395264&text=Halo%20Bene%20Pyto%20Tanijaya..%20Aku%20mau%20pesan%20Bensil%2B%20dong" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 md:gap-2 bg-primary text-white text-label-m md:text-label-l px-3 py-2 md:px-5 md:py-3 rounded-[9999px]">
+      Contact Us
+    </a>
+  </div>
+</header>
+
+<!-- Mobile sidebar -->
+<div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-30 hidden"></div>
+<aside id="mobile-sidebar" class="fixed top-0 left-0 h-full w-64 bg-white z-40 -translate-x-full transition-transform duration-300 p-6">
+  <div class="flex items-center justify-between mb-10">
+    <img src="images/logo.svg" alt="Bene Pyto Tanijaya" class="h-8 w-auto">
+    <button id="menu-close" aria-label="Close menu" class="text-text-primary">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+    </button>
+  </div>
+  <nav class="flex flex-col gap-6 text-label-l text-text-primary">
+    <a href="#home">Home</a>
+    <a href="growing-practice-list.html">Growing Practice</a>
+    <a href="product-list.html">Product</a>
+    <a href="about-us.html">About Us</a>
+    <a href="#blog">Blog</a>
+  </nav>
+</aside>
+
+<script>
+  const sidebar = document.getElementById('mobile-sidebar');
+  const overlay = document.getElementById('mobile-overlay');
+  function openMenu() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeMenu() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  document.getElementById('menu-toggle').addEventListener('click', openMenu);
+  document.getElementById('menu-close').addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+</script>
+
+<!-- Hero -->
+<section id="home" class="relative h-screen flex items-center bg-cover bg-center overflow-hidden" style="background-image: url('images/hero-image.jpg');">
+  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10"></div>
+  <div class="relative max-w-7xl mx-auto w-full px-6 py-24">
+    <span class="inline-block border border-white/40 text-white text-label-m px-4 py-2 rounded-[9999px] mb-6">Sustaining Earth</span>
+    <h1 class="text-h1 md:text-display lg:text-hero text-white max-w-3xl">
+      Grow the Future of Agriculture with <span class="text-secondary-500">Bene Pyto Tanijaya</span>
+    </h1>
+    <p class="text-body-xl text-white/70 max-w-xl mt-6">
+      A trusted producer of chemical fertilizers and crop nutrition solutions, led by our flagship BenSil+, formulated to help farmers grow stronger, healthier, and higher yielding crops.
+    </p>
+    <div class="flex flex-wrap items-center gap-4 mt-8">
+      <a href="https://api.whatsapp.com/send?phone=6285219395264&text=Halo%20Bene%20Pyto%20Tanijaya..%20Aku%20mau%20pesan%20Bensil%2B%20dong" class="inline-flex items-center gap-2 bg-primary-500 text-white text-label-l px-6 py-4 rounded-[9999px]">
+        Contact Us
+      </a>
+      <a href="#products" class="inline-flex items-center bg-white text-text-primary text-label-l px-6 py-4 rounded-[9999px]">
+        See Our Products
+      </a>
+    </div>
+    <div class="w-full md:w-1/2 flex flex-row gap-4 sm:gap-6 mt-10 text-white">
+      <div class="w-1/3">
+        <p class="text-h4 sm:text-h2">100%</p>
+        <p class="text-body-s sm:text-body-m text-white/70 mt-1">Customer Satisfaction Rate</p>
+      </div>
+      <div class="w-1/3 pl-4 sm:pl-6 border-l border-white/20">
+        <p class="text-h4 sm:text-h2">25+</p>
+        <p class="text-body-s sm:text-body-m text-white/70 mt-1">Years of Experience</p>
+      </div>
+      <div class="w-1/3 pl-4 sm:pl-6 border-l border-white/20">
+        <p class="text-h4 sm:text-h2">210K</p>
+        <p class="text-body-s sm:text-body-m text-white/70 mt-1">Farmers Around Indonesia</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Growing Practice -->
+<section id="growing-practice" class="max-w-7xl mx-auto px-6 py-20">
+  <div class="flex flex-col gap-6 mb-10">
+    <div class="w-full">
+      <span class="inline-block border border-black/10 text-label-m px-4 py-2 rounded-[9999px] mb-5">Growing Practice</span>
+      <h2 class="text-h2 w-full">Best Practices for Sustainable Growing</h2>
+    </div>
+    <p class="w-full text-body-l text-text-secondary">
+      Practical growing techniques our agronomists recommend to keep yields high and soil healthy season after season.
+    </p>
+  </div>
+
+  <div class="flex overflow-x-auto touch-pan-x select-none [-webkit-overflow-scrolling:touch] snap-x snap-mandatory gap-6 pb-2 sm:pb-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:overflow-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <article class="min-w-[320px] sm:min-w-0 snap-center group">
+      <a href="growing-practice-detail.html?slug=crop-rotation" aria-label="Read Crop Rotation article" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2 rounded-[16px]">
+        <div class="relative aspect-square rounded-[16px] overflow-hidden">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-out group-hover:scale-110" style="background-image: url('images/growing-practice/soil-growing-practice.jpg');"></div>
+          <span class="absolute top-4 left-4 bg-tertiary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">Soil Health</span>
+        </div>
+        <p class="text-label-s text-text-tertiary mt-4">4 Agustus 2026 - 5 min read</p>
+        <h3 class="text-h6 mt-1">Crop Rotation</h3>
+        <p class="text-body-s text-text-tertiary mt-1">Administrator</p>
+        <p class="text-body-m text-text-secondary mt-2">Rotating crops season to season breaks pest cycles and restores nutrients naturally, keeping soil productive for longer.</p>
+        <span class="inline-block text-label-l text-primary-700 mt-3">Learn More</span>
+      </a>
+    </article>
+
+    <article class="min-w-[320px] sm:min-w-0 snap-center group">
+      <a href="growing-practice-detail.html?slug=organic-pest-control" aria-label="Read Organic Pest Control article" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2 rounded-[16px]">
+        <div class="relative aspect-square rounded-[16px] overflow-hidden">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-out group-hover:scale-110" style="background-image: url('images/growing-practice/pest-management-growing-practice.jpg');"></div>
+          <span class="absolute top-4 left-4 bg-secondary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">Pest Management</span>
+        </div>
+        <p class="text-label-s text-text-tertiary mt-4">4 Agustus 2026 - 5 min read</p>
+        <h3 class="text-h6 mt-1">Organic Pest Control</h3>
+        <p class="text-body-s text-text-tertiary mt-1">Administrator</p>
+        <p class="text-body-m text-text-secondary mt-2">Companion planting and natural predators reduce reliance on chemical pesticides while protecting biodiversity.</p>
+        <span class="inline-block text-label-l text-primary-700 mt-3">Learn More</span>
+      </a>
+    </article>
+
+    <article class="min-w-[320px] sm:min-w-0 snap-center group">
+      <a href="growing-practice-detail.html?slug=water-efficient-irrigation" aria-label="Read Water-Efficient Irrigation article" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2 rounded-[16px]">
+        <div class="relative aspect-square rounded-[16px] overflow-hidden">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-out group-hover:scale-110" style="background-image: url('images/growing-practice/water-management-growing-practice.jpg');"></div>
+          <span class="absolute top-4 left-4 bg-primary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">Water Management</span>
+        </div>
+        <p class="text-label-s text-text-tertiary mt-4">4 Agustus 2026 - 5 min read</p>
+        <h3 class="text-h6 mt-1">Water-Efficient Irrigation</h3>
+        <p class="text-body-s text-text-tertiary mt-1">Administrator</p>
+        <p class="text-body-m text-text-secondary mt-2">Drip irrigation and moisture sensors cut water waste while keeping crops hydrated through dry spells.</p>
+        <span class="inline-block text-label-l text-primary-700 mt-3">Learn More</span>
+      </a>
+    </article>
+
+    <article class="min-w-[320px] sm:min-w-0 snap-center group">
+      <a href="growing-practice-detail.html?slug=soil-testing-fertilization" aria-label="Read Soil Testing & Fertilization article" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2 rounded-[16px]">
+        <div class="relative aspect-square rounded-[16px] overflow-hidden">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-out group-hover:scale-110" style="background-image: url('images/growing-practice/nutrient-management-growing-practice.jpg');"></div>
+          <span class="absolute top-4 left-4 bg-tertiary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">Nutrient Management</span>
+        </div>
+        <p class="text-label-s text-text-tertiary mt-4">4 Agustus 2026 - 5 min read</p>
+        <h3 class="text-h6 mt-1">Soil Testing &amp; Fertilization</h3>
+        <p class="text-body-s text-text-tertiary mt-1">Administrator</p>
+        <p class="text-body-m text-text-secondary mt-2">Regular soil testing reveals nutrient gaps early, so fertilizer goes exactly where it's needed instead of being wasted or washed away.</p>
+        <span class="inline-block text-label-l text-primary-700 mt-3">Learn More</span>
+      </a>
+    </article>
+
+    <article class="min-w-[320px] sm:min-w-0 snap-center group">
+      <a href="growing-practice-detail.html?slug=companion-planting" aria-label="Read Companion Planting article" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2 rounded-[16px]">
+        <div class="relative aspect-square rounded-[16px] overflow-hidden">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-out group-hover:scale-110" style="background-image: url('images/growing-practice/crop-planning-growing-practice.jpg');"></div>
+          <span class="absolute top-4 left-4 bg-secondary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">Crop Planning</span>
+        </div>
+        <p class="text-label-s text-text-tertiary mt-4">4 Agustus 2026 - 5 min read</p>
+        <h3 class="text-h6 mt-1">Companion Planting</h3>
+        <p class="text-body-s text-text-tertiary mt-1">Administrator</p>
+        <p class="text-body-m text-text-secondary mt-2">Pairing compatible crops in the same bed improves pollination, deters pests naturally, and makes better use of every square meter.</p>
+        <span class="inline-block text-label-l text-primary-700 mt-3">Learn More</span>
+      </a>
+    </article>
+
+    <article class="min-w-[320px] sm:min-w-0 snap-center group">
+      <a href="growing-practice-detail.html?slug=post-harvest-handling" aria-label="Read Post-Harvest Handling article" class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2 rounded-[16px]">
+        <div class="relative aspect-square rounded-[16px] overflow-hidden">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-out group-hover:scale-110" style="background-image: url('images/growing-practice/harvest-quality-growing-practice.jpg');"></div>
+          <span class="absolute top-4 left-4 bg-primary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">Harvest Quality</span>
+        </div>
+        <p class="text-label-s text-text-tertiary mt-4">4 Agustus 2026 - 5 min read</p>
+        <h3 class="text-h6 mt-1">Post-Harvest Handling</h3>
+        <p class="text-body-s text-text-tertiary mt-1">Administrator</p>
+        <p class="text-body-m text-text-secondary mt-2">Harvesting at peak ripeness and cooling produce quickly cuts spoilage and keeps quality high from field to market.</p>
+        <span class="inline-block text-label-l text-primary-700 mt-3">Learn More</span>
+      </a>
+    </article>
+  </div>
+
+  <div class="text-center mt-12">
+    <a href="growing-practice-list.html" class="inline-flex items-center gap-2 bg-primary-500 text-white text-label-l px-6 py-4 rounded-[9999px]">
+      View All Practices
+      <span class="w-6 h-6 rounded-full bg-black/20 flex items-center justify-center">&#8599;</span>
+    </a>
+  </div>
+</section>
+
+<!-- Products -->
+<section id="products" class="bg-[#FAFAFA] py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col gap-6 mb-10">
+      <div class="w-full">
+        <span class="inline-block border border-black/10 text-label-m px-4 py-2 rounded-[9999px] mb-5">Products</span>
+        <h2 class="text-h2 w-full">Innovative Products for Modern Agriculture</h2>
+      </div>
+      <p class="w-full text-body-l text-text-secondary">
+        From our flagship BenSil+ to our full range of crop nutrition and plant health formulas, our chemical fertilizers help farmers grow stronger, healthier, and higher yielding crops.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card template repeated -->
+      <article>
+        <a href="#" aria-label="View IoT Farm Sensor" class="group block relative aspect-square rounded-[16px] bg-cover bg-center overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2" style="background-image: url('images/products/bensil-plus-complete.jpg');">
+          <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="flex gap-2 mb-2">
+              <span class="bg-primary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">BenSil+</span>
+            </div>
+            <h3 class="text-h5 text-white">BenSil+ Grosir</h3>
+            <p class="text-h3 text-white text-right">Rp 1.275.000 - Rp 1.656.000</p>
+          </div>
+        </a>
+      </article>
+
+      <article>
+        <a href="#" aria-label="View BenSil+ Wholesale Pack" class="group block relative aspect-square rounded-[16px] bg-cover bg-center overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2" style="background-image: url('images/products/bensil-plus-1l.jpg');">
+          <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="flex gap-2 mb-2">
+              <span class="bg-primary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">BenSil+</span>
+            </div>
+            <h3 class="text-h5 text-white">BenSil+ 1l</h3>
+            <p class="text-label-l text-white/60 line-through text-right">Rp 175.000</p>
+            <p class="text-h3 text-white text-right">Rp 165.000</p>
+          </div>
+        </a>
+      </article>
+
+      <article>
+        <a href="#" aria-label="View BenSil+ 500ml" class="group block relative aspect-square rounded-[16px] bg-cover bg-center overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2" style="background-image: url('images/products/bensil-plus-500ml.jpg');">
+          <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="flex gap-2 mb-2">
+              <span class="bg-primary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">BenSil+</span>
+            </div>
+            <h3 class="text-h5 text-white">BenSil+ 500ml</h3>
+            <p class="text-label-l text-white/60 line-through text-right">Rp 125.000</p>
+            <p class="text-h3 text-white text-right">Rp 115.000</p>
+          </div>
+        </a>
+      </article>
+
+      <article>
+        <a href="#" aria-label="View BenSil+" class="group block relative aspect-square rounded-[16px] bg-cover bg-center overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2" style="background-image: url('images/products/bensil-plus-250ml.jpg');">
+          <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="flex gap-2 mb-2">
+              <span class="bg-primary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">BenSil+</span>
+            </div>
+            <h3 class="text-h5 text-white">BenSil+ 250ml</h3>
+            <p class="text-label-l text-white/60 line-through text-right">Rp 85.000</p>
+            <p class="text-h3 text-white text-right">Rp 75.000</p>
+          </div>
+        </a>
+      </article>
+
+      <article>
+        <a href="#" aria-label="View Greenhouse Technology" class="group block relative aspect-square rounded-[16px] bg-cover bg-center overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-700 focus-visible:ring-offset-2" style="background-image: url('images/products/rootzor.jpg');">
+          <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="flex gap-2 mb-2">
+              <span class="bg-secondary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">Ornamental</span>
+            </div>
+            <h3 class="text-h5 text-white">RootZor</h3>
+            <p class="text-label-l text-white/60 line-through text-right">Rp 135.000</p>
+            <p class="text-h3 text-white text-right">Rp 90.000</p>
+          </div>
+        </a>
+      </article>
+
+      <article>
+        <a href="#" aria-label="View Farm Analytics Platform" class="group block relative aspect-square rounded-[16px] bg-cover bg-center overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-700 focus-visible:ring-offset-2" style="background-image: url('images/products/regrow.jpg');">
+          <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="flex gap-2 mb-2">
+              <span class="bg-secondary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">Ornamental</span>
+            </div>
+            <h3 class="text-h5 text-white">ReGrow</h3>
+            <p class="text-label-l text-white/60 line-through text-right">Rp 140.000</p>
+            <p class="text-h3 text-white text-right">Rp 75.000</p>
+          </div>
+        </a>
+      </article>
+      
+      <article>
+        <a href="#" aria-label="View Smart Irrigation System" class="group block relative aspect-square rounded-[16px] bg-cover bg-center overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-700 focus-visible:ring-offset-2" style="background-image: url('images/products/glonemax.jpg');">
+          <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="flex gap-2 mb-2">
+              <span class="bg-secondary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">Ornamental</span>
+            </div>
+            <h3 class="text-h5 text-white">GloneMax</h3>
+            <p class="text-label-l text-white/60 line-through text-right">Rp 115.000</p>
+            <p class="text-h3 text-white text-right">Rp 65.000</p>
+          </div>
+        </a>
+      </article>
+
+      <article>
+        <a href="#" aria-label="View Greenhouse Technology" class="group block relative aspect-square rounded-[16px] bg-cover bg-center overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tertiary-700 focus-visible:ring-offset-2" style="background-image: url('images/products/startbio.jpg');">
+          <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="flex gap-2 mb-2">
+              <span class="bg-tertiary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">Aquarium Care</span>
+            </div>
+            <h3 class="text-h5 text-white">StartBio</h3>
+            <p class="text-h3 text-white text-right">Rp 30.000</p>
+          </div>
+        </a>
+      </article>
+
+      <article>
+        <a href="#" aria-label="View Pusaka Hijau" class="group block relative aspect-square rounded-[16px] bg-cover bg-center overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-700 focus-visible:ring-offset-2" style="background-image: url('images/products/pusakahijau.jpg');">
+          <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="flex gap-2 mb-2">
+              <span class="bg-secondary-500 text-white text-label-m px-3 py-1.5 rounded-[9999px]">Ornamental</span>
+            </div>
+            <h3 class="text-h5 text-white">Pusaka Hijau</h3>
+            <p class="text-h3 text-white text-right">Contact Us</p>
+          </div>
+        </a>
+      </article>
+
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="product-list.html" class="inline-flex items-center gap-2 bg-primary-500 text-white text-label-l px-6 py-4 rounded-[9999px]">
+        View All Products
+        <span class="w-6 h-6 rounded-full bg-black/20 flex items-center justify-center">&#8599;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- About Us -->
+<section id="about" class="max-w-7xl mx-auto px-6 py-20 items-start">
+  <div>
+    <span class="inline-block border border-black/10 text-label-m px-4 py-2 rounded-[9999px] mb-5">About Us</span>
+    <h2 class="text-h2 mb-8">Strengthening Harvests Across Indonesia</h2>
+    <img src="images/about-image.jpg" alt="Bene Pyto Tanijaya" class="aspect-[2/1] rounded-[16px] w-full object-cover">
+  </div>
+  <div>
+    <p class="text-body-xl text-text-secondary mt-10 mb-10">
+      Bene Pyto Tanijaya is an Indonesian producer of chemical fertilizers and crop nutrition solutions. Led by our flagship product, BenSil+, we help farmers strengthen crops, resist disease, and increase yields. Our mission is to build a more productive, sustainable, and profitable future for agriculture.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-8">
+      <div>
+        <p class="text-hero text-text-primary">100%</p>
+        <h3 class="text-h5 mt-2">Customer Satisfaction Rate</h3>
+        <p class="text-body-m text-text-secondary mt-1">We prioritize farmer needs by delivering reliable fertilizers that improve crop health and build long-term trust.</p>
+      </div>
+      <div>
+        <p class="text-hero text-text-primary">25+</p>
+        <h3 class="text-h5 mt-2">Years of Experience</h3>
+        <p class="text-body-m text-text-secondary mt-1">Built on deep agricultural knowledge and real-world farming insights to create solutions that truly work.</p>
+      </div>
+      <div>
+        <p class="text-hero text-text-primary">210K</p>
+        <h3 class="text-h5 mt-2">Farmers Around the World</h3>
+        <p class="text-body-m text-text-secondary mt-1">Supporting farmers across regions with crop nutrition solutions that help them grow, scale, and succeed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<!-- <section id="team" class="max-w-7xl mx-auto px-6 py-20">
+  <span class="inline-block border border-black/10 text-label-m px-4 py-2 rounded-[9999px] mb-5">Our Team</span>
+  <h2 class="text-h2 mb-10">Meet the People Behind Bene Pyto Tanijaya</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="rounded-[16px] border border-[#E5E5E5] overflow-hidden">
+      <img src="images/teams/Container-2.png" alt="Khoirul Muna" class="aspect-square w-full object-cover">
+      <div class="p-4">
+        <h3 class="text-h6">Iqbal Junior</h3>
+        <p class="text-body-s text-text-secondary mt-1">Chief Executive Officer</p>
+      </div>
+    </div>
+
+    <div class="rounded-[16px] border border-[#E5E5E5] overflow-hidden">
+      <img src="images/teams/Container-1.png" alt="Said Al-Kudus" class="aspect-square w-full object-cover">
+      <div class="p-4">
+        <h3 class="text-h6">Said Al-Qubro</h3>
+        <p class="text-body-s text-text-secondary mt-1">Warehouse Manager</p>
+      </div>
+    </div>
+
+    <div class="rounded-[16px] border border-[#E5E5E5] overflow-hidden">
+      <img src="images/teams/Container-3.png" alt="Munaroh" class="aspect-square w-full object-cover">
+      <div class="p-4">
+        <h3 class="text-h6">Munaroh</h3>
+        <p class="text-body-s text-text-secondary mt-1">Field Assistant</p>
+      </div>
+    </div>
+
+    <div class="rounded-[16px] border border-[#E5E5E5] overflow-hidden">
+      <img src="images/teams/Container-4.png" alt="Randi Kurniawan" class="aspect-square w-full object-cover">
+      <div class="p-4">
+        <h3 class="text-h6">Steve John</h3>
+        <p class="text-body-s text-text-secondary mt-1">Sales Marketing Asistant</p>
+      </div>
+    </div>
+
+    <div class="rounded-[16px] border border-[#E5E5E5] overflow-hidden">
+      <img src="images/teams/Container-5.png" alt="Roni Wijaya" class="aspect-square w-full object-cover">
+      <div class="p-4">
+        <h3 class="text-h6">Roni Wijaya</h3>
+        <p class="text-body-s text-text-secondary mt-1">Customer Service Specialist</p>
+      </div>
+    </div>
+
+    <div class="rounded-[16px] border border-[#E5E5E5] overflow-hidden">
+      <img src="images/teams/Container-6.png" alt="Genta Dewantara" class="aspect-square w-full object-cover">
+      <div class="p-4">
+        <h3 class="text-h6">Luna Maya</h3>
+        <p class="text-body-s text-text-secondary mt-1">Admin Marketing</p>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- Trusted by -->
+<!-- <section class="max-w-5xl mx-auto px-6 py-16 text-center">
+  <h2 class="text-h4 text-text-primary max-w-2xl mx-auto">Trusted by farmers, agribusinesses, and supply chain leaders</h2>
+  <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 mt-10">
+    <div class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/></svg>
+      <span class="text-h5 font-semibold">Logoipsum</span>
+    </div>
+    <div class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4 L20 19 L4 19 Z" stroke-linejoin="round"/></svg>
+      <span class="text-h5 font-semibold">Logoipsum</span>
+    </div>
+    <div class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="3"/></svg>
+      <span class="text-h5 font-semibold">Logoipsum</span>
+    </div>
+    <div class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 L20.5 8 V16 L12 21 L3.5 16 V8 Z" stroke-linejoin="round"/></svg>
+      <span class="text-h5 font-semibold">Logoipsum</span>
+    </div>
+    <div class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 L21 12 L12 21 L3 12 Z" stroke-linejoin="round"/></svg>
+      <span class="text-h5 font-semibold">Logoipsum</span>
+    </div>
+  </div>
+</section> -->
+
+<!-- Testimonials -->
+<section class="bg-[#FAFAFA] py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div class="w-full">
+        <span class="inline-block border border-black/10 text-label-m px-4 py-2 rounded-[9999px] mb-5">Testimonials</span>
+        <h2 class="text-h2 max-w-lg">What Farmers Say About Bene Pyto Tanijaya</h2>
+        <p class="text-body-l text-text-secondary max-w-xl mt-4">
+          Real stories from farmers using Bene Pyto Tanijaya to grow smarter, improve efficiency, and achieve better results across their farming operations.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="overflow-x-auto touch-pan-x select-none [-webkit-overflow-scrolling:touch] pb-4 md:overflow-hidden md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div class="flex gap-6 w-max md:animate-[scroll-left_40s_linear_infinite] md:hover:[animation-play-state:paused]">
+        <blockquote class="w-[280px] shrink-0 bg-white rounded-[12px] p-6 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/testimonials/suandi.jpg" alt="A. Suandi" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="text-label-l">A. Suandi</p>
+              <p class="text-body-s text-text-tertiary">Petani Cabai - Cianjur, Jawa Barat</p>
+            </div>
+          </div>
+          <p class="text-body-m text-text-secondary">"Daun cabe yg tadi nya keriting dan menguning sebagian sudah mulai ada perubahan."</p>
+        </blockquote>
+
+        <blockquote class="w-[280px] shrink-0 bg-white rounded-[12px] p-6 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/testimonials/nang-laras.jpg" alt="Nang Laras" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="text-label-l">Nang Laras</p>
+              <p class="text-body-s text-text-tertiary">Petani Cabai - Tabanan, Bali</p>
+            </div>
+          </div>
+          <p class="text-body-m text-text-secondary">"Bunga tidak rontok, buah tidak busuk. Baru pertama nyoba, pasti belanja lagi BenSil+."</p>
+        </blockquote>
+
+        <blockquote class="w-[280px] shrink-0 bg-white rounded-[12px] p-6 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/testimonials/ariandi-virgo.jpg" alt="Ariandi Virgo" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="text-label-l">Ariandi Virgo</p>
+              <p class="text-body-s text-text-tertiary">Petani Cabai</p>
+            </div>
+          </div>
+          <p class="text-body-m text-text-secondary">"Jangan ragu lagi, BenSil+ sudah terbukti khasiatnya."</p>
+        </blockquote>
+
+        <blockquote class="w-[280px] shrink-0 bg-white rounded-[12px] p-6 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/testimonials/sabardi.jpg" alt="Sabardi" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="text-label-l">Sabardi</p>
+              <p class="text-body-s text-text-tertiary">Petani Jeruk - Pasaman Barat, Sumatera Utara</p>
+            </div>
+          </div>
+          <p class="text-body-m text-text-secondary">"Kemarin kuning daunya sekarang sudah mulai hijau . Sudah semprot BenSil+ 2 kali."</p>
+        </blockquote>
+
+        <blockquote class="w-[280px] shrink-0 bg-white rounded-[12px] p-6 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/testimonials/rahmat.jpg" alt="Rahmat" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="text-label-l">Rahmat</p>
+              <p class="text-body-s text-text-tertiary">Petani Padi - Subang, Jawa Barat</p>
+            </div>
+          </div>
+          <p class="text-body-m text-text-secondary">"Biasanya padiku ga kinclong, sekarang mah mantap pakbos."</p>
+        </blockquote>
+
+        <blockquote class="w-[280px] shrink-0 bg-white rounded-[12px] p-6 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/testimonials/anonim-kentang.jpg" alt="Petani Kentang" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="text-label-l">Anonim</p>
+              <p class="text-body-s text-text-tertiary">Petani Kentang - Bondowoso, Jawa Timur</p>
+            </div>
+          </div>
+          <p class="text-body-m text-text-secondary">"pertumbuhan pada daun dan batang Alhamdulillah memuaskan. Semprot BenSil+ 4 hari sekali. pengendalian phytoptora jadi ringan."</p>
+        </blockquote>
+
+        <blockquote class="w-[280px] shrink-0 bg-white rounded-[12px] p-6 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]" aria-hidden="true">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/testimonials/suandi.jpg" alt="A. Suandi" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="text-label-l">A. Suandi</p>
+              <p class="text-body-s text-text-tertiary">Petani Cabai - Cianjur, Jawa Barat</p>
+            </div>
+          </div>
+          <p class="text-body-m text-text-secondary">"Daun cabe yg tadi nya keriting dan menguning sebagian sudah mulai ada perubahan."</p>
+        </blockquote>
+
+        <blockquote class="w-[280px] shrink-0 bg-white rounded-[12px] p-6 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]" aria-hidden="true">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/testimonials/nang-laras.jpg" alt="Nang Laras" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="text-label-l">Nang Laras</p>
+              <p class="text-body-s text-text-tertiary">Petani Cabai - Tabanan, Bali</p>
+            </div>
+          </div>
+          <p class="text-body-m text-text-secondary">"Bunga tidak rontok, buah tidak busuk. Baru pertama nyoba, pasti belanja lagi BenSil+."</p>
+        </blockquote>
+
+        <blockquote class="w-[280px] shrink-0 bg-white rounded-[12px] p-6 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]" aria-hidden="true">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/testimonials/ariandi-virgo.jpg" alt="Ariandi Virgo" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="text-label-l">Ariandi Virgo</p>
+              <p class="text-body-s text-text-tertiary">Petani Cabai</p>
+            </div>
+          </div>
+          <p class="text-body-m text-text-secondary">"Jangan ragu lagi, BenSil+ sudah terbukti khasiatnya."</p>
+        </blockquote>
+
+        <blockquote class="w-[280px] shrink-0 bg-white rounded-[12px] p-6 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]" aria-hidden="true">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/testimonials/sabardi.jpg" alt="Sabardi" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="text-label-l">Sabardi</p>
+              <p class="text-body-s text-text-tertiary">Petani Jeruk - Pasaman Barat, Sumatera Utara</p>
+            </div>
+          </div>
+          <p class="text-body-m text-text-secondary">"Kemarin kuning daunya sekarang sudah mulai hijau . Sudah semprot BenSil+ 2 kali."</p>
+        </blockquote>
+
+        <blockquote class="w-[280px] shrink-0 bg-white rounded-[12px] p-6 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]" aria-hidden="true">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/testimonials/rahmat.jpg" alt="Rahmat" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="text-label-l">Rahmat</p>
+              <p class="text-body-s text-text-tertiary">Petani Padi - Subang, Jawa Barat</p>
+            </div>
+          </div>
+          <p class="text-body-m text-text-secondary">"Biasanya padiku ga kinclong, sekarang mah mantap pakbos."</p>
+        </blockquote>
+
+        <blockquote class="w-[280px] shrink-0 bg-white rounded-[12px] p-6 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]" aria-hidden="true">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/testimonials/anonim-kentang.jpg" alt="Petani Kentang" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="text-label-l">Anonim</p>
+              <p class="text-body-s text-text-tertiary">Petani Kentang - Bondowoso, Jawa Timur</p>
+            </div>
+          </div>
+          <p class="text-body-m text-text-secondary">"pertumbuhan pada daun dan batang Alhamdulillah memuaskan. Semprot BenSil+ 4 hari sekali. pengendalian phytoptora jadi ringan."</p>
+        </blockquote>
+      </div>
+    </div>
+</section>
+
+<!-- Locations -->
+<section id="locations" class="max-w-7xl mx-auto px-6 py-20">
+  <div class="flex flex-col gap-6 mb-10">
+    <div class="w-full">
+      <span class="inline-block border border-black/10 text-label-m px-4 py-2 rounded-[9999px] mb-5">Locations</span>
+      <h2 class="text-h2 w-full">Where Our Products Are Sold</h2>
+    </div>
+    <p class="w-full text-body-l text-text-secondary">
+      Bene Pyto Tanijaya products reach farmers in cities across Indonesia. Tap a city to open its location on Google Maps.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <a href="https://www.google.com/maps?q=-6.5971,106.8060" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-2 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
+      <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div>
+        <p class="text-label-l">Toko Tani Bogor</p>
+        <p class="text-body-s text-text-tertiary">Bogor, Jawa Barat</p>
+        <p class="text-body-s text-text-tertiary mt-2">Jl. Raya Tajur No. 10, Bogor</p>
+        <p class="text-body-s text-text-tertiary">0812-0000-0001</p>
+      </div>
+    </a>
+
+    <a href="https://www.google.com/maps?q=-6.8168,107.1425" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-2 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
+      <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div>
+        <p class="text-label-l">Toko Tani Cianjur</p>
+        <p class="text-body-s text-text-tertiary">Cianjur, Jawa Barat</p>
+        <p class="text-body-s text-text-tertiary mt-2">Jl. Raya Cianjur No. 22, Cianjur</p>
+        <p class="text-body-s text-text-tertiary">0812-0000-0002</p>
+      </div>
+    </a>
+
+    <a href="https://www.google.com/maps?q=-6.5709,107.7594" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-2 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
+      <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div>
+        <p class="text-label-l">Toko Tani Subang</p>
+        <p class="text-body-s text-text-tertiary">Subang, Jawa Barat</p>
+        <p class="text-body-s text-text-tertiary mt-2">Jl. Raya Subang No. 8, Subang</p>
+        <p class="text-body-s text-text-tertiary">0812-0000-0003</p>
+      </div>
+    </a>
+
+    <a href="https://www.google.com/maps?q=-7.2148,107.9098" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-2 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
+      <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div>
+        <p class="text-label-l">Toko Tani Garut</p>
+        <p class="text-body-s text-text-tertiary">Garut, Jawa Barat</p>
+        <p class="text-body-s text-text-tertiary mt-2">Jl. Raya Garut No. 15, Garut</p>
+        <p class="text-body-s text-text-tertiary">0812-0000-0004</p>
+      </div>
+    </a>
+
+    <a href="https://www.google.com/maps?q=-7.7956,110.3695" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-2 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
+      <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div>
+        <p class="text-label-l">Toko Tani Yogyakarta</p>
+        <p class="text-body-s text-text-tertiary">Yogyakarta, DI Yogyakarta</p>
+        <p class="text-body-s text-text-tertiary mt-2">Jl. Raya Godean No. 5, Yogyakarta</p>
+        <p class="text-body-s text-text-tertiary">0812-0000-0005</p>
+      </div>
+    </a>
+
+    <a href="https://www.google.com/maps?q=-7.8480,112.0178" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-2 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
+      <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div>
+        <p class="text-label-l">Toko Tani Kediri</p>
+        <p class="text-body-s text-text-tertiary">Kediri, Jawa Timur</p>
+        <p class="text-body-s text-text-tertiary mt-2">Jl. Raya Kediri No. 19, Kediri</p>
+        <p class="text-body-s text-text-tertiary">0812-0000-0006</p>
+      </div>
+    </a>
+
+    <a href="https://www.google.com/maps?q=-7.9666,112.6326" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-2 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
+      <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div>
+        <p class="text-label-l">Toko Tani Malang</p>
+        <p class="text-body-s text-text-tertiary">Malang, Jawa Timur</p>
+        <p class="text-body-s text-text-tertiary mt-2">Jl. Raya Malang No. 30, Malang</p>
+        <p class="text-body-s text-text-tertiary">0812-0000-0007</p>
+      </div>
+    </a>
+
+    <a href="https://www.google.com/maps?q=-8.1844,113.6681" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-2 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
+      <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div>
+        <p class="text-label-l">Toko Tani Jember</p>
+        <p class="text-body-s text-text-tertiary">Jember, Jawa Timur</p>
+        <p class="text-body-s text-text-tertiary mt-2">Jl. Raya Jember No. 11, Jember</p>
+        <p class="text-body-s text-text-tertiary">0812-0000-0008</p>
+      </div>
+    </a>
+
+    <a href="https://www.google.com/maps?q=-7.9127,113.8203" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-2 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
+      <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div>
+        <p class="text-label-l">Toko Tani Bondowoso</p>
+        <p class="text-body-s text-text-tertiary">Bondowoso, Jawa Timur</p>
+        <p class="text-body-s text-text-tertiary mt-2">Jl. Raya Bondowoso No. 7, Bondowoso</p>
+        <p class="text-body-s text-text-tertiary">0812-0000-0009</p>
+      </div>
+    </a>
+
+    <a href="https://www.google.com/maps?q=-8.5417,115.1247" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-2 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
+      <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div>
+        <p class="text-label-l">Toko Tani Tabanan</p>
+        <p class="text-body-s text-text-tertiary">Tabanan, Bali</p>
+        <p class="text-body-s text-text-tertiary mt-2">Jl. Raya Tabanan No. 3, Tabanan</p>
+        <p class="text-body-s text-text-tertiary">0812-0000-0010</p>
+      </div>
+    </a>
+
+    <a href="https://www.google.com/maps?q=-0.1206,99.8020" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-2 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
+      <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div>
+        <p class="text-label-l">Toko Tani Pasaman Barat</p>
+        <p class="text-body-s text-text-tertiary">Pasaman Barat, Sumatera Barat</p>
+        <p class="text-body-s text-text-tertiary mt-2">Jl. Raya Simpang Empat No. 6, Pasaman Barat</p>
+        <p class="text-body-s text-text-tertiary">0812-0000-0011</p>
+      </div>
+    </a>
+
+    <a href="https://www.google.com/maps?q=-5.4292,105.2610" target="_blank" rel="noopener noreferrer" class="flex flex-col gap-2 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
+      <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </span>
+      <div>
+        <p class="text-label-l">Toko Tani Bandar Lampung</p>
+        <p class="text-body-s text-text-tertiary">Bandar Lampung, Lampung</p>
+        <p class="text-body-s text-text-tertiary mt-2">Jl. Raya Lampung No. 25, Bandar Lampung</p>
+        <p class="text-body-s text-text-tertiary">0812-0000-0012</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<!-- <section id="cta" class="relative py-24 bg-cover bg-center overflow-hidden" style="background-image: url('images/join-image.png');">
+  <div class="absolute inset-0 bg-black/40"></div>
+  <div class="relative max-w-3xl mx-auto px-6 text-center">
+    <h2 class="text-h2 md:text-display text-white">Join the Agricultural Revolution Now!</h2>
+    <p class="text-body-l text-white/70 mt-4">
+      Let's explore the depths of agricultural advancement and discover how we can create a meaningful change together!
+    </p>
+    <form class="flex flex-col sm:flex-row gap-3 mt-8 bg-white rounded-[9999px] p-2 max-w-lg mx-auto">
+      <input type="email" required placeholder="Type your email address" class="flex-1 bg-transparent px-4 py-3 text-body-l text-text-primary outline-none">
+      <button type="submit" class="inline-flex items-center justify-center gap-2 bg-primary-500 text-white text-label-l px-6 py-3 rounded-[9999px]">
+        Join Now
+        <span class="w-6 h-6 rounded-full bg-black/20 flex items-center justify-center">&#8594;</span>
+      </button>
+    </form>
+  </div>
+</section> -->
+
+<!-- Footer -->
+<footer class="bg-[#F4F4F4]">
+<div class="max-w-7xl mx-auto px-6 py-16">
+  <div class="grid md:grid-cols-2 gap-10 mb-16">
+    <div>
+      <p class="text-h4 font-extrabold mb-4">Bene Pyto Tanijaya</p>
+      <p class="text-body-l text-text-secondary max-w-sm">
+        Chemical fertilizers and crop nutrition solutions for stronger, healthier harvests, trusted by farmers across Indonesia.
+      </p>
+    </div>
+    <div class="grid grid-cols-3 gap-6">
+      <div>
+        <p class="text-label-l mb-4">Explore</p>
+        <ul class="space-y-3 text-body-m text-text-secondary">
+          <li><a href="#growing-practice">Growing Practice</a></li>
+          <li><a href="#products">Product</a></li>
+          <li><a href="#about">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-label-l mb-4">Connect</p>
+        <ul class="space-y-3 text-body-m text-text-secondary">
+          <li><a href="mailto:halo@benetanijaya.com">Email</a></li>
+          <li><a href="https://www.facebook.com/benepyto/">Facebook</a></li>
+          <li><a href="https://www.instagram.com/benepyto">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@benetanijaya">Tiktok</a></li>
+          <li><a href="https://www.youtube.com/@wangsatani.">Youtube</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-label-l mb-4">Addresses</p>
+        <ul class="space-y-3 text-body-m text-text-secondary">
+          <li>Jalan Alpukat</li>
+          <li>RT.07/RW.06, Sindangbarang</li>
+          <li>Bogor Barat, Kota Bogor</li>
+          <li>Jawa Barat, Indonesia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center justify-center gap-4 pt-8 border-t border-[#E5E5E5] text-body-s text-text-tertiary">
+    <p>Bene Pyto Tanijaya &copy; 2026. All rights reserved.</p>
+  </div>
+</div>
+</footer>
+
+<script>
+  const header = document.getElementById('site-header');
+  const nav = document.getElementById('site-nav');
+  const navHome = document.getElementById('nav-home');
+  const navToggle = document.getElementById('menu-toggle');
+  const navLinks = document.querySelectorAll('.nav-link-hover');
+  const growingPractice = document.getElementById('growing-practice');
+
+  function updateHeader() {
+    const scrolled = window.scrollY >= growingPractice.offsetTop - header.offsetHeight;
+    header.classList.toggle('bg-white', scrolled);
+    header.classList.toggle('shadow-[0px_1px_2px_rgba(0,0,0,0.05)]', scrolled);
+    nav.classList.toggle('text-white/80', !scrolled);
+    nav.classList.toggle('text-text-secondary', scrolled);
+    navHome.classList.toggle('text-white', !scrolled);
+    navHome.classList.toggle('text-text-primary', scrolled);
+    navToggle.classList.toggle('text-white', !scrolled);
+    navToggle.classList.toggle('text-text-primary', scrolled);
+    navLinks.forEach((link) => {
+      link.classList.toggle('hover:text-white', !scrolled);
+      link.classList.toggle('hover:text-text-primary', scrolled);
+    });
+  }
+
+  window.addEventListener('scroll', updateHeader);
+  updateHeader();
+</script>
+
+</body>
+</html>

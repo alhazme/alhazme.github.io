@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growing Practice - Bene Pyto Tanijaya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        },
+        colors: {
+          primary: {
+            DEFAULT: '#33B550',
+            50: '#EBF8EE',
+            500: '#33B550',
+            700: '#289140',
+          },
+          secondary: {
+            DEFAULT: '#F38524',
+            50: '#FEF3E9',
+            500: '#F38524',
+            700: '#D66D13',
+          },
+          tertiary: {
+            DEFAULT: '#137FC3',
+            50: '#E7F2F9',
+            500: '#137FC3',
+            700: '#0E6197',
+          },
+          text: {
+            primary: '#0A0A0A',
+            secondary: '#4A4A4A',
+            tertiary: '#9A9A9A',
+          },
+        },
+        fontSize: {
+          'hero': ['72px', { lineHeight: '110%', fontWeight: '800' }],
+          'display': ['48px', { lineHeight: '115%', fontWeight: '700' }],
+          'h1': ['40px', { lineHeight: '120%', fontWeight: '700' }],
+          'h2': ['32px', { lineHeight: '125%', fontWeight: '700' }],
+          'h3': ['24px', { lineHeight: '130%', fontWeight: '600' }],
+          'h4': ['20px', { lineHeight: '140%', fontWeight: '600' }],
+          'h5': ['18px', { lineHeight: '140%', fontWeight: '600' }],
+          'h6': ['16px', { lineHeight: '145%', fontWeight: '600' }],
+          'body-xl': ['18px', { lineHeight: '140%', fontWeight: '400' }],
+          'body-l': ['16px', { lineHeight: '140%', fontWeight: '400' }],
+          'body-m': ['14px', { lineHeight: '155%', fontWeight: '400' }],
+          'body-s': ['12px', { lineHeight: '150%', fontWeight: '400' }],
+          'label-xl': ['16px', { lineHeight: '145%', fontWeight: '600' }],
+          'label-l': ['14px', { lineHeight: '145%', fontWeight: '600' }],
+          'label-m': ['12px', { lineHeight: '145%', fontWeight: '500' }],
+          'label-s': ['11px', { lineHeight: '140%', fontWeight: '500' }],
+        },
+      },
+    },
+  };
+</script>
+</head>
+<body class="font-sans text-text-primary bg-white">
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-20 bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
+  <div class="max-w-7xl mx-auto relative flex items-center justify-between px-6 h-[50px] md:h-auto md:py-6">
+    <div class="flex items-center">
+      <button id="menu-toggle" class="md:hidden text-text-primary" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav class="hidden md:flex items-center gap-8 text-label-l text-text-secondary">
+        <a href="index.html#home" class="hover:text-text-primary transition-colors">Home</a>
+        <a href="growing-practice-list.html" class="hover:text-text-primary transition-colors">Growing Practice</a>
+        <a href="product-list.html" class="hover:text-text-primary transition-colors">Product</a>
+        <a href="about-us.html" class="hover:text-text-primary transition-colors">About Us</a>
+      </nav>
+    </div>
+    <div class="absolute left-1/2 -translate-x-1/2">
+      <a href="index.html#home"><img src="images/logo.svg" alt="Bene Pyto Tanijaya" class="h-10 w-auto"></a>
+    </div>
+    <a href="https://api.whatsapp.com/send?phone=6285219395264&text=Halo%20Bene%20Pyto%20Tanijaya..%20Aku%20mau%20pesan%20Bensil%2B%20dong" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 md:gap-2 bg-primary text-white text-label-m md:text-label-l px-3 py-2 md:px-5 md:py-3 rounded-[9999px]">
+      Contact Us
+    </a>
+  </div>
+</header>
+
+<!-- Mobile sidebar -->
+<div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-30 hidden"></div>
+<aside id="mobile-sidebar" class="fixed top-0 left-0 h-full w-64 bg-white z-40 -translate-x-full transition-transform duration-300 p-6">
+  <div class="flex items-center justify-between mb-10">
+    <img src="images/logo.svg" alt="Bene Pyto Tanijaya" class="h-8 w-auto">
+    <button id="menu-close" aria-label="Close menu" class="text-text-primary">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+    </button>
+  </div>
+  <nav class="flex flex-col gap-6 text-label-l text-text-primary">
+    <a href="index.html#home">Home</a>
+    <a href="product-list.html">Product</a>
+    <a href="about-us.html">About Us</a>
+    <a href="index.html#blog">Blog</a>
+  </nav>
+</aside>
+
+<script>
+  const sidebar = document.getElementById('mobile-sidebar');
+  const overlay = document.getElementById('mobile-overlay');
+  function openMenu() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeMenu() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  document.getElementById('menu-toggle').addEventListener('click', openMenu);
+  document.getElementById('menu-close').addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+</script>
+
+<!-- Article -->
+<section class="relative h-screen flex items-end overflow-hidden">
+  <img id="article-image" src="" alt="" class="absolute inset-0 w-full h-full object-cover scale-125">
+  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10"></div>
+
+  <nav class="absolute top-0 left-0 right-0 pt-[74px] md:pt-32 flex flex-wrap items-center gap-2 max-w-7xl mx-auto px-6 text-body-s text-white/70">
+    <a href="index.html#home" class="flex items-center gap-1 hover:text-white transition-colors">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4h4v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1V10"/></svg>
+      Home
+    </a>
+    <span>/</span>
+    <a href="growing-practice-list.html" class="hover:text-white transition-colors">Growing Practice</a>
+    <span>/</span>
+    <span id="crumb-title" class="text-white/90"></span>
+  </nav>
+
+  <div class="relative max-w-7xl mx-auto w-full px-6 pb-16 md:pb-20">
+    <span id="article-tag" class="inline-block text-white text-label-m px-4 py-2 rounded-[9999px] mb-5"></span>
+    <h1 id="article-title" class="text-h1 md:text-display text-white"></h1>
+    <p id="article-subtitle" class="text-body-l text-white/80 max-w-xl mt-4"></p>
+    <p id="article-meta" class="text-body-s text-white/70 mt-3"></p>
+  </div>
+</section>
+
+<script>
+  const parallaxImage = document.getElementById('article-image');
+  function updateParallax() {
+    const offset = Math.min(window.scrollY, window.innerHeight) * 0.15;
+    parallaxImage.style.setProperty('--tw-translate-y', offset + 'px');
+  }
+  window.addEventListener('scroll', updateParallax, { passive: true });
+  updateParallax();
+</script>
+
+<main class="max-w-7xl mx-auto px-10 pt-10 pb-20">
+  <div id="article-body" class="max-w-4xl mx-auto"></div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-[#F4F4F4]">
+<div class="max-w-7xl mx-auto px-6 py-16">
+  <div class="grid md:grid-cols-2 gap-10 mb-16">
+    <div>
+      <p class="text-h4 font-extrabold mb-4">Bene Pyto Tanijaya</p>
+      <p class="text-body-l text-text-secondary max-w-sm">
+        Chemical fertilizers and crop nutrition solutions for stronger, healthier harvests, trusted by farmers across Indonesia.
+      </p>
+    </div>
+    <div class="grid grid-cols-3 gap-6">
+      <div>
+        <p class="text-label-l mb-4">Explore</p>
+        <ul class="space-y-3 text-body-m text-text-secondary">
+          <li><a href="growing-practice-list.html">Growing Practice</a></li>
+          <li><a href="product-list.html">Product</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-label-l mb-4">Connect</p>
+        <ul class="space-y-3 text-body-m text-text-secondary">
+          <li><a href="mailto:halo@benetanijaya.com">Email</a></li>
+          <li><a href="https://www.facebook.com/benepyto/">Facebook</a></li>
+          <li><a href="https://www.instagram.com/benepyto">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@benetanijaya">Tiktok</a></li>
+          <li><a href="https://www.youtube.com/@wangsatani.">Youtube</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-label-l mb-4">Addresses</p>
+        <ul class="space-y-3 text-body-m text-text-secondary">
+          <li>Jalan Alpukat</li>
+          <li>RT.07/RW.06, Sindangbarang</li>
+          <li>Bogor Barat, Kota Bogor</li>
+          <li>Jawa Barat, Indonesia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center justify-center gap-4 pt-8 border-t border-[#E5E5E5] text-body-s text-text-tertiary">
+    <p>Bene Pyto Tanijaya &copy; 2026. All rights reserved.</p>
+  </div>
+</div>
+</footer>
+
+<script>
+  const articles = {
+    'crop-rotation': {
+      tag: 'Soil Health',
+      tagColor: 'bg-tertiary-500',
+      title: 'Crop Rotation',
+      subtitle: 'Rotating crops season to season breaks pest cycles and restores nutrients naturally, keeping soil productive for longer.',
+      image: 'images/growing-practice/soil-growing-practice.jpg',
+      date: '4 Agustus 2026',
+      readTime: '5 min read',
+      author: 'Administrator',
+      sections: [
+        {
+          heading: 'Introduction: Why Growing the Same Crop Wears Soil Down',
+          paragraphs: [
+            "Year after year of planting the same crop in the same plot pulls the exact same nutrients out of the soil at the exact same depth, leaving fields chemically imbalanced long before yields visibly drop. Pests and diseases that specialize in that crop also settle in permanently, waiting in the soil for the next planting season to strike again.",
+            "For many growers, the easiest fix looks like adding more fertilizer or spraying more often. But that only masks a structural problem, it does nothing to break the pest life cycle or restore the nutrient balance the soil actually needs to stay productive over the long run."
+          ]
+        },
+        {
+          heading: 'Building a Rotation Plan That Actually Works',
+          paragraphs: [
+            "An effective rotation groups crops by family and nutrient demand, then alternates heavy feeders like corn or rice with nitrogen-fixing legumes such as soybeans or peanuts. This lets the legumes replenish the nitrogen the previous crop used up, cutting the amount of synthetic fertilizer needed for the next planting.",
+            "A well-designed plan also builds in a resting or cover-crop season, giving the soil time to rebuild organic matter and microbial activity before the next demanding crop goes in. Even a simple three-season rotation makes a measurable difference compared to planting the same crop indefinitely."
+          ]
+        },
+        {
+          heading: 'Breaking Pest and Disease Cycles Naturally',
+          paragraphs: [
+            "Most soil-borne pests and pathogens are specialists, they thrive on one host crop and struggle to survive without it. Moving a different crop family into that plot the following season starves them out, no host to feed on means their population collapses on its own.",
+            "This natural disruption reduces how often farmers need to reach for chemical pesticides, protecting beneficial insects and soil organisms that keep the field ecosystem in balance."
+          ]
+        },
+        {
+          heading: 'The Long-Term Payoff',
+          paragraphs: [
+            "Farms that rotate consistently report steadier yields season after season, rather than the boom-and-bust pattern that comes from mining the same nutrients out of the same plot year after year.",
+            "The soil itself becomes more resilient too, better structure, more organic matter, and a healthier microbial base that keeps producing strong harvests well into the future."
+          ]
+        }
+      ]
+    },
+    'organic-pest-control': {
+      tag: 'Pest Management',
+      tagColor: 'bg-secondary-500',
+      title: 'Organic Pest Control',
+      subtitle: 'Companion planting and natural predators reduce reliance on chemical pesticides while protecting biodiversity.',
+      image: 'images/growing-practice/pest-management-growing-practice.jpg',
+      date: '4 Agustus 2026',
+      readTime: '5 min read',
+      author: 'Administrator',
+      sections: [
+        {
+          heading: 'Introduction: The Hidden Cost of Spray-Only Pest Control',
+          paragraphs: [
+            "Relying on chemical pesticides as the only line of defense creates a cycle that gets more expensive every season. Pests build resistance faster than new formulations can be developed, pushing farmers toward stronger doses just to get the same level of protection.",
+            "Heavy spraying also wipes out the natural predators that would otherwise keep pest populations in check, leaving fields more vulnerable, not less, the moment a resistant pest strain breaks through."
+          ]
+        },
+        {
+          heading: 'Companion Planting as a First Line of Defense',
+          paragraphs: [
+            "Interplanting crops with strong-smelling herbs like marigold, basil, or garlic confuses pests that rely on scent to find their host plants, cutting infestation rates before they start.",
+            "Other companion species act as trap crops, drawing pests away from the main harvest entirely, so the pressure lands on a sacrificial planting instead of the crop farmers depend on for income."
+          ]
+        },
+        {
+          heading: 'Inviting Natural Predators Back to the Field',
+          paragraphs: [
+            "Ladybugs, lacewings, and parasitic wasps can outperform chemical sprays when given the right habitat, small strips of flowering plants along field borders give these predators shelter and an alternative food source between pest outbreaks.",
+            "Once established, these predator populations provide pest control that renews itself every season, without the recurring cost of buying and applying more pesticide."
+          ]
+        },
+        {
+          heading: 'Combining Methods for Lasting Protection',
+          paragraphs: [
+            "No single organic method replaces chemical control entirely, but layering companion planting, natural predators, and targeted organic sprays closes most of the gaps a single approach leaves open.",
+            "Farms that commit to this layered approach typically see pesticide costs drop while soil and pollinator health improve, a trade that pays off well beyond a single growing season."
+          ]
+        }
+      ]
+    },
+    'water-efficient-irrigation': {
+      tag: 'Water Management',
+      tagColor: 'bg-primary-500',
+      title: 'Water-Efficient Irrigation',
+      subtitle: 'Drip irrigation and moisture sensors cut water waste while keeping crops hydrated through dry spells.',
+      image: 'images/growing-practice/water-management-growing-practice.jpg',
+      date: '4 Agustus 2026',
+      readTime: '5 min read',
+      author: 'Administrator',
+      sections: [
+        {
+          heading: 'Introduction: The Real Cost of Overwatering',
+          paragraphs: [
+            "Traditional overhead and flood irrigation routinely lose 30 to 40 percent of the water applied to evaporation and runoff before it ever reaches a plant's roots, a cost that adds up fast as water becomes scarcer and more expensive across growing regions.",
+            "Scheduling irrigation by calendar instead of actual soil conditions makes the problem worse, fields get watered whether they need it or not, wasting resources on days the soil is already saturated."
+          ]
+        },
+        {
+          heading: 'Reading the Soil Before Turning On the Water',
+          paragraphs: [
+            "Low-cost soil moisture sensors placed across a field give an accurate, real-time picture of what's happening below the surface, removing the guesswork from deciding when irrigation is actually necessary.",
+            "Instead of watering every plot on the same schedule, farmers can target the zones that need it and skip the ones that don't, cutting total water use without risking crop stress."
+          ]
+        },
+        {
+          heading: 'Drip Irrigation: Precision Where It Matters',
+          paragraphs: [
+            "Drip lines deliver water directly to the root zone in small, steady amounts, avoiding the evaporation losses that come with spraying water into open air.",
+            "Because the flow is so controlled, drip systems also reduce weed growth between rows, since the soil between plants stays largely dry and unfavorable for weed germination."
+          ]
+        },
+        {
+          heading: 'What Efficient Irrigation Means for the Farm',
+          paragraphs: [
+            "Cutting water waste isn't only an environmental win, it directly lowers pumping and utility costs while keeping crops consistently hydrated through dry spells that would otherwise stress yields.",
+            "Farms that adopt sensor-guided drip irrigation typically use less water overall while maintaining, or even improving, harvest consistency season after season."
+          ]
+        }
+      ]
+    },
+    'soil-testing-fertilization': {
+      tag: 'Nutrient Management',
+      tagColor: 'bg-tertiary-500',
+      title: 'Soil Testing & Fertilization',
+      subtitle: "Regular soil testing reveals nutrient gaps early, so fertilizer goes exactly where it's needed instead of being wasted or washed away.",
+      image: 'images/growing-practice/nutrient-management-growing-practice.jpg',
+      date: '4 Agustus 2026',
+      readTime: '5 min read',
+      author: 'Administrator',
+      sections: [
+        {
+          heading: 'Introduction: Fertilizing Blind Wastes Money and Soil',
+          paragraphs: [
+            "Applying fertilizer on a fixed schedule without knowing what the soil actually needs is one of the most common ways farms lose money, nutrients that plants can't use end up washed away by rain or locked in the soil where roots can't reach them.",
+            "Over time, this guesswork also throws off the soil's natural pH and nutrient balance, making it harder for crops to absorb what they need even when fertilizer is applied correctly afterward."
+          ]
+        },
+        {
+          heading: 'What a Soil Test Actually Reveals',
+          paragraphs: [
+            "A proper soil test measures pH, organic matter, and the levels of key nutrients like nitrogen, phosphorus, and potassium, giving a clear picture of exactly what's missing rather than a general assumption.",
+            "Testing at the start of every season, and again partway through for long-cycle crops, catches nutrient gaps early enough to correct them before they show up as stunted growth or discoloration in the field."
+          ]
+        },
+        {
+          heading: 'Fertilizing With Precision Instead of Habit',
+          paragraphs: [
+            "Once the gaps are known, fertilizer can be matched to the specific deficiency rather than applied as a generic blend, putting nutrients exactly where the crop needs them instead of spreading them thin across the whole field.",
+            "This targeted approach also prevents over-application, which not only wastes money but can burn root systems and disrupt the soil's microbial balance."
+          ]
+        },
+        {
+          heading: 'The Payoff of Testing First',
+          paragraphs: [
+            "Farms that test before fertilizing consistently spend less on inputs while getting more consistent nutrient uptake across their fields.",
+            "The soil itself benefits too, staying in better chemical balance season after season instead of drifting further out of range with every uninformed application."
+          ]
+        }
+      ]
+    },
+    'companion-planting': {
+      tag: 'Crop Planning',
+      tagColor: 'bg-secondary-500',
+      title: 'Companion Planting',
+      subtitle: 'Pairing compatible crops in the same bed improves pollination, deters pests naturally, and makes better use of every square meter.',
+      image: 'images/growing-practice/crop-planning-growing-practice.jpg',
+      date: '4 Agustus 2026',
+      readTime: '5 min read',
+      author: 'Administrator',
+      sections: [
+        {
+          heading: 'Introduction: Making Every Square Meter Work Harder',
+          paragraphs: [
+            "Planting a single crop across an entire field leaves a lot of the growing potential on the table, different plants use light, water, and nutrients at different depths and rates, and a monoculture rarely takes advantage of that.",
+            "Companion planting pairs crops that complement each other's growth habits, turning empty space between rows into productive ground instead of wasted soil."
+          ]
+        },
+        {
+          heading: 'Pairings That Improve Pollination and Growth',
+          paragraphs: [
+            "Flowering companions like marigold or borage draw in bees and other pollinators that boost fruit set on nearby vegetables, a benefit a single-crop field doesn't get on its own.",
+            "Classic pairings like corn, beans, and squash work together structurally too, corn gives beans something to climb, beans fix nitrogen for the other two, and squash's broad leaves shade out weeds at ground level."
+          ]
+        },
+        {
+          heading: 'Natural Pest Deterrence Through Diversity',
+          paragraphs: [
+            "A field planted with a single crop is an easy target, pests that specialize in that plant can spread through the whole area unchecked. Mixing in companion species breaks up that uniformity and makes it harder for pests to locate and spread across their preferred host.",
+            "Strong-scented companions like garlic or basil go a step further, actively masking the smell that pests use to find their target crop in the first place."
+          ]
+        },
+        {
+          heading: 'Getting More From Every Bed',
+          paragraphs: [
+            "Beyond pest control and pollination, companion planting simply produces more food per square meter, since complementary crops fill the gaps a single species would leave unused.",
+            "For growers working with limited land, that added density can be the difference between a modest harvest and a genuinely productive one."
+          ]
+        }
+      ]
+    },
+    'post-harvest-handling': {
+      tag: 'Harvest Quality',
+      tagColor: 'bg-primary-500',
+      title: 'Post-Harvest Handling',
+      subtitle: 'Harvesting at peak ripeness and cooling produce quickly cuts spoilage and keeps quality high from field to market.',
+      image: 'images/growing-practice/harvest-quality-growing-practice.jpg',
+      date: '4 Agustus 2026',
+      readTime: '5 min read',
+      author: 'Administrator',
+      sections: [
+        {
+          heading: "Introduction: The Harvest Doesn't End at Picking",
+          paragraphs: [
+            "A crop grown to perfection can still lose much of its value in the hours after it leaves the field, poor handling between harvest and market is one of the largest and most preventable sources of lost income for farmers.",
+            "Produce picked too early or too late, then left in the sun without cooling, starts breaking down almost immediately, no amount of good growing practice can undo that damage afterward."
+          ]
+        },
+        {
+          heading: 'Timing the Harvest for Peak Quality',
+          paragraphs: [
+            "Picking at the right stage of ripeness, rather than by convenience or calendar, has the single biggest impact on how well produce holds up during transport and storage.",
+            "Crops harvested too early never develop their full flavor or nutrient content, while those left too long spoil faster and are more vulnerable to bruising and disease during handling."
+          ]
+        },
+        {
+          heading: 'Cooling Fast to Slow Spoilage',
+          paragraphs: [
+            "Removing field heat from produce within hours of harvest dramatically slows the biological processes that cause spoilage, extending shelf life without needing any chemical preservatives.",
+            "Simple measures like shading harvested crops immediately and moving them to a cool, ventilated space before transport can cut post-harvest losses significantly, even without expensive cold-chain equipment."
+          ]
+        },
+        {
+          heading: 'Protecting Quality From Field to Market',
+          paragraphs: [
+            "Careful handling doesn't stop at cooling, gentle sorting, clean packaging, and minimizing the number of times produce is handled all reduce bruising and contamination on the way to buyers.",
+            "Farms that invest in these post-harvest steps consistently sell more of what they grow at full quality, turning a stronger harvest into stronger income instead of losing it to spoilage before it ever reaches the customer."
+          ]
+        }
+      ]
+    },
+    'cover-cropping': {
+      tag: 'Soil Health',
+      tagColor: 'bg-tertiary-500',
+      title: 'Cover Cropping',
+      subtitle: 'Planting cover crops between main seasons protects bare soil, adds organic matter, and suppresses weeds without a single pass of herbicide.',
+      image: 'images/growing-practice/soil-growing-practice.jpg',
+      date: '4 Agustus 2026',
+      readTime: '5 min read',
+      author: 'Administrator',
+      sections: [
+        {
+          heading: 'Introduction: What Bare Soil Costs a Farm',
+          paragraphs: [
+            "Soil left uncovered between growing seasons is exposed to erosion, compaction from rain impact, and rapid loss of the moisture and organic matter built up during the previous crop. Every empty season is a season the field loses ground instead of gaining it.",
+            "Weeds are quick to fill that gap, competing for nutrients that would otherwise carry into the next planting, and forcing farmers into extra tillage or herbicide passes just to reclaim the plot before the next crop goes in."
+          ]
+        },
+        {
+          heading: 'Choosing the Right Cover Crop for the Season',
+          paragraphs: [
+            "Legumes like clover or vetch fix nitrogen into the soil while they grow, giving the next crop a head start without extra fertilizer. Grasses like rye or oats build root mass fast, holding soil structure together through heavy rain.",
+            "Mixing a legume with a grass cover crop combines both benefits, nitrogen fixation and erosion control, in a single planting that costs far less than the inputs it replaces."
+          ]
+        },
+        {
+          heading: "Terminating the Cover Crop Without Losing Its Benefits",
+          paragraphs: [
+            "Cutting or rolling the cover crop just before it sets seed leaves a protective mulch layer on the surface, suppressing weeds for the next crop while the roots continue breaking down underground and feeding the soil.",
+            "Timing termination correctly avoids the cover crop competing with the main crop for water and nutrients, so the transition needs to happen with enough lead time for the residue to start decomposing."
+          ]
+        },
+        {
+          heading: 'What a Season of Cover Cropping Adds Up To',
+          paragraphs: [
+            "Fields that rotate in a cover crop consistently show better water infiltration and less erosion after heavy rain, since the root network left behind holds soil structure together.",
+            "Over several seasons, the added organic matter reduces how much synthetic fertilizer the next cash crop needs, turning an \"empty\" season into one of the most productive investments a farm can make."
+          ]
+        }
+      ]
+    },
+    'beneficial-insect-habitats': {
+      tag: 'Pest Management',
+      tagColor: 'bg-secondary-500',
+      title: 'Beneficial Insect Habitats',
+      subtitle: "Planting flowering borders and leaving strips of habitat gives natural predators a place to live, cutting pest pressure before it ever reaches the crop.",
+      image: 'images/growing-practice/pest-management-growing-practice.jpg',
+      date: '4 Agustus 2026',
+      readTime: '5 min read',
+      author: 'Administrator',
+      sections: [
+        {
+          heading: "Introduction: Pest Control That Works While You're Not Watching",
+          paragraphs: [
+            "Chemical sprays only protect a field for as long as the chemical lasts, and every application has to be timed, bought, and reapplied. Beneficial insects, once established, keep working every day without another input.",
+            "Most fields without dedicated habitat simply don't have enough natural predators to keep pest populations in check, because there's nowhere for them to shelter, breed, or find food between pest outbreaks."
+          ]
+        },
+        {
+          heading: 'Building Habitat That Predators Actually Use',
+          paragraphs: [
+            "Flowering border strips along field edges give ladybugs, lacewings, and parasitic wasps a nectar source when pest prey is scarce, keeping their populations stable year-round instead of crashing between outbreaks.",
+            "Leaving a strip of taller grasses or hedgerow uncut through winter gives these insects a place to overwinter, so the predator population is already established and ready when pests emerge in spring."
+          ]
+        },
+        {
+          heading: "Matching Habitat to the Pests You're Fighting",
+          paragraphs: [
+            "Different predators target different pests, hoverflies specialize in aphids, parasitic wasps target caterpillars, so identifying the main pest pressure on a given field determines which habitat plants are worth prioritizing.",
+            "A mix of flowering species with staggered bloom times keeps a food source available across the whole growing season, rather than a single burst that predators outlast before the pest pressure even starts."
+          ]
+        },
+        {
+          heading: 'The Long-Term Return on Habitat Investment',
+          paragraphs: [
+            "Farms that commit permanent border strips to beneficial insect habitat see pest damage drop measurably within two to three seasons, as predator populations build to a stable, self-sustaining level.",
+            "Because the habitat is permanent infrastructure rather than a seasonal input, the cost is paid once, while the pest control benefit compounds every year the habitat stays in place."
+          ]
+        }
+      ]
+    },
+    'mulching-moisture-retention': {
+      tag: 'Water Management',
+      tagColor: 'bg-primary-500',
+      title: 'Mulching for Moisture Retention',
+      subtitle: 'A layer of organic mulch slows evaporation, keeps roots cooler, and cuts how often fields need to be irrigated during dry stretches.',
+      image: 'images/growing-practice/water-management-growing-practice.jpg',
+      date: '4 Agustus 2026',
+      readTime: '5 min read',
+      author: 'Administrator',
+      sections: [
+        {
+          heading: 'Introduction: Where Irrigated Water Actually Goes',
+          paragraphs: [
+            "Even with efficient drip irrigation, bare soil loses a significant share of applied water to surface evaporation before it ever reaches the root zone, especially during hot, dry, or windy stretches of the season.",
+            "That loss compounds over a growing season, meaning fields without any soil covering need noticeably more irrigation cycles just to keep root zones at the same moisture level as a mulched field."
+          ]
+        },
+        {
+          heading: 'How a Mulch Layer Changes the Soil Surface',
+          paragraphs: [
+            "A few centimeters of straw, wood chips, or crop residue spread across the soil surface blocks direct sun and wind from reaching the ground, cutting evaporation dramatically compared to bare soil.",
+            "The same layer also moderates soil temperature, keeping roots cooler during heat spikes and reducing the moisture stress that pushes plants into survival mode instead of active growth."
+          ]
+        },
+        {
+          heading: 'Choosing a Mulch That Fits the Crop and Budget',
+          paragraphs: [
+            "Organic mulches like straw or crop residue break down over the season, adding organic matter back into the soil as a bonus on top of the moisture savings, though they need topping up as they decompose.",
+            "Where budget allows, a thicker initial application reduces how often mulch needs replacing, while thinner layers cost less upfront but require more frequent maintenance to keep the moisture benefit consistent."
+          ]
+        },
+        {
+          heading: 'What Mulching Saves Over a Season',
+          paragraphs: [
+            "Fields with a consistent mulch layer typically need fewer irrigation cycles to maintain the same root-zone moisture, directly cutting water and pumping costs across a growing season.",
+            "The reduced moisture stress also shows up in the crop itself, plants spend less energy coping with dry spells and more energy on the growth that actually determines yield at harvest."
+          ]
+        }
+      ]
+    },
+    'composting-organic-matter': {
+      tag: 'Nutrient Management',
+      tagColor: 'bg-tertiary-500',
+      title: 'Composting & Organic Matter',
+      subtitle: 'Working compost and organic residue back into the soil rebuilds fertility naturally, reducing how much synthetic fertilizer a field needs season over season.',
+      image: 'images/growing-practice/nutrient-management-growing-practice.jpg',
+      date: '4 Agustus 2026',
+      readTime: '5 min read',
+      author: 'Administrator',
+      sections: [
+        {
+          heading: 'Introduction: Why Soil Needs More Than Just Fertilizer',
+          paragraphs: [
+            "Synthetic fertilizer supplies nutrients directly, but it does nothing to rebuild the organic matter and microbial life that actually holds soil structure together and helps roots access those nutrients efficiently.",
+            "Fields that rely on fertilizer alone, without any organic matter returning to the soil, gradually lose structure and water-holding capacity, needing more input each season just to maintain the same yield."
+          ]
+        },
+        {
+          heading: 'Turning Farm Waste Into Soil Fertility',
+          paragraphs: [
+            "Crop residue, manure, and green waste that would otherwise be discarded can be composted down into a nutrient-dense soil amendment, turning what's normally a disposal cost into a fertility input instead.",
+            "A properly managed compost pile, turned regularly and kept at the right moisture level, breaks down into finished compost in a matter of months, ready to work back into the field before the next planting."
+          ]
+        },
+        {
+          heading: 'Applying Compost for Maximum Benefit',
+          paragraphs: [
+            "Working finished compost into the top layer of soil before planting gives the next crop immediate access to slow-release nutrients, while also improving the soil's ability to hold both moisture and future fertilizer applications.",
+            "Applying compost consistently, rather than as an occasional bulk treatment, keeps organic matter levels stable and prevents the field from sliding back into fertilizer dependency between applications."
+          ]
+        },
+        {
+          heading: 'The Compounding Value of Organic Matter',
+          paragraphs: [
+            "Every season of compost application adds to the soil's organic matter baseline, and that baseline directly determines how efficiently the field uses every other input, water, fertilizer, and labor.",
+            "Farms that build this habit over several seasons typically find they can reduce synthetic fertilizer rates without losing yield, because the soil itself is doing more of the nutrient-cycling work."
+          ]
+        }
+      ]
+    },
+    'seasonal-crop-calendars': {
+      tag: 'Crop Planning',
+      tagColor: 'bg-secondary-500',
+      title: 'Seasonal Crop Calendars',
+      subtitle: 'Planning what goes in the ground and when, season by season, keeps land in continuous productive use instead of sitting idle between plantings.',
+      image: 'images/growing-practice/crop-planning-growing-practice.jpg',
+      date: '4 Agustus 2026',
+      readTime: '5 min read',
+      author: 'Administrator',
+      sections: [
+        {
+          heading: 'Introduction: The Cost of an Unplanned Season',
+          paragraphs: [
+            "Without a season-by-season plan, fields often sit idle between harvest and the next planting simply because the next crop wasn't ready, seeds weren't sourced, or the timing wasn't mapped out in advance.",
+            "That idle time is lost productive capacity, land that could be generating income or building soil health through a cover crop instead sits bare, exposed to erosion and weed pressure."
+          ]
+        },
+        {
+          heading: 'Building a Calendar Around Local Climate Windows',
+          paragraphs: [
+            "A seasonal crop calendar maps each crop's ideal planting and harvest window against local rainfall and temperature patterns, so the next planting is ready to go in the moment the previous harvest clears the field.",
+            "Staggering planting dates across a field, rather than planting everything at once, also spreads harvest labor and market delivery over a longer window instead of creating a single overwhelming peak."
+          ]
+        },
+        {
+          heading: 'Sequencing Crops to Support Each Other',
+          paragraphs: [
+            "A good calendar doesn't just schedule crops back to back, it sequences them so each planting leaves the soil in better condition for the next, alternating heavy feeders with soil-building crops across the year.",
+            "This sequencing turns the calendar into a rotation plan and a scheduling tool at once, reducing the mental overhead of tracking both soil health and market timing separately."
+          ]
+        },
+        {
+          heading: 'What a Full Calendar Delivers Over a Year',
+          paragraphs: [
+            "Farms working from a documented seasonal calendar keep more of their land in active, productive use across the year, rather than losing weeks or months to unplanned gaps between crops.",
+            "The predictability also extends to labor and input planning, since knowing what's going in the ground next season means seed, fertilizer, and labor can be arranged well ahead of the actual planting date."
+          ]
+        }
+      ]
+    },
+    'proper-storage-curing': {
+      tag: 'Harvest Quality',
+      tagColor: 'bg-primary-500',
+      title: 'Proper Storage & Curing',
+      subtitle: 'Curing and storing harvested crops correctly locks in quality after the field work is done, protecting the value of a harvest all the way to market.',
+      image: 'images/growing-practice/harvest-quality-growing-practice.jpg',
+      date: '4 Agustus 2026',
+      readTime: '5 min read',
+      author: 'Administrator',
+      sections: [
+        {
+          heading: "Introduction: Quality Doesn't Stop at Harvest",
+          paragraphs: [
+            "A crop harvested at peak quality can still lose significant value in storage if it's not cured and kept under the right conditions, undoing weeks of careful field work in a matter of days.",
+            "Many farms invest heavily in growing practices but treat storage as an afterthought, even though poor storage conditions are one of the most common and preventable sources of post-harvest loss."
+          ]
+        },
+        {
+          heading: 'Curing: The Step Between Harvest and Storage',
+          paragraphs: [
+            "Curing allows harvested produce to develop a protective outer layer and heal minor surface wounds from handling, both of which significantly extend how long the crop stays market-ready in storage.",
+            "The right curing period and conditions vary by crop, but skipping this step entirely almost always shortens storage life and increases spoilage rates once the crop is put away."
+          ]
+        },
+        {
+          heading: 'Storage Conditions That Actually Preserve Quality',
+          paragraphs: [
+            "Temperature and humidity control matter more than storage duration itself, produce held at the wrong temperature or humidity can spoil in days even in a clean, well-organized storage space.",
+            "Good airflow between stored produce prevents localized heat and moisture buildup, which is often what triggers spoilage to spread from one damaged item to the rest of a batch."
+          ]
+        },
+        {
+          heading: 'Protecting the Value of the Harvest to Market',
+          paragraphs: [
+            "Crops cured and stored correctly reach market at a quality that commands full price, while poorly stored produce often has to be sold at a discount or discarded entirely before it ever reaches a buyer.",
+            "For a farm that has already invested a full season into growing the crop, proper storage is what actually converts that investment into income, rather than watching quality erode in the days after harvest."
+          ]
+        }
+      ]
+    }
+  };
+
+  function renderArticle(slug) {
+    const data = articles[slug] || articles['crop-rotation'];
+
+    document.title = data.title + ' - Bene Pyto Tanijaya';
+    document.getElementById('crumb-title').textContent = data.title;
+
+    const tag = document.getElementById('article-tag');
+    tag.textContent = data.tag;
+    tag.className = 'inline-block ' + data.tagColor + ' text-white text-label-m px-4 py-2 rounded-[9999px] mb-5';
+
+    document.getElementById('article-meta').textContent = data.author + ' · ' + data.date + ' · ' + data.readTime;
+    document.getElementById('article-title').textContent = data.title;
+    document.getElementById('article-subtitle').textContent = data.subtitle;
+
+    const image = document.getElementById('article-image');
+    image.src = data.image;
+    image.alt = data.title;
+
+    const body = document.getElementById('article-body');
+    body.innerHTML = '';
+    data.sections.forEach((section) => {
+      const heading = document.createElement('h2');
+      heading.className = 'text-h2 mt-16 mb-6';
+      heading.textContent = section.heading;
+      body.appendChild(heading);
+
+      section.paragraphs.forEach((paragraph) => {
+        const p = document.createElement('p');
+        p.className = 'text-body-xl text-text-secondary leading-[1.8] mt-6';
+        p.textContent = paragraph;
+        body.appendChild(p);
+      });
+    });
+
+    const videoWrapper = document.createElement('div');
+    videoWrapper.className = 'mt-16 aspect-video rounded-[16px] overflow-hidden';
+    const video = document.createElement('iframe');
+    video.className = 'w-full h-full';
+    video.src = 'https://www.youtube.com/embed/TdHv0sftsJY';
+    video.title = data.title + ' video';
+    video.loading = 'lazy';
+    video.frameBorder = '0';
+    video.referrerPolicy = 'strict-origin-when-cross-origin';
+    video.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    video.setAttribute('allowfullscreen', '');
+    videoWrapper.appendChild(video);
+    body.appendChild(videoWrapper);
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  renderArticle(params.get('slug'));
+</script>
+
+</body>
+</html>
