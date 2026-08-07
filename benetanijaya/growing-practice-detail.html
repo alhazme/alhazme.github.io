@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,18 +73,24 @@
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
       <nav class="hidden md:flex items-center gap-8 text-label-l text-text-secondary">
-        <a href="index.html#home" class="hover:text-text-primary transition-colors">Home</a>
-        <a href="growing-practice-list.html" class="hover:text-text-primary transition-colors">Growing Practice</a>
-        <a href="product-list.html" class="hover:text-text-primary transition-colors">Product</a>
-        <a href="about-us.html" class="hover:text-text-primary transition-colors">About Us</a>
+        <a href="index.html#home" class="hover:text-text-primary transition-colors" data-i18n="nav.home">Home</a>
+        <a href="growing-practice-list.html" class="hover:text-text-primary transition-colors" data-i18n="nav.growingPractice">Growing Practice</a>
+        <a href="product-list.html" class="hover:text-text-primary transition-colors" data-i18n="nav.product">Product</a>
+        <a href="about-us.html" class="hover:text-text-primary transition-colors" data-i18n="nav.aboutUs">About Us</a>
       </nav>
     </div>
     <div class="absolute left-1/2 -translate-x-1/2">
       <a href="index.html#home"><img src="images/logo.svg" alt="Bene Pyto Tanijaya" class="h-10 w-auto"></a>
     </div>
-    <a href="https://api.whatsapp.com/send?phone=6285219395264&text=Halo%20Bene%20Pyto%20Tanijaya..%20Aku%20mau%20pesan%20Bensil%2B%20dong" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 md:gap-2 bg-primary text-white text-label-m md:text-label-l px-3 py-2 md:px-5 md:py-3 rounded-[9999px]">
-      Contact Us
-    </a>
+    <div class="flex items-center gap-2">
+      <div class="flex items-center gap-0.5 bg-white border border-black/10 rounded-full p-0.5 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
+        <button type="button" class="lang-btn text-label-s px-2.5 py-1 rounded-full transition-colors text-text-primary" data-lang="id">ID</button>
+        <button type="button" class="lang-btn text-label-s px-2.5 py-1 rounded-full transition-colors text-text-primary" data-lang="en">EN</button>
+      </div>
+      <a href="https://api.whatsapp.com/send?phone=628561060042&text=Halo%20Bene%20Pyto%20Tanijaya..%20Aku%20mau%20pesan%20Bensil%2B%20dong" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 md:gap-2 bg-primary text-white text-label-m md:text-label-l px-3 py-2 md:px-5 md:py-3 rounded-[9999px]" data-i18n="cta.contactUs">
+        Contact Us
+      </a>
+    </div>
   </div>
 </header>
 
@@ -98,10 +104,10 @@
     </button>
   </div>
   <nav class="flex flex-col gap-6 text-label-l text-text-primary">
-    <a href="index.html#home">Home</a>
-    <a href="product-list.html">Product</a>
-    <a href="about-us.html">About Us</a>
-    <a href="index.html#blog">Blog</a>
+    <a href="index.html#home" data-i18n="nav.home">Home</a>
+    <a href="product-list.html" data-i18n="nav.product">Product</a>
+    <a href="about-us.html" data-i18n="nav.aboutUs">About Us</a>
+    <a href="index.html#blog" data-i18n="nav.blog">Blog</a>
   </nav>
 </aside>
 
@@ -121,6 +127,8 @@
   overlay.addEventListener('click', closeMenu);
 </script>
 
+<script src="js/i18n.js"></script>
+
 <!-- Article -->
 <section class="relative h-screen flex items-end overflow-hidden">
   <img id="article-image" src="" alt="" class="absolute inset-0 w-full h-full object-cover scale-125">
@@ -129,10 +137,10 @@
   <nav class="absolute top-0 left-0 right-0 pt-[74px] md:pt-32 flex flex-wrap items-center gap-2 max-w-7xl mx-auto px-6 text-body-s text-white/70">
     <a href="index.html#home" class="flex items-center gap-1 hover:text-white transition-colors">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4h4v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1V10"/></svg>
-      Home
+      <span data-i18n="nav.home">Home</span>
     </a>
     <span>/</span>
-    <a href="growing-practice-list.html" class="hover:text-white transition-colors">Growing Practice</a>
+    <a href="growing-practice-list.html" class="hover:text-white transition-colors" data-i18n="nav.growingPractice">Growing Practice</a>
     <span>/</span>
     <span id="crumb-title" class="text-white/90"></span>
   </nav>
@@ -165,23 +173,23 @@
   <div class="grid md:grid-cols-2 gap-10 mb-16">
     <div>
       <p class="text-h4 font-extrabold mb-4">Bene Pyto Tanijaya</p>
-      <p class="text-body-l text-text-secondary max-w-sm">
+      <p class="text-body-l text-text-secondary max-w-sm" data-i18n="footer.tagline">
         Chemical fertilizers and crop nutrition solutions for stronger, healthier harvests, trusted by farmers across Indonesia.
       </p>
     </div>
     <div class="grid grid-cols-3 gap-6">
       <div>
-        <p class="text-label-l mb-4">Explore</p>
+        <p class="text-label-l mb-4" data-i18n="footer.explore">Explore</p>
         <ul class="space-y-3 text-body-m text-text-secondary">
-          <li><a href="growing-practice-list.html">Growing Practice</a></li>
-          <li><a href="product-list.html">Product</a></li>
-          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="growing-practice-list.html" data-i18n="nav.growingPractice">Growing Practice</a></li>
+          <li><a href="product-list.html" data-i18n="nav.product">Product</a></li>
+          <li><a href="about-us.html" data-i18n="nav.aboutUs">About Us</a></li>
         </ul>
       </div>
       <div>
-        <p class="text-label-l mb-4">Connect</p>
+        <p class="text-label-l mb-4" data-i18n="footer.connect">Connect</p>
         <ul class="space-y-3 text-body-m text-text-secondary">
-          <li><a href="mailto:halo@benetanijaya.com">Email</a></li>
+          <li><a href="mailto:halo@benetanijaya.com" data-i18n="footer.email">Email</a></li>
           <li><a href="https://www.facebook.com/benepyto/">Facebook</a></li>
           <li><a href="https://www.instagram.com/benepyto">Instagram</a></li>
           <li><a href="https://www.tiktok.com/@benetanijaya">Tiktok</a></li>
@@ -189,7 +197,7 @@
         </ul>
       </div>
       <div>
-        <p class="text-label-l mb-4">Addresses</p>
+        <p class="text-label-l mb-4" data-i18n="footer.addresses">Addresses</p>
         <ul class="space-y-3 text-body-m text-text-secondary">
           <li>Jalan Alpukat</li>
           <li>RT.07/RW.06, Sindangbarang</li>
@@ -200,7 +208,7 @@
     </div>
   </div>
   <div class="flex items-center justify-center gap-4 pt-8 border-t border-[#E5E5E5] text-body-s text-text-tertiary">
-    <p>Bene Pyto Tanijaya &copy; 2026. All rights reserved.</p>
+    <p data-i18n="footer.copyright">Bene Pyto Tanijaya &copy; 2026. All rights reserved.</p>
   </div>
 </div>
 </footer>
@@ -212,37 +220,38 @@
       tagColor: 'bg-tertiary-500',
       title: 'Crop Rotation',
       subtitle: 'Rotating crops season to season breaks pest cycles and restores nutrients naturally, keeping soil productive for longer.',
+      subtitleId: 'Merotasi tanaman dari musim ke musim memutus siklus hama dan memulihkan nutrisi secara alami, menjaga tanah tetap produktif lebih lama.',
       image: 'images/growing-practice/soil-growing-practice.jpg',
       date: '4 Agustus 2026',
       readTime: '5 min read',
       author: 'Administrator',
       sections: [
         {
-          heading: 'Introduction: Why Growing the Same Crop Wears Soil Down',
+          heading: { en: 'Introduction: Why Growing the Same Crop Wears Soil Down', id: 'Pendahuluan: Mengapa Menanam Tanaman yang Sama Terus-Menerus Menguras Tanah' },
           paragraphs: [
-            "Year after year of planting the same crop in the same plot pulls the exact same nutrients out of the soil at the exact same depth, leaving fields chemically imbalanced long before yields visibly drop. Pests and diseases that specialize in that crop also settle in permanently, waiting in the soil for the next planting season to strike again.",
-            "For many growers, the easiest fix looks like adding more fertilizer or spraying more often. But that only masks a structural problem, it does nothing to break the pest life cycle or restore the nutrient balance the soil actually needs to stay productive over the long run."
+            { en: "Year after year of planting the same crop in the same plot pulls the exact same nutrients out of the soil at the exact same depth, leaving fields chemically imbalanced long before yields visibly drop. Pests and diseases that specialize in that crop also settle in permanently, waiting in the soil for the next planting season to strike again.", id: "Menanam tanaman yang sama di lahan yang sama tahun demi tahun menyedot nutrisi yang sama persis dari kedalaman yang sama pula, membuat lahan kehilangan keseimbangan kimia jauh sebelum penurunan hasil panen terlihat. Hama dan penyakit yang menyerang tanaman tertentu juga menetap secara permanen, menunggu di dalam tanah untuk menyerang lagi di musim tanam berikutnya." },
+            { en: "For many growers, the easiest fix looks like adding more fertilizer or spraying more often. But that only masks a structural problem, it does nothing to break the pest life cycle or restore the nutrient balance the soil actually needs to stay productive over the long run.", id: "Bagi banyak petani, solusi termudah terlihat seperti menambah pupuk atau menyemprot lebih sering. Namun cara itu hanya menutupi masalah yang sebenarnya, tidak memutus siklus hidup hama atau memulihkan keseimbangan nutrisi yang benar-benar dibutuhkan tanah agar tetap produktif dalam jangka panjang." }
           ]
         },
         {
-          heading: 'Building a Rotation Plan That Actually Works',
+          heading: { en: 'Building a Rotation Plan That Actually Works', id: 'Menyusun Rencana Rotasi yang Benar-Benar Efektif' },
           paragraphs: [
-            "An effective rotation groups crops by family and nutrient demand, then alternates heavy feeders like corn or rice with nitrogen-fixing legumes such as soybeans or peanuts. This lets the legumes replenish the nitrogen the previous crop used up, cutting the amount of synthetic fertilizer needed for the next planting.",
-            "A well-designed plan also builds in a resting or cover-crop season, giving the soil time to rebuild organic matter and microbial activity before the next demanding crop goes in. Even a simple three-season rotation makes a measurable difference compared to planting the same crop indefinitely."
+            { en: "An effective rotation groups crops by family and nutrient demand, then alternates heavy feeders like corn or rice with nitrogen-fixing legumes such as soybeans or peanuts. This lets the legumes replenish the nitrogen the previous crop used up, cutting the amount of synthetic fertilizer needed for the next planting.", id: "Rotasi yang efektif mengelompokkan tanaman berdasarkan famili dan kebutuhan nutrisinya, lalu menyelingi tanaman rakus hara seperti jagung atau padi dengan tanaman leguminosa penambat nitrogen seperti kedelai atau kacang tanah. Cara ini memungkinkan tanaman leguminosa mengembalikan nitrogen yang terpakai oleh tanaman sebelumnya, sehingga mengurangi kebutuhan pupuk sintetis untuk musim tanam berikutnya." },
+            { en: "A well-designed plan also builds in a resting or cover-crop season, giving the soil time to rebuild organic matter and microbial activity before the next demanding crop goes in. Even a simple three-season rotation makes a measurable difference compared to planting the same crop indefinitely.", id: "Rencana yang baik juga menyertakan musim istirahat atau tanaman penutup tanah, memberi waktu bagi tanah untuk membangun kembali bahan organik dan aktivitas mikroba sebelum tanaman rakus hara berikutnya ditanam. Bahkan rotasi tiga musim yang sederhana pun memberikan perbedaan yang nyata dibandingkan menanam tanaman yang sama terus-menerus." }
           ]
         },
         {
-          heading: 'Breaking Pest and Disease Cycles Naturally',
+          heading: { en: 'Breaking Pest and Disease Cycles Naturally', id: 'Memutus Siklus Hama dan Penyakit Secara Alami' },
           paragraphs: [
-            "Most soil-borne pests and pathogens are specialists, they thrive on one host crop and struggle to survive without it. Moving a different crop family into that plot the following season starves them out, no host to feed on means their population collapses on its own.",
-            "This natural disruption reduces how often farmers need to reach for chemical pesticides, protecting beneficial insects and soil organisms that keep the field ecosystem in balance."
+            { en: "Most soil-borne pests and pathogens are specialists, they thrive on one host crop and struggle to survive without it. Moving a different crop family into that plot the following season starves them out, no host to feed on means their population collapses on its own.", id: "Sebagian besar hama dan patogen yang bersumber dari tanah bersifat spesialis, mereka hanya berkembang pada satu jenis tanaman inang dan sulit bertahan tanpanya. Mengganti dengan famili tanaman lain di lahan yang sama pada musim berikutnya membuat mereka kehabisan sumber makanan, tanpa inang, populasinya akan runtuh dengan sendirinya." },
+            { en: "This natural disruption reduces how often farmers need to reach for chemical pesticides, protecting beneficial insects and soil organisms that keep the field ecosystem in balance.", id: "Gangguan alami ini membuat petani lebih jarang perlu menggunakan pestisida kimia, sekaligus melindungi serangga bermanfaat dan organisme tanah yang menjaga keseimbangan ekosistem lahan." }
           ]
         },
         {
-          heading: 'The Long-Term Payoff',
+          heading: { en: 'The Long-Term Payoff', id: 'Manfaat Jangka Panjang' },
           paragraphs: [
-            "Farms that rotate consistently report steadier yields season after season, rather than the boom-and-bust pattern that comes from mining the same nutrients out of the same plot year after year.",
-            "The soil itself becomes more resilient too, better structure, more organic matter, and a healthier microbial base that keeps producing strong harvests well into the future."
+            { en: "Farms that rotate consistently report steadier yields season after season, rather than the boom-and-bust pattern that comes from mining the same nutrients out of the same plot year after year.", id: "Lahan yang dirotasi secara konsisten menghasilkan panen yang lebih stabil dari musim ke musim, alih-alih pola naik-turun yang muncul akibat menguras nutrisi yang sama dari lahan yang sama setiap tahun." },
+            { en: "The soil itself becomes more resilient too, better structure, more organic matter, and a healthier microbial base that keeps producing strong harvests well into the future.", id: "Tanah itu sendiri pun menjadi lebih tangguh, strukturnya lebih baik, kandungan bahan organiknya lebih banyak, dan basis mikrobanya lebih sehat sehingga terus menghasilkan panen yang kuat di masa mendatang." }
           ]
         }
       ]
@@ -252,37 +261,38 @@
       tagColor: 'bg-secondary-500',
       title: 'Organic Pest Control',
       subtitle: 'Companion planting and natural predators reduce reliance on chemical pesticides while protecting biodiversity.',
+      subtitleId: 'Penanaman pendamping dan predator alami mengurangi ketergantungan pada pestisida kimia sekaligus menjaga keanekaragaman hayati.',
       image: 'images/growing-practice/pest-management-growing-practice.jpg',
       date: '4 Agustus 2026',
       readTime: '5 min read',
       author: 'Administrator',
       sections: [
         {
-          heading: 'Introduction: The Hidden Cost of Spray-Only Pest Control',
+          heading: { en: 'Introduction: The Hidden Cost of Spray-Only Pest Control', id: 'Pendahuluan: Biaya Tersembunyi dari Pengendalian Hama yang Hanya Mengandalkan Semprotan' },
           paragraphs: [
-            "Relying on chemical pesticides as the only line of defense creates a cycle that gets more expensive every season. Pests build resistance faster than new formulations can be developed, pushing farmers toward stronger doses just to get the same level of protection.",
-            "Heavy spraying also wipes out the natural predators that would otherwise keep pest populations in check, leaving fields more vulnerable, not less, the moment a resistant pest strain breaks through."
+            { en: "Relying on chemical pesticides as the only line of defense creates a cycle that gets more expensive every season. Pests build resistance faster than new formulations can be developed, pushing farmers toward stronger doses just to get the same level of protection.", id: "Mengandalkan pestisida kimia sebagai satu-satunya garis pertahanan menciptakan siklus yang semakin mahal setiap musim. Hama membangun resistensi lebih cepat daripada formulasi baru dapat dikembangkan, memaksa petani menggunakan dosis yang lebih tinggi hanya untuk mendapatkan tingkat perlindungan yang sama." },
+            { en: "Heavy spraying also wipes out the natural predators that would otherwise keep pest populations in check, leaving fields more vulnerable, not less, the moment a resistant pest strain breaks through.", id: "Penyemprotan yang berlebihan juga membasmi predator alami yang seharusnya menjaga populasi hama tetap terkendali, membuat lahan justru lebih rentan begitu ada hama yang sudah resisten muncul." }
           ]
         },
         {
-          heading: 'Companion Planting as a First Line of Defense',
+          heading: { en: 'Companion Planting as a First Line of Defense', id: 'Penanaman Pendamping sebagai Garis Pertahanan Pertama' },
           paragraphs: [
-            "Interplanting crops with strong-smelling herbs like marigold, basil, or garlic confuses pests that rely on scent to find their host plants, cutting infestation rates before they start.",
-            "Other companion species act as trap crops, drawing pests away from the main harvest entirely, so the pressure lands on a sacrificial planting instead of the crop farmers depend on for income."
+            { en: "Interplanting crops with strong-smelling herbs like marigold, basil, or garlic confuses pests that rely on scent to find their host plants, cutting infestation rates before they start.", id: "Menanam tanaman berdampingan dengan tanaman beraroma kuat seperti kenikir, kemangi, atau bawang putih membingungkan hama yang mengandalkan penciuman untuk menemukan tanaman inangnya, sehingga menekan tingkat serangan sebelum terjadi." },
+            { en: "Other companion species act as trap crops, drawing pests away from the main harvest entirely, so the pressure lands on a sacrificial planting instead of the crop farmers depend on for income.", id: "Tanaman pendamping lain berperan sebagai tanaman perangkap, menarik hama menjauh dari tanaman utama, sehingga tekanan hama jatuh pada tanaman pengorbanan, bukan pada tanaman yang menjadi sumber pendapatan petani." }
           ]
         },
         {
-          heading: 'Inviting Natural Predators Back to the Field',
+          heading: { en: 'Inviting Natural Predators Back to the Field', id: 'Mengundang Kembali Predator Alami ke Lahan' },
           paragraphs: [
-            "Ladybugs, lacewings, and parasitic wasps can outperform chemical sprays when given the right habitat, small strips of flowering plants along field borders give these predators shelter and an alternative food source between pest outbreaks.",
-            "Once established, these predator populations provide pest control that renews itself every season, without the recurring cost of buying and applying more pesticide."
+            { en: "Ladybugs, lacewings, and parasitic wasps can outperform chemical sprays when given the right habitat, small strips of flowering plants along field borders give these predators shelter and an alternative food source between pest outbreaks.", id: "Kepik, undur-undur, dan tabuhan parasit bisa lebih efektif daripada semprotan kimia jika diberi habitat yang tepat. Jalur kecil tanaman berbunga di sepanjang tepi lahan memberi predator ini tempat berlindung dan sumber makanan alternatif di antara masa serangan hama." },
+            { en: "Once established, these predator populations provide pest control that renews itself every season, without the recurring cost of buying and applying more pesticide.", id: "Setelah mapan, populasi predator ini menyediakan pengendalian hama yang memperbarui dirinya sendiri setiap musim, tanpa biaya berulang untuk membeli dan mengaplikasikan lebih banyak pestisida." }
           ]
         },
         {
-          heading: 'Combining Methods for Lasting Protection',
+          heading: { en: 'Combining Methods for Lasting Protection', id: 'Menggabungkan Beberapa Metode untuk Perlindungan yang Bertahan Lama' },
           paragraphs: [
-            "No single organic method replaces chemical control entirely, but layering companion planting, natural predators, and targeted organic sprays closes most of the gaps a single approach leaves open.",
-            "Farms that commit to this layered approach typically see pesticide costs drop while soil and pollinator health improve, a trade that pays off well beyond a single growing season."
+            { en: "No single organic method replaces chemical control entirely, but layering companion planting, natural predators, and targeted organic sprays closes most of the gaps a single approach leaves open.", id: "Tidak ada satu metode organik pun yang sepenuhnya menggantikan pengendalian kimia, tetapi menggabungkan penanaman pendamping, predator alami, dan semprotan organik yang tepat sasaran menutup sebagian besar celah yang ditinggalkan oleh satu pendekatan saja." },
+            { en: "Farms that commit to this layered approach typically see pesticide costs drop while soil and pollinator health improve, a trade that pays off well beyond a single growing season.", id: "Lahan yang konsisten menerapkan pendekatan berlapis ini biasanya mengalami penurunan biaya pestisida sekaligus perbaikan kesehatan tanah dan populasi penyerbuk, sebuah hasil yang terbayar jauh melampaui satu musim tanam saja." }
           ]
         }
       ]
@@ -292,37 +302,38 @@
       tagColor: 'bg-primary-500',
       title: 'Water-Efficient Irrigation',
       subtitle: 'Drip irrigation and moisture sensors cut water waste while keeping crops hydrated through dry spells.',
+      subtitleId: 'Irigasi tetes dan sensor kelembapan memangkas pemborosan air sambil menjaga tanaman tetap terhidrasi saat musim kering.',
       image: 'images/growing-practice/water-management-growing-practice.jpg',
       date: '4 Agustus 2026',
       readTime: '5 min read',
       author: 'Administrator',
       sections: [
         {
-          heading: 'Introduction: The Real Cost of Overwatering',
+          heading: { en: 'Introduction: The Real Cost of Overwatering', id: 'Pendahuluan: Biaya Sesungguhnya dari Penyiraman Berlebihan' },
           paragraphs: [
-            "Traditional overhead and flood irrigation routinely lose 30 to 40 percent of the water applied to evaporation and runoff before it ever reaches a plant's roots, a cost that adds up fast as water becomes scarcer and more expensive across growing regions.",
-            "Scheduling irrigation by calendar instead of actual soil conditions makes the problem worse, fields get watered whether they need it or not, wasting resources on days the soil is already saturated."
+            { en: "Traditional overhead and flood irrigation routinely lose 30 to 40 percent of the water applied to evaporation and runoff before it ever reaches a plant's roots, a cost that adds up fast as water becomes scarcer and more expensive across growing regions.", id: "Irigasi curah dan genangan konvensional biasanya kehilangan 30 hingga 40 persen air akibat penguapan dan aliran permukaan sebelum sempat mencapai akar tanaman, sebuah kerugian yang cepat bertambah seiring air menjadi semakin langka dan mahal di berbagai wilayah pertanian." },
+            { en: "Scheduling irrigation by calendar instead of actual soil conditions makes the problem worse, fields get watered whether they need it or not, wasting resources on days the soil is already saturated.", id: "Menjadwalkan irigasi berdasarkan kalender, bukan kondisi tanah yang sebenarnya, memperparah masalah ini. Lahan disiram terlepas dari kebutuhannya, memboroskan sumber daya pada hari-hari ketika tanah sebenarnya sudah jenuh air." }
           ]
         },
         {
-          heading: 'Reading the Soil Before Turning On the Water',
+          heading: { en: 'Reading the Soil Before Turning On the Water', id: 'Membaca Kondisi Tanah Sebelum Menyalakan Air' },
           paragraphs: [
-            "Low-cost soil moisture sensors placed across a field give an accurate, real-time picture of what's happening below the surface, removing the guesswork from deciding when irrigation is actually necessary.",
-            "Instead of watering every plot on the same schedule, farmers can target the zones that need it and skip the ones that don't, cutting total water use without risking crop stress."
+            { en: "Low-cost soil moisture sensors placed across a field give an accurate, real-time picture of what's happening below the surface, removing the guesswork from deciding when irrigation is actually necessary.", id: "Sensor kelembapan tanah berbiaya rendah yang dipasang di berbagai titik lahan memberikan gambaran akurat dan real-time tentang kondisi di bawah permukaan, menghilangkan tebak-tebakan dalam menentukan kapan irigasi benar-benar diperlukan." },
+            { en: "Instead of watering every plot on the same schedule, farmers can target the zones that need it and skip the ones that don't, cutting total water use without risking crop stress.", id: "Alih-alih menyiram semua petak dengan jadwal yang sama, petani dapat menargetkan zona yang membutuhkan air dan melewati yang tidak, sehingga mengurangi total penggunaan air tanpa membuat tanaman stres." }
           ]
         },
         {
-          heading: 'Drip Irrigation: Precision Where It Matters',
+          heading: { en: 'Drip Irrigation: Precision Where It Matters', id: 'Irigasi Tetes: Presisi di Tempat yang Tepat' },
           paragraphs: [
-            "Drip lines deliver water directly to the root zone in small, steady amounts, avoiding the evaporation losses that come with spraying water into open air.",
-            "Because the flow is so controlled, drip systems also reduce weed growth between rows, since the soil between plants stays largely dry and unfavorable for weed germination."
+            { en: "Drip lines deliver water directly to the root zone in small, steady amounts, avoiding the evaporation losses that come with spraying water into open air.", id: "Selang irigasi tetes menyalurkan air langsung ke zona perakaran dalam jumlah kecil dan stabil, menghindari kehilangan akibat penguapan yang terjadi saat air disemprotkan ke udara terbuka." },
+            { en: "Because the flow is so controlled, drip systems also reduce weed growth between rows, since the soil between plants stays largely dry and unfavorable for weed germination.", id: "Karena alirannya sangat terkontrol, sistem tetes juga mengurangi pertumbuhan gulma di antara barisan tanaman, karena tanah di sela-sela tanaman tetap relatif kering dan kurang mendukung perkecambahan gulma." }
           ]
         },
         {
-          heading: 'What Efficient Irrigation Means for the Farm',
+          heading: { en: 'What Efficient Irrigation Means for the Farm', id: 'Arti Irigasi yang Efisien bagi Lahan Pertanian' },
           paragraphs: [
-            "Cutting water waste isn't only an environmental win, it directly lowers pumping and utility costs while keeping crops consistently hydrated through dry spells that would otherwise stress yields.",
-            "Farms that adopt sensor-guided drip irrigation typically use less water overall while maintaining, or even improving, harvest consistency season after season."
+            { en: "Cutting water waste isn't only an environmental win, it directly lowers pumping and utility costs while keeping crops consistently hydrated through dry spells that would otherwise stress yields.", id: "Mengurangi pemborosan air bukan hanya kemenangan bagi lingkungan, tetapi juga langsung menurunkan biaya pompa dan utilitas sambil menjaga tanaman tetap terhidrasi selama musim kering yang biasanya menekan hasil panen." },
+            { en: "Farms that adopt sensor-guided drip irrigation typically use less water overall while maintaining, or even improving, harvest consistency season after season.", id: "Lahan yang menerapkan irigasi tetes berbasis sensor umumnya menggunakan lebih sedikit air secara keseluruhan sambil mempertahankan, bahkan meningkatkan, konsistensi hasil panen dari musim ke musim." }
           ]
         }
       ]
@@ -332,37 +343,38 @@
       tagColor: 'bg-tertiary-500',
       title: 'Soil Testing & Fertilization',
       subtitle: "Regular soil testing reveals nutrient gaps early, so fertilizer goes exactly where it's needed instead of being wasted or washed away.",
+      subtitleId: 'Pengujian tanah secara rutin mengungkap kekurangan nutrisi lebih awal, sehingga pupuk tepat sasaran alih-alih terbuang atau tercuci.',
       image: 'images/growing-practice/nutrient-management-growing-practice.jpg',
       date: '4 Agustus 2026',
       readTime: '5 min read',
       author: 'Administrator',
       sections: [
         {
-          heading: 'Introduction: Fertilizing Blind Wastes Money and Soil',
+          heading: { en: 'Introduction: Fertilizing Blind Wastes Money and Soil', id: 'Pendahuluan: Memupuk Tanpa Data Membuang-buang Uang dan Merusak Tanah' },
           paragraphs: [
-            "Applying fertilizer on a fixed schedule without knowing what the soil actually needs is one of the most common ways farms lose money, nutrients that plants can't use end up washed away by rain or locked in the soil where roots can't reach them.",
-            "Over time, this guesswork also throws off the soil's natural pH and nutrient balance, making it harder for crops to absorb what they need even when fertilizer is applied correctly afterward."
+            { en: "Applying fertilizer on a fixed schedule without knowing what the soil actually needs is one of the most common ways farms lose money, nutrients that plants can't use end up washed away by rain or locked in the soil where roots can't reach them.", id: "Memberikan pupuk sesuai jadwal tetap tanpa mengetahui kebutuhan tanah yang sebenarnya adalah salah satu cara paling umum lahan pertanian merugi. Nutrisi yang tidak terpakai oleh tanaman akan tercuci air hujan atau terkunci di dalam tanah hingga tak terjangkau akar." },
+            { en: "Over time, this guesswork also throws off the soil's natural pH and nutrient balance, making it harder for crops to absorb what they need even when fertilizer is applied correctly afterward.", id: "Seiring waktu, cara menebak-nebak ini juga mengganggu pH alami dan keseimbangan nutrisi tanah, membuat tanaman semakin sulit menyerap kebutuhannya meski pupuk sudah diaplikasikan dengan benar setelahnya." }
           ]
         },
         {
-          heading: 'What a Soil Test Actually Reveals',
+          heading: { en: 'What a Soil Test Actually Reveals', id: 'Apa yang Sebenarnya Diungkap oleh Uji Tanah' },
           paragraphs: [
-            "A proper soil test measures pH, organic matter, and the levels of key nutrients like nitrogen, phosphorus, and potassium, giving a clear picture of exactly what's missing rather than a general assumption.",
-            "Testing at the start of every season, and again partway through for long-cycle crops, catches nutrient gaps early enough to correct them before they show up as stunted growth or discoloration in the field."
+            { en: "A proper soil test measures pH, organic matter, and the levels of key nutrients like nitrogen, phosphorus, and potassium, giving a clear picture of exactly what's missing rather than a general assumption.", id: "Uji tanah yang tepat mengukur pH, bahan organik, dan kadar nutrisi utama seperti nitrogen, fosfor, dan kalium, memberikan gambaran jelas tentang apa yang benar-benar kurang, bukan sekadar asumsi umum." },
+            { en: "Testing at the start of every season, and again partway through for long-cycle crops, catches nutrient gaps early enough to correct them before they show up as stunted growth or discoloration in the field.", id: "Pengujian di awal setiap musim, dan sekali lagi di pertengahan untuk tanaman berumur panjang, menangkap kekurangan nutrisi cukup dini untuk dikoreksi sebelum muncul sebagai pertumbuhan yang terhambat atau perubahan warna daun di lahan." }
           ]
         },
         {
-          heading: 'Fertilizing With Precision Instead of Habit',
+          heading: { en: 'Fertilizing With Precision Instead of Habit', id: 'Memupuk dengan Presisi, Bukan Sekadar Kebiasaan' },
           paragraphs: [
-            "Once the gaps are known, fertilizer can be matched to the specific deficiency rather than applied as a generic blend, putting nutrients exactly where the crop needs them instead of spreading them thin across the whole field.",
-            "This targeted approach also prevents over-application, which not only wastes money but can burn root systems and disrupt the soil's microbial balance."
+            { en: "Once the gaps are known, fertilizer can be matched to the specific deficiency rather than applied as a generic blend, putting nutrients exactly where the crop needs them instead of spreading them thin across the whole field.", id: "Setelah kekurangannya diketahui, pupuk dapat disesuaikan dengan defisiensi spesifik tersebut, bukan diberikan sebagai campuran umum, sehingga nutrisi tepat sasaran ke tempat yang dibutuhkan tanaman, bukan tersebar tipis ke seluruh lahan." },
+            { en: "This targeted approach also prevents over-application, which not only wastes money but can burn root systems and disrupt the soil's microbial balance.", id: "Pendekatan tepat sasaran ini juga mencegah pemberian pupuk berlebihan, yang tidak hanya memboroskan uang tetapi juga dapat merusak sistem perakaran dan mengganggu keseimbangan mikroba tanah." }
           ]
         },
         {
-          heading: 'The Payoff of Testing First',
+          heading: { en: 'The Payoff of Testing First', id: 'Manfaat dari Menguji Tanah Terlebih Dahulu' },
           paragraphs: [
-            "Farms that test before fertilizing consistently spend less on inputs while getting more consistent nutrient uptake across their fields.",
-            "The soil itself benefits too, staying in better chemical balance season after season instead of drifting further out of range with every uninformed application."
+            { en: "Farms that test before fertilizing consistently spend less on inputs while getting more consistent nutrient uptake across their fields.", id: "Lahan yang menguji tanah sebelum memupuk secara konsisten mengeluarkan biaya input lebih rendah sekaligus mendapatkan penyerapan nutrisi yang lebih merata di seluruh lahan." },
+            { en: "The soil itself benefits too, staying in better chemical balance season after season instead of drifting further out of range with every uninformed application.", id: "Tanah itu sendiri juga diuntungkan, tetap berada dalam keseimbangan kimia yang lebih baik dari musim ke musim, alih-alih semakin melenceng akibat pemberian pupuk yang asal-asalan." }
           ]
         }
       ]
@@ -372,37 +384,38 @@
       tagColor: 'bg-secondary-500',
       title: 'Companion Planting',
       subtitle: 'Pairing compatible crops in the same bed improves pollination, deters pests naturally, and makes better use of every square meter.',
+      subtitleId: 'Memadukan tanaman yang cocok dalam satu bedengan meningkatkan penyerbukan, mengusir hama secara alami, dan memaksimalkan setiap meter persegi lahan.',
       image: 'images/growing-practice/crop-planning-growing-practice.jpg',
       date: '4 Agustus 2026',
       readTime: '5 min read',
       author: 'Administrator',
       sections: [
         {
-          heading: 'Introduction: Making Every Square Meter Work Harder',
+          heading: { en: 'Introduction: Making Every Square Meter Work Harder', id: 'Pendahuluan: Memaksimalkan Setiap Meter Persegi Lahan' },
           paragraphs: [
-            "Planting a single crop across an entire field leaves a lot of the growing potential on the table, different plants use light, water, and nutrients at different depths and rates, and a monoculture rarely takes advantage of that.",
-            "Companion planting pairs crops that complement each other's growth habits, turning empty space between rows into productive ground instead of wasted soil."
+            { en: "Planting a single crop across an entire field leaves a lot of the growing potential on the table, different plants use light, water, and nutrients at different depths and rates, and a monoculture rarely takes advantage of that.", id: "Menanam satu jenis tanaman saja di seluruh lahan menyisakan banyak potensi pertumbuhan yang tidak termanfaatkan. Setiap tanaman menyerap cahaya, air, dan nutrisi pada kedalaman dan kecepatan yang berbeda, dan sistem monokultur jarang memanfaatkan perbedaan ini." },
+            { en: "Companion planting pairs crops that complement each other's growth habits, turning empty space between rows into productive ground instead of wasted soil.", id: "Penanaman pendamping memadukan tanaman yang saling melengkapi kebiasaan tumbuhnya, mengubah ruang kosong di antara barisan tanaman menjadi lahan produktif, bukan tanah yang terbuang percuma." }
           ]
         },
         {
-          heading: 'Pairings That Improve Pollination and Growth',
+          heading: { en: 'Pairings That Improve Pollination and Growth', id: 'Kombinasi yang Meningkatkan Penyerbukan dan Pertumbuhan' },
           paragraphs: [
-            "Flowering companions like marigold or borage draw in bees and other pollinators that boost fruit set on nearby vegetables, a benefit a single-crop field doesn't get on its own.",
-            "Classic pairings like corn, beans, and squash work together structurally too, corn gives beans something to climb, beans fix nitrogen for the other two, and squash's broad leaves shade out weeds at ground level."
+            { en: "Flowering companions like marigold or borage draw in bees and other pollinators that boost fruit set on nearby vegetables, a benefit a single-crop field doesn't get on its own.", id: "Tanaman pendamping berbunga seperti kenikir atau borage menarik lebah dan penyerbuk lain yang meningkatkan pembentukan buah pada sayuran di sekitarnya, manfaat yang tidak didapat oleh lahan monokultur dengan sendirinya." },
+            { en: "Classic pairings like corn, beans, and squash work together structurally too, corn gives beans something to climb, beans fix nitrogen for the other two, and squash's broad leaves shade out weeds at ground level.", id: "Kombinasi klasik seperti jagung, kacang-kacangan, dan labu juga bekerja sama secara struktural. Jagung memberi tempat rambat bagi kacang, kacang menambat nitrogen untuk keduanya, dan daun labu yang lebar menaungi gulma di permukaan tanah." }
           ]
         },
         {
-          heading: 'Natural Pest Deterrence Through Diversity',
+          heading: { en: 'Natural Pest Deterrence Through Diversity', id: 'Menangkal Hama Secara Alami Lewat Keragaman Tanaman' },
           paragraphs: [
-            "A field planted with a single crop is an easy target, pests that specialize in that plant can spread through the whole area unchecked. Mixing in companion species breaks up that uniformity and makes it harder for pests to locate and spread across their preferred host.",
-            "Strong-scented companions like garlic or basil go a step further, actively masking the smell that pests use to find their target crop in the first place."
+            { en: "A field planted with a single crop is an easy target, pests that specialize in that plant can spread through the whole area unchecked. Mixing in companion species breaks up that uniformity and makes it harder for pests to locate and spread across their preferred host.", id: "Lahan yang ditanami satu jenis tanaman saja menjadi target yang mudah, hama yang mengkhususkan diri pada tanaman tersebut dapat menyebar ke seluruh area tanpa hambatan. Mencampurkan tanaman pendamping memecah keseragaman ini dan mempersulit hama menemukan serta menyebar ke tanaman inang pilihannya." },
+            { en: "Strong-scented companions like garlic or basil go a step further, actively masking the smell that pests use to find their target crop in the first place.", id: "Tanaman pendamping beraroma kuat seperti bawang putih atau kemangi bahkan berperan lebih jauh, secara aktif menyamarkan aroma yang digunakan hama untuk menemukan tanaman sasarannya sejak awal." }
           ]
         },
         {
-          heading: 'Getting More From Every Bed',
+          heading: { en: 'Getting More From Every Bed', id: 'Mendapatkan Lebih Banyak dari Setiap Bedengan' },
           paragraphs: [
-            "Beyond pest control and pollination, companion planting simply produces more food per square meter, since complementary crops fill the gaps a single species would leave unused.",
-            "For growers working with limited land, that added density can be the difference between a modest harvest and a genuinely productive one."
+            { en: "Beyond pest control and pollination, companion planting simply produces more food per square meter, since complementary crops fill the gaps a single species would leave unused.", id: "Selain pengendalian hama dan penyerbukan, penanaman pendamping juga menghasilkan lebih banyak pangan per meter persegi, karena tanaman yang saling melengkapi mengisi celah yang akan dibiarkan kosong oleh satu spesies saja." },
+            { en: "For growers working with limited land, that added density can be the difference between a modest harvest and a genuinely productive one.", id: "Bagi petani dengan lahan terbatas, kepadatan tambahan ini bisa menjadi pembeda antara hasil panen yang seadanya dan hasil panen yang benar-benar produktif." }
           ]
         }
       ]
@@ -412,37 +425,38 @@
       tagColor: 'bg-primary-500',
       title: 'Post-Harvest Handling',
       subtitle: 'Harvesting at peak ripeness and cooling produce quickly cuts spoilage and keeps quality high from field to market.',
+      subtitleId: 'Memanen pada puncak kematangan dan mendinginkan hasil panen dengan cepat mengurangi kebusukan dan menjaga kualitas dari ladang hingga pasar.',
       image: 'images/growing-practice/harvest-quality-growing-practice.jpg',
       date: '4 Agustus 2026',
       readTime: '5 min read',
       author: 'Administrator',
       sections: [
         {
-          heading: "Introduction: The Harvest Doesn't End at Picking",
+          heading: { en: "Introduction: The Harvest Doesn't End at Picking", id: 'Pendahuluan: Panen Tidak Berakhir Saat Petik' },
           paragraphs: [
-            "A crop grown to perfection can still lose much of its value in the hours after it leaves the field, poor handling between harvest and market is one of the largest and most preventable sources of lost income for farmers.",
-            "Produce picked too early or too late, then left in the sun without cooling, starts breaking down almost immediately, no amount of good growing practice can undo that damage afterward."
+            { en: "A crop grown to perfection can still lose much of its value in the hours after it leaves the field, poor handling between harvest and market is one of the largest and most preventable sources of lost income for farmers.", id: "Tanaman yang dibudidayakan dengan sempurna tetap bisa kehilangan sebagian besar nilainya dalam hitungan jam setelah meninggalkan lahan. Penanganan yang buruk antara panen dan pasar adalah salah satu sumber kerugian pendapatan terbesar dan paling dapat dicegah bagi petani." },
+            { en: "Produce picked too early or too late, then left in the sun without cooling, starts breaking down almost immediately, no amount of good growing practice can undo that damage afterward.", id: "Hasil panen yang dipetik terlalu cepat atau terlalu lambat, lalu dibiarkan di bawah terik matahari tanpa pendinginan, akan mulai rusak hampir seketika, dan praktik budidaya sebaik apa pun tidak dapat memperbaiki kerusakan itu setelahnya." }
           ]
         },
         {
-          heading: 'Timing the Harvest for Peak Quality',
+          heading: { en: 'Timing the Harvest for Peak Quality', id: 'Menentukan Waktu Panen untuk Kualitas Terbaik' },
           paragraphs: [
-            "Picking at the right stage of ripeness, rather than by convenience or calendar, has the single biggest impact on how well produce holds up during transport and storage.",
-            "Crops harvested too early never develop their full flavor or nutrient content, while those left too long spoil faster and are more vulnerable to bruising and disease during handling."
+            { en: "Picking at the right stage of ripeness, rather than by convenience or calendar, has the single biggest impact on how well produce holds up during transport and storage.", id: "Memetik pada tingkat kematangan yang tepat, bukan berdasarkan kenyamanan atau kalender, memberikan dampak terbesar terhadap seberapa baik hasil panen bertahan selama transportasi dan penyimpanan." },
+            { en: "Crops harvested too early never develop their full flavor or nutrient content, while those left too long spoil faster and are more vulnerable to bruising and disease during handling.", id: "Hasil panen yang dipetik terlalu dini tidak pernah mencapai cita rasa atau kandungan nutrisi penuhnya, sementara yang dibiarkan terlalu lama akan lebih cepat busuk dan lebih rentan memar serta terserang penyakit selama penanganan." }
           ]
         },
         {
-          heading: 'Cooling Fast to Slow Spoilage',
+          heading: { en: 'Cooling Fast to Slow Spoilage', id: 'Mendinginkan dengan Cepat untuk Memperlambat Pembusukan' },
           paragraphs: [
-            "Removing field heat from produce within hours of harvest dramatically slows the biological processes that cause spoilage, extending shelf life without needing any chemical preservatives.",
-            "Simple measures like shading harvested crops immediately and moving them to a cool, ventilated space before transport can cut post-harvest losses significantly, even without expensive cold-chain equipment."
+            { en: "Removing field heat from produce within hours of harvest dramatically slows the biological processes that cause spoilage, extending shelf life without needing any chemical preservatives.", id: "Menghilangkan panas lahan dari hasil panen dalam hitungan jam setelah dipetik secara drastis memperlambat proses biologis penyebab pembusukan, memperpanjang masa simpan tanpa memerlukan bahan pengawet kimia." },
+            { en: "Simple measures like shading harvested crops immediately and moving them to a cool, ventilated space before transport can cut post-harvest losses significantly, even without expensive cold-chain equipment.", id: "Langkah sederhana seperti segera menaungi hasil panen dan memindahkannya ke ruang yang sejuk dan berventilasi sebelum diangkut dapat mengurangi kerugian pascapanen secara signifikan, bahkan tanpa peralatan rantai dingin yang mahal." }
           ]
         },
         {
-          heading: 'Protecting Quality From Field to Market',
+          heading: { en: 'Protecting Quality From Field to Market', id: 'Menjaga Kualitas dari Lahan hingga Pasar' },
           paragraphs: [
-            "Careful handling doesn't stop at cooling, gentle sorting, clean packaging, and minimizing the number of times produce is handled all reduce bruising and contamination on the way to buyers.",
-            "Farms that invest in these post-harvest steps consistently sell more of what they grow at full quality, turning a stronger harvest into stronger income instead of losing it to spoilage before it ever reaches the customer."
+            { en: "Careful handling doesn't stop at cooling, gentle sorting, clean packaging, and minimizing the number of times produce is handled all reduce bruising and contamination on the way to buyers.", id: "Penanganan yang cermat tidak berhenti pada pendinginan saja. Penyortiran yang hati-hati, pengemasan yang bersih, dan meminimalkan jumlah kali hasil panen disentuh semuanya mengurangi risiko memar dan kontaminasi dalam perjalanan menuju pembeli." },
+            { en: "Farms that invest in these post-harvest steps consistently sell more of what they grow at full quality, turning a stronger harvest into stronger income instead of losing it to spoilage before it ever reaches the customer.", id: "Lahan yang berinvestasi pada langkah-langkah pascapanen ini secara konsisten menjual lebih banyak hasil panennya dalam kualitas penuh, mengubah panen yang kuat menjadi pendapatan yang kuat pula, alih-alih hilang akibat pembusukan sebelum sampai ke pelanggan." }
           ]
         }
       ]
@@ -452,37 +466,38 @@
       tagColor: 'bg-tertiary-500',
       title: 'Cover Cropping',
       subtitle: 'Planting cover crops between main seasons protects bare soil, adds organic matter, and suppresses weeds without a single pass of herbicide.',
+      subtitleId: 'Menanam tanaman penutup di antara musim utama melindungi tanah gundul, menambah bahan organik, dan menekan gulma tanpa sekalipun menyemprot herbisida.',
       image: 'images/growing-practice/soil-growing-practice.jpg',
       date: '4 Agustus 2026',
       readTime: '5 min read',
       author: 'Administrator',
       sections: [
         {
-          heading: 'Introduction: What Bare Soil Costs a Farm',
+          heading: { en: 'Introduction: What Bare Soil Costs a Farm', id: 'Pendahuluan: Kerugian Tanah Gundul bagi Lahan Pertanian' },
           paragraphs: [
-            "Soil left uncovered between growing seasons is exposed to erosion, compaction from rain impact, and rapid loss of the moisture and organic matter built up during the previous crop. Every empty season is a season the field loses ground instead of gaining it.",
-            "Weeds are quick to fill that gap, competing for nutrients that would otherwise carry into the next planting, and forcing farmers into extra tillage or herbicide passes just to reclaim the plot before the next crop goes in."
+            { en: "Soil left uncovered between growing seasons is exposed to erosion, compaction from rain impact, and rapid loss of the moisture and organic matter built up during the previous crop. Every empty season is a season the field loses ground instead of gaining it.", id: "Tanah yang dibiarkan telanjang di antara musim tanam rentan terhadap erosi, pemadatan akibat hantaman hujan, dan kehilangan cepat kelembapan serta bahan organik yang terbentuk selama masa tanam sebelumnya. Setiap musim kosong adalah musim di mana lahan justru merugi, bukan berkembang." },
+            { en: "Weeds are quick to fill that gap, competing for nutrients that would otherwise carry into the next planting, and forcing farmers into extra tillage or herbicide passes just to reclaim the plot before the next crop goes in.", id: "Gulma dengan cepat mengisi celah tersebut, bersaing memperebutkan nutrisi yang seharusnya tersisa untuk musim tanam berikutnya, dan memaksa petani melakukan pengolahan tanah atau penyemprotan herbisida ekstra hanya untuk merebut kembali lahan sebelum tanaman berikutnya ditanam." }
           ]
         },
         {
-          heading: 'Choosing the Right Cover Crop for the Season',
+          heading: { en: 'Choosing the Right Cover Crop for the Season', id: 'Memilih Tanaman Penutup yang Tepat untuk Musim Tersebut' },
           paragraphs: [
-            "Legumes like clover or vetch fix nitrogen into the soil while they grow, giving the next crop a head start without extra fertilizer. Grasses like rye or oats build root mass fast, holding soil structure together through heavy rain.",
-            "Mixing a legume with a grass cover crop combines both benefits, nitrogen fixation and erosion control, in a single planting that costs far less than the inputs it replaces."
+            { en: "Legumes like clover or vetch fix nitrogen into the soil while they grow, giving the next crop a head start without extra fertilizer. Grasses like rye or oats build root mass fast, holding soil structure together through heavy rain.", id: "Tanaman leguminosa seperti clover atau vetch menambat nitrogen ke dalam tanah selagi tumbuh, memberi tanaman berikutnya awal yang baik tanpa pupuk tambahan. Tanaman rerumputan seperti rye atau oat membangun massa akar dengan cepat, menjaga struktur tanah tetap utuh saat hujan deras." },
+            { en: "Mixing a legume with a grass cover crop combines both benefits, nitrogen fixation and erosion control, in a single planting that costs far less than the inputs it replaces.", id: "Mencampurkan leguminosa dengan tanaman rerumputan penutup tanah menggabungkan kedua manfaat itu sekaligus, penambatan nitrogen dan pengendalian erosi, dalam satu kali tanam yang biayanya jauh lebih murah dibanding input yang digantikannya." }
           ]
         },
         {
-          heading: "Terminating the Cover Crop Without Losing Its Benefits",
+          heading: { en: "Terminating the Cover Crop Without Losing Its Benefits", id: 'Mengakhiri Masa Tanam Penutup Tanpa Kehilangan Manfaatnya' },
           paragraphs: [
-            "Cutting or rolling the cover crop just before it sets seed leaves a protective mulch layer on the surface, suppressing weeds for the next crop while the roots continue breaking down underground and feeding the soil.",
-            "Timing termination correctly avoids the cover crop competing with the main crop for water and nutrients, so the transition needs to happen with enough lead time for the residue to start decomposing."
+            { en: "Cutting or rolling the cover crop just before it sets seed leaves a protective mulch layer on the surface, suppressing weeds for the next crop while the roots continue breaking down underground and feeding the soil.", id: "Memotong atau merebahkan tanaman penutup tepat sebelum berbiji meninggalkan lapisan mulsa pelindung di permukaan, menekan pertumbuhan gulma untuk tanaman berikutnya, sementara akarnya terus terurai di dalam tanah dan menyuburkannya." },
+            { en: "Timing termination correctly avoids the cover crop competing with the main crop for water and nutrients, so the transition needs to happen with enough lead time for the residue to start decomposing.", id: "Mengatur waktu penghentian dengan tepat mencegah tanaman penutup bersaing dengan tanaman utama memperebutkan air dan nutrisi, sehingga transisi ini perlu dilakukan dengan cukup waktu agar sisa tanamannya mulai terurai." }
           ]
         },
         {
-          heading: 'What a Season of Cover Cropping Adds Up To',
+          heading: { en: 'What a Season of Cover Cropping Adds Up To', id: 'Hasil Akhir dari Satu Musim Menanam Tanaman Penutup' },
           paragraphs: [
-            "Fields that rotate in a cover crop consistently show better water infiltration and less erosion after heavy rain, since the root network left behind holds soil structure together.",
-            "Over several seasons, the added organic matter reduces how much synthetic fertilizer the next cash crop needs, turning an \"empty\" season into one of the most productive investments a farm can make."
+            { en: "Fields that rotate in a cover crop consistently show better water infiltration and less erosion after heavy rain, since the root network left behind holds soil structure together.", id: "Lahan yang secara konsisten merotasi tanaman penutup menunjukkan infiltrasi air yang lebih baik dan erosi yang lebih rendah setelah hujan deras, karena jaringan akar yang ditinggalkan menjaga struktur tanah tetap kokoh." },
+            { en: "Over several seasons, the added organic matter reduces how much synthetic fertilizer the next cash crop needs, turning an \"empty\" season into one of the most productive investments a farm can make.", id: "Selama beberapa musim, tambahan bahan organik ini mengurangi kebutuhan pupuk sintetis untuk tanaman komersial berikutnya, mengubah musim yang terlihat \"kosong\" menjadi salah satu investasi paling produktif yang dapat dilakukan sebuah lahan pertanian." }
           ]
         }
       ]
@@ -492,37 +507,38 @@
       tagColor: 'bg-secondary-500',
       title: 'Beneficial Insect Habitats',
       subtitle: "Planting flowering borders and leaving strips of habitat gives natural predators a place to live, cutting pest pressure before it ever reaches the crop.",
+      subtitleId: 'Menanam pembatas berbunga dan menyisakan jalur habitat memberi predator alami tempat tinggal, menekan tekanan hama sebelum sampai ke tanaman.',
       image: 'images/growing-practice/pest-management-growing-practice.jpg',
       date: '4 Agustus 2026',
       readTime: '5 min read',
       author: 'Administrator',
       sections: [
         {
-          heading: "Introduction: Pest Control That Works While You're Not Watching",
+          heading: { en: "Introduction: Pest Control That Works While You're Not Watching", id: 'Pendahuluan: Pengendalian Hama yang Bekerja Meski Tak Diawasi' },
           paragraphs: [
-            "Chemical sprays only protect a field for as long as the chemical lasts, and every application has to be timed, bought, and reapplied. Beneficial insects, once established, keep working every day without another input.",
-            "Most fields without dedicated habitat simply don't have enough natural predators to keep pest populations in check, because there's nowhere for them to shelter, breed, or find food between pest outbreaks."
+            { en: "Chemical sprays only protect a field for as long as the chemical lasts, and every application has to be timed, bought, and reapplied. Beneficial insects, once established, keep working every day without another input.", id: "Semprotan kimia hanya melindungi lahan selama efeknya bertahan, dan setiap aplikasi harus diatur waktunya, dibeli, dan diulang lagi. Serangga bermanfaat, begitu mapan, terus bekerja setiap hari tanpa memerlukan input tambahan." },
+            { en: "Most fields without dedicated habitat simply don't have enough natural predators to keep pest populations in check, because there's nowhere for them to shelter, breed, or find food between pest outbreaks.", id: "Sebagian besar lahan tanpa habitat khusus tidak memiliki cukup predator alami untuk mengendalikan populasi hama, karena tidak ada tempat bagi mereka untuk berlindung, berkembang biak, atau mencari makan di antara masa serangan hama." }
           ]
         },
         {
-          heading: 'Building Habitat That Predators Actually Use',
+          heading: { en: 'Building Habitat That Predators Actually Use', id: 'Membangun Habitat yang Benar-Benar Dimanfaatkan Predator' },
           paragraphs: [
-            "Flowering border strips along field edges give ladybugs, lacewings, and parasitic wasps a nectar source when pest prey is scarce, keeping their populations stable year-round instead of crashing between outbreaks.",
-            "Leaving a strip of taller grasses or hedgerow uncut through winter gives these insects a place to overwinter, so the predator population is already established and ready when pests emerge in spring."
+            { en: "Flowering border strips along field edges give ladybugs, lacewings, and parasitic wasps a nectar source when pest prey is scarce, keeping their populations stable year-round instead of crashing between outbreaks.", id: "Jalur pembatas berbunga di sepanjang tepi lahan memberi kepik, undur-undur, dan tabuhan parasit sumber nektar saat mangsa hama sedang langka, menjaga populasi mereka tetap stabil sepanjang tahun alih-alih anjlok di antara masa serangan." },
+            { en: "Leaving a strip of taller grasses or hedgerow uncut through winter gives these insects a place to overwinter, so the predator population is already established and ready when pests emerge in spring.", id: "Membiarkan jalur rerumputan tinggi atau pagar tanaman tidak dipangkas sepanjang musim dingin memberi serangga ini tempat untuk bertahan hidup, sehingga populasi predator sudah mapan dan siap begitu hama muncul kembali di musim semi." }
           ]
         },
         {
-          heading: "Matching Habitat to the Pests You're Fighting",
+          heading: { en: "Matching Habitat to the Pests You're Fighting", id: 'Menyesuaikan Habitat dengan Hama yang Dihadapi' },
           paragraphs: [
-            "Different predators target different pests, hoverflies specialize in aphids, parasitic wasps target caterpillars, so identifying the main pest pressure on a given field determines which habitat plants are worth prioritizing.",
-            "A mix of flowering species with staggered bloom times keeps a food source available across the whole growing season, rather than a single burst that predators outlast before the pest pressure even starts."
+            { en: "Different predators target different pests, hoverflies specialize in aphids, parasitic wasps target caterpillars, so identifying the main pest pressure on a given field determines which habitat plants are worth prioritizing.", id: "Predator yang berbeda menyasar hama yang berbeda pula, lalat bunga mengkhususkan diri pada kutu daun, tabuhan parasit menyasar ulat, sehingga mengidentifikasi tekanan hama utama pada suatu lahan menentukan tanaman habitat mana yang perlu diprioritaskan." },
+            { en: "A mix of flowering species with staggered bloom times keeps a food source available across the whole growing season, rather than a single burst that predators outlast before the pest pressure even starts.", id: "Campuran spesies berbunga dengan waktu mekar yang berbeda-beda menjaga sumber makanan tetap tersedia sepanjang musim tanam, bukan hanya satu periode mekar singkat yang habis sebelum tekanan hama bahkan dimulai." }
           ]
         },
         {
-          heading: 'The Long-Term Return on Habitat Investment',
+          heading: { en: 'The Long-Term Return on Habitat Investment', id: 'Hasil Jangka Panjang dari Investasi Habitat' },
           paragraphs: [
-            "Farms that commit permanent border strips to beneficial insect habitat see pest damage drop measurably within two to three seasons, as predator populations build to a stable, self-sustaining level.",
-            "Because the habitat is permanent infrastructure rather than a seasonal input, the cost is paid once, while the pest control benefit compounds every year the habitat stays in place."
+            { en: "Farms that commit permanent border strips to beneficial insect habitat see pest damage drop measurably within two to three seasons, as predator populations build to a stable, self-sustaining level.", id: "Lahan yang mengalokasikan jalur pembatas permanen untuk habitat serangga bermanfaat mengalami penurunan kerusakan akibat hama yang terukur dalam dua hingga tiga musim, seiring populasi predator berkembang menuju tingkat yang stabil dan mandiri." },
+            { en: "Because the habitat is permanent infrastructure rather than a seasonal input, the cost is paid once, while the pest control benefit compounds every year the habitat stays in place.", id: "Karena habitat ini adalah infrastruktur permanen, bukan input musiman, biayanya hanya dikeluarkan sekali, sementara manfaat pengendalian hamanya terus bertambah setiap tahun selama habitat tersebut tetap ada." }
           ]
         }
       ]
@@ -532,37 +548,38 @@
       tagColor: 'bg-primary-500',
       title: 'Mulching for Moisture Retention',
       subtitle: 'A layer of organic mulch slows evaporation, keeps roots cooler, and cuts how often fields need to be irrigated during dry stretches.',
+      subtitleId: 'Lapisan mulsa organik memperlambat penguapan, menjaga akar tetap sejuk, dan mengurangi frekuensi irigasi lahan saat musim kering.',
       image: 'images/growing-practice/water-management-growing-practice.jpg',
       date: '4 Agustus 2026',
       readTime: '5 min read',
       author: 'Administrator',
       sections: [
         {
-          heading: 'Introduction: Where Irrigated Water Actually Goes',
+          heading: { en: 'Introduction: Where Irrigated Water Actually Goes', id: 'Pendahuluan: Ke Mana Sebenarnya Air Irigasi Pergi' },
           paragraphs: [
-            "Even with efficient drip irrigation, bare soil loses a significant share of applied water to surface evaporation before it ever reaches the root zone, especially during hot, dry, or windy stretches of the season.",
-            "That loss compounds over a growing season, meaning fields without any soil covering need noticeably more irrigation cycles just to keep root zones at the same moisture level as a mulched field."
+            { en: "Even with efficient drip irrigation, bare soil loses a significant share of applied water to surface evaporation before it ever reaches the root zone, especially during hot, dry, or windy stretches of the season.", id: "Bahkan dengan irigasi tetes yang efisien, tanah gundul kehilangan sebagian besar air yang diberikan akibat penguapan permukaan sebelum sempat mencapai zona perakaran, terutama selama periode panas, kering, atau berangin dalam satu musim." },
+            { en: "That loss compounds over a growing season, meaning fields without any soil covering need noticeably more irrigation cycles just to keep root zones at the same moisture level as a mulched field.", id: "Kehilangan ini terus bertambah sepanjang musim tanam, artinya lahan tanpa penutup tanah memerlukan lebih banyak siklus irigasi hanya untuk menjaga kelembapan zona perakaran setara dengan lahan yang diberi mulsa." }
           ]
         },
         {
-          heading: 'How a Mulch Layer Changes the Soil Surface',
+          heading: { en: 'How a Mulch Layer Changes the Soil Surface', id: 'Bagaimana Lapisan Mulsa Mengubah Permukaan Tanah' },
           paragraphs: [
-            "A few centimeters of straw, wood chips, or crop residue spread across the soil surface blocks direct sun and wind from reaching the ground, cutting evaporation dramatically compared to bare soil.",
-            "The same layer also moderates soil temperature, keeping roots cooler during heat spikes and reducing the moisture stress that pushes plants into survival mode instead of active growth."
+            { en: "A few centimeters of straw, wood chips, or crop residue spread across the soil surface blocks direct sun and wind from reaching the ground, cutting evaporation dramatically compared to bare soil.", id: "Beberapa sentimeter jerami, serpihan kayu, atau sisa tanaman yang disebar di permukaan tanah menghalangi sinar matahari dan angin langsung mencapai tanah, mengurangi penguapan secara drastis dibandingkan tanah gundul." },
+            { en: "The same layer also moderates soil temperature, keeping roots cooler during heat spikes and reducing the moisture stress that pushes plants into survival mode instead of active growth.", id: "Lapisan yang sama juga menstabilkan suhu tanah, menjaga akar tetap sejuk saat suhu memuncak dan mengurangi stres kelembapan yang memaksa tanaman masuk ke mode bertahan hidup alih-alih tumbuh aktif." }
           ]
         },
         {
-          heading: 'Choosing a Mulch That Fits the Crop and Budget',
+          heading: { en: 'Choosing a Mulch That Fits the Crop and Budget', id: 'Memilih Mulsa yang Sesuai dengan Tanaman dan Anggaran' },
           paragraphs: [
-            "Organic mulches like straw or crop residue break down over the season, adding organic matter back into the soil as a bonus on top of the moisture savings, though they need topping up as they decompose.",
-            "Where budget allows, a thicker initial application reduces how often mulch needs replacing, while thinner layers cost less upfront but require more frequent maintenance to keep the moisture benefit consistent."
+            { en: "Organic mulches like straw or crop residue break down over the season, adding organic matter back into the soil as a bonus on top of the moisture savings, though they need topping up as they decompose.", id: "Mulsa organik seperti jerami atau sisa tanaman terurai sepanjang musim, menambahkan bahan organik kembali ke tanah sebagai bonus di samping penghematan kelembapan, meski perlu ditambahkan lagi seiring terurainya mulsa tersebut." },
+            { en: "Where budget allows, a thicker initial application reduces how often mulch needs replacing, while thinner layers cost less upfront but require more frequent maintenance to keep the moisture benefit consistent.", id: "Jika anggaran memungkinkan, aplikasi awal yang lebih tebal mengurangi frekuensi penggantian mulsa, sementara lapisan yang lebih tipis lebih murah di awal tetapi memerlukan perawatan lebih sering agar manfaat kelembapannya tetap konsisten." }
           ]
         },
         {
-          heading: 'What Mulching Saves Over a Season',
+          heading: { en: 'What Mulching Saves Over a Season', id: 'Penghematan dari Mulsa dalam Satu Musim' },
           paragraphs: [
-            "Fields with a consistent mulch layer typically need fewer irrigation cycles to maintain the same root-zone moisture, directly cutting water and pumping costs across a growing season.",
-            "The reduced moisture stress also shows up in the crop itself, plants spend less energy coping with dry spells and more energy on the growth that actually determines yield at harvest."
+            { en: "Fields with a consistent mulch layer typically need fewer irrigation cycles to maintain the same root-zone moisture, directly cutting water and pumping costs across a growing season.", id: "Lahan dengan lapisan mulsa yang konsisten biasanya memerlukan lebih sedikit siklus irigasi untuk menjaga kelembapan zona perakaran yang sama, secara langsung mengurangi biaya air dan pompa sepanjang musim tanam." },
+            { en: "The reduced moisture stress also shows up in the crop itself, plants spend less energy coping with dry spells and more energy on the growth that actually determines yield at harvest.", id: "Berkurangnya stres kelembapan juga terlihat pada tanaman itu sendiri, tanaman menghabiskan lebih sedikit energi untuk menghadapi kekeringan dan lebih banyak energi untuk pertumbuhan yang benar-benar menentukan hasil panen." }
           ]
         }
       ]
@@ -572,37 +589,38 @@
       tagColor: 'bg-tertiary-500',
       title: 'Composting & Organic Matter',
       subtitle: 'Working compost and organic residue back into the soil rebuilds fertility naturally, reducing how much synthetic fertilizer a field needs season over season.',
+      subtitleId: 'Mengembalikan kompos dan residu organik ke dalam tanah memulihkan kesuburan secara alami, mengurangi kebutuhan pupuk sintetis dari musim ke musim.',
       image: 'images/growing-practice/nutrient-management-growing-practice.jpg',
       date: '4 Agustus 2026',
       readTime: '5 min read',
       author: 'Administrator',
       sections: [
         {
-          heading: 'Introduction: Why Soil Needs More Than Just Fertilizer',
+          heading: { en: 'Introduction: Why Soil Needs More Than Just Fertilizer', id: 'Pendahuluan: Mengapa Tanah Membutuhkan Lebih dari Sekadar Pupuk' },
           paragraphs: [
-            "Synthetic fertilizer supplies nutrients directly, but it does nothing to rebuild the organic matter and microbial life that actually holds soil structure together and helps roots access those nutrients efficiently.",
-            "Fields that rely on fertilizer alone, without any organic matter returning to the soil, gradually lose structure and water-holding capacity, needing more input each season just to maintain the same yield."
+            { en: "Synthetic fertilizer supplies nutrients directly, but it does nothing to rebuild the organic matter and microbial life that actually holds soil structure together and helps roots access those nutrients efficiently.", id: "Pupuk sintetis menyuplai nutrisi secara langsung, tetapi tidak membangun kembali bahan organik dan kehidupan mikroba yang sebenarnya menjaga struktur tanah tetap utuh dan membantu akar mengakses nutrisi tersebut secara efisien." },
+            { en: "Fields that rely on fertilizer alone, without any organic matter returning to the soil, gradually lose structure and water-holding capacity, needing more input each season just to maintain the same yield.", id: "Lahan yang hanya mengandalkan pupuk, tanpa ada bahan organik yang kembali ke tanah, secara bertahap kehilangan struktur dan kemampuan menahan air, sehingga memerlukan input yang semakin banyak setiap musim hanya untuk mempertahankan hasil yang sama." }
           ]
         },
         {
-          heading: 'Turning Farm Waste Into Soil Fertility',
+          heading: { en: 'Turning Farm Waste Into Soil Fertility', id: 'Mengubah Limbah Pertanian Menjadi Kesuburan Tanah' },
           paragraphs: [
-            "Crop residue, manure, and green waste that would otherwise be discarded can be composted down into a nutrient-dense soil amendment, turning what's normally a disposal cost into a fertility input instead.",
-            "A properly managed compost pile, turned regularly and kept at the right moisture level, breaks down into finished compost in a matter of months, ready to work back into the field before the next planting."
+            { en: "Crop residue, manure, and green waste that would otherwise be discarded can be composted down into a nutrient-dense soil amendment, turning what's normally a disposal cost into a fertility input instead.", id: "Sisa tanaman, kotoran ternak, dan limbah hijau yang biasanya dibuang dapat dikomposkan menjadi bahan pembenah tanah yang kaya nutrisi, mengubah apa yang biasanya menjadi biaya pembuangan menjadi input kesuburan." },
+            { en: "A properly managed compost pile, turned regularly and kept at the right moisture level, breaks down into finished compost in a matter of months, ready to work back into the field before the next planting.", id: "Tumpukan kompos yang dikelola dengan baik, dibalik secara rutin dan dijaga kelembapannya, akan terurai menjadi kompos jadi dalam hitungan bulan, siap dicampurkan kembali ke lahan sebelum masa tanam berikutnya." }
           ]
         },
         {
-          heading: 'Applying Compost for Maximum Benefit',
+          heading: { en: 'Applying Compost for Maximum Benefit', id: 'Mengaplikasikan Kompos untuk Manfaat Maksimal' },
           paragraphs: [
-            "Working finished compost into the top layer of soil before planting gives the next crop immediate access to slow-release nutrients, while also improving the soil's ability to hold both moisture and future fertilizer applications.",
-            "Applying compost consistently, rather than as an occasional bulk treatment, keeps organic matter levels stable and prevents the field from sliding back into fertilizer dependency between applications."
+            { en: "Working finished compost into the top layer of soil before planting gives the next crop immediate access to slow-release nutrients, while also improving the soil's ability to hold both moisture and future fertilizer applications.", id: "Mencampurkan kompos jadi ke lapisan atas tanah sebelum penanaman memberi tanaman berikutnya akses langsung ke nutrisi yang terlepas secara perlahan, sekaligus meningkatkan kemampuan tanah menahan kelembapan dan pupuk yang diberikan di kemudian hari." },
+            { en: "Applying compost consistently, rather than as an occasional bulk treatment, keeps organic matter levels stable and prevents the field from sliding back into fertilizer dependency between applications.", id: "Mengaplikasikan kompos secara konsisten, bukan sesekali dalam jumlah besar, menjaga kadar bahan organik tetap stabil dan mencegah lahan kembali bergantung pada pupuk di antara masa aplikasi." }
           ]
         },
         {
-          heading: 'The Compounding Value of Organic Matter',
+          heading: { en: 'The Compounding Value of Organic Matter', id: 'Nilai Bahan Organik yang Terus Bertambah' },
           paragraphs: [
-            "Every season of compost application adds to the soil's organic matter baseline, and that baseline directly determines how efficiently the field uses every other input, water, fertilizer, and labor.",
-            "Farms that build this habit over several seasons typically find they can reduce synthetic fertilizer rates without losing yield, because the soil itself is doing more of the nutrient-cycling work."
+            { en: "Every season of compost application adds to the soil's organic matter baseline, and that baseline directly determines how efficiently the field uses every other input, water, fertilizer, and labor.", id: "Setiap musim aplikasi kompos menambah kadar dasar bahan organik tanah, dan kadar dasar itu secara langsung menentukan seberapa efisien lahan memanfaatkan setiap input lainnya, mulai dari air, pupuk, hingga tenaga kerja." },
+            { en: "Farms that build this habit over several seasons typically find they can reduce synthetic fertilizer rates without losing yield, because the soil itself is doing more of the nutrient-cycling work.", id: "Lahan yang membangun kebiasaan ini selama beberapa musim biasanya mendapati bahwa mereka bisa mengurangi takaran pupuk sintetis tanpa kehilangan hasil panen, karena tanah itu sendiri mengambil alih lebih banyak tugas dalam siklus nutrisi." }
           ]
         }
       ]
@@ -612,37 +630,38 @@
       tagColor: 'bg-secondary-500',
       title: 'Seasonal Crop Calendars',
       subtitle: 'Planning what goes in the ground and when, season by season, keeps land in continuous productive use instead of sitting idle between plantings.',
+      subtitleId: 'Merencanakan apa yang ditanam dan kapan, musim demi musim, menjaga lahan tetap produktif alih-alih menganggur di antara masa tanam.',
       image: 'images/growing-practice/crop-planning-growing-practice.jpg',
       date: '4 Agustus 2026',
       readTime: '5 min read',
       author: 'Administrator',
       sections: [
         {
-          heading: 'Introduction: The Cost of an Unplanned Season',
+          heading: { en: 'Introduction: The Cost of an Unplanned Season', id: 'Pendahuluan: Biaya dari Musim yang Tidak Direncanakan' },
           paragraphs: [
-            "Without a season-by-season plan, fields often sit idle between harvest and the next planting simply because the next crop wasn't ready, seeds weren't sourced, or the timing wasn't mapped out in advance.",
-            "That idle time is lost productive capacity, land that could be generating income or building soil health through a cover crop instead sits bare, exposed to erosion and weed pressure."
+            { en: "Without a season-by-season plan, fields often sit idle between harvest and the next planting simply because the next crop wasn't ready, seeds weren't sourced, or the timing wasn't mapped out in advance.", id: "Tanpa rencana musim per musim, lahan sering kali menganggur di antara masa panen dan tanam berikutnya hanya karena tanaman selanjutnya belum siap, benih belum tersedia, atau waktunya belum dipetakan sejak awal." },
+            { en: "That idle time is lost productive capacity, land that could be generating income or building soil health through a cover crop instead sits bare, exposed to erosion and weed pressure.", id: "Waktu menganggur itu adalah kapasitas produktif yang hilang, lahan yang seharusnya menghasilkan pendapatan atau membangun kesehatan tanah lewat tanaman penutup justru dibiarkan gundul, rentan erosi dan serangan gulma." }
           ]
         },
         {
-          heading: 'Building a Calendar Around Local Climate Windows',
+          heading: { en: 'Building a Calendar Around Local Climate Windows', id: 'Menyusun Kalender Berdasarkan Jendela Iklim Setempat' },
           paragraphs: [
-            "A seasonal crop calendar maps each crop's ideal planting and harvest window against local rainfall and temperature patterns, so the next planting is ready to go in the moment the previous harvest clears the field.",
-            "Staggering planting dates across a field, rather than planting everything at once, also spreads harvest labor and market delivery over a longer window instead of creating a single overwhelming peak."
+            { en: "A seasonal crop calendar maps each crop's ideal planting and harvest window against local rainfall and temperature patterns, so the next planting is ready to go in the moment the previous harvest clears the field.", id: "Kalender tanam musiman memetakan jendela waktu tanam dan panen ideal setiap tanaman terhadap pola curah hujan dan suhu setempat, sehingga tanaman berikutnya siap ditanam begitu panen sebelumnya selesai membersihkan lahan." },
+            { en: "Staggering planting dates across a field, rather than planting everything at once, also spreads harvest labor and market delivery over a longer window instead of creating a single overwhelming peak.", id: "Menyebar tanggal tanam di seluruh lahan, alih-alih menanam semuanya sekaligus, juga menyebarkan beban tenaga kerja panen dan pengiriman ke pasar dalam jangka waktu yang lebih panjang, bukan menumpuk pada satu puncak yang membebani." }
           ]
         },
         {
-          heading: 'Sequencing Crops to Support Each Other',
+          heading: { en: 'Sequencing Crops to Support Each Other', id: 'Menyusun Urutan Tanaman agar Saling Mendukung' },
           paragraphs: [
-            "A good calendar doesn't just schedule crops back to back, it sequences them so each planting leaves the soil in better condition for the next, alternating heavy feeders with soil-building crops across the year.",
-            "This sequencing turns the calendar into a rotation plan and a scheduling tool at once, reducing the mental overhead of tracking both soil health and market timing separately."
+            { en: "A good calendar doesn't just schedule crops back to back, it sequences them so each planting leaves the soil in better condition for the next, alternating heavy feeders with soil-building crops across the year.", id: "Kalender yang baik tidak sekadar menjadwalkan tanaman secara berurutan, tetapi menyusunnya sehingga setiap masa tanam meninggalkan tanah dalam kondisi lebih baik untuk tanaman berikutnya, menyelingi tanaman rakus hara dengan tanaman pembangun tanah sepanjang tahun." },
+            { en: "This sequencing turns the calendar into a rotation plan and a scheduling tool at once, reducing the mental overhead of tracking both soil health and market timing separately.", id: "Penyusunan urutan ini mengubah kalender menjadi rencana rotasi sekaligus alat penjadwalan, mengurangi beban pikiran untuk melacak kesehatan tanah dan waktu pasar secara terpisah." }
           ]
         },
         {
-          heading: 'What a Full Calendar Delivers Over a Year',
+          heading: { en: 'What a Full Calendar Delivers Over a Year', id: 'Hasil dari Kalender yang Lengkap Selama Satu Tahun' },
           paragraphs: [
-            "Farms working from a documented seasonal calendar keep more of their land in active, productive use across the year, rather than losing weeks or months to unplanned gaps between crops.",
-            "The predictability also extends to labor and input planning, since knowing what's going in the ground next season means seed, fertilizer, and labor can be arranged well ahead of the actual planting date."
+            { en: "Farms working from a documented seasonal calendar keep more of their land in active, productive use across the year, rather than losing weeks or months to unplanned gaps between crops.", id: "Lahan yang bekerja berdasarkan kalender musiman yang terdokumentasi menjaga lebih banyak lahannya tetap aktif dan produktif sepanjang tahun, alih-alih kehilangan berminggu-minggu bahkan berbulan-bulan akibat jeda yang tidak direncanakan antar tanaman." },
+            { en: "The predictability also extends to labor and input planning, since knowing what's going in the ground next season means seed, fertilizer, and labor can be arranged well ahead of the actual planting date.", id: "Kepastian ini juga meluas ke perencanaan tenaga kerja dan input, karena mengetahui apa yang akan ditanam musim depan berarti benih, pupuk, dan tenaga kerja dapat diatur jauh sebelum tanggal tanam yang sebenarnya." }
           ]
         }
       ]
@@ -652,42 +671,49 @@
       tagColor: 'bg-primary-500',
       title: 'Proper Storage & Curing',
       subtitle: 'Curing and storing harvested crops correctly locks in quality after the field work is done, protecting the value of a harvest all the way to market.',
+      subtitleId: 'Mengeringkan dan menyimpan hasil panen dengan benar mengunci kualitas setelah kerja lapangan selesai, menjaga nilai panen hingga ke pasar.',
       image: 'images/growing-practice/harvest-quality-growing-practice.jpg',
       date: '4 Agustus 2026',
       readTime: '5 min read',
       author: 'Administrator',
       sections: [
         {
-          heading: "Introduction: Quality Doesn't Stop at Harvest",
+          heading: { en: "Introduction: Quality Doesn't Stop at Harvest", id: 'Pendahuluan: Kualitas Tidak Berhenti Saat Panen' },
           paragraphs: [
-            "A crop harvested at peak quality can still lose significant value in storage if it's not cured and kept under the right conditions, undoing weeks of careful field work in a matter of days.",
-            "Many farms invest heavily in growing practices but treat storage as an afterthought, even though poor storage conditions are one of the most common and preventable sources of post-harvest loss."
+            { en: "A crop harvested at peak quality can still lose significant value in storage if it's not cured and kept under the right conditions, undoing weeks of careful field work in a matter of days.", id: "Hasil panen dengan kualitas terbaik pun bisa kehilangan nilai yang signifikan saat disimpan jika tidak dikeringkan dan disimpan dalam kondisi yang tepat, menghapus kerja keras berminggu-minggu di lahan hanya dalam hitungan hari." },
+            { en: "Many farms invest heavily in growing practices but treat storage as an afterthought, even though poor storage conditions are one of the most common and preventable sources of post-harvest loss.", id: "Banyak lahan pertanian berinvestasi besar pada praktik budidaya tetapi menganggap penyimpanan sebagai urusan belakangan, padahal kondisi penyimpanan yang buruk adalah salah satu penyebab kerugian pascapanen yang paling umum dan paling bisa dicegah." }
           ]
         },
         {
-          heading: 'Curing: The Step Between Harvest and Storage',
+          heading: { en: 'Curing: The Step Between Harvest and Storage', id: 'Pengeringan: Tahap Antara Panen dan Penyimpanan' },
           paragraphs: [
-            "Curing allows harvested produce to develop a protective outer layer and heal minor surface wounds from handling, both of which significantly extend how long the crop stays market-ready in storage.",
-            "The right curing period and conditions vary by crop, but skipping this step entirely almost always shortens storage life and increases spoilage rates once the crop is put away."
+            { en: "Curing allows harvested produce to develop a protective outer layer and heal minor surface wounds from handling, both of which significantly extend how long the crop stays market-ready in storage.", id: "Pengeringan memungkinkan hasil panen membentuk lapisan pelindung luar dan menyembuhkan luka permukaan kecil akibat penanganan, yang keduanya secara signifikan memperpanjang masa hasil panen tetap layak jual selama disimpan." },
+            { en: "The right curing period and conditions vary by crop, but skipping this step entirely almost always shortens storage life and increases spoilage rates once the crop is put away.", id: "Lama dan kondisi pengeringan yang tepat berbeda-beda tergantung jenis tanaman, tetapi melewatkan tahap ini hampir selalu memperpendek masa simpan dan meningkatkan tingkat pembusukan setelah hasil panen disimpan." }
           ]
         },
         {
-          heading: 'Storage Conditions That Actually Preserve Quality',
+          heading: { en: 'Storage Conditions That Actually Preserve Quality', id: 'Kondisi Penyimpanan yang Benar-Benar Menjaga Kualitas' },
           paragraphs: [
-            "Temperature and humidity control matter more than storage duration itself, produce held at the wrong temperature or humidity can spoil in days even in a clean, well-organized storage space.",
-            "Good airflow between stored produce prevents localized heat and moisture buildup, which is often what triggers spoilage to spread from one damaged item to the rest of a batch."
+            { en: "Temperature and humidity control matter more than storage duration itself, produce held at the wrong temperature or humidity can spoil in days even in a clean, well-organized storage space.", id: "Pengendalian suhu dan kelembapan lebih penting daripada lama penyimpanan itu sendiri. Hasil panen yang disimpan pada suhu atau kelembapan yang salah bisa membusuk dalam hitungan hari, bahkan di ruang penyimpanan yang bersih dan tertata rapi." },
+            { en: "Good airflow between stored produce prevents localized heat and moisture buildup, which is often what triggers spoilage to spread from one damaged item to the rest of a batch.", id: "Sirkulasi udara yang baik di antara hasil panen yang disimpan mencegah penumpukan panas dan kelembapan setempat, yang sering kali memicu pembusukan menyebar dari satu bahan yang rusak ke seluruh tumpukan." }
           ]
         },
         {
-          heading: 'Protecting the Value of the Harvest to Market',
+          heading: { en: 'Protecting the Value of the Harvest to Market', id: 'Menjaga Nilai Hasil Panen hingga ke Pasar' },
           paragraphs: [
-            "Crops cured and stored correctly reach market at a quality that commands full price, while poorly stored produce often has to be sold at a discount or discarded entirely before it ever reaches a buyer.",
-            "For a farm that has already invested a full season into growing the crop, proper storage is what actually converts that investment into income, rather than watching quality erode in the days after harvest."
+            { en: "Crops cured and stored correctly reach market at a quality that commands full price, while poorly stored produce often has to be sold at a discount or discarded entirely before it ever reaches a buyer.", id: "Hasil panen yang dikeringkan dan disimpan dengan benar sampai ke pasar dalam kualitas yang layak mendapat harga penuh, sementara hasil panen yang disimpan dengan buruk sering kali harus dijual dengan diskon atau bahkan dibuang sebelum sempat sampai ke pembeli." },
+            { en: "For a farm that has already invested a full season into growing the crop, proper storage is what actually converts that investment into income, rather than watching quality erode in the days after harvest.", id: "Bagi lahan pertanian yang sudah menginvestasikan satu musim penuh untuk membudidayakan tanaman, penyimpanan yang tepat adalah hal yang benar-benar mengubah investasi tersebut menjadi pendapatan, alih-alih membiarkan kualitasnya menurun dalam hari-hari setelah panen." }
           ]
         }
       ]
     }
   };
+
+  function pick(field) {
+    if (field == null || typeof field !== 'object') return field;
+    const lang = window.i18n ? window.i18n.getLang() : 'en';
+    return field[lang] || field.en;
+  }
 
   function renderArticle(slug) {
     const data = articles[slug] || articles['crop-rotation'];
@@ -696,12 +722,12 @@
     document.getElementById('crumb-title').textContent = data.title;
 
     const tag = document.getElementById('article-tag');
-    tag.textContent = data.tag;
+    tag.textContent = window.i18n ? window.i18n.t('tag.' + data.tag) : data.tag;
     tag.className = 'inline-block ' + data.tagColor + ' text-white text-label-m px-4 py-2 rounded-[9999px] mb-5';
 
     document.getElementById('article-meta').textContent = data.author + ' · ' + data.date + ' · ' + data.readTime;
     document.getElementById('article-title').textContent = data.title;
-    document.getElementById('article-subtitle').textContent = data.subtitle;
+    document.getElementById('article-subtitle').textContent = (window.i18n && window.i18n.getLang() === 'id' && data.subtitleId) ? data.subtitleId : data.subtitle;
 
     const image = document.getElementById('article-image');
     image.src = data.image;
@@ -712,13 +738,13 @@
     data.sections.forEach((section) => {
       const heading = document.createElement('h2');
       heading.className = 'text-h2 mt-16 mb-6';
-      heading.textContent = section.heading;
+      heading.textContent = pick(section.heading);
       body.appendChild(heading);
 
       section.paragraphs.forEach((paragraph) => {
         const p = document.createElement('p');
         p.className = 'text-body-xl text-text-secondary leading-[1.8] mt-6';
-        p.textContent = paragraph;
+        p.textContent = pick(paragraph);
         body.appendChild(p);
       });
     });
@@ -740,6 +766,7 @@
 
   const params = new URLSearchParams(window.location.search);
   renderArticle(params.get('slug'));
+  window.addEventListener('i18n:change', () => renderArticle(params.get('slug')));
 </script>
 
 </body>

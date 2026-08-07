@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product - Bene Pyto Tanijaya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        },
+        colors: {
+          primary: {
+            DEFAULT: '#33B550',
+            50: '#EBF8EE',
+            500: '#33B550',
+            700: '#289140',
+          },
+          secondary: {
+            DEFAULT: '#F38524',
+            50: '#FEF3E9',
+            500: '#F38524',
+            700: '#D66D13',
+          },
+          tertiary: {
+            DEFAULT: '#137FC3',
+            50: '#E7F2F9',
+            500: '#137FC3',
+            700: '#0E6197',
+          },
+          text: {
+            primary: '#0A0A0A',
+            secondary: '#4A4A4A',
+            tertiary: '#9A9A9A',
+          },
+        },
+        fontSize: {
+          'hero': ['72px', { lineHeight: '110%', fontWeight: '800' }],
+          'display': ['48px', { lineHeight: '115%', fontWeight: '700' }],
+          'h1': ['40px', { lineHeight: '120%', fontWeight: '700' }],
+          'h2': ['32px', { lineHeight: '125%', fontWeight: '700' }],
+          'h3': ['24px', { lineHeight: '130%', fontWeight: '600' }],
+          'h4': ['20px', { lineHeight: '140%', fontWeight: '600' }],
+          'h5': ['18px', { lineHeight: '140%', fontWeight: '600' }],
+          'h6': ['16px', { lineHeight: '145%', fontWeight: '600' }],
+          'body-xl': ['18px', { lineHeight: '140%', fontWeight: '400' }],
+          'body-l': ['16px', { lineHeight: '140%', fontWeight: '400' }],
+          'body-m': ['14px', { lineHeight: '155%', fontWeight: '400' }],
+          'body-s': ['12px', { lineHeight: '150%', fontWeight: '400' }],
+          'label-xl': ['16px', { lineHeight: '145%', fontWeight: '600' }],
+          'label-l': ['14px', { lineHeight: '145%', fontWeight: '600' }],
+          'label-m': ['12px', { lineHeight: '145%', fontWeight: '500' }],
+          'label-s': ['11px', { lineHeight: '140%', fontWeight: '500' }],
+        },
+      },
+    },
+  };
+</script>
+</head>
+<body class="font-sans text-text-primary bg-white">
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-20 bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
+  <div class="max-w-7xl mx-auto relative flex items-center justify-between px-6 h-[50px] md:h-auto md:py-6">
+    <div class="flex items-center">
+      <button id="menu-toggle" class="md:hidden text-text-primary" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav class="hidden md:flex items-center gap-8 text-label-l text-text-secondary">
+        <a href="index.html#home" class="hover:text-text-primary transition-colors" data-i18n="nav.home">Home</a>
+        <a href="growing-practice-list.html" class="hover:text-text-primary transition-colors" data-i18n="nav.growingPractice">Growing Practice</a>
+        <a href="product-list.html" class="hover:text-text-primary transition-colors" data-i18n="nav.product">Product</a>
+        <a href="about-us.html" class="hover:text-text-primary transition-colors" data-i18n="nav.aboutUs">About Us</a>
+      </nav>
+    </div>
+    <div class="absolute left-1/2 -translate-x-1/2">
+      <a href="index.html#home"><img src="images/logo.svg" alt="Bene Pyto Tanijaya" class="h-10 w-auto"></a>
+    </div>
+    <div class="flex items-center gap-2">
+      <div class="flex items-center gap-0.5 bg-white border border-black/10 rounded-full p-0.5 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
+        <button type="button" class="lang-btn text-label-s px-2.5 py-1 rounded-full transition-colors text-text-primary" data-lang="id">ID</button>
+        <button type="button" class="lang-btn text-label-s px-2.5 py-1 rounded-full transition-colors text-text-primary" data-lang="en">EN</button>
+      </div>
+      <a href="https://api.whatsapp.com/send?phone=628561060042&text=Halo%20Bene%20Pyto%20Tanijaya..%20Aku%20mau%20pesan%20Bensil%2B%20dong" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 md:gap-2 bg-primary text-white text-label-m md:text-label-l px-3 py-2 md:px-5 md:py-3 rounded-[9999px]" data-i18n="cta.contactUs">
+        Contact Us
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile sidebar -->
+<div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-30 hidden"></div>
+<aside id="mobile-sidebar" class="fixed top-0 left-0 h-full w-64 bg-white z-40 -translate-x-full transition-transform duration-300 p-6">
+  <div class="flex items-center justify-between mb-10">
+    <img src="images/logo.svg" alt="Bene Pyto Tanijaya" class="h-8 w-auto">
+    <button id="menu-close" aria-label="Close menu" class="text-text-primary">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+    </button>
+  </div>
+  <nav class="flex flex-col gap-6 text-label-l text-text-primary">
+    <a href="index.html#home" data-i18n="nav.home">Home</a>
+    <a href="product-list.html" data-i18n="nav.product">Product</a>
+    <a href="about-us.html" data-i18n="nav.aboutUs">About Us</a>
+    <a href="index.html#blog" data-i18n="nav.blog">Blog</a>
+  </nav>
+</aside>
+
+<script>
+  const sidebar = document.getElementById('mobile-sidebar');
+  const overlay = document.getElementById('mobile-overlay');
+  function openMenu() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+  function closeMenu() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+  document.getElementById('menu-toggle').addEventListener('click', openMenu);
+  document.getElementById('menu-close').addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+</script>
+
+<script src="js/i18n.js"></script>
+
+<!-- Product Detail -->
+<main class="max-w-7xl mx-auto px-6 pt-[74px] md:pt-32 pb-20">
+  <nav class="flex flex-wrap items-center gap-2 text-body-s text-text-tertiary mb-6">
+    <a href="index.html#home" class="flex items-center gap-1 hover:text-text-primary transition-colors">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4h4v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1V10"/></svg>
+      <span data-i18n="nav.home">Home</span>
+    </a>
+    <span>/</span>
+    <a href="product-list.html" class="hover:text-text-primary transition-colors" data-i18n="productDetail.breadcrumb">Product</a>
+    <span>/</span>
+    <span id="crumb-title" class="text-text-secondary"></span>
+  </nav>
+
+  <div class="grid md:grid-cols-2 gap-10">
+    <div>
+      <div class="aspect-square rounded-[16px] overflow-hidden border border-[#E5E5E5]">
+        <img id="main-image" src="" alt="" class="w-full h-full object-cover">
+      </div>
+      <div id="thumbnail-row" class="grid grid-cols-4 gap-3 mt-4"></div>
+    </div>
+
+    <div>
+      <span id="product-tag" class="inline-block text-white text-label-m px-4 py-2 rounded-[9999px] mb-5"></span>
+      <h1 id="product-title" class="text-h1"></h1>
+      <p id="product-description" class="text-body-l text-text-secondary leading-[1.8] mt-6"></p>
+
+      <div id="variant-row" class="hidden mt-6">
+        <p class="text-label-l text-text-tertiary mb-3" data-i18n="productDetail.chooseVariant">Choose Variant</p>
+        <div id="variant-options" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <div class="mt-6 flex items-baseline justify-end gap-3">
+        <a id="product-price" href="#" target="_blank" rel="noopener noreferrer" class="hidden inline-flex items-center gap-1.5 bg-primary text-white text-label-l px-5 py-3 rounded-[9999px]" data-i18n="productDetail.contactUs">Contact Us</a>
+      </div>
+
+      <dl class="mt-8 divide-y divide-[#E5E5E5] border-t border-b border-[#E5E5E5]">
+        <div class="grid grid-cols-3 gap-4 py-4">
+          <dt class="text-label-l text-text-tertiary" data-i18n="productDetail.variant">Variant</dt>
+          <dd id="product-size" class="text-body-m text-text-secondary col-span-2 whitespace-pre-line"></dd>
+        </div>
+      </dl>
+
+      <div class="flex justify-end">
+        <a id="whatsapp-cta" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-primary-500 text-white text-label-l px-8 py-4 rounded-[9999px] mt-8">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.19c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.81-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.13-4.9-4.32-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.11 1-2.4.26-.29.58-.36.77-.36.19 0 .39 0 .55.01.18.01.42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.29-.13.57.17.28.75 1.24 1.62 2 1.11.99 2.05 1.3 2.33 1.44.28.14.44.12.6-.07.17-.19.72-.84.91-1.13.19-.28.38-.24.64-.14.26.1 1.68.79 1.97.94.28.14.47.21.54.33.07.13.07.72-.17 1.4Z"/></svg>
+          <span data-i18n="productDetail.orderWhatsapp">Order via WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="product-details-body" class="hidden max-w-4xl mx-auto"></div>
+</main>
+
+<!-- Recommended Products -->
+<section id="recommend-section" class="bg-[#FAFAFA] py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div class="w-full">
+        <span class="inline-block border border-black/10 text-label-m px-4 py-2 rounded-[9999px] mb-5" data-i18n="productDetail.recommendBadge">You Might Also Like</span>
+        <h2 id="recommend-title" class="text-h2 max-w-lg"></h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 overflow-x-auto touch-pan-x select-none [-webkit-overflow-scrolling:touch] pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <div id="recommend-track" class="flex gap-6 w-max"></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-[#F4F4F4]">
+<div class="max-w-7xl mx-auto px-6 py-16">
+  <div class="grid md:grid-cols-2 gap-10 mb-16">
+    <div>
+      <p class="text-h4 font-extrabold mb-4">Bene Pyto Tanijaya</p>
+      <p class="text-body-l text-text-secondary max-w-sm" data-i18n="footer.tagline">
+        Chemical fertilizers and crop nutrition solutions for stronger, healthier harvests, trusted by farmers across Indonesia.
+      </p>
+    </div>
+    <div class="grid grid-cols-3 gap-6">
+      <div>
+        <p class="text-label-l mb-4" data-i18n="footer.explore">Explore</p>
+        <ul class="space-y-3 text-body-m text-text-secondary">
+          <li><a href="growing-practice-list.html" data-i18n="nav.growingPractice">Growing Practice</a></li>
+          <li><a href="product-list.html" data-i18n="nav.product">Product</a></li>
+          <li><a href="about-us.html" data-i18n="nav.aboutUs">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-label-l mb-4" data-i18n="footer.connect">Connect</p>
+        <ul class="space-y-3 text-body-m text-text-secondary">
+          <li><a href="mailto:halo@benetanijaya.com" data-i18n="footer.email">Email</a></li>
+          <li><a href="https://www.facebook.com/benepyto/">Facebook</a></li>
+          <li><a href="https://www.instagram.com/benepyto">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@benetanijaya">Tiktok</a></li>
+          <li><a href="https://www.youtube.com/@wangsatani.">Youtube</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-label-l mb-4" data-i18n="footer.addresses">Addresses</p>
+        <ul class="space-y-3 text-body-m text-text-secondary">
+          <li>Jalan Alpukat</li>
+          <li>RT.07/RW.06, Sindangbarang</li>
+          <li>Bogor Barat, Kota Bogor</li>
+          <li>Jawa Barat, Indonesia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center justify-center gap-4 pt-8 border-t border-[#E5E5E5] text-body-s text-text-tertiary">
+    <p data-i18n="footer.copyright">Bene Pyto Tanijaya &copy; 2026. All rights reserved.</p>
+  </div>
+</div>
+</footer>
+
+<script>
+  const tagStyles = {
+    'BenSil+': 'bg-primary-500',
+    'Ornamental': 'bg-secondary-500',
+    'Aquarium Care': 'bg-tertiary-500',
+  };
+
+  function pick(field) {
+    if (field == null || typeof field !== 'object') return field;
+    const lang = window.i18n ? window.i18n.getLang() : 'en';
+    return field[lang] || field.en;
+  }
+
+  const legacySlugMap = {
+    'bensil-plus-grosir': { slug: 'bensil-plus', size: 'grosir' },
+    'bensil-plus-1l': { slug: 'bensil-plus', size: '1l' },
+    'bensil-plus-500ml': { slug: 'bensil-plus', size: '500ml' },
+    'bensil-plus-250ml': { slug: 'bensil-plus', size: '250ml' },
+  };
+
+  const bensilPlusDetails = {
+    whySilica: {
+      heading: { en: 'Why Silica Matters', id: 'Mengapa Silika Penting?' },
+      paragraphs: [
+        { en: "Silica is a beneficial element widely studied for its role in supporting plant health and resilience. While not classified as an essential nutrient for most crops, silica is known to help strengthen plant tissue structure, so plants are better prepared to withstand stress throughout the growing season.", id: "Silika merupakan unsur bermanfaat yang telah banyak dipelajari karena perannya dalam mendukung kesehatan dan ketahanan tanaman. Meskipun bukan termasuk unsur hara esensial bagi sebagian besar tanaman, silika diketahui membantu memperkuat struktur jaringan tanaman sehingga tanaman lebih siap menghadapi berbagai tekanan selama masa pertumbuhan." },
+        { en: "In intensive cultivation systems, silica availability is often a key factor behind stronger plants, more efficient nutrient use, and better adaptability to changing environmental conditions.", id: "Pada sistem budidaya intensif, ketersediaan silika sering kali menjadi faktor yang mendukung kekuatan tanaman, efisiensi pemanfaatan nutrisi, serta kemampuan tanaman beradaptasi terhadap perubahan kondisi lingkungan." },
+        { en: "As part of a fertilization program, silica helps plants grow sturdier, more stable, and better prepared for optimal growth.", id: "Dengan pemanfaatan silika sebagai bagian dari program pemupukan, tanaman dapat tumbuh lebih kokoh, lebih stabil, dan lebih siap menghasilkan pertumbuhan yang optimal." }
+      ]
+    },
+    whyBenSil: {
+      heading: { en: 'Why Choose BenSil+', id: 'Mengapa Memilih BenSil+?' },
+      paragraphs: [
+        { en: "BenSil+ was developed to provide an easy-to-apply silica source as part of a modern farming program. Its formula doesn't just supply silica, it's also enriched with potassium, which plays an important role in several plant physiological processes.", id: "BenSil+ dikembangkan untuk memberikan sumber silika yang mudah diaplikasikan sebagai bagian dari program budidaya modern. Formulasinya tidak hanya menyediakan silika, tetapi juga diperkaya dengan kalium yang berperan penting dalam berbagai proses fisiologis tanaman." },
+        { en: "BenSil+ is designed to be used alongside existing spraying and fertilization routines, so it can be adopted without adding complexity to field operations.", id: "BenSil+ dirancang agar mudah digunakan bersama program penyemprotan maupun pemupukan rutin, sehingga dapat diintegrasikan tanpa menambah kompleksitas aplikasi di lapangan." }
+      ]
+    },
+    builtForIndonesia: {
+      heading: { en: 'Built for Indonesian Farming', id: 'Dibangun untuk Pertanian Indonesia' },
+      paragraphs: [
+        { en: "Indonesia has unique growing conditions. Fast-changing weather, high humidity, pest and disease pressure, and diverse soil characteristics all call for solutions built around what farmers actually need in the field.", id: "Indonesia memiliki kondisi budidaya yang unik. Perubahan cuaca yang cepat, kelembapan tinggi, tekanan hama dan penyakit, serta beragam karakteristik tanah memerlukan solusi yang sesuai dengan kebutuhan petani di lapangan." },
+        { en: "BenSil+ was developed with these conditions in mind. Its formula is designed to be easy to apply across different cultivation systems and compatible with common farming practices used by Indonesian farmers.", id: "BenSil+ dikembangkan dengan memahami kondisi tersebut. Formulasinya dirancang agar mudah diaplikasikan dalam berbagai sistem budidaya dan kompatibel dengan praktik pertanian yang umum dilakukan petani Indonesia." },
+        { en: "We believe the best innovation is the kind that's easy to adopt and delivers real benefit to farmers.", id: "Kami percaya bahwa inovasi terbaik adalah inovasi yang dapat diterapkan dengan mudah dan memberikan manfaat nyata bagi petani." },
+        { en: "Developed for Indonesian farming conditions. Field-tested. Refined together with farmers.", id: "Dikembangkan untuk kondisi pertanian Indonesia. Diuji di lapangan. Disempurnakan bersama petani." }
+      ]
+    },
+    advantages: {
+      heading: { en: 'Advantages of BenSil+', id: 'Keunggulan BenSil+' },
+      items: [
+        { en: 'Helps improve plant adaptation to changing weather.', id: 'Membantu meningkatkan adaptasi tanaman terhadap perubahan cuaca.' },
+        { en: 'Helps strengthen plant tissue.', id: 'Membantu memperkuat jaringan tanaman.' },
+        { en: 'Helps improve nutrient absorption efficiency.', id: 'Membantu meningkatkan efisiensi penyerapan unsur hara.' },
+        { en: 'Helps support plant resilience against biotic and abiotic stress.', id: 'Membantu mendukung ketahanan tanaman terhadap cekaman biotik dan abiotik.' },
+        { en: 'Helps increase the effectiveness of insecticide and fungicide applications.', id: 'Membantu meningkatkan efektivitas aplikasi insektisida dan fungisida.' },
+        { en: 'Easy to mix with most compatible foliar fertilizers and pesticides.', id: 'Mudah dicampurkan dengan sebagian besar pupuk daun dan pestisida yang kompatibel.' },
+        { en: 'Supports healthier, more productive plant growth.', id: 'Mendukung pertumbuhan tanaman yang lebih sehat dan produktif.' }
+      ]
+    },
+    howItWorks: {
+      heading: { en: 'How It Works', id: 'Cara Kerja' },
+      paragraphs: [
+        { en: "Once applied, the silica in BenSil+ is absorbed by the plant through the leaves. The silica is then deposited into plant tissue, helping strengthen cell wall structure.", id: "Setelah diaplikasikan, silika dalam BenSil+ diserap oleh tanaman melalui daun. Silika kemudian terdeposit pada jaringan tanaman dan membantu memperkuat struktur dinding sel." },
+        { en: "Stronger plant tissue helps plants maintain optimal growth when facing environmental stress. Meanwhile, potassium supports nutrient transport, water balance, enzyme activity, and yield formation.", id: "Jaringan tanaman yang lebih kuat membantu tanaman mempertahankan pertumbuhan yang optimal ketika menghadapi tekanan lingkungan. Sementara itu, kalium berperan dalam mendukung transportasi nutrisi, keseimbangan air, aktivitas enzim, dan pembentukan hasil panen." },
+        { en: "Through the combination of these two elements, BenSil+ becomes part of a plant nutrition strategy that supports sustainable growth.", id: "Melalui kombinasi kedua unsur tersebut, BenSil+ menjadi bagian dari strategi nutrisi tanaman yang mendukung pertumbuhan secara berkelanjutan." }
+      ]
+    },
+    benefits: {
+      heading: { en: 'Benefits for Plants', id: 'Manfaat bagi Tanaman' },
+      items: [
+        { en: 'Sturdier plant growth.', id: 'Pertumbuhan tanaman yang lebih kokoh.' },
+        { en: 'Stronger, healthier leaves.', id: 'Daun yang lebih kuat dan sehat.' },
+        { en: 'More efficient nutrient absorption.', id: 'Penyerapan unsur hara yang lebih efisien.' },
+        { en: 'Better adaptation to environmental change.', id: 'Adaptasi tanaman terhadap perubahan lingkungan.' },
+        { en: 'Optimal vegetative growth.', id: 'Pertumbuhan vegetatif yang optimal.' },
+        { en: 'Better flower and fruit formation.', id: 'Pembentukan bunga dan buah yang lebih baik.' },
+        { en: 'More stable plant productivity.', id: 'Produktivitas tanaman yang lebih stabil.' }
+      ]
+    },
+    compatibility: {
+      heading: { en: 'Compatibility', id: 'Kompatibilitas' },
+      paragraphs: [
+        { en: "BenSil+ is designed to be easily integrated into farming programs farmers already run.", id: "BenSil+ dirancang agar mudah diintegrasikan ke dalam program budidaya yang telah dijalankan petani." },
+        { en: "It can be mixed with most compatible insecticides, fungicides, foliar fertilizers, and other plant nutrition products. To ensure mixture stability, a compatibility test (jar test) is recommended before applying at large scale.", id: "Dapat dicampurkan dengan sebagian besar insektisida, fungisida, pupuk daun, dan nutrisi tanaman lainnya yang kompatibel. Untuk memastikan kestabilan campuran, disarankan melakukan uji kompatibilitas (jar test) sebelum aplikasi dalam skala besar." }
+      ]
+    },
+    commodities: {
+      heading: { en: 'Suitable Commodities', id: 'Komoditas' },
+      groups: [
+        { label: { en: 'Horticulture', id: 'Hortikultura' }, items: 'Chili, Shallot, Tomato, Potato, Cabbage, Broccoli, Cucumber, Melon, Watermelon' },
+        { label: { en: 'Food Crops', id: 'Tanaman Pangan' }, items: 'Rice, Corn, Soybean' },
+        { label: { en: 'Plantation', id: 'Perkebunan' }, items: 'Oil Palm, Cacao, Coffee, Sugarcane' },
+        { label: { en: 'Fruit Trees', id: 'Tanaman Buah' }, items: 'Citrus, Mango, Avocado, Durian, Grape' }
+      ]
+    },
+    specs: [
+      { label: { en: 'Form', id: 'Bentuk' }, value: { en: 'Liquid', id: 'Cair' } },
+      { label: { en: 'Silica (SiO2)', id: 'Silika (SiO2)' }, value: { en: '14.22%', id: '14,22%' } },
+      { label: { en: 'Potassium (K2O)', id: 'Kalium (K2O)' }, value: { en: '9.20%', id: '9,20%' } },
+      { label: { en: 'Nitrogen (N)', id: 'Nitrogen (N)' }, value: { en: '0.06%', id: '0,06%' } },
+      { label: { en: 'Phosphate (P2O5)', id: 'Fosfat (P2O5)' }, value: { en: '0.06%', id: '0,06%' } },
+      { label: { en: 'Calcium (Ca)', id: 'Kalsium (Ca)' }, value: { en: '209.30 mg/L', id: '209,30 mg/L' } },
+      { label: { en: 'Magnesium (Mg)', id: 'Magnesium (Mg)' }, value: { en: '89.60 mg/L', id: '89,60 mg/L' } },
+      { label: { en: 'Sulfur (S)', id: 'Sulfur (S)' }, value: { en: '81.48 mg/L', id: '81,48 mg/L' } }
+    ],
+    heavyMetals: [
+      { label: { en: 'Arsenic (As)', id: 'Arsen (As)' }, value: { en: '<0.01 mg/L', id: '<0,01 mg/L' } },
+      { label: { en: 'Mercury (Hg)', id: 'Merkuri (Hg)' }, value: { en: '<0.01 mg/L', id: '<0,01 mg/L' } },
+      { label: { en: 'Lead (Pb)', id: 'Timbal (Pb)' }, value: { en: '<0.016 mg/L', id: '<0,016 mg/L' } },
+      { label: { en: 'Cadmium (Cd)', id: 'Kadmium (Cd)' }, value: { en: '<0.0028 mg/L', id: '<0,0028 mg/L' } }
+    ],
+    faq: [
+      { q: { en: 'What is BenSil+?', id: 'Apa itu BenSil+?' }, a: { en: "BenSil+ is a liquid silica fertilizer formulated to help strengthen plant tissue, support nutrient absorption efficiency, and improve plant resilience against various environmental stresses.", id: "BenSil+ adalah pupuk silika cair yang diformulasikan untuk membantu memperkuat jaringan tanaman, mendukung efisiensi penyerapan nutrisi, serta meningkatkan ketahanan tanaman terhadap berbagai cekaman lingkungan." } },
+      { q: { en: 'Why do plants need silica?', id: 'Mengapa tanaman membutuhkan silika?' }, a: { en: 'Silica helps strengthen plant tissue structure, so plants are better prepared to withstand environmental stress.', id: 'Silika membantu memperkuat struktur jaringan tanaman sehingga tanaman lebih siap menghadapi tekanan lingkungan.' } },
+      { q: { en: 'Can BenSil+ be mixed with pesticides?', id: 'Apakah BenSil+ dapat dicampurkan dengan pestisida?' }, a: { en: 'Yes. BenSil+ is compatible with most insecticides and fungicides. Perform a compatibility test (jar test) before large-scale application.', id: 'Ya. BenSil+ kompatibel dengan sebagian besar insektisida dan fungisida. Lakukan uji kompatibilitas (jar test) sebelum aplikasi.' } },
+      { q: { en: 'Can BenSil+ be used on all crops?', id: 'Apakah BenSil+ dapat digunakan pada semua tanaman?' }, a: { en: 'It can be used on a wide range of commodities according to the recommended usage guidelines.', id: 'Dapat digunakan pada berbagai komoditas sesuai rekomendasi penggunaan.' } },
+      { q: { en: 'When is the best time to apply BenSil+?', id: 'Kapan waktu terbaik mengaplikasikan BenSil+?' }, a: { en: 'From the vegetative through the generative stage, as part of a plant nutrition program.', id: 'Sejak fase vegetatif hingga generatif sebagai bagian dari program nutrisi tanaman.' } },
+      { q: { en: 'Can BenSil+ be used regularly?', id: 'Apakah BenSil+ dapat digunakan secara rutin?' }, a: { en: 'Yes, according to the plant needs and cultivation program.', id: 'Ya, sesuai kebutuhan tanaman dan program budidaya.' } }
+    ]
+  };
+
+  const products = {
+    'bensil-plus': {
+      name: 'BenSil+',
+      tag: 'BenSil+',
+      details: bensilPlusDetails,
+      sizes: [
+        {
+          key: 'grosir',
+          label: 'Grosir Bundle',
+          image: 'images/products/bensil-plus-complete.jpg',
+          description: { en: "The Grosir bundle packs all three bottle sizes together, built for larger operations that want to standardize BenSil+ across a full season without reordering. BenSil+ is a beneficial silica and potassium foliar fertilizer that protects crops from insect pests, boosts photosynthesis, prevents leaf and flower drop, strengthens stem rigidity, and shields plants from drought stress, nutrient toxicity, and extreme weather.", id: "Paket Grosir berisi ketiga ukuran botol sekaligus, cocok untuk operasi skala besar yang ingin memakai BenSil+ sepanjang musim tanpa perlu memesan ulang. BenSil+ adalah pupuk daun silika dan kalium yang melindungi tanaman dari serangan hama, meningkatkan fotosintesis, mencegah daun dan bunga rontok, memperkuat batang, serta menjaga tanaman dari stres kekeringan, keracunan nutrisi, dan cuaca ekstrem." },
+          size: '1000ml (1 box, 12pcs)\n500ml (1 box, 15pcs)\n250ml (1 box, 30pcs)',
+          ingredients: ['Silica (SiO2) 14%', 'Potassium (K2O) 8%'],
+        },
+        {
+          key: '1l',
+          label: '1 Liter',
+          image: 'images/products/bensil-plus-1l.jpg',
+          description: { en: "The 1 Liter bottle is built for full-season coverage on larger plots, keeping BenSil+ on hand without frequent restocking. BenSil+ is a beneficial silica and potassium foliar fertilizer that protects crops from insect pests, boosts photosynthesis, prevents leaf and flower drop, strengthens stem rigidity, and shields plants from drought stress, nutrient toxicity, and extreme weather.", id: "Botol 1 Liter cocok untuk kebutuhan satu musim penuh di lahan yang lebih luas, sehingga stok BenSil+ tetap tersedia tanpa perlu sering membeli ulang. BenSil+ adalah pupuk daun silika dan kalium yang melindungi tanaman dari serangan hama, meningkatkan fotosintesis, mencegah daun dan bunga rontok, memperkuat batang, serta menjaga tanaman dari stres kekeringan, keracunan nutrisi, dan cuaca ekstrem." },
+          size: '1000ml (1 pcs)',
+          ingredients: ['Silica (SiO2) 14%', 'Potassium (K2O) 8%'],
+        },
+        {
+          key: '500ml',
+          label: '500 ml',
+          image: 'images/products/bensil-plus-500ml.jpg',
+          description: { en: "The 500ml bottle suits mid-size plots or a single growing season, balancing coverage with an easier upfront cost. BenSil+ is a beneficial silica and potassium foliar fertilizer that protects crops from insect pests, boosts photosynthesis, prevents leaf and flower drop, strengthens stem rigidity, and shields plants from drought stress, nutrient toxicity, and extreme weather.", id: "Botol 500ml cocok untuk lahan berukuran sedang atau satu musim tanam, menyeimbangkan cakupan pemakaian dengan biaya awal yang lebih ringan. BenSil+ adalah pupuk daun silika dan kalium yang melindungi tanaman dari serangan hama, meningkatkan fotosintesis, mencegah daun dan bunga rontok, memperkuat batang, serta menjaga tanaman dari stres kekeringan, keracunan nutrisi, dan cuaca ekstrem." },
+          size: '500ml (1 pcs)',
+          ingredients: ['Silica (SiO2) 14%', 'Potassium (K2O) 8%'],
+        },
+        {
+          key: '250ml',
+          label: '250 ml',
+          image: 'images/products/bensil-plus-250ml.jpg',
+          description: { en: "The 250ml bottle is the starter size, ideal for testing BenSil+ on a small plot before scaling up to a larger pack. BenSil+ is a beneficial silica and potassium foliar fertilizer that protects crops from insect pests, boosts photosynthesis, prevents leaf and flower drop, strengthens stem rigidity, and shields plants from drought stress, nutrient toxicity, and extreme weather.", id: "Botol 250ml adalah ukuran awal yang cocok untuk mencoba BenSil+ di lahan kecil sebelum beralih ke kemasan yang lebih besar. BenSil+ adalah pupuk daun silika dan kalium yang melindungi tanaman dari serangan hama, meningkatkan fotosintesis, mencegah daun dan bunga rontok, memperkuat batang, serta menjaga tanaman dari stres kekeringan, keracunan nutrisi, dan cuaca ekstrem." },
+          size: '250ml (1 pcs)',
+          ingredients: ['Silica (SiO2) 14%', 'Potassium (K2O) 8%'],
+        },
+      ],
+    },
+    'rootzor': {
+      name: 'RootZor',
+      tag: 'Ornamental',
+      image: 'images/products/rootzor.jpg',
+      description: { en: 'RootZor is a PGPR (Plant Growth Promoting Rhizobacteria) biofertilizer that colonizes the root zone to boost root development and nutrient uptake.', id: 'RootZor adalah pupuk hayati PGPR (Plant Growth Promoting Rhizobacteria) yang berkoloni di area perakaran untuk mempercepat perkembangan akar dan penyerapan nutrisi.' },
+      size: '10 gram',
+      ingredients: ['Rhizobium sp.', 'Bacillus polymixa', 'Pseudomonas fluorescens'],
+      price: 90000,
+      originalPrice: 135000,
+      priceLabel: null,
+    },
+    'regrow': {
+      name: 'ReGrow',
+      tag: 'Ornamental',
+      image: 'images/products/regrow.jpg',
+      description: { en: 'ReGrow is a biofungicide that gives growing media maximum protection against fungal attacks and soil-borne diseases.', id: 'ReGrow adalah biofungisida yang memberikan perlindungan maksimal pada media tanam terhadap serangan jamur dan penyakit yang berasal dari tanah.' },
+      size: '10 gram',
+      ingredients: ['Trichoderma hamatum WSY-03'],
+      price: 75000,
+      originalPrice: 140000,
+      priceLabel: null,
+    },
+    'glonemax': {
+      name: 'GloneMax',
+      tag: 'Ornamental',
+      image: 'images/products/glonemax.jpg',
+      description: { en: 'GloneMax is a natural leaf-care formula that protects plants from pests and organisms while leaving foliage with a fresh, glossy shine.', id: 'GloneMax adalah formula perawatan daun alami yang melindungi tanaman dari hama dan organisme pengganggu sekaligus membuat dedaunan tampak segar dan mengkilap.' },
+      size: '10 ml',
+      ingredients: ['Proprietary leaf-shine and pest-protection formula'],
+      price: 65000,
+      originalPrice: 115000,
+      priceLabel: null,
+    },
+    'startbio': {
+      name: 'StartBio',
+      tag: 'Aquarium Care',
+      image: 'images/products/startbio.jpg',
+      description: { en: 'StartBio is a live bacterial starter culture that balances microorganism levels in aquarium water, strengthens fish resistance to infection, reduces waste residue, speeds up ammonia breakdown, and keeps water clear.', id: 'StartBio adalah kultur bakteri hidup yang menyeimbangkan populasi mikroorganisme dalam air akuarium, memperkuat daya tahan ikan terhadap infeksi, mengurangi sisa kotoran, mempercepat penguraian amonia, dan menjaga air tetap jernih.' },
+      size: '20 gram (dose: 6 gram per 90 x 40 cm aquarium)',
+      ingredients: ['Live nitrifying bacteria / probiotic starter culture'],
+      price: 30000,
+      originalPrice: null,
+      priceLabel: null,
+    },
+    'librel-rmx-26': {
+      name: 'Librel RMX 26',
+      tag: 'Ornamental',
+      image: 'images/products/librel-rmx-26.jpg',
+      description: { en: 'Librel RMX 26 is a multi-micronutrient EDTA chelate fertilizer that stays available up to pH 9 and can be tank-mixed with insecticides and pesticides.', id: 'Librel RMX 26 adalah pupuk khelat EDTA multi-mikronutrien yang tetap tersedia hingga pH 9 dan dapat dicampur langsung dengan insektisida serta pestisida.' },
+      size: 'Contact us for available pack sizes',
+      ingredients: ['B 0.50% (inorganic salt)', 'Mo 0.10% (inorganic salt)', 'Cu 1.50% (EDTA chelated)', 'Fe 4.00% (EDTA chelated)', 'Mg 2.00% (EDTA chelated)', 'Mn 4.00% (EDTA chelated)', 'Zn 1.50% (EDTA chelated)'],
+      price: null,
+      originalPrice: null,
+      priceLabel: 'Contact Us',
+    },
+    'librel-fe-lo-13-2': {
+      name: 'Librel Fe-LO 13.2%',
+      tag: 'Ornamental',
+      image: 'images/products/librel-fe-lo-13-2.jpg',
+      description: { en: 'Librel Fe-LO is a micronutrient iron fertilizer for agriculture and horticulture, applied as a foliar feed, in hydroponics, or as a soil application.', id: 'Librel Fe-LO adalah pupuk mikronutrien zat besi untuk pertanian dan hortikultura, dapat diaplikasikan lewat penyemprotan daun, hidroponik, atau langsung ke tanah.' },
+      size: '100 gram',
+      ingredients: ['Iron (Fe) 13.2%, fully chelated by EDTA'],
+      price: null,
+      originalPrice: null,
+      priceLabel: 'Contact Us',
+    },
+    'librel-bmx': {
+      name: 'Librel BMX',
+      tag: 'Ornamental',
+      image: 'images/products/librel-bmx.jpg',
+      description: { en: 'Librel BMX is a multi-micronutrient EDTA chelate fertilizer, compatible for tank-mixing with insecticides and fungicides, remaining stable up to pH 9.', id: 'Librel BMX adalah pupuk khelat EDTA multi-mikronutrien yang dapat dicampur langsung dengan insektisida dan fungisida, serta tetap stabil hingga pH 9.' },
+      size: '500 gram',
+      ingredients: ['Cu 1.7% (EDTA chelated)', 'Fe 3.35% (EDTA chelated)', 'Mn 1.70% (EDTA chelated)', 'Zn 0.60% (EDTA chelated)', 'B 0.875% (inorganic salt)', 'Mo 0.023% (inorganic salt)'],
+      price: null,
+      originalPrice: null,
+      priceLabel: 'Contact Us',
+    },
+    'librel-fe-hi-7': {
+      name: 'Librel Fe-HI 7%',
+      tag: 'Ornamental',
+      image: 'images/products/librel-fe-hi-7.jpg',
+      description: { en: 'Librel Fe-HI treats iron deficiency in crops and ornamentals growing in alkaline and calcareous soils, applied via soil application and fertigation.', id: 'Librel Fe-HI mengatasi kekurangan zat besi pada tanaman pangan dan tanaman hias yang tumbuh di tanah alkalin dan berkapur, diaplikasikan melalui tanah atau fertigasi.' },
+      size: '100 gram',
+      ingredients: ['Iron (Fe) 7.0%, chelated by ortho-ortho EDDHA'],
+      price: null,
+      originalPrice: null,
+      priceLabel: 'Contact Us',
+    },
+    'oligo-zinc-edta-15': {
+      name: 'Oligo Zinc EDTA 15%',
+      tag: 'Ornamental',
+      image: 'images/products/oligo-zinc-edta-15.jpg',
+      description: { en: 'Oligo Zinc is a root booster and growth activator that stays fully chelated and available up to pH 9, dissolves completely with no residue, and is safe to mix with insecticides and fungicides.', id: 'Oligo Zinc adalah penguat akar dan pemicu pertumbuhan yang tetap terkhelat penuh hingga pH 9, larut sempurna tanpa residu, dan aman dicampur dengan insektisida serta fungisida.' },
+      size: '100 gram',
+      ingredients: ['Zinc (Zn) EDTA 15%'],
+      price: null,
+      originalPrice: null,
+      priceLabel: 'Contact Us',
+    },
+    'oligo-optimum-iron-eddha-6': {
+      name: 'Oligo Optimum Iron EDDHA 6%',
+      tag: 'Ornamental',
+      image: 'images/products/oligo-optimum-iron-eddha-6.jpg',
+      description: { en: 'Oligo Optimum Iron EDDHA is an EC fertilizer for fertigation, delivering fully water-soluble chelated iron for crops with a recognised iron deficiency.', id: 'Oligo Optimum Iron EDDHA adalah pupuk EC untuk fertigasi yang menghadirkan zat besi terkhelat larut air penuh bagi tanaman yang mengalami kekurangan zat besi.' },
+      size: '2 kg',
+      ingredients: ['Iron (Fe) total 6% w/w', 'Fe soluble in water 6% w/w', 'Fe EDDHA chelated 6% w/w', 'Fe [ortho-ortho] EDDHA chelated 4.8% w/w'],
+      price: null,
+      originalPrice: null,
+      priceLabel: 'Contact Us',
+    },
+    'oligocopper': {
+      name: 'Oligo Copper',
+      tag: 'Ornamental',
+      image: 'images/products/oligocopper.jpg',
+      description: { en: 'Oligo Copper is a fungus and virus shield that stays fully chelated and available up to pH 9, dissolves completely with no residue, and is safe to mix with insecticides and fungicides.', id: 'Oligo Copper adalah pelindung terhadap jamur dan virus yang tetap terkhelat penuh hingga pH 9, larut sempurna tanpa residu, dan aman dicampur dengan insektisida serta fungisida.' },
+      size: '100 gram',
+      ingredients: ['Copper (Cu) EDTA 15%'],
+      price: null,
+      originalPrice: null,
+      priceLabel: 'Contact Us',
+    },
+    'pusakahijau': {
+      name: 'Pusaka Hijau',
+      tag: 'Ornamental',
+      image: 'images/products/pusakahijau.jpg',
+      description: { en: 'Pusaka Hijau is a compound macro fertilizer that increases plant productivity, strengthens root systems, improves nutrient absorption, and supplies silicate and calcium. Mix 2-3 kg with 200 liters of water and apply as a soil drench.', id: 'Pusaka Hijau adalah pupuk majemuk makro yang meningkatkan produktivitas tanaman, memperkuat sistem perakaran, meningkatkan penyerapan nutrisi, dan menyuplai silikat serta kalsium. Campurkan 2-3 kg ke dalam 200 liter air, lalu siramkan ke tanah.' },
+      size: '800 gram',
+      ingredients: ['CaO 40-47%', 'MgO 3%', 'SiO2 35-47%', 'Trace elements: Fe 0.19%, Mn 0.07%, Zn 0.04%'],
+      price: null,
+      originalPrice: null,
+      priceLabel: 'Contact Us',
+    },
+  };
+
+  function resolveTarget(slug, sizeKey) {
+    if (legacySlugMap[slug]) {
+      const legacy = legacySlugMap[slug];
+      return { slug: legacy.slug, size: sizeKey || legacy.size };
+    }
+    const data = products[slug];
+    if (data) {
+      if (data.sizes) {
+        const size = data.sizes.find((s) => s.key === sizeKey) || data.sizes[0];
+        return { slug, size: size.key };
+      }
+      return { slug, size: null };
+    }
+    return { slug: 'bensil-plus', size: '1l' };
+  }
+
+  function renderProduct(slug, sizeKey) {
+    const target = resolveTarget(slug, sizeKey);
+    const resolvedSlug = target.slug;
+    const data = products[resolvedSlug];
+    const currentSize = data.sizes ? data.sizes.find((s) => s.key === target.size) : null;
+    const view = currentSize || data;
+
+    document.title = data.name + (currentSize ? ' ' + currentSize.label : '') + ' - Bene Pyto Tanijaya';
+    document.getElementById('crumb-title').textContent = data.name;
+
+    const tag = document.getElementById('product-tag');
+    tag.textContent = data.tag;
+    tag.className = 'inline-block ' + tagStyles[data.tag] + ' text-white text-label-m px-4 py-2 rounded-[9999px] mb-5';
+
+    document.getElementById('product-title').textContent = data.name;
+    document.getElementById('product-description').textContent = pick(view.description);
+    document.getElementById('product-size').textContent = view.size;
+
+    const priceEl = document.getElementById('product-price');
+    if (view.priceLabel === 'Contact Us') {
+      priceEl.href = 'https://api.whatsapp.com/send?phone=628561060042&text=' + encodeURIComponent('Halo Bene Pyto Tanijaya, saya mau tanya produk ' + data.name);
+      priceEl.classList.remove('hidden');
+    } else {
+      priceEl.classList.add('hidden');
+    }
+
+    const mainImage = document.getElementById('main-image');
+    mainImage.src = view.image;
+    mainImage.alt = data.name + (currentSize ? ' ' + currentSize.label : '');
+
+    const thumbnailRow = document.getElementById('thumbnail-row');
+    thumbnailRow.innerHTML = '';
+    if (data.sizes) {
+      data.sizes.forEach((size) => {
+        const isActive = size.key === currentSize.key;
+        const thumb = document.createElement('button');
+        thumb.type = 'button';
+        thumb.setAttribute('aria-label', 'View photo: ' + size.label);
+        thumb.className = 'aspect-square rounded-[8px] overflow-hidden border-2 ' + (isActive ? 'border-primary-500' : 'border-transparent') + ' focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2';
+
+        const img = document.createElement('img');
+        img.src = size.image;
+        img.alt = size.label;
+        img.className = 'w-full h-full object-cover';
+        thumb.appendChild(img);
+
+        thumb.addEventListener('click', () => {
+          mainImage.src = size.image;
+          mainImage.alt = data.name + ' ' + size.label;
+          thumbnailRow.querySelectorAll('button').forEach((btn) => btn.classList.remove('border-primary-500'));
+          thumbnailRow.querySelectorAll('button').forEach((btn) => btn.classList.add('border-transparent'));
+          thumb.classList.remove('border-transparent');
+          thumb.classList.add('border-primary-500');
+        });
+
+        thumbnailRow.appendChild(thumb);
+      });
+    }
+
+    const variantRow = document.getElementById('variant-row');
+    const variantOptions = document.getElementById('variant-options');
+    variantOptions.innerHTML = '';
+    if (data.sizes) {
+      variantRow.classList.remove('hidden');
+      data.sizes.forEach((size) => {
+        const isActive = size.key === currentSize.key;
+        const option = document.createElement('button');
+        option.type = 'button';
+        option.textContent = size.label;
+        if (isActive) option.setAttribute('aria-current', 'true');
+        option.className = 'inline-flex items-center text-label-l px-4 py-2 rounded-[9999px] border ' + (isActive ? 'bg-primary text-white border-primary' : 'border-[#E5E5E5] text-text-secondary hover:border-primary-500');
+
+        option.addEventListener('click', () => {
+          if (isActive) return;
+          history.pushState(null, '', 'product-detail.html?slug=' + resolvedSlug + '&size=' + size.key);
+          renderProduct(resolvedSlug, size.key);
+        });
+
+        variantOptions.appendChild(option);
+      });
+    } else {
+      variantRow.classList.add('hidden');
+    }
+
+    const whatsappCta = document.getElementById('whatsapp-cta');
+    const message = 'Halo Bene Pyto Tanijaya, saya mau pesan ' + data.name + (currentSize ? ' ' + currentSize.label : '');
+    whatsappCta.href = 'https://api.whatsapp.com/send?phone=628561060042&text=' + encodeURIComponent(message);
+
+    renderProductDetails(data);
+    renderRecommendations(resolvedSlug, data);
+  }
+
+  function renderProductDetails(data) {
+    const container = document.getElementById('product-details-body');
+    if (!data.details) {
+      container.classList.add('hidden');
+      container.innerHTML = '';
+      return;
+    }
+    container.classList.remove('hidden');
+
+    const d = data.details;
+    const section = (heading, bodyHtml) => '<h2 class="text-h2 mt-16 mb-6">' + pick(heading) + '</h2>' + bodyHtml;
+
+    const paragraphs = (items) => items.map((p) =>
+      '<p class="text-body-xl text-text-secondary leading-[1.8] mt-6">' + pick(p) + '</p>'
+    ).join('');
+
+    const bulletList = (items) => '<ul class="mt-6 space-y-3">' + items.map((item) =>
+      '<li class="flex items-start gap-3 text-body-xl text-text-secondary leading-[1.8]"><span class="mt-2.5 w-1.5 h-1.5 rounded-full bg-primary-500 shrink-0"></span><span>' + pick(item) + '</span></li>'
+    ).join('') + '</ul>';
+
+    const commodityGroups = (groups) => '<div class="mt-6 grid sm:grid-cols-2 gap-6">' + groups.map((g) =>
+      '<div><p class="text-label-l text-text-primary mb-2">' + pick(g.label) + '</p><p class="text-body-l text-text-secondary leading-[1.8]">' + g.items + '</p></div>'
+    ).join('') + '</div>';
+
+    const specTable = (rows) => '<dl class="mt-6 divide-y divide-[#E5E5E5] border-t border-b border-[#E5E5E5]">' + rows.map((r) =>
+      '<div class="grid grid-cols-3 gap-4 py-4"><dt class="text-label-l text-text-tertiary">' + pick(r.label) + '</dt><dd class="text-body-m text-text-secondary col-span-2">' + pick(r.value) + '</dd></div>'
+    ).join('') + '</dl>';
+
+    const faqList = (items) => '<div class="mt-6 divide-y divide-[#E5E5E5] border-t border-b border-[#E5E5E5]">' + items.map((item) =>
+      '<details class="group py-4"><summary class="flex items-center justify-between gap-4 cursor-pointer text-label-l text-text-primary list-none">' +
+      '<span>' + pick(item.q) + '</span>' +
+      '<span class="shrink-0 text-h5 text-text-tertiary transition-transform group-open:rotate-45">+</span>' +
+      '</summary><p class="text-body-l text-text-secondary leading-[1.8] mt-3">' + pick(item.a) + '</p></details>'
+    ).join('') + '</div>';
+
+    container.innerHTML =
+      section(d.whySilica.heading, paragraphs(d.whySilica.paragraphs)) +
+      section(d.whyBenSil.heading, paragraphs(d.whyBenSil.paragraphs)) +
+      section(d.builtForIndonesia.heading, paragraphs(d.builtForIndonesia.paragraphs)) +
+      section(d.advantages.heading, bulletList(d.advantages.items)) +
+      section(d.howItWorks.heading, paragraphs(d.howItWorks.paragraphs)) +
+      section(d.benefits.heading, bulletList(d.benefits.items)) +
+      section(d.compatibility.heading, paragraphs(d.compatibility.paragraphs)) +
+      section(d.commodities.heading, commodityGroups(d.commodities.groups)) +
+      section({ en: 'Technical Specifications', id: 'Spesifikasi Teknis' }, specTable(d.specs)) +
+      section({ en: 'Heavy Metal Content', id: 'Kandungan Logam Berat' }, specTable(d.heavyMetals)) +
+      section('FAQ', faqList(d.faq));
+  }
+
+  function buildRecommendCard(recSlug, product) {
+    const link = document.createElement('a');
+    link.href = 'product-detail.html?slug=' + recSlug;
+    link.setAttribute('aria-label', 'View ' + product.name);
+    link.className = 'w-[240px] shrink-0 group block relative aspect-square rounded-[16px] bg-cover bg-center overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2';
+    link.style.backgroundImage = "url('" + product.image + "')";
+
+    const gradient = document.createElement('div');
+    gradient.className = 'absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent';
+    link.appendChild(gradient);
+
+    const content = document.createElement('div');
+    content.className = 'absolute bottom-4 left-4 right-4';
+
+    const tagRow = document.createElement('div');
+    tagRow.className = 'flex gap-2 mb-2';
+    const tagBadge = document.createElement('span');
+    tagBadge.className = tagStyles[product.tag] + ' text-white text-label-m px-3 py-1.5 rounded-[9999px]';
+    tagBadge.textContent = window.i18n ? window.i18n.t('tag.' + product.tag) : product.tag;
+    tagRow.appendChild(tagBadge);
+    content.appendChild(tagRow);
+
+    const title = document.createElement('h3');
+    title.className = 'text-h5 text-white';
+    title.textContent = product.name;
+    content.appendChild(title);
+
+    link.appendChild(content);
+    return link;
+  }
+
+  function renderRecommendations(currentSlug, currentData) {
+    const section = document.getElementById('recommend-section');
+    const track = document.getElementById('recommend-track');
+    const title = document.getElementById('recommend-title');
+
+    const recommended = Object.entries(products)
+      .filter(([slug, product]) => slug !== currentSlug && product.tag === currentData.tag)
+      .slice(0, 5);
+
+    if (recommended.length === 0) {
+      section.classList.add('hidden');
+      return;
+    }
+
+    section.classList.remove('hidden');
+    title.textContent = window.i18n
+      ? window.i18n.t('productDetail.moreProducts', { tag: window.i18n.t('tag.' + currentData.tag) })
+      : 'More ' + currentData.tag + ' Products';
+
+    track.innerHTML = '';
+    recommended.forEach(([slug, product]) => track.appendChild(buildRecommendCard(slug, product)));
+  }
+
+  function renderFromLocation() {
+    const params = new URLSearchParams(window.location.search);
+    renderProduct(params.get('slug'), params.get('size'));
+  }
+
+  window.addEventListener('popstate', renderFromLocation);
+  window.addEventListener('i18n:change', renderFromLocation);
+  renderFromLocation();
+</script>
+
+</body>
+</html>

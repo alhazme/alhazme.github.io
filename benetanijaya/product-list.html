@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,18 +73,24 @@
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
       <nav class="hidden md:flex items-center gap-8 text-label-l text-text-secondary">
-        <a href="index.html#home" class="hover:text-text-primary transition-colors">Home</a>
-        <a href="growing-practice-list.html" class="hover:text-text-primary transition-colors">Growing Practice</a>
-        <a href="product-list.html" class="hover:text-text-primary transition-colors">Product</a>
-        <a href="about-us.html" class="hover:text-text-primary transition-colors">About Us</a>
+        <a href="index.html#home" class="hover:text-text-primary transition-colors" data-i18n="nav.home">Home</a>
+        <a href="growing-practice-list.html" class="hover:text-text-primary transition-colors" data-i18n="nav.growingPractice">Growing Practice</a>
+        <a href="product-list.html" class="hover:text-text-primary transition-colors" data-i18n="nav.product">Product</a>
+        <a href="about-us.html" class="hover:text-text-primary transition-colors" data-i18n="nav.aboutUs">About Us</a>
       </nav>
     </div>
     <div class="absolute left-1/2 -translate-x-1/2">
       <a href="index.html#home"><img src="images/logo.svg" alt="Bene Pyto Tanijaya" class="h-10 w-auto"></a>
     </div>
-    <a href="https://api.whatsapp.com/send?phone=6285219395264&text=Halo%20Bene%20Pyto%20Tanijaya..%20Aku%20mau%20pesan%20Bensil%2B%20dong" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 md:gap-2 bg-primary text-white text-label-m md:text-label-l px-3 py-2 md:px-5 md:py-3 rounded-[9999px]">
-      Contact Us
-    </a>
+    <div class="flex items-center gap-2">
+      <div class="flex items-center gap-0.5 bg-white border border-black/10 rounded-full p-0.5 shadow-[0px_1px_2px_rgba(0,0,0,0.05)]">
+        <button type="button" class="lang-btn text-label-s px-2.5 py-1 rounded-full transition-colors text-text-primary" data-lang="id">ID</button>
+        <button type="button" class="lang-btn text-label-s px-2.5 py-1 rounded-full transition-colors text-text-primary" data-lang="en">EN</button>
+      </div>
+      <a href="https://api.whatsapp.com/send?phone=628561060042&text=Halo%20Bene%20Pyto%20Tanijaya..%20Aku%20mau%20pesan%20Bensil%2B%20dong" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 md:gap-2 bg-primary text-white text-label-m md:text-label-l px-3 py-2 md:px-5 md:py-3 rounded-[9999px]" data-i18n="cta.contactUs">
+        Contact Us
+      </a>
+    </div>
   </div>
 </header>
 
@@ -98,10 +104,10 @@
     </button>
   </div>
   <nav class="flex flex-col gap-6 text-label-l text-text-primary">
-    <a href="index.html#home">Home</a>
-    <a href="product-list.html">Product</a>
-    <a href="about-us.html">About Us</a>
-    <a href="index.html#blog">Blog</a>
+    <a href="index.html#home" data-i18n="nav.home">Home</a>
+    <a href="product-list.html" data-i18n="nav.product">Product</a>
+    <a href="about-us.html" data-i18n="nav.aboutUs">About Us</a>
+    <a href="index.html#blog" data-i18n="nav.blog">Blog</a>
   </nav>
 </aside>
 
@@ -121,23 +127,25 @@
   overlay.addEventListener('click', closeMenu);
 </script>
 
+<script src="js/i18n.js"></script>
+
 <!-- Product List -->
 <main class="max-w-7xl mx-auto px-6 pt-[74px] md:pt-32 pb-20">
   <nav class="flex flex-wrap items-center gap-2 text-body-s text-text-tertiary mb-6">
     <a href="index.html#home" class="flex items-center gap-1 hover:text-text-primary transition-colors">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4h4v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1V10"/></svg>
-      Home
+      <span data-i18n="nav.home">Home</span>
     </a>
     <span>/</span>
-    <span class="text-text-secondary">Products</span>
+    <span class="text-text-secondary" data-i18n="productList.breadcrumb">Products</span>
   </nav>
 
   <div class="flex flex-col gap-6 mb-10">
     <div class="w-full">
-      <span class="inline-block border border-black/10 text-label-m px-4 py-2 rounded-[9999px] mb-5">Products</span>
-      <h1 class="text-h1 md:text-display w-full">Innovative Products for Modern Agriculture</h1>
+      <span class="inline-block border border-black/10 text-label-m px-4 py-2 rounded-[9999px] mb-5" data-i18n="productList.badge">Products</span>
+      <h1 class="text-h1 md:text-display w-full" data-i18n="productList.title">Innovative Products for Modern Agriculture</h1>
     </div>
-    <p class="w-full text-body-l text-text-secondary max-w-2xl">
+    <p class="w-full text-body-l text-text-secondary max-w-2xl" data-i18n="index.products.subtitle">
       From our flagship BenSil+ to our full range of crop nutrition and plant health formulas, our chemical fertilizers help farmers grow stronger, healthier, and higher yielding crops.
     </p>
   </div>
@@ -145,27 +153,27 @@
   <div class="flex flex-col md:flex-row gap-3 mb-4">
     <div class="relative flex-1">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-4 top-1/2 -translate-y-1/2 text-text-tertiary pointer-events-none"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-      <input id="search-input" type="search" placeholder="Search by title or tag" class="w-full pl-11 pr-4 py-3 rounded-[9999px] border border-[#E5E5E5] text-body-m text-text-primary outline-none focus:ring-2 focus:ring-primary-500">
+      <input id="search-input" type="search" data-i18n-placeholder="common.searchPlaceholder" placeholder="Search by title or tag" class="w-full pl-11 pr-4 py-3 rounded-[9999px] border border-[#E5E5E5] text-body-m text-text-primary outline-none focus:ring-2 focus:ring-primary-500">
     </div>
     <select id="tag-filter" class="px-5 py-3 rounded-[9999px] border border-[#E5E5E5] text-body-m text-text-primary outline-none focus:ring-2 focus:ring-primary-500 bg-white">
-      <option value="all">All Tags</option>
-      <option value="BenSil+">BenSil+</option>
-      <option value="Ornamental">Ornamental</option>
-      <option value="Aquarium Care">Aquarium Care</option>
+      <option value="all" data-i18n="common.allTags">All Tags</option>
+      <option value="BenSil+" data-i18n="tag.BenSil+">BenSil+</option>
+      <option value="Ornamental" data-i18n="tag.Ornamental">Ornamental</option>
+      <option value="Aquarium Care" data-i18n="tag.Aquarium Care">Aquarium Care</option>
     </select>
     <select id="sort-select" class="px-5 py-3 rounded-[9999px] border border-[#E5E5E5] text-body-m text-text-primary outline-none focus:ring-2 focus:ring-primary-500 bg-white">
-      <option value="default">Featured</option>
-      <option value="title-asc">Title A-Z</option>
-      <option value="title-desc">Title Z-A</option>
-      <option value="price-desc">Price High to Low</option>
-      <option value="price-asc">Price Low to High</option>
+      <option value="default" data-i18n="common.sortFeatured">Featured</option>
+      <option value="title-asc" data-i18n="common.sortTitleAsc">Title A-Z</option>
+      <option value="title-desc" data-i18n="common.sortTitleDesc">Title Z-A</option>
+      <option value="price-desc" data-i18n="productList.sortPriceDesc">Price High to Low</option>
+      <option value="price-asc" data-i18n="productList.sortPriceAsc">Price Low to High</option>
     </select>
   </div>
 
   <p id="result-count" class="text-body-s text-text-tertiary mb-6"></p>
 
   <div id="product-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-  <p id="empty-state" class="hidden text-center text-body-l text-text-secondary py-20">No products match your search.</p>
+  <p id="empty-state" class="hidden text-center text-body-l text-text-secondary py-20" data-i18n="productList.emptyState">No products match your search.</p>
 </main>
 
 <!-- Footer -->
@@ -174,23 +182,23 @@
   <div class="grid md:grid-cols-2 gap-10 mb-16">
     <div>
       <p class="text-h4 font-extrabold mb-4">Bene Pyto Tanijaya</p>
-      <p class="text-body-l text-text-secondary max-w-sm">
+      <p class="text-body-l text-text-secondary max-w-sm" data-i18n="footer.tagline">
         Chemical fertilizers and crop nutrition solutions for stronger, healthier harvests, trusted by farmers across Indonesia.
       </p>
     </div>
     <div class="grid grid-cols-3 gap-6">
       <div>
-        <p class="text-label-l mb-4">Explore</p>
+        <p class="text-label-l mb-4" data-i18n="footer.explore">Explore</p>
         <ul class="space-y-3 text-body-m text-text-secondary">
-          <li><a href="growing-practice-list.html">Growing Practice</a></li>
-          <li><a href="product-list.html">Product</a></li>
-          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="growing-practice-list.html" data-i18n="nav.growingPractice">Growing Practice</a></li>
+          <li><a href="product-list.html" data-i18n="nav.product">Product</a></li>
+          <li><a href="about-us.html" data-i18n="nav.aboutUs">About Us</a></li>
         </ul>
       </div>
       <div>
-        <p class="text-label-l mb-4">Connect</p>
+        <p class="text-label-l mb-4" data-i18n="footer.connect">Connect</p>
         <ul class="space-y-3 text-body-m text-text-secondary">
-          <li><a href="mailto:halo@benetanijaya.com">Email</a></li>
+          <li><a href="mailto:halo@benetanijaya.com" data-i18n="footer.email">Email</a></li>
           <li><a href="https://www.facebook.com/benepyto/">Facebook</a></li>
           <li><a href="https://www.instagram.com/benepyto">Instagram</a></li>
           <li><a href="https://www.tiktok.com/@benetanijaya">Tiktok</a></li>
@@ -198,7 +206,7 @@
         </ul>
       </div>
       <div>
-        <p class="text-label-l mb-4">Addresses</p>
+        <p class="text-label-l mb-4" data-i18n="footer.addresses">Addresses</p>
         <ul class="space-y-3 text-body-m text-text-secondary">
           <li>Jalan Alpukat</li>
           <li>RT.07/RW.06, Sindangbarang</li>
@@ -209,7 +217,7 @@
     </div>
   </div>
   <div class="flex items-center justify-center gap-4 pt-8 border-t border-[#E5E5E5] text-body-s text-text-tertiary">
-    <p>Bene Pyto Tanijaya &copy; 2026. All rights reserved.</p>
+    <p data-i18n="footer.copyright">Bene Pyto Tanijaya &copy; 2026. All rights reserved.</p>
   </div>
 </div>
 </footer>
@@ -222,27 +230,20 @@
   };
 
   const products = [
-    { name: 'BenSil+ Grosir', tag: 'BenSil+', image: 'images/products/bensil-plus-complete.jpg', price: 1275000, originalPrice: null, priceLabel: 'Rp 1.275.000 - Rp 1.656.000' },
-    { name: 'BenSil+ 1l', tag: 'BenSil+', image: 'images/products/bensil-plus-1l.jpg', price: 165000, originalPrice: 175000, priceLabel: null },
-    { name: 'BenSil+ 500ml', tag: 'BenSil+', image: 'images/products/bensil-plus-500ml.jpg', price: 115000, originalPrice: 125000, priceLabel: null },
-    { name: 'BenSil+ 250ml', tag: 'BenSil+', image: 'images/products/bensil-plus-250ml.jpg', price: 75000, originalPrice: 85000, priceLabel: null },
-    { name: 'RootZor', tag: 'Ornamental', image: 'images/products/rootzor.jpg', price: 90000, originalPrice: 135000, priceLabel: null },
-    { name: 'ReGrow', tag: 'Ornamental', image: 'images/products/regrow.jpg', price: 75000, originalPrice: 140000, priceLabel: null },
-    { name: 'GloneMax', tag: 'Ornamental', image: 'images/products/glonemax.jpg', price: 65000, originalPrice: 115000, priceLabel: null },
-    { name: 'StartBio', tag: 'Aquarium Care', image: 'images/products/startbio.jpg', price: 30000, originalPrice: null, priceLabel: null },
-    { name: 'Librel RMX 26', tag: 'Ornamental', image: 'images/products/librel-rmx-26.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
-    { name: 'Librel Fe-LO 13.2%', tag: 'Ornamental', image: 'images/products/librel-fe-lo-13-2.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
-    { name: 'Librel BMX', tag: 'Ornamental', image: 'images/products/librel-bmx.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
-    { name: 'Librel Fe-HI 7%', tag: 'Ornamental', image: 'images/products/librel-fe-hi-7.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
-    { name: 'Oligo Zinc EDTA 15%', tag: 'Ornamental', image: 'images/products/oligo-zinc-edta-15.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
-    { name: 'Oligo Optimum Iron EDDHA 6%', tag: 'Ornamental', image: 'images/products/oligo-optimum-iron-eddha-6.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
-    { name: 'Oligo Copper', tag: 'Ornamental', image: 'images/products/oligocopper.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
-    { name: 'Pusaka Hijau', tag: 'Ornamental', image: 'images/products/pusakahijau.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
+    { slug: 'bensil-plus', name: 'BenSil+', tag: 'BenSil+', image: 'images/products/bensil-plus-1l.jpg', price: 165000, originalPrice: null, priceLabel: null },
+    { slug: 'rootzor', name: 'RootZor', tag: 'Ornamental', image: 'images/products/rootzor.jpg', price: 90000, originalPrice: 135000, priceLabel: null },
+    { slug: 'regrow', name: 'ReGrow', tag: 'Ornamental', image: 'images/products/regrow.jpg', price: 75000, originalPrice: 140000, priceLabel: null },
+    { slug: 'glonemax', name: 'GloneMax', tag: 'Ornamental', image: 'images/products/glonemax.jpg', price: 65000, originalPrice: 115000, priceLabel: null },
+    { slug: 'startbio', name: 'StartBio', tag: 'Aquarium Care', image: 'images/products/startbio.jpg', price: 30000, originalPrice: null, priceLabel: null },
+    { slug: 'librel-rmx-26', name: 'Librel RMX 26', tag: 'Ornamental', image: 'images/products/librel-rmx-26.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
+    { slug: 'librel-fe-lo-13-2', name: 'Librel Fe-LO 13.2%', tag: 'Ornamental', image: 'images/products/librel-fe-lo-13-2.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
+    { slug: 'librel-bmx', name: 'Librel BMX', tag: 'Ornamental', image: 'images/products/librel-bmx.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
+    { slug: 'librel-fe-hi-7', name: 'Librel Fe-HI 7%', tag: 'Ornamental', image: 'images/products/librel-fe-hi-7.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
+    { slug: 'oligo-zinc-edta-15', name: 'Oligo Zinc EDTA 15%', tag: 'Ornamental', image: 'images/products/oligo-zinc-edta-15.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
+    { slug: 'oligo-optimum-iron-eddha-6', name: 'Oligo Optimum Iron EDDHA 6%', tag: 'Ornamental', image: 'images/products/oligo-optimum-iron-eddha-6.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
+    { slug: 'oligocopper', name: 'Oligo Copper', tag: 'Ornamental', image: 'images/products/oligocopper.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
+    { slug: 'pusakahijau', name: 'Pusaka Hijau', tag: 'Ornamental', image: 'images/products/pusakahijau.jpg', price: null, originalPrice: null, priceLabel: 'Contact Us' },
   ];
-
-  function formatRupiah(amount) {
-    return 'Rp ' + amount.toLocaleString('id-ID');
-  }
 
   function comparePrice(a, b, direction) {
     if (a.price === null && b.price === null) return 0;
@@ -257,7 +258,7 @@
     const article = document.createElement('article');
 
     const link = document.createElement('a');
-    link.href = '#';
+    link.href = 'product-detail.html?slug=' + product.slug;
     link.setAttribute('aria-label', 'View ' + product.name);
     link.className = 'group block relative aspect-square rounded-[16px] bg-cover bg-center overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 ' + style.ring + ' focus-visible:ring-offset-2';
     link.style.backgroundImage = "url('" + product.image + "')";
@@ -273,7 +274,7 @@
     tagRow.className = 'flex gap-2 mb-2';
     const tagBadge = document.createElement('span');
     tagBadge.className = style.badge + ' text-white text-label-m px-3 py-1.5 rounded-[9999px]';
-    tagBadge.textContent = product.tag;
+    tagBadge.textContent = window.i18n ? window.i18n.t('tag.' + product.tag) : product.tag;
     tagRow.appendChild(tagBadge);
     content.appendChild(tagRow);
 
@@ -281,24 +282,6 @@
     title.className = 'text-h5 text-white';
     title.textContent = product.name;
     content.appendChild(title);
-
-    if (product.priceLabel) {
-      const price = document.createElement('p');
-      price.className = 'text-h3 text-white text-right';
-      price.textContent = product.priceLabel;
-      content.appendChild(price);
-    } else {
-      if (product.originalPrice) {
-        const original = document.createElement('p');
-        original.className = 'text-label-l text-white/60 line-through text-right';
-        original.textContent = formatRupiah(product.originalPrice);
-        content.appendChild(original);
-      }
-      const price = document.createElement('p');
-      price.className = 'text-h3 text-white text-right';
-      price.textContent = formatRupiah(product.price);
-      content.appendChild(price);
-    }
 
     link.appendChild(content);
     article.appendChild(link);
@@ -338,12 +321,15 @@
 
     grid.classList.toggle('hidden', filtered.length === 0);
     emptyState.classList.toggle('hidden', filtered.length > 0);
-    resultCount.textContent = filtered.length + (filtered.length === 1 ? ' product found' : ' products found');
+    resultCount.textContent = window.i18n
+      ? window.i18n.t('productList.resultCount', { n: filtered.length, product: filtered.length === 1 ? 'product' : 'products' })
+      : filtered.length + (filtered.length === 1 ? ' product found' : ' products found');
   }
 
   searchInput.addEventListener('input', applyFilters);
   tagFilter.addEventListener('change', applyFilters);
   sortSelect.addEventListener('change', applyFilters);
+  window.addEventListener('i18n:change', applyFilters);
 
   applyFilters();
 </script>
