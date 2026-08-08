@@ -142,7 +142,7 @@
     <span id="crumb-title" class="text-text-secondary"></span>
   </nav>
 
-  <div class="grid md:grid-cols-2 gap-10">
+  <div class="grid md:grid-cols-2 gap-10 md:items-center">
     <div>
       <div class="aspect-square rounded-[16px] overflow-hidden border border-[#E5E5E5]">
         <img id="main-image" src="" alt="" class="w-full h-full object-cover">
@@ -153,23 +153,15 @@
     <div>
       <span id="product-tag" class="inline-block text-white text-label-m px-4 py-2 rounded-[9999px] mb-5"></span>
       <h1 id="product-title" class="text-h1"></h1>
-      <p id="product-description" class="text-body-l text-text-secondary leading-[1.8] mt-6"></p>
 
       <div id="variant-row" class="hidden mt-6">
-        <p class="text-label-l text-text-tertiary mb-3" data-i18n="productDetail.chooseVariant">Choose Variant</p>
+        <p class="text-label-l text-text-tertiary mb-3" data-i18n="productDetail.variant">Variant</p>
         <div id="variant-options" class="flex flex-wrap gap-2"></div>
       </div>
 
       <div class="mt-6 flex items-baseline justify-end gap-3">
         <a id="product-price" href="#" target="_blank" rel="noopener noreferrer" class="hidden inline-flex items-center gap-1.5 bg-primary text-white text-label-l px-5 py-3 rounded-[9999px]" data-i18n="productDetail.contactUs">Contact Us</a>
       </div>
-
-      <dl class="mt-8 divide-y divide-[#E5E5E5] border-t border-b border-[#E5E5E5]">
-        <div class="grid grid-cols-3 gap-4 py-4">
-          <dt class="text-label-l text-text-tertiary" data-i18n="productDetail.variant">Variant</dt>
-          <dd id="product-size" class="text-body-m text-text-secondary col-span-2 whitespace-pre-line"></dd>
-        </div>
-      </dl>
 
       <div class="flex justify-end">
         <a id="whatsapp-cta" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-primary-500 text-white text-label-l px-8 py-4 rounded-[9999px] mt-8">
@@ -259,7 +251,6 @@
   }
 
   const legacySlugMap = {
-    'bensil-plus-grosir': { slug: 'bensil-plus', size: 'grosir' },
     'bensil-plus-1l': { slug: 'bensil-plus', size: '1l' },
     'bensil-plus-500ml': { slug: 'bensil-plus', size: '500ml' },
     'bensil-plus-250ml': { slug: 'bensil-plus', size: '250ml' },
@@ -332,10 +323,10 @@
     commodities: {
       heading: { en: 'Suitable Commodities', id: 'Komoditas' },
       groups: [
-        { label: { en: 'Horticulture', id: 'Hortikultura' }, items: 'Chili, Shallot, Tomato, Potato, Cabbage, Broccoli, Cucumber, Melon, Watermelon' },
-        { label: { en: 'Food Crops', id: 'Tanaman Pangan' }, items: 'Rice, Corn, Soybean' },
-        { label: { en: 'Plantation', id: 'Perkebunan' }, items: 'Oil Palm, Cacao, Coffee, Sugarcane' },
-        { label: { en: 'Fruit Trees', id: 'Tanaman Buah' }, items: 'Citrus, Mango, Avocado, Durian, Grape' }
+        { label: { en: 'Horticulture', id: 'Hortikultura' }, items: { en: 'Chili, Shallot, Tomato, Potato, Cabbage, Broccoli, Cucumber, Melon, Watermelon', id: 'Cabai, Bawang Merah, Tomat, Kentang, Kubis, Brokoli, Mentimun, Melon, Semangka' } },
+        { label: { en: 'Food Crops', id: 'Tanaman Pangan' }, items: { en: 'Rice, Corn, Soybean', id: 'Padi, Jagung, Kedelai' } },
+        { label: { en: 'Plantation', id: 'Perkebunan' }, items: { en: 'Oil Palm, Cacao, Coffee, Sugarcane', id: 'Kelapa Sawit, Kakao, Kopi, Tebu' } },
+        { label: { en: 'Fruit Trees', id: 'Tanaman Buah' }, items: { en: 'Citrus, Mango, Avocado, Durian, Grape', id: 'Jeruk, Mangga, Alpukat, Durian, Anggur' } }
       ]
     },
     specs: [
@@ -353,14 +344,6 @@
       { label: { en: 'Mercury (Hg)', id: 'Merkuri (Hg)' }, value: { en: '<0.01 mg/L', id: '<0,01 mg/L' } },
       { label: { en: 'Lead (Pb)', id: 'Timbal (Pb)' }, value: { en: '<0.016 mg/L', id: '<0,016 mg/L' } },
       { label: { en: 'Cadmium (Cd)', id: 'Kadmium (Cd)' }, value: { en: '<0.0028 mg/L', id: '<0,0028 mg/L' } }
-    ],
-    faq: [
-      { q: { en: 'What is BenSil+?', id: 'Apa itu BenSil+?' }, a: { en: "BenSil+ is a liquid silica fertilizer formulated to help strengthen plant tissue, support nutrient absorption efficiency, and improve plant resilience against various environmental stresses.", id: "BenSil+ adalah pupuk silika cair yang diformulasikan untuk membantu memperkuat jaringan tanaman, mendukung efisiensi penyerapan nutrisi, serta meningkatkan ketahanan tanaman terhadap berbagai cekaman lingkungan." } },
-      { q: { en: 'Why do plants need silica?', id: 'Mengapa tanaman membutuhkan silika?' }, a: { en: 'Silica helps strengthen plant tissue structure, so plants are better prepared to withstand environmental stress.', id: 'Silika membantu memperkuat struktur jaringan tanaman sehingga tanaman lebih siap menghadapi tekanan lingkungan.' } },
-      { q: { en: 'Can BenSil+ be mixed with pesticides?', id: 'Apakah BenSil+ dapat dicampurkan dengan pestisida?' }, a: { en: 'Yes. BenSil+ is compatible with most insecticides and fungicides. Perform a compatibility test (jar test) before large-scale application.', id: 'Ya. BenSil+ kompatibel dengan sebagian besar insektisida dan fungisida. Lakukan uji kompatibilitas (jar test) sebelum aplikasi.' } },
-      { q: { en: 'Can BenSil+ be used on all crops?', id: 'Apakah BenSil+ dapat digunakan pada semua tanaman?' }, a: { en: 'It can be used on a wide range of commodities according to the recommended usage guidelines.', id: 'Dapat digunakan pada berbagai komoditas sesuai rekomendasi penggunaan.' } },
-      { q: { en: 'When is the best time to apply BenSil+?', id: 'Kapan waktu terbaik mengaplikasikan BenSil+?' }, a: { en: 'From the vegetative through the generative stage, as part of a plant nutrition program.', id: 'Sejak fase vegetatif hingga generatif sebagai bagian dari program nutrisi tanaman.' } },
-      { q: { en: 'Can BenSil+ be used regularly?', id: 'Apakah BenSil+ dapat digunakan secara rutin?' }, a: { en: 'Yes, according to the plant needs and cultivation program.', id: 'Ya, sesuai kebutuhan tanaman dan program budidaya.' } }
     ]
   };
 
@@ -371,18 +354,10 @@
       details: bensilPlusDetails,
       sizes: [
         {
-          key: 'grosir',
-          label: 'Grosir Bundle',
-          image: 'images/products/bensil-plus-complete.jpg',
-          description: { en: "The Grosir bundle packs all three bottle sizes together, built for larger operations that want to standardize BenSil+ across a full season without reordering. BenSil+ is a beneficial silica and potassium foliar fertilizer that protects crops from insect pests, boosts photosynthesis, prevents leaf and flower drop, strengthens stem rigidity, and shields plants from drought stress, nutrient toxicity, and extreme weather.", id: "Paket Grosir berisi ketiga ukuran botol sekaligus, cocok untuk operasi skala besar yang ingin memakai BenSil+ sepanjang musim tanpa perlu memesan ulang. BenSil+ adalah pupuk daun silika dan kalium yang melindungi tanaman dari serangan hama, meningkatkan fotosintesis, mencegah daun dan bunga rontok, memperkuat batang, serta menjaga tanaman dari stres kekeringan, keracunan nutrisi, dan cuaca ekstrem." },
-          size: '1000ml (1 box, 12pcs)\n500ml (1 box, 15pcs)\n250ml (1 box, 30pcs)',
-          ingredients: ['Silica (SiO2) 14%', 'Potassium (K2O) 8%'],
-        },
-        {
           key: '1l',
           label: '1 Liter',
           image: 'images/products/bensil-plus-1l.jpg',
-          description: { en: "The 1 Liter bottle is built for full-season coverage on larger plots, keeping BenSil+ on hand without frequent restocking. BenSil+ is a beneficial silica and potassium foliar fertilizer that protects crops from insect pests, boosts photosynthesis, prevents leaf and flower drop, strengthens stem rigidity, and shields plants from drought stress, nutrient toxicity, and extreme weather.", id: "Botol 1 Liter cocok untuk kebutuhan satu musim penuh di lahan yang lebih luas, sehingga stok BenSil+ tetap tersedia tanpa perlu sering membeli ulang. BenSil+ adalah pupuk daun silika dan kalium yang melindungi tanaman dari serangan hama, meningkatkan fotosintesis, mencegah daun dan bunga rontok, memperkuat batang, serta menjaga tanaman dari stres kekeringan, keracunan nutrisi, dan cuaca ekstrem." },
+          description: { en: "BenSil+ works as a natural shield against plant-damaging insects. It increases the rate of photosynthesis, prevents leaf drop, improves stem strength and rigidity, and protects plants from the effects of drought, nutrient toxicity / deficiency, and extreme weather stress.", id: "BenSil+ berfungsi sebagai pelindung alami dari serangga pengganggu tanaman. Meningkatkan laju fotosintesis, mencegah keguguran / kerontokan daun, meningkatkan kekuatan dan ketegakan batang, melindungi tanaman dari efek kekeringan, keracunan / kekurangan hara, dan cekaman cuaca ekstrim." },
           size: '1000ml (1 pcs)',
           ingredients: ['Silica (SiO2) 14%', 'Potassium (K2O) 8%'],
         },
@@ -390,7 +365,7 @@
           key: '500ml',
           label: '500 ml',
           image: 'images/products/bensil-plus-500ml.jpg',
-          description: { en: "The 500ml bottle suits mid-size plots or a single growing season, balancing coverage with an easier upfront cost. BenSil+ is a beneficial silica and potassium foliar fertilizer that protects crops from insect pests, boosts photosynthesis, prevents leaf and flower drop, strengthens stem rigidity, and shields plants from drought stress, nutrient toxicity, and extreme weather.", id: "Botol 500ml cocok untuk lahan berukuran sedang atau satu musim tanam, menyeimbangkan cakupan pemakaian dengan biaya awal yang lebih ringan. BenSil+ adalah pupuk daun silika dan kalium yang melindungi tanaman dari serangan hama, meningkatkan fotosintesis, mencegah daun dan bunga rontok, memperkuat batang, serta menjaga tanaman dari stres kekeringan, keracunan nutrisi, dan cuaca ekstrem." },
+          description: { en: "BenSil+ works as a natural shield against plant-damaging insects. It increases the rate of photosynthesis, prevents leaf drop, improves stem strength and rigidity, and protects plants from the effects of drought, nutrient toxicity / deficiency, and extreme weather stress.", id: "BenSil+ berfungsi sebagai pelindung alami dari serangga pengganggu tanaman. Meningkatkan laju fotosintesis, mencegah keguguran / kerontokan daun, meningkatkan kekuatan dan ketegakan batang, melindungi tanaman dari efek kekeringan, keracunan / kekurangan hara, dan cekaman cuaca ekstrim." },
           size: '500ml (1 pcs)',
           ingredients: ['Silica (SiO2) 14%', 'Potassium (K2O) 8%'],
         },
@@ -398,7 +373,7 @@
           key: '250ml',
           label: '250 ml',
           image: 'images/products/bensil-plus-250ml.jpg',
-          description: { en: "The 250ml bottle is the starter size, ideal for testing BenSil+ on a small plot before scaling up to a larger pack. BenSil+ is a beneficial silica and potassium foliar fertilizer that protects crops from insect pests, boosts photosynthesis, prevents leaf and flower drop, strengthens stem rigidity, and shields plants from drought stress, nutrient toxicity, and extreme weather.", id: "Botol 250ml adalah ukuran awal yang cocok untuk mencoba BenSil+ di lahan kecil sebelum beralih ke kemasan yang lebih besar. BenSil+ adalah pupuk daun silika dan kalium yang melindungi tanaman dari serangan hama, meningkatkan fotosintesis, mencegah daun dan bunga rontok, memperkuat batang, serta menjaga tanaman dari stres kekeringan, keracunan nutrisi, dan cuaca ekstrem." },
+          description: { en: "BenSil+ works as a natural shield against plant-damaging insects. It increases the rate of photosynthesis, prevents leaf drop, improves stem strength and rigidity, and protects plants from the effects of drought, nutrient toxicity / deficiency, and extreme weather stress.", id: "BenSil+ berfungsi sebagai pelindung alami dari serangga pengganggu tanaman. Meningkatkan laju fotosintesis, mencegah keguguran / kerontokan daun, meningkatkan kekuatan dan ketegakan batang, melindungi tanaman dari efek kekeringan, keracunan / kekurangan hara, dan cekaman cuaca ekstrim." },
           size: '250ml (1 pcs)',
           ingredients: ['Silica (SiO2) 14%', 'Potassium (K2O) 8%'],
         },
@@ -569,8 +544,6 @@
     tag.className = 'inline-block ' + tagStyles[data.tag] + ' text-white text-label-m px-4 py-2 rounded-[9999px] mb-5';
 
     document.getElementById('product-title').textContent = data.name;
-    document.getElementById('product-description').textContent = pick(view.description);
-    document.getElementById('product-size').textContent = view.size;
 
     const priceEl = document.getElementById('product-price');
     if (view.priceLabel === 'Contact Us') {
@@ -667,19 +640,60 @@
     ).join('') + '</ul>';
 
     const commodityGroups = (groups) => '<div class="mt-6 grid sm:grid-cols-2 gap-6">' + groups.map((g) =>
-      '<div><p class="text-label-l text-text-primary mb-2">' + pick(g.label) + '</p><p class="text-body-l text-text-secondary leading-[1.8]">' + g.items + '</p></div>'
+      '<div><p class="text-label-l text-text-primary mb-2">' + pick(g.label) + '</p><p class="text-body-l text-text-secondary leading-[1.8]">' + pick(g.items) + '</p></div>'
     ).join('') + '</div>';
 
     const specTable = (rows) => '<dl class="mt-6 divide-y divide-[#E5E5E5] border-t border-b border-[#E5E5E5]">' + rows.map((r) =>
       '<div class="grid grid-cols-3 gap-4 py-4"><dt class="text-label-l text-text-tertiary">' + pick(r.label) + '</dt><dd class="text-body-m text-text-secondary col-span-2">' + pick(r.value) + '</dd></div>'
     ).join('') + '</dl>';
 
-    const faqList = (items) => '<div class="mt-6 divide-y divide-[#E5E5E5] border-t border-b border-[#E5E5E5]">' + items.map((item) =>
-      '<details class="group py-4"><summary class="flex items-center justify-between gap-4 cursor-pointer text-label-l text-text-primary list-none">' +
-      '<span>' + pick(item.q) + '</span>' +
-      '<span class="shrink-0 text-h5 text-text-tertiary transition-transform group-open:rotate-45">+</span>' +
-      '</summary><p class="text-body-l text-text-secondary leading-[1.8] mt-3">' + pick(item.a) + '</p></details>'
-    ).join('') + '</div>';
+    const partnerSection = () => {
+      const L = {
+        register: { en: 'Register as Partner', id: 'Daftar sebagai Mitra' },
+        subtitle: { en: 'Complete the form below to join us as a partner or agent.', id: 'Lengkapi data berikut untuk bergabung sebagai mitra atau agen kami.' },
+        fullName: { en: 'Full Name', id: 'Nama Lengkap' },
+        phone: { en: 'Phone Number', id: 'Nomor Telepon' },
+        email: { en: 'Email', id: 'Email' },
+        location: { en: 'Location', id: 'Lokasi' },
+        message: { en: 'Message', id: 'Pesan' },
+        submit: { en: 'Register', id: 'Daftar' },
+        close: { en: 'Close', id: 'Tutup' },
+        success: { en: 'Thank you. We have received your registration and our team will contact you soon.', id: 'Terima kasih. Pendaftaran Anda sudah kami terima dan tim kami akan segera menghubungi Anda.' },
+      };
+      const dials = ['+62','+60','+65','+673','+66','+63','+84','+91','+86','+81','+82','+61','+1','+44','+31','+49','+966','+971'];
+      const flags = ['🇮🇩','🇲🇾','🇸🇬','🇧🇳','🇹🇭','🇵🇭','🇻🇳','🇮🇳','🇨🇳','🇯🇵','🇰🇷','🇦🇺','🇺🇸','🇬🇧','🇳🇱','🇩🇪','🇸🇦','🇦🇪'];
+      const opts = dials.map((d, i) => '<option value="' + d + '">' + flags[i] + ' ' + d + '</option>').join('');
+      const inp = 'w-full rounded-[12px] border border-[#E5E5E5] px-4 py-3 text-body-m focus:outline-none focus:ring-2 focus:ring-primary-500';
+      return '' +
+        '<div class="text-center mt-16">' +
+          '<button type="button" id="partner-open" class="inline-flex items-center justify-center bg-primary-500 text-white text-label-l px-8 py-4 rounded-[9999px]">' + pick(L.register) + '</button>' +
+        '</div>' +
+        '<div id="partner-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 overflow-y-auto">' +
+          '<div class="w-full max-w-3xl bg-white rounded-[16px] my-8 max-h-[90vh] overflow-y-auto">' +
+            '<div class="flex items-start justify-between gap-4 px-6 pt-6">' +
+              '<div><h2 class="text-h4">' + pick(L.register) + '</h2><p class="text-body-m text-text-secondary mt-1">' + pick(L.subtitle) + '</p></div>' +
+              '<button type="button" id="partner-close" aria-label="' + pick(L.close) + '" class="text-h5 text-text-tertiary hover:text-text-primary shrink-0">&times;</button>' +
+            '</div>' +
+            '<div class="p-6">' +
+              '<p id="partner-success" class="hidden rounded-[12px] bg-primary-50 text-primary-700 text-body-l px-5 py-4">' + pick(L.success) + '</p>' +
+              '<form id="partner-form">' +
+                '<div class="grid md:grid-cols-2 gap-6">' +
+                  '<div class="space-y-5">' +
+                    '<label class="block"><span class="text-label-l text-text-primary">' + pick(L.fullName) + '</span><input type="text" required class="mt-2 ' + inp + '"></label>' +
+                    '<div><span class="text-label-l text-text-primary">' + pick(L.phone) + '</span><div class="mt-2 flex gap-2"><select aria-label="Country code" class="w-32 shrink-0 rounded-[12px] border border-[#E5E5E5] px-3 py-3 text-body-m bg-white focus:outline-none focus:ring-2 focus:ring-primary-500">' + opts + '</select><input type="tel" required class="flex-1 rounded-[12px] border border-[#E5E5E5] px-4 py-3 text-body-m focus:outline-none focus:ring-2 focus:ring-primary-500"></div></div>' +
+                    '<label class="block"><span class="text-label-l text-text-primary">' + pick(L.email) + '</span><input type="email" required class="mt-2 ' + inp + '"></label>' +
+                  '</div>' +
+                  '<div class="flex flex-col gap-5">' +
+                    '<label class="block"><span class="text-label-l text-text-primary">' + pick(L.location) + '</span><input type="text" required class="mt-2 ' + inp + '"></label>' +
+                    '<label class="flex flex-col flex-1"><span class="text-label-l text-text-primary">' + pick(L.message) + '</span><textarea rows="5" required class="mt-2 flex-1 resize-none ' + inp + '"></textarea></label>' +
+                  '</div>' +
+                '</div>' +
+                '<button type="submit" class="w-full bg-primary-500 text-white text-label-l px-8 py-4 rounded-[9999px] mt-6">' + pick(L.submit) + '</button>' +
+              '</form>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    };
 
     container.innerHTML =
       section(d.whySilica.heading, paragraphs(d.whySilica.paragraphs)) +
@@ -692,7 +706,28 @@
       section(d.commodities.heading, commodityGroups(d.commodities.groups)) +
       section({ en: 'Technical Specifications', id: 'Spesifikasi Teknis' }, specTable(d.specs)) +
       section({ en: 'Heavy Metal Content', id: 'Kandungan Logam Berat' }, specTable(d.heavyMetals)) +
-      section('FAQ', faqList(d.faq));
+      partnerSection();
+
+    // Preview only: modal open/close and a client-side success message; no backend.
+    const openBtn = container.querySelector('#partner-open');
+    const modal = container.querySelector('#partner-modal');
+    if (openBtn && modal) {
+      const form = modal.querySelector('#partner-form');
+      const successEl = modal.querySelector('#partner-success');
+      openBtn.addEventListener('click', () => {
+        form.reset();
+        form.classList.remove('hidden');
+        successEl.classList.add('hidden');
+        modal.classList.remove('hidden');
+      });
+      modal.querySelector('#partner-close').addEventListener('click', () => modal.classList.add('hidden'));
+      modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.add('hidden'); });
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        form.classList.add('hidden');
+        successEl.classList.remove('hidden');
+      });
+    }
   }
 
   function buildRecommendCard(recSlug, product) {
