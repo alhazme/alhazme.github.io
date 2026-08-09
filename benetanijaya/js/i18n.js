@@ -36,7 +36,7 @@
 
     'index.badge.sustainingEarth': { id: 'Menjaga Bumi', en: 'Sustaining Earth' },
     'index.hero.titlePrefix': { id: 'Tumbuhkan Masa Depan Pertanian bersama', en: 'Grow the Future of Agriculture with' },
-    'index.hero.subtitle': { id: 'Produsen tepercaya pupuk kimia dan solusi nutrisi tanaman, dipimpin oleh produk unggulan kami BenSil+, diformulasikan untuk membantu petani tumbuh lebih kuat, lebih sehat, dan menghasilkan panen yang lebih tinggi.', en: 'A trusted producer of chemical fertilizers and crop nutrition solutions, led by our flagship BenSil+, formulated to help farmers grow stronger, healthier, and higher yielding crops.' },
+    'index.hero.subtitle': { id: 'Menghadirkan produk pertanian inovatif dan solusi nutrisi tanaman yang dirancang untuk membantu tanaman tumbuh lebih kuat, lebih sehat, dan lebih produktif.', en: 'Delivering innovative agricultural products and crop nutrition solutions designed to help plants grow stronger, healthier, and more productive.' },
     'index.hero.ctaSeeProducts': { id: 'Lihat Produk Kami', en: 'See Our Products' },
     'index.hero.stat1Label': { id: 'Tingkat Kepuasan Pelanggan', en: 'Customer Satisfaction Rate' },
     'index.hero.stat2Label': { id: 'Tahun Pengalaman', en: 'Years of Experience' },
