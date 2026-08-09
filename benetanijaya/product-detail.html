@@ -241,6 +241,13 @@
     'Homecare': 'bg-purple-500',
   };
 
+  const tagNames = {
+    'Agriculture': 'Pertanian',
+    'Ornamental Plant': 'Tanaman Hias',
+    'Aquaculture': 'Akuakultur',
+    'Homecare': 'Homecare',
+  };
+
   function pick(field) {
     if (field == null || typeof field !== 'object') return field;
     const lang = window.i18n ? window.i18n.getLang() : 'en';
@@ -703,7 +710,7 @@
     document.getElementById('crumb-title').textContent = data.name;
 
     const tag = document.getElementById('product-tag');
-    tag.textContent = data.tag;
+    tag.textContent = tagNames[data.tag] || data.tag;
     tag.className = 'inline-block ' + tagStyles[data.tag] + ' text-white text-label-m px-4 py-2 rounded-[9999px] mb-5';
 
     document.getElementById('product-title').textContent = data.name;
@@ -949,7 +956,7 @@
     tagRow.className = 'flex gap-2 mb-2';
     const tagBadge = document.createElement('span');
     tagBadge.className = tagStyles[product.tag] + ' text-white text-label-m px-3 py-1.5 rounded-[9999px]';
-    tagBadge.textContent = window.i18n ? window.i18n.t('tag.' + product.tag) : product.tag;
+    tagBadge.textContent = tagNames[product.tag] || product.tag;
     tagRow.appendChild(tagBadge);
     content.appendChild(tagRow);
 
@@ -977,9 +984,10 @@
     }
 
     section.classList.remove('hidden');
+    const tagName = tagNames[currentData.tag] || currentData.tag;
     title.textContent = window.i18n
-      ? window.i18n.t('productDetail.moreProducts', { tag: window.i18n.t('tag.' + currentData.tag) })
-      : 'More ' + currentData.tag + ' Products';
+      ? window.i18n.t('productDetail.moreProducts', { tag: tagName })
+      : 'Lebih Banyak Produk ' + tagName;
 
     track.innerHTML = '';
     recommended.forEach(([slug, product]) => track.appendChild(buildRecommendCard(slug, product)));
