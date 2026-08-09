@@ -248,9 +248,10 @@
 
 <script>
   const tagStyles = {
-    'BenSil+': 'bg-primary-500',
-    'Ornamental': 'bg-secondary-500',
-    'Aquarium Care': 'bg-tertiary-500',
+    'Agriculture': 'bg-primary-500',
+    'Ornamental Plant': 'bg-secondary-500',
+    'Aquaculture': 'bg-tertiary-500',
+    'Homecare': 'bg-purple-500',
   };
 
   function pick(field) {
@@ -356,7 +357,7 @@
   const products = {
     'bensil-plus': {
       name: 'BenSil+',
-      tag: 'BenSil+',
+      tag: 'Agriculture',
       details: bensilPlusDetails,
       subtitle: { en: 'Beneficial Silica + Potassium', id: 'Benefisial Silika + Kalium' },
       videoUrl: 'https://www.youtube.com/watch?v=r7bU3rS8bUo',
@@ -392,7 +393,7 @@
     },
     'rootzor': {
       name: 'RootZor',
-      tag: 'Ornamental',
+      tag: 'Ornamental Plant',
       image: 'images/products/rootzor.jpg',
       description: { en: 'RootZor is a PGPR (Plant Growth Promoting Rhizobacteria) biofertilizer that colonizes the root zone to boost root development and nutrient uptake.', id: 'RootZor adalah pupuk hayati PGPR (Plant Growth Promoting Rhizobacteria) yang berkoloni di area perakaran untuk mempercepat perkembangan akar dan penyerapan nutrisi.' },
       size: '10 gram',
@@ -403,7 +404,7 @@
     },
     'regrow': {
       name: 'ReGrow',
-      tag: 'Ornamental',
+      tag: 'Ornamental Plant',
       image: 'images/products/regrow.jpg',
       description: { en: 'ReGrow is a biofungicide that gives growing media maximum protection against fungal attacks and soil-borne diseases.', id: 'ReGrow adalah biofungisida yang memberikan perlindungan maksimal pada media tanam terhadap serangan jamur dan penyakit yang berasal dari tanah.' },
       size: '10 gram',
@@ -414,7 +415,7 @@
     },
     'glonemax': {
       name: 'GloneMax',
-      tag: 'Ornamental',
+      tag: 'Ornamental Plant',
       image: 'images/products/glonemax.jpg',
       description: { en: 'GloneMax is a natural leaf-care formula that protects plants from pests and organisms while leaving foliage with a fresh, glossy shine.', id: 'GloneMax adalah formula perawatan daun alami yang melindungi tanaman dari hama dan organisme pengganggu sekaligus membuat dedaunan tampak segar dan mengkilap.' },
       size: '10 ml',
@@ -425,7 +426,7 @@
     },
     'startbio': {
       name: 'StartBio',
-      tag: 'Aquarium Care',
+      tag: 'Aquaculture',
       image: 'images/products/startbio.png',
       subtitle: { id: 'Bakteri Fototroph & Bahan Organik', en: 'Phototrophic Bacteria & Organic Matter' },
       videoUrl: 'https://www.youtube.com/watch?v=r7bU3rS8bUo',
@@ -476,7 +477,7 @@
     },
     'librel-rmx-26': {
       name: 'Librel RMX 26',
-      tag: 'Ornamental',
+      tag: 'Agriculture',
       image: 'images/products/librel-rmx-26.jpg',
       description: { en: 'Librel RMX 26 is a multi-micronutrient EDTA chelate fertilizer that stays available up to pH 9 and can be tank-mixed with insecticides and pesticides.', id: 'Librel RMX 26 adalah pupuk khelat EDTA multi-mikronutrien yang tetap tersedia hingga pH 9 dan dapat dicampur langsung dengan insektisida serta pestisida.' },
       size: 'Contact us for available pack sizes',
@@ -487,7 +488,7 @@
     },
     'librel-fe-lo-13-2': {
       name: 'Librel Fe-LO 13.2%',
-      tag: 'Ornamental',
+      tag: 'Agriculture',
       image: 'images/products/librel-fe-lo-13-2.jpg',
       description: { en: 'Librel Fe-LO is a micronutrient iron fertilizer for agriculture and horticulture, applied as a foliar feed, in hydroponics, or as a soil application.', id: 'Librel Fe-LO adalah pupuk mikronutrien zat besi untuk pertanian dan hortikultura, dapat diaplikasikan lewat penyemprotan daun, hidroponik, atau langsung ke tanah.' },
       size: '100 gram',
@@ -498,7 +499,7 @@
     },
     'librel-bmx': {
       name: 'Librel BMX',
-      tag: 'Ornamental',
+      tag: 'Agriculture',
       image: 'images/products/librel-bmx.jpg',
       description: { en: 'Librel BMX is a multi-micronutrient EDTA chelate fertilizer, compatible for tank-mixing with insecticides and fungicides, remaining stable up to pH 9.', id: 'Librel BMX adalah pupuk khelat EDTA multi-mikronutrien yang dapat dicampur langsung dengan insektisida dan fungisida, serta tetap stabil hingga pH 9.' },
       size: '500 gram',
@@ -509,7 +510,7 @@
     },
     'librel-fe-hi-7': {
       name: 'Librel Fe-HI 7%',
-      tag: 'Ornamental',
+      tag: 'Agriculture',
       image: 'images/products/librel-fe-hi-7.jpg',
       description: { en: 'Librel Fe-HI treats iron deficiency in crops and ornamentals growing in alkaline and calcareous soils, applied via soil application and fertigation.', id: 'Librel Fe-HI mengatasi kekurangan zat besi pada tanaman pangan dan tanaman hias yang tumbuh di tanah alkalin dan berkapur, diaplikasikan melalui tanah atau fertigasi.' },
       size: '100 gram',
@@ -520,7 +521,7 @@
     },
     'oligo-zinc-edta-15': {
       name: 'Oligo Zinc EDTA 15%',
-      tag: 'Ornamental',
+      tag: 'Agriculture',
       image: 'images/products/oligo-zinc-edta-15.jpg',
       description: { en: 'Oligo Zinc is a root booster and growth activator that stays fully chelated and available up to pH 9, dissolves completely with no residue, and is safe to mix with insecticides and fungicides.', id: 'Oligo Zinc adalah penguat akar dan pemicu pertumbuhan yang tetap terkhelat penuh hingga pH 9, larut sempurna tanpa residu, dan aman dicampur dengan insektisida serta fungisida.' },
       size: '100 gram',
@@ -531,7 +532,7 @@
     },
     'oligo-optimum-iron-eddha-6': {
       name: 'Oligo Optimum Iron EDDHA 6%',
-      tag: 'Ornamental',
+      tag: 'Agriculture',
       image: 'images/products/oligo-optimum-iron-eddha-6.jpg',
       description: { en: 'Oligo Optimum Iron EDDHA is an EC fertilizer for fertigation, delivering fully water-soluble chelated iron for crops with a recognised iron deficiency.', id: 'Oligo Optimum Iron EDDHA adalah pupuk EC untuk fertigasi yang menghadirkan zat besi terkhelat larut air penuh bagi tanaman yang mengalami kekurangan zat besi.' },
       size: '2 kg',
@@ -542,7 +543,7 @@
     },
     'oligocopper': {
       name: 'Oligo Copper',
-      tag: 'Ornamental',
+      tag: 'Agriculture',
       image: 'images/products/oligocopper.jpg',
       description: { en: 'Oligo Copper is a fungus and virus shield that stays fully chelated and available up to pH 9, dissolves completely with no residue, and is safe to mix with insecticides and fungicides.', id: 'Oligo Copper adalah pelindung terhadap jamur dan virus yang tetap terkhelat penuh hingga pH 9, larut sempurna tanpa residu, dan aman dicampur dengan insektisida serta fungisida.' },
       size: '100 gram',
@@ -553,7 +554,7 @@
     },
     'pusakahijau': {
       name: 'Pusaka Hijau',
-      tag: 'Ornamental',
+      tag: 'Agriculture',
       image: 'images/products/pusakahijau.png',
       subtitle: { id: 'Pupuk Makro Majemuk', en: 'Compound Macro Fertilizer' },
       videoUrl: 'https://www.youtube.com/watch?v=r7bU3rS8bUo',
@@ -601,7 +602,7 @@
     },
     'fusarigo': {
       name: 'Fusarigo',
-      tag: 'Ornamental',
+      tag: 'Agriculture',
       image: 'images/products/fusarigo.png',
       subtitle: { id: 'Pengendali Layu Fusarium', en: 'Fusarium Wilt Control' },
       videoUrl: 'https://www.youtube.com/watch?v=r7bU3rS8bUo',
@@ -639,7 +640,7 @@
     },
     'rhizomax': {
       name: 'RhizoMaX',
-      tag: 'Ornamental',
+      tag: 'Agriculture',
       image: 'images/products/rizhoma-x.png',
       subtitle: { id: 'Pupuk Hayati PGPR', en: 'PGPR Biofertilizer' },
       videoUrl: 'https://www.youtube.com/watch?v=r7bU3rS8bUo',
