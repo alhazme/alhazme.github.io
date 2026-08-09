@@ -10,12 +10,12 @@
     'nav.blog': { id: 'Blog', en: 'Blog' },
     'cta.contactUs': { id: 'Hubungi Kami', en: 'Contact Us' },
 
-    'footer.tagline': { id: 'Solusi pupuk kimia dan nutrisi tanaman untuk panen yang lebih kuat dan sehat, dipercaya oleh petani di seluruh Indonesia.', en: 'Chemical fertilizers and crop nutrition solutions for stronger, healthier harvests, trusted by farmers across Indonesia.' },
+    'footer.tagline': { id: 'Menghadirkan produk pertanian inovatif dan solusi nutrisi tanaman yang dirancang untuk membantu tanaman tumbuh lebih kuat, lebih sehat, dan lebih produktif.', en: 'Delivering innovative agricultural products and plant nutrition solutions designed to help crops grow stronger, healthier, and more productive.' },
     'footer.explore': { id: 'Jelajahi', en: 'Explore' },
     'footer.connect': { id: 'Terhubung', en: 'Connect' },
     'footer.addresses': { id: 'Alamat', en: 'Addresses' },
     'footer.email': { id: 'Email', en: 'Email' },
-    'footer.copyright': { id: 'Bene Pyto Tanijaya © 2026. Semua hak dilindungi.', en: 'Bene Pyto Tanijaya © 2026. All rights reserved.' },
+    'footer.copyright': { id: 'Bene Pyto Tani Jaya © 2026. Semua hak dilindungi.', en: 'Bene Pyto Tani Jaya © 2026. All rights reserved.' },
 
     'common.searchPlaceholder': { id: 'Cari berdasarkan judul atau tag', en: 'Search by title or tag' },
     'common.allTags': { id: 'Semua Tag', en: 'All Tags' },
@@ -52,7 +52,7 @@
     'index.products.viewAll': { id: 'Lihat Semua Produk', en: 'View All Products' },
 
     'index.about.title': { id: 'Memperkuat Hasil Panen di Seluruh Indonesia', en: 'Strengthening Harvests Across Indonesia' },
-    'index.about.mission': { id: 'Bene Pyto Tanijaya adalah produsen pupuk kimia dan solusi nutrisi tanaman asal Indonesia. Dipimpin oleh produk unggulan kami, BenSil+, kami membantu petani memperkuat tanaman, melawan penyakit, dan meningkatkan hasil panen. Misi kami adalah membangun masa depan pertanian yang lebih produktif, berkelanjutan, dan menguntungkan.', en: 'Bene Pyto Tanijaya is an Indonesian producer of chemical fertilizers and crop nutrition solutions. Led by our flagship product, BenSil+, we help farmers strengthen crops, resist disease, and increase yields. Our mission is to build a more productive, sustainable, and profitable future for agriculture.' },
+    'index.about.mission': { id: 'Bene Pyto Tani Jaya merupakan perusahaan agritech Indonesia yang menghadirkan produk dan solusi untuk mendukung kebutuhan budidaya tanaman. Melalui inovasi produk, edukasi, dan pendampingan, kami membantu petani menjaga kesehatan tanaman, meningkatkan produktivitas, dan membangun pertanian yang lebih berkelanjutan.', en: 'Bene Pyto Tani Jaya is an Indonesian agritech company delivering products and solutions to support crop cultivation needs. Through product innovation, education, and hands-on guidance, we help farmers maintain plant health, increase productivity, and build more sustainable agriculture.' },
     'index.about.stat1Title': { id: 'Tingkat Kepuasan Pelanggan', en: 'Customer Satisfaction Rate' },
     'index.about.stat1Desc': { id: 'Kami mengutamakan kebutuhan petani dengan menghadirkan pupuk yang andal untuk meningkatkan kesehatan tanaman dan membangun kepercayaan jangka panjang.', en: 'We prioritize farmer needs by delivering reliable fertilizers that improve crop health and build long-term trust.' },
     'index.about.stat2Title': { id: 'Tahun Pengalaman', en: 'Years of Experience' },
@@ -61,12 +61,13 @@
     'index.about.stat3Desc': { id: 'Mendukung petani di berbagai wilayah dengan solusi nutrisi tanaman yang membantu mereka tumbuh, berkembang, dan sukses.', en: 'Supporting farmers across regions with crop nutrition solutions that help them grow, scale, and succeed.' },
 
     'index.testimonials.badge': { id: 'Testimoni', en: 'Testimonials' },
-    'index.testimonials.title': { id: 'Kata Para Petani Tentang Bene Pyto Tanijaya', en: 'What Farmers Say About Bene Pyto Tanijaya' },
-    'index.testimonials.subtitle': { id: 'Kisah nyata dari petani yang menggunakan Bene Pyto Tanijaya untuk bertani lebih cerdas, meningkatkan efisiensi, dan mencapai hasil yang lebih baik di seluruh operasi pertanian mereka.', en: 'Real stories from farmers using Bene Pyto Tanijaya to grow smarter, improve efficiency, and achieve better results across their farming operations.' },
+    'index.testimonials.title': { id: 'Kata Para Petani Tentang Bene Pyto Tani Jaya', en: 'What Farmers Say About Bene Pyto Tani Jaya' },
+    'index.testimonials.subtitle': { id: 'Kisah nyata dari petani yang menggunakan Bene Pyto Tani Jaya untuk bertani lebih cerdas, meningkatkan efisiensi, dan mencapai hasil yang lebih baik di seluruh operasi pertanian mereka.', en: 'Real stories from farmers using Bene Pyto Tani Jaya to grow smarter, improve efficiency, and achieve better results across their farming operations.' },
 
     'index.locations.badge': { id: 'Lokasi', en: 'Locations' },
     'index.locations.title': { id: 'Tempat Produk Kami Dijual', en: 'Where Our Products Are Sold' },
-    'index.locations.subtitle': { id: 'Produk Bene Pyto Tanijaya menjangkau petani di kota-kota di seluruh Indonesia. Ketuk sebuah kota untuk membuka lokasinya di Google Maps.', en: 'Bene Pyto Tanijaya products reach farmers in cities across Indonesia. Tap a city to open its location on Google Maps.' },
+    'index.locations.subtitle': { id: 'Produk Bene Pyto Tani Jaya menjangkau petani di kota-kota di seluruh Indonesia. Ketuk sebuah kota untuk membuka lokasinya di Google Maps.', en: 'Bene Pyto Tani Jaya products reach farmers in cities across Indonesia. Tap a city to open its location on Google Maps.' },
+    'index.locations.openMaps': { id: 'Buka di Maps', en: 'Open in Maps' },
 
     'productList.breadcrumb': { id: 'Produk', en: 'Products' },
     'productList.badge': { id: 'Produk', en: 'Products' },
@@ -114,7 +115,7 @@
     'aboutUs.value6': { id: 'Fokus pada Kekuatan', en: 'Focus on Strengths' },
     'aboutUs.value6Desc': { id: 'Kami membangun dari apa yang kami kuasai dan mengarahkan energi kami ke tempat yang memberikan dampak terbesar.', en: 'We build on what we do best and put our energy where it makes the biggest difference.' },
     'aboutUs.teamBadge': { id: 'Tim Kami', en: 'Our Team' },
-    'aboutUs.teamTitle': { id: 'Kenali Orang-Orang di Balik Bene Pyto Tanijaya', en: 'Meet the People Behind Bene Pyto Tanijaya' },
+    'aboutUs.teamTitle': { id: 'Kenali Orang-Orang di Balik Bene Pyto Tani Jaya', en: 'Meet the People Behind Bene Pyto Tani Jaya' },
     'aboutUs.role1': { id: 'Direktur Utama', en: 'Chief Executive Officer' },
     'aboutUs.role2': { id: 'Manajer Gudang', en: 'Warehouse Manager' },
     'aboutUs.role3': { id: 'Asisten Lapangan', en: 'Field Assistant' },
