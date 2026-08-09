@@ -882,7 +882,7 @@
                   '</div>' +
                   '<div class="flex flex-col gap-5">' +
                     '<label class="block"><span class="text-label-l text-text-primary">' + pick(L.location) + '</span><input type="text" required class="mt-2 ' + inp + '"></label>' +
-                    '<label class="flex flex-col flex-1"><span class="text-label-l text-text-primary">' + pick(L.message) + '</span><textarea rows="5" required class="mt-2 flex-1 resize-none ' + inp + '"></textarea></label>' +
+                    '<label class="flex flex-col flex-1"><span class="text-label-l text-text-primary">' + pick(L.message) + '</span><textarea rows="5" class="mt-2 flex-1 resize-none ' + inp + '"></textarea></label>' +
                   '</div>' +
                 '</div>' +
                 '<button type="submit" class="w-full bg-primary-500 text-white text-label-l px-8 py-4 rounded-[9999px] mt-6">' + pick(L.submit) + '</button>' +
@@ -934,6 +934,21 @@
       modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.add('hidden'); });
       form.addEventListener('submit', (e) => {
         e.preventDefault();
+        const texts = form.querySelectorAll('input[type="text"]');
+        const name = texts[0] ? texts[0].value : '';
+        const location = texts[1] ? texts[1].value : '';
+        const dial = form.querySelector('select').value;
+        const tel = form.querySelector('input[type="tel"]').value.trim();
+        const email = form.querySelector('input[type="email"]').value;
+        const message = form.querySelector('textarea').value.trim();
+        let waMessage =
+          'Halo Bene Pyto Tani Jaya, saya ingin mendaftar sebagai agen.\n\n' +
+          'Nama: ' + name + '\n' +
+          'Telepon: ' + dial + ' ' + tel + '\n' +
+          'Email: ' + email + '\n' +
+          'Lokasi: ' + location;
+        if (message) waMessage += '\nPesan: ' + message;
+        window.open('https://wa.me/628561060042?text=' + encodeURIComponent(waMessage), '_blank', 'noopener');
         form.classList.add('hidden');
         successEl.classList.remove('hidden');
       });
