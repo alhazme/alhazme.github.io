@@ -103,9 +103,9 @@
   </div>
   <nav class="flex flex-col gap-6 text-label-l text-text-primary">
     <a href="index.html#home" data-i18n="nav.home">Beranda</a>
+    <a href="growing-practice-list.html" data-i18n="nav.growingPractice">Praktik Budidaya</a>
     <a href="product-list.html" data-i18n="nav.product">Produk</a>
     <a href="about-us.html" data-i18n="nav.aboutUs">Tentang Kami</a>
-    <a href="index.html#blog" data-i18n="nav.blog">Blog</a>
   </nav>
 </aside>
 
@@ -163,10 +163,6 @@
     <div id="variant-options" class="flex flex-wrap gap-4"></div>
   </div>
 
-  <div class="mt-6 flex items-baseline justify-end gap-3">
-    <a id="product-price" href="#" target="_blank" rel="noopener noreferrer" class="hidden inline-flex items-center gap-1.5 bg-primary text-white text-label-l px-5 py-3 rounded-[9999px]" data-i18n="productDetail.contactUs">Hubungi Kami</a>
-  </div>
-
   <div class="flex justify-end">
     <a id="whatsapp-cta" href="#" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center justify-center gap-2 w-full bg-primary-500 text-white text-label-l px-8 py-4 rounded-[9999px] mt-8">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.19c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.81-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.13-4.9-4.32-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.11 1-2.4.26-.29.58-.36.77-.36.19 0 .39 0 .55.01.18.01.42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.29-.13.57.17.28.75 1.24 1.62 2 1.11.99 2.05 1.3 2.33 1.44.28.14.44.12.6-.07.17-.19.72-.84.91-1.13.19-.28.38-.24.64-.14.26.1 1.68.79 1.97.94.28.14.47.21.54.33.07.13.07.72-.17 1.4Z"/></svg>
@@ -208,9 +204,9 @@
   <div class="grid md:grid-cols-2 gap-10 mb-16">
     <div>
       <p class="text-h4 font-extrabold mb-4">Bene Pyto Tani Jaya</p>
-      <p class="text-body-l text-text-secondary max-w-sm" data-i18n="footer.tagline">Menghadirkan produk pertanian inovatif dan solusi nutrisi tanaman yang dirancang untuk membantu tanaman tumbuh lebih kuat, lebih sehat, dan lebih produktif.</p>
+      <address class="not-italic text-body-l text-text-secondary max-w-sm leading-relaxed">Jalan Alpukat RT.07/RW.06<br>Sindangbarang, Bogor Barat<br>Kota Bogor, Jawa Barat<br>Indonesia 16117</address>
     </div>
-    <div class="grid grid-cols-3 gap-6">
+    <div class="grid grid-cols-2 gap-6">
       <div>
         <p class="text-label-l mb-4" data-i18n="footer.explore">Jelajahi</p>
         <ul class="space-y-3 text-body-m text-text-secondary">
@@ -227,15 +223,6 @@
           <li><a href="https://www.instagram.com/benepyto">Instagram</a></li>
           <li><a href="https://www.tiktok.com/@benetanijaya">Tiktok</a></li>
           <li><a href="https://www.youtube.com/@wangsatani.">Youtube</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="text-label-l mb-4" data-i18n="footer.addresses">Alamat</p>
-        <ul class="space-y-3 text-body-m text-text-secondary">
-          <li>Jalan Alpukat</li>
-          <li>RT.07/RW.06, Sindangbarang</li>
-          <li>Bogor Barat, Kota Bogor</li>
-          <li>Jawa Barat, Indonesia</li>
         </ul>
       </div>
     </div>
@@ -360,7 +347,7 @@
       tag: 'Agriculture',
       details: bensilPlusDetails,
       subtitle: { en: 'Beneficial Silica + Potassium', id: 'Benefisial Silika + Kalium' },
-      videoUrl: 'https://www.youtube.com/watch?v=r7bU3rS8bUo',
+      videoUrl: 'https://www.youtube.com/watch?v=Mp2LrwEOWAM',
       sizes: [
         {
           key: '1l',
@@ -429,7 +416,6 @@
       tag: 'Aquaculture',
       image: 'images/products/startbio.png',
       subtitle: { id: 'Bakteri Fototroph & Bahan Organik', en: 'Phototrophic Bacteria & Organic Matter' },
-      videoUrl: 'https://www.youtube.com/watch?v=r7bU3rS8bUo',
       description: { en: 'StartBio is a composition of beneficial bacteria that work synergistically in shrimp and fish pond environments to help achieve optimal water conditions.', id: 'StartBio merupakan komposisi bakteri menguntungkan yang bekerja secara sinergis pada lingkungan kolam udang dan ikan, sehingga kondisi optimum air tercapai.' },
       size: '20 gram (dose: 6 gram per 90 x 40 cm aquarium)',
       ingredients: ['Live nitrifying bacteria / probiotic starter culture'],
@@ -557,7 +543,6 @@
       tag: 'Agriculture',
       image: 'images/products/pusakahijau.png',
       subtitle: { id: 'Pupuk Makro Majemuk', en: 'Compound Macro Fertilizer' },
-      videoUrl: 'https://www.youtube.com/watch?v=r7bU3rS8bUo',
       description: { en: 'Pusaka Hijau is a compound macro fertilizer that supplies calcium, magnesium, and silica to support productivity, strengthen roots, and help meet the plant\'s nutritional needs.', id: 'Pusaka Hijau merupakan pupuk makro majemuk yang menyediakan kalsium, magnesium, dan silika untuk mendukung produktivitas, memperkuat perakaran, serta membantu memenuhi kebutuhan nutrisi tanaman.' },
       size: '800 gram',
       ingredients: ['CaO 40-47%', 'MgO 3%', 'SiO2 35-47%', 'Trace elements: Fe 0.19%, Mn 0.07%, Zn 0.04%'],
@@ -605,7 +590,6 @@
       tag: 'Agriculture',
       image: 'images/products/fusarigo.png',
       subtitle: { id: 'Pengendali Layu Fusarium', en: 'Fusarium Wilt Control' },
-      videoUrl: 'https://www.youtube.com/watch?v=r7bU3rS8bUo',
       description: { id: 'Fusarigo merupakan kombinasi Trichoderma harzianum dan Trichoderma asperellum yang membantu mengendalikan Layu Fusarium, menekan patogen tular tanah, serta mendukung kesehatan perakaran tanaman.', en: 'Fusarigo is a combination of Trichoderma harzianum and Trichoderma asperellum that helps control Fusarium wilt, suppress soil-borne pathogens, and support plant root health.' },
       size: '500 gram',
       ingredients: ['Trichoderma harzianum 7 x 10^7', 'Trichoderma asperellum 3 x 10^7'],
@@ -643,7 +627,6 @@
       tag: 'Agriculture',
       image: 'images/products/rizhoma-x.png',
       subtitle: { id: 'Pupuk Hayati PGPR', en: 'PGPR Biofertilizer' },
-      videoUrl: 'https://www.youtube.com/watch?v=r7bU3rS8bUo',
       description: { id: 'RhizoMaX merupakan pupuk hayati berbasis PGPR yang mengandung Bacillus polymyxa dan Pseudomonas fluorescens untuk mendukung kesehatan tanaman, pertumbuhan, dan ketahanan tanaman terhadap tekanan hama dan penyakit.', en: 'RhizoMaX is a PGPR-based biofertilizer containing Bacillus polymyxa and Pseudomonas fluorescens to support plant health, growth, and resistance to pest and disease pressure.' },
       size: '50 gram; 1000 gram',
       ingredients: ['Bacillus polymyxa', 'Pseudomonas fluorescens'],
@@ -724,14 +707,6 @@
     tag.className = 'inline-block ' + tagStyles[data.tag] + ' text-white text-label-m px-4 py-2 rounded-[9999px] mb-5';
 
     document.getElementById('product-title').textContent = data.name;
-
-    const priceEl = document.getElementById('product-price');
-    if (view.priceLabel === 'Contact Us') {
-      priceEl.href = 'https://api.whatsapp.com/send?phone=628561060042&text=' + encodeURIComponent('Halo Bene Pyto Tani Jaya, saya mau tanya produk ' + data.name);
-      priceEl.classList.remove('hidden');
-    } else {
-      priceEl.classList.add('hidden');
-    }
 
     const mainImage = document.getElementById('main-image');
     mainImage.src = view.image;
@@ -827,7 +802,7 @@
     container.classList.remove('hidden');
 
     const d = data.details;
-    const section = (heading, bodyHtml) => '<h2 class="text-h2 mt-6 mb-3">' + pick(heading) + '</h2>' + bodyHtml;
+    const section = (heading, bodyHtml) => '<h2 class="text-h5 mt-6 mb-4">' + pick(heading) + '</h2>' + bodyHtml;
 
     const paragraphs = (items) => items.map((p) =>
       '<p class="text-body-xl text-text-secondary leading-[1.5] mt-3">' + pick(p) + '</p>'
