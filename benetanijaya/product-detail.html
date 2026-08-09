@@ -943,7 +943,7 @@
     link.href = 'product-detail.html?slug=' + recSlug;
     link.setAttribute('aria-label', 'View ' + product.name);
     link.className = 'w-[240px] shrink-0 group block relative aspect-square rounded-[16px] bg-cover bg-center overflow-hidden transition-transform duration-300 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-700 focus-visible:ring-offset-2';
-    link.style.backgroundImage = "url('" + product.image + "')";
+    link.style.backgroundImage = "url('" + (product.image || (product.sizes && product.sizes[0] && product.sizes[0].image) || '') + "')";
 
     const gradient = document.createElement('div');
     gradient.className = 'absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent';
