@@ -634,599 +634,30 @@
 </section>
 
 <!-- Locations -->
-<section id="locations" class="max-w-7xl mx-auto px-6 py-20">
+ <section id="locations" class="max-w-7xl mx-auto px-6 py-20">
   <div class="flex flex-col gap-6 mb-10">
     <div class="w-full">
       <span class="inline-block border border-black/10 text-label-m px-4 py-2 rounded-[9999px] mb-5" data-i18n="index.locations.badge">Lokasi</span>
       <h2 class="text-h2 w-full" data-i18n="index.locations.title">Tempat Produk Kami Dijual</h2>
     </div>
-    <p class="w-full text-body-l text-text-secondary" data-i18n="index.locations.subtitle">Produk Bene Pyto Tani Jaya menjangkau petani di kota-kota di seluruh Indonesia. Ketuk sebuah kota untuk membuka lokasinya di Google Maps.</p>
+    <p class="w-full text-body-l text-text-secondary" data-i18n="index.locations.subtitle">Produk Bene Pyto Tani Jaya menjangkau petani di berbagai provinsi di seluruh Indonesia. Pilih sebuah kota untuk membuka lokasinya di Google Maps.</p>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Kembar Tani</p>
-          <p class="text-body-s text-text-tertiary">Aceh Tengah, Aceh</p>
-          <p class="text-body-s text-text-tertiary mt-2">Kec. Ketol, Aceh Tengah</p>
-        </div>
-        <a href="https://maps.app.goo.gl/qjXRo2qxCyswkfv28" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=4.7018889,96.7115&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Kembar Tani"></iframe>
-    </div>
+  <div id="province-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Sumber Tani</p>
-          <p class="text-body-s text-text-tertiary">Aceh Utara, Aceh</p>
-          <p class="text-body-s text-text-tertiary mt-2">Jl. Krueng Mane - Sawang, Dusun Lambayong Desa Riseh Tunong, Kp. Lambayong, Desa Riseh Tunong, Kec. Sawang, Kab. Aceh Utara, 24377</p>
-        </div>
-        <a href="https://maps.app.goo.gl/sYnSnC7LiqSP7Qep6" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
+  <div id="loc-modal" class="fixed inset-0 z-40 hidden items-center justify-center p-4">
+    <div id="loc-modal-backdrop" class="absolute inset-0 bg-black/50"></div>
+    <div class="relative bg-white rounded-[16px] w-full max-w-3xl max-h-[85vh] flex flex-col shadow-xl">
+      <div class="flex items-center justify-between gap-4 p-5 border-b border-[#E5E5E5]">
+        <h3 id="loc-modal-title" class="text-h5"></h3>
+        <button type="button" id="loc-modal-close" aria-label="Tutup" class="w-9 h-9 rounded-full text-text-secondary hover:bg-black/5 flex items-center justify-center shrink-0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
       </div>
-      <iframe src="https://maps.google.com/maps?q=5.2046389,96.9227222&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Sumber Tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Toko Pupuk</p>
-          <p class="text-body-s text-text-tertiary">Kab. Pidie, Aceh</p>
-          <p class="text-body-s text-text-tertiary mt-2">Dusun Bambi Desa Bale Rastong Kec. Peukan Baro Kab. Pidie Aceh</p>
-        </div>
-        <a href="https://maps.app.goo.gl/GGpck5piv5uqqH2a9" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
+      <div class="p-5 border-b border-[#E5E5E5]">
+        <input id="loc-search" type="search" data-i18n-placeholder="index.locations.searchPlaceholder" placeholder="Cari nama atau alamat" class="w-full rounded-[9999px] border border-[#E5E5E5] px-4 py-2.5 text-body-m focus:outline-none focus:ring-2 focus:ring-primary-500">
       </div>
-      <iframe src="https://maps.google.com/maps?q=5.34097,95.968029&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Toko Pupuk"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Zahrah</p>
-          <p class="text-body-s text-text-tertiary">Sidikalang, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Jl. Persada No.240, Huta Rakyat, Kec. Sidikalang, Kabupaten Dairi, Sumatera Utara 22213</p>
-        </div>
-        <a href="https://www.google.com/maps/@2.7541651,98.2903888,3a,75y,8.07h,88.76t/data=!3m7!1e1!3m5!1snOe0x-3jpvRkD85qVmFIBQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D1.242953484084012%26panoid%3DnOe0x-3jpvRkD85qVmFIBQ%26yaw%3D8.07419369809935!7i16384!8i8192?entry=ttu&amp;g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=2.7541651,98.2903888&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Zahrah"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Agung Tani</p>
-          <p class="text-body-s text-text-tertiary">Sunggal, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Jl. Sei Mencirim No.9, Sei Mencirim, Kec. Sunggal, Kabupaten Deli Serdang, Sumatera Utara 20351</p>
-        </div>
-        <a href="https://maps.app.goo.gl/fpQ9oojXofJELW687" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=3.5605206,98.5645593&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Agung Tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Rahmat Tani</p>
-          <p class="text-body-s text-text-tertiary">Percut Sei Tuan, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">MQJ2+4WG, Saentis, Percut Sei Tuan, Deli Serdang Regency, North Sumatra 20371</p>
-        </div>
-        <a href="https://www.google.com/maps/@3.679375,98.7512891,3a,75y,97.92h,89.22t/data=!3m7!1e1!3m5!1sRIJrUHoD3ecRHgSfVEEyrw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0.7773864444956189%26panoid%3DRIJrUHoD3ecRHgSfVEEyrw%26yaw%3D97.91618841727126!7i16384!8i8192?entry=ttu&amp;g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=3.679375,98.7512891&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Rahmat Tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Zean Agro</p>
-          <p class="text-body-s text-text-tertiary">Namorambe, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Gunung Berita, Namorambe, Deli Serdang Regency, North Sumatra 20356</p>
-        </div>
-        <a href="https://www.google.com/maps/place/Ud+Nata+Tani/@3.4456454,98.6534447,3a,75y,130.31h,74.72t/data=!3m7!1e1!3m5!1sxYiZeNr-2U8gGEBqVehdCA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D15.283365194121785%26panoid%3DxYiZeNr-2U8gGEBqVehdCA%26yaw%3D130.31467659341658!7i16384!8i8192!4m15!1m8!3m7!1s0x30312339cdcd0f8d:0x90d876f6aca8dc00!2sGunung+Berita,+Namorambe,+Deli+Serdang+Regency,+North+Sumatra!3b1!8m2!3d3.4394183!4d98.6476835!16s%2Fg%2F1hc0hntmm!3m5!1s0x303123b8e6933c6b:0x93ebfe7d78c94588!8m2!3d3.4456605!4d98.6536033!16s%2Fg%2F11fpgh7pt7?entry=ttu&amp;g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=3.4394183,98.6476835&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Zean Agro"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Darma Tani</p>
-          <p class="text-body-s text-text-tertiary">Pancur Batu, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Jl. Sei Mencirim, Suka Raya, Kec. Pancur Batu, Kabupaten Deli Serdang, Sumatera Utara 20351</p>
-        </div>
-        <a href="https://www.google.com/maps/place/Toko+Pertanian+UD.+Agung+Tani/@3.5720192,98.5840196,3a,90y,139.94h,85.47t/data=!3m7!1e1!3m5!1scNwh5Y6p1UlzQuR5O4QgfA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D4.5292682356590035%26panoid%3DcNwh5Y6p1UlzQuR5O4QgfA%26yaw%3D139.93904661275627!7i16384!8i8192!4m6!3m5!1s0x30312f652b08ec69:0xa558c1c0134f62d6!8m2!3d3.5719581!4d98.584069!16s%2Fg%2F11gxzsrbgx?entry=ttu&amp;g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=3.5719581,98.584069&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Darma Tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Toko Pupuk Gudang</p>
-          <p class="text-body-s text-text-tertiary">Garut, Jawa Barat</p>
-          <p class="text-body-s text-text-tertiary mt-2">Kec. Malangbong, Garut</p>
-        </div>
-        <a href="https://maps.app.goo.gl/ARB3xRnGx3bWLpAP6" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-7.057608,108.062399&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Toko Pupuk Gudang"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Tani jaya</p>
-          <p class="text-body-s text-text-tertiary">Garut, Jawa Barat</p>
-          <p class="text-body-s text-text-tertiary mt-2">kp cidungus RT 001 RW 004 desa/kecamatan malangbong Kabupaten Garut jabar</p>
-        </div>
-        <a href="https://maps.app.goo.gl/maoMhAcjdupchAkU9" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-7.1529167,107.9507778&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Tani jaya"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Anang tani</p>
-          <p class="text-body-s text-text-tertiary">Indramayu, Jawa Barat</p>
-          <p class="text-body-s text-text-tertiary mt-2">Sukasari Blok Dongkal, Sukasari, Kec. Arahan, Kabupaten Indramayu, Jawa Barat 45259</p>
-        </div>
-        <a href="https://maps.app.goo.gl/2r8qNTsEY84VF7Sx6" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-6.3834,108.267998&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Anang tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Sumber Rejeki</p>
-          <p class="text-body-s text-text-tertiary">Kab. Sukabumi, Jawa Barat</p>
-          <p class="text-body-s text-text-tertiary mt-2">Desa Ambar jaya Kp somang RT 01 RW 02 Kecamatan ciambar kabupaten sukabumi jabar</p>
-        </div>
-        <a href="https://maps.app.goo.gl/FZ8AvV4AepU17hK88" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-6.792046,106.786832&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Sumber Rejeki"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. karya tani</p>
-          <p class="text-body-s text-text-tertiary">Boyolali, Jawa Tengah</p>
-          <p class="text-body-s text-text-tertiary mt-2">Desa Kembang, Kec. Teras Kab. Boyolali Jateng</p>
-        </div>
-        <a href="https://maps.app.goo.gl/8Eg8QhKtwF5q2TKR7" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=3.2984319,99.4728244&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. karya tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Tani jaya</p>
-          <p class="text-body-s text-text-tertiary">Demak, Jawa Tengah</p>
-          <p class="text-body-s text-text-tertiary mt-2">Dusun Bakalan, RT 03 RW 05, Desa Ngelowetan, Kec. Mijen, Kab. Demak, Jawa Tengah</p>
-        </div>
-        <a href="https://maps.app.goo.gl/JrLUFxxXTFaAbhj4A" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-6.846856,110.719751&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Tani jaya"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Agro Sari Rejeki Indonesia</p>
-          <p class="text-body-s text-text-tertiary">Banyuwangi, Jawa Timur</p>
-          <p class="text-body-s text-text-tertiary mt-2">Pasembon rt 5 rw 5 desa sambirejo kecamatan bangorejo kab banyuwangi</p>
-        </div>
-        <a href="https://maps.app.goo.gl/ESADFuD8zz862fLf7" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-8.508006,114.153333&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Agro Sari Rejeki Indonesia"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Sumber agung</p>
-          <p class="text-body-s text-text-tertiary">Nganjuk, Jawa Timur</p>
-          <p class="text-body-s text-text-tertiary mt-2">Dusun/Kampung Desa mbagor wetan RT/RW Rt 01 RW 02 Kecamatan Sukomoro Kabupaten Nganjuk</p>
-        </div>
-        <a href="https://maps.app.goo.gl/PhdhjcTds4iNcXvz8" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-7.583407,111.93954&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Sumber agung"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Andika tani</p>
-          <p class="text-body-s text-text-tertiary">Nganjuk, Jawa Timur</p>
-          <p class="text-body-s text-text-tertiary mt-2">Ds Petak Damai RT05, Kec Bagor, Kab Nganjuk, Jawa Timur</p>
-        </div>
-        <a href="https://maps.app.goo.gl/YhMrZYPyaSeDg6h97" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-7.5490167,111.829807&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Andika tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Agen pupuk</p>
-          <p class="text-body-s text-text-tertiary">Kota Batu, Jawa Timur</p>
-          <p class="text-body-s text-text-tertiary mt-2">Krajan RT 4/ Rw 5 Desa Torongrejo Kec. Junrejo Kota Batu</p>
-        </div>
-        <a href="https://maps.app.goo.gl/LxVYwoHptYnLYGoK8" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-6.806398,106.798528&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Agen pupuk"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Pilar tani</p>
-          <p class="text-body-s text-text-tertiary">Kubu Raya, Kalimantan Barat</p>
-          <p class="text-body-s text-text-tertiary mt-2">Dusun Bale, Desa Durian Kec. Sungai Ambawang Kab. Kubu Raya Kalbar</p>
-        </div>
-        <a href="https://maps.app.goo.gl/35nUDnKpea51dzoi8" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-0.059428,109.385397&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Pilar tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Lingga Jaya Tani</p>
-          <p class="text-body-s text-text-tertiary">Merek, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">WGWC+HW Jl Merek-Sidikalang , Merek, Karo Regency, North Sumatra</p>
-        </div>
-        <a href="https://maps.app.goo.gl/bn8qeqP9UYVtgPod6" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=2.9463911,98.5221172&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Lingga Jaya Tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Pejoresa</p>
-          <p class="text-body-s text-text-tertiary">Berastagi, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Simp.Korpri (depan dinas sosial, Jl. Letjen Jamin Ginting, Raya, Kec. Berastagi, Kabupaten Karo, Sumatera Utara 22152</p>
-        </div>
-        <a href="https://www.google.com/maps/@3.1645154,98.4993935,3a,75y,346.21h,76.87t/data=!3m7!1e1!3m5!1sALx7iaDp0-vwMgBWD_keaQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D13.127848683615824%26panoid%3DALx7iaDp0-vwMgBWD_keaQ%26yaw%3D346.20608150370515!7i16384!8i8192?entry=ttu&amp;g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=3.1645154,98.4993935&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Pejoresa"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. BKS Agro</p>
-          <p class="text-body-s text-text-tertiary">Berastagi, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">5GH6+F95, Jl. Letjen Jamin Ginting, Rumah Berastagi, Kec. Berastagi, Kabupaten Karo, Sumatera Utara 22152</p>
-        </div>
-        <a href="https://www.google.com/maps/place/UD.+SINUHAJI/@3.1476675,98.5074824,20z/data=!4m15!1m8!3m7!1s0x30310034b87b0439:0x5b5ceb938e9f6f1d!2sJl.+Letjen+Jamin+Ginting,+Kabupaten+Karo,+Sumatera+Utara!3b1!8m2!3d3.147118!4d98.507439!16s%2Fg%2F1hm25xng3!3m5!1s0x303103fa057cfa07:0x9c8caca6ba348fb1!8m2!3d3.1476196!4d98.5075727!16s%2Fg%2F11lllfk3fq?entry=ttu&amp;g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=3.147118,98.507439&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. BKS Agro"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Destreisa</p>
-          <p class="text-body-s text-text-tertiary">Sei Bingai, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">FFJV+R3X, Pasar VIII Namu Terasi, Sei Bingai, Langkat Regency, North Sumatra 20771</p>
-        </div>
-        <a href="https://www.google.com/maps/place/FFJV%2BR3X,+Ps.+VIII+Namu+Terasi,+Kec.+Sei+Bingai,+Kabupaten+Langkat,+Sumatera+Utara/@3.4819191,98.4926405,3a,23.7y,45.52h,90.08t/data=!3m7!1e1!3m5!1svuNvzwypNB3d9CPEWRgqxg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-0.08062023609238622%26panoid%3DvuNvzwypNB3d9CPEWRgqxg%26yaw%3D45.51595194318702!7i16384!8i8192!4m5!3m4!1s0x3031276864c0ecf9:0x53a17f9769ec91e6!8m2!3d3.4821125!4d98.4927344?entry=ttu&amp;g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=3.4821125,98.4927344&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Destreisa"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Hasil Tani</p>
-          <p class="text-body-s text-text-tertiary">Siantar Marimbun, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Jl. DI Panjaitan No.23, Nagahuta Tim., Kec. Siantar Marimbun, Kota Pematang Siantar, Sumatera Utara 21126</p>
-        </div>
-        <a href="https://maps.app.goo.gl/XPR3VM3WHe8UuTZU6" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=2.939496,99.049635&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Hasil Tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Bandar Jaya</p>
-          <p class="text-body-s text-text-tertiary">Purba, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Jl. Saribu Dolok Tiga Runggu, Purba, Simalungun Regency, North Sumatra 21165</p>
-        </div>
-        <a href="https://maps.app.goo.gl/XcY32XGQ8ufbwkSP7" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=2.9321348,98.7896307&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Bandar Jaya"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Jaya Tani</p>
-          <p class="text-body-s text-text-tertiary">Silimakuta, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Jl. Sutomo No.19, Seribu Dolok, Kec. Silimakuta, Kabupaten Simalungun, Sumatera Utara 21167</p>
-        </div>
-        <a href="https://maps.app.goo.gl/vdkUjGuPKmzZJDxJ6" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=3.5943791,98.6830688&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Jaya Tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Sitepu</p>
-          <p class="text-body-s text-text-tertiary">Purba, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">WJ7V+QR Purba Sipinggan, Purba, Simalungun Regency, North Sumatra</p>
-        </div>
-        <a href="https://www.google.com/maps/@2.9140162,98.6447869,3a,90y,37.55h,75.67t/data=!3m7!1e1!3m5!1sGScUwM7u62Nf2HkhbE4nPQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D14.327617677044103%26panoid%3DGScUwM7u62Nf2HkhbE4nPQ%26yaw%3D37.54677614584817!7i16384!8i8192?entry=ttu&amp;g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=2.9140162,98.6447869&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Sitepu"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Toko berkah tani</p>
-          <p class="text-body-s text-text-tertiary">Enrekang, Sulawesi Selatan</p>
-          <p class="text-body-s text-text-tertiary mt-2">Ummu Muqbil toko berkah tani, Dusun/Kampung paje Desa parinding RT/RW Kec. baraka Kab. enrekang</p>
-        </div>
-        <a href="https://maps.app.goo.gl/Nf8KCJq47eRejvV36" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-3.3959268,119.9162276&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Toko berkah tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Gudang pupuk Chelsea</p>
-          <p class="text-body-s text-text-tertiary">Enrekang, Sulawesi Selatan</p>
-          <p class="text-body-s text-text-tertiary mt-2">Jl. Sungai Mata Allo, Puserren, Kec. Enrekang, Kabupaten Enrekang, Sulawesi Selatan 91711</p>
-        </div>
-        <a href="https://maps.app.goo.gl/vgEcKPBxtL9sCQHz5" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-3.55725,119.777&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Gudang pupuk Chelsea"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Kios pupuk</p>
-          <p class="text-body-s text-text-tertiary">Minahasa Tenggara, Sulawesi Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Jln Tolebeng, Jaga IV, Ds Tombatu 3, Kec Tombatu Utara, Kab. Minahasa Tenggara</p>
-        </div>
-        <a href="https://maps.app.goo.gl/UJoK5Z2wGxx8egjm9" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=1.0431033,124.6852441&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Kios pupuk"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Agen pupuk</p>
-          <p class="text-body-s text-text-tertiary">Solok, Sumatera Barat</p>
-          <p class="text-body-s text-text-tertiary mt-2">Dusun Lipek Pageh, Kec. Lembah Gumanti, Kab. Solok, Sumatera Barat</p>
-        </div>
-        <a href="https://maps.app.goo.gl/gaLgWRqXNwL3gnHy9" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-1.038419,100.801067&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Agen pupuk"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Anugrah</p>
-          <p class="text-body-s text-text-tertiary">Simalungun, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Jl. Merdeka, Seribu Dolok, Kec. Silimakuta, Kabupaten Simalungun, Sumatera Utara 21167</p>
-        </div>
-        <a href="https://maps.app.goo.gl/cLDLJzDPLkjebZpEA" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=2.9405233,98.6121349&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Anugrah"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD Maju Tani</p>
-          <p class="text-body-s text-text-tertiary">Batubara, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Kampung Lima Desa Gambus Laut Kec. Lima Puluh Pesisir Kab, Batu Bara Sumut</p>
-        </div>
-        <a href="https://maps.app.goo.gl/gFZPcsemwzvWQ2EY7" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=3.2984319,99.4728244&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD Maju Tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">El. Tani</p>
-          <p class="text-body-s text-text-tertiary">Dairi, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Paropo 1, Kec. Silahsabungan</p>
-        </div>
-        <a href="https://maps.app.goo.gl/PynZUMNNdnCNFn7e9" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=2.8526399,98.5248885&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="El. Tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Maju tani</p>
-          <p class="text-body-s text-text-tertiary">Deli Serdang, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Dusun 1, Desa Pagar Jati, Kec Lubuk Pakam, Kab Deli Serdang</p>
-        </div>
-        <a href="https://maps.app.goo.gl/bxSQ8zYgVHpT77Kf6" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=3.560655,98.878259&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Maju tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Agen pupuk</p>
-          <p class="text-body-s text-text-tertiary">Karo, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Desa Lingga Julu RT/RW - Kecamatan Simpang Empat Kabupaten Karo sumut</p>
-        </div>
-        <a href="https://maps.app.goo.gl/fby9bXiLmsysiFmCA" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=3.164281,98.482655&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Agen pupuk"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Agen pupuk</p>
-          <p class="text-body-s text-text-tertiary">Pematang Siantar, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Dusun/Kampung Desa jl cemara no 47 kel. Sukaraja, Kecamatan siantar marihat Kota pemajam, Siantar Sumut</p>
-        </div>
-        <a href="https://maps.app.goo.gl/Ud9rAVuZhoHeaD3H7" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=2.95598,99.070842&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Agen pupuk"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">UD. Diera Tani</p>
-          <p class="text-body-s text-text-tertiary">Tapanuli Utara, Sumatera Utara</p>
-          <p class="text-body-s text-text-tertiary mt-2">Desa Paniaran, Kec. Siborongborong</p>
-        </div>
-        <a href="https://maps.app.goo.gl/8zjAr8dtvPNoZzku8" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=2.177973,98.983116&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="UD. Diera Tani"></iframe>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">
-      <div class="flex flex-col gap-2 md:w-1/2">
-        <span class="w-9 h-9 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div>
-          <p class="text-label-l">Toko Ratu Tani</p>
-          <p class="text-body-s text-text-tertiary">Enrekang, Sulawesi Selatan</p>
-          <p class="text-body-s text-text-tertiary mt-2">MRGF+3HR, Kambiolangi, Alla, Enrekang Regency, South Sulawesi 91754</p>
-        </div>
-        <a href="https://www.google.com/maps?q=-3.324878,119.823846" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2" data-i18n="index.locations.openMaps">Buka di Maps</a>
-      </div>
-      <iframe src="https://maps.google.com/maps?q=-3.324878,119.823846&amp;z=14&amp;output=embed" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="Toko Ratu Tani"></iframe>
+      <div id="loc-list" class="overflow-y-auto p-5 flex flex-col gap-4"></div>
     </div>
   </div>
 </section>
@@ -1313,6 +744,75 @@
 </script>
 
 <script src="js/i18n.js"></script>
+
+<script>
+(function () {
+  var LOCATIONS = [{"name":"UD. Kembar Tani","city":"Aceh Tengah, Aceh","street":"Kec. Ketol, Aceh Tengah","map":"https://maps.app.goo.gl/qjXRo2qxCyswkfv28","embed":"https://maps.google.com/maps?q=4.7018889,96.7115&z=14&output=embed"},{"name":"Sumber Tani","city":"Aceh Utara, Aceh","street":"Jl. Krueng Mane - Sawang, Dusun Lambayong Desa Riseh Tunong, Kp. Lambayong, Desa Riseh Tunong, Kec. Sawang, Kab. Aceh Utara, 24377","map":"https://maps.app.goo.gl/sYnSnC7LiqSP7Qep6","embed":"https://maps.google.com/maps?q=5.2046389,96.9227222&z=14&output=embed"},{"name":"Toko Pupuk","city":"Kab. Pidie, Aceh","street":"Dusun Bambi Desa Bale Rastong Kec. Peukan Baro Kab. Pidie Aceh","map":"https://maps.app.goo.gl/GGpck5piv5uqqH2a9","embed":"https://maps.google.com/maps?q=5.34097,95.968029&z=14&output=embed"},{"name":"UD. Zahrah","city":"Sidikalang, Sumatera Utara","street":"Jl. Persada No.240, Huta Rakyat, Kec. Sidikalang, Kabupaten Dairi, Sumatera Utara 22213","map":"https://www.google.com/maps/@2.7541651,98.2903888,3a,75y,8.07h,88.76t/data=!3m7!1e1!3m5!1snOe0x-3jpvRkD85qVmFIBQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D1.242953484084012%26panoid%3DnOe0x-3jpvRkD85qVmFIBQ%26yaw%3D8.07419369809935!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D","embed":"https://maps.google.com/maps?q=2.7541651,98.2903888&z=14&output=embed"},{"name":"UD. Agung Tani","city":"Sunggal, Sumatera Utara","street":"Jl. Sei Mencirim No.9, Sei Mencirim, Kec. Sunggal, Kabupaten Deli Serdang, Sumatera Utara 20351","map":"https://maps.app.goo.gl/fpQ9oojXofJELW687","embed":"https://maps.google.com/maps?q=3.5605206,98.5645593&z=14&output=embed"},{"name":"UD. Rahmat Tani","city":"Percut Sei Tuan, Sumatera Utara","street":"MQJ2+4WG, Saentis, Percut Sei Tuan, Deli Serdang Regency, North Sumatra 20371","map":"https://www.google.com/maps/@3.679375,98.7512891,3a,75y,97.92h,89.22t/data=!3m7!1e1!3m5!1sRIJrUHoD3ecRHgSfVEEyrw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0.7773864444956189%26panoid%3DRIJrUHoD3ecRHgSfVEEyrw%26yaw%3D97.91618841727126!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D","embed":"https://maps.google.com/maps?q=3.679375,98.7512891&z=14&output=embed"},{"name":"UD. Zean Agro","city":"Namorambe, Sumatera Utara","street":"Gunung Berita, Namorambe, Deli Serdang Regency, North Sumatra 20356","map":"https://www.google.com/maps/place/Ud+Nata+Tani/@3.4456454,98.6534447,3a,75y,130.31h,74.72t/data=!3m7!1e1!3m5!1sxYiZeNr-2U8gGEBqVehdCA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D15.283365194121785%26panoid%3DxYiZeNr-2U8gGEBqVehdCA%26yaw%3D130.31467659341658!7i16384!8i8192!4m15!1m8!3m7!1s0x30312339cdcd0f8d:0x90d876f6aca8dc00!2sGunung+Berita,+Namorambe,+Deli+Serdang+Regency,+North+Sumatra!3b1!8m2!3d3.4394183!4d98.6476835!16s%2Fg%2F1hc0hntmm!3m5!1s0x303123b8e6933c6b:0x93ebfe7d78c94588!8m2!3d3.4456605!4d98.6536033!16s%2Fg%2F11fpgh7pt7?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D","embed":"https://maps.google.com/maps?q=3.4394183,98.6476835&z=14&output=embed"},{"name":"UD. Darma Tani","city":"Pancur Batu, Sumatera Utara","street":"Jl. Sei Mencirim, Suka Raya, Kec. Pancur Batu, Kabupaten Deli Serdang, Sumatera Utara 20351","map":"https://www.google.com/maps/place/Toko+Pertanian+UD.+Agung+Tani/@3.5720192,98.5840196,3a,90y,139.94h,85.47t/data=!3m7!1e1!3m5!1scNwh5Y6p1UlzQuR5O4QgfA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D4.5292682356590035%26panoid%3DcNwh5Y6p1UlzQuR5O4QgfA%26yaw%3D139.93904661275627!7i16384!8i8192!4m6!3m5!1s0x30312f652b08ec69:0xa558c1c0134f62d6!8m2!3d3.5719581!4d98.584069!16s%2Fg%2F11gxzsrbgx?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D","embed":"https://maps.google.com/maps?q=3.5719581,98.584069&z=14&output=embed"},{"name":"Toko Pupuk Gudang","city":"Garut, Jawa Barat","street":"Kec. Malangbong, Garut","map":"https://maps.app.goo.gl/ARB3xRnGx3bWLpAP6","embed":"https://maps.google.com/maps?q=-7.057608,108.062399&z=14&output=embed"},{"name":"Tani jaya","city":"Garut, Jawa Barat","street":"kp cidungus RT 001 RW 004 desa/kecamatan malangbong Kabupaten Garut jabar","map":"https://maps.app.goo.gl/maoMhAcjdupchAkU9","embed":"https://maps.google.com/maps?q=-7.1529167,107.9507778&z=14&output=embed"},{"name":"Anang tani","city":"Indramayu, Jawa Barat","street":"Sukasari Blok Dongkal, Sukasari, Kec. Arahan, Kabupaten Indramayu, Jawa Barat 45259","map":"https://maps.app.goo.gl/2r8qNTsEY84VF7Sx6","embed":"https://maps.google.com/maps?q=-6.3834,108.267998&z=14&output=embed"},{"name":"Sumber Rejeki","city":"Kab. Sukabumi, Jawa Barat","street":"Desa Ambar jaya Kp somang RT 01 RW 02 Kecamatan ciambar kabupaten sukabumi jabar","map":"https://maps.app.goo.gl/FZ8AvV4AepU17hK88","embed":"https://maps.google.com/maps?q=-6.792046,106.786832&z=14&output=embed"},{"name":"UD. karya tani","city":"Boyolali, Jawa Tengah","street":"Desa Kembang, Kec. Teras Kab. Boyolali Jateng","map":"https://maps.app.goo.gl/8Eg8QhKtwF5q2TKR7","embed":"https://maps.google.com/maps?q=3.2984319,99.4728244&z=14&output=embed"},{"name":"Tani jaya","city":"Demak, Jawa Tengah","street":"Dusun Bakalan, RT 03 RW 05, Desa Ngelowetan, Kec. Mijen, Kab. Demak, Jawa Tengah","map":"https://maps.app.goo.gl/JrLUFxxXTFaAbhj4A","embed":"https://maps.google.com/maps?q=-6.846856,110.719751&z=14&output=embed"},{"name":"Agro Sari Rejeki Indonesia","city":"Banyuwangi, Jawa Timur","street":"Pasembon rt 5 rw 5 desa sambirejo kecamatan bangorejo kab banyuwangi","map":"https://maps.app.goo.gl/ESADFuD8zz862fLf7","embed":"https://maps.google.com/maps?q=-8.508006,114.153333&z=14&output=embed"},{"name":"Sumber agung","city":"Nganjuk, Jawa Timur","street":"Dusun/Kampung Desa mbagor wetan RT/RW Rt 01 RW 02 Kecamatan Sukomoro Kabupaten Nganjuk","map":"https://maps.app.goo.gl/PhdhjcTds4iNcXvz8","embed":"https://maps.google.com/maps?q=-7.583407,111.93954&z=14&output=embed"},{"name":"Andika tani","city":"Nganjuk, Jawa Timur","street":"Ds Petak Damai RT05, Kec Bagor, Kab Nganjuk, Jawa Timur","map":"https://maps.app.goo.gl/YhMrZYPyaSeDg6h97","embed":"https://maps.google.com/maps?q=-7.5490167,111.829807&z=14&output=embed"},{"name":"Agen pupuk","city":"Kota Batu, Jawa Timur","street":"Krajan RT 4/ Rw 5 Desa Torongrejo Kec. Junrejo Kota Batu","map":"https://maps.app.goo.gl/LxVYwoHptYnLYGoK8","embed":"https://maps.google.com/maps?q=-6.806398,106.798528&z=14&output=embed"},{"name":"Pilar tani","city":"Kubu Raya, Kalimantan Barat","street":"Dusun Bale, Desa Durian Kec. Sungai Ambawang Kab. Kubu Raya Kalbar","map":"https://maps.app.goo.gl/35nUDnKpea51dzoi8","embed":"https://maps.google.com/maps?q=-0.059428,109.385397&z=14&output=embed"},{"name":"UD. Lingga Jaya Tani","city":"Merek, Sumatera Utara","street":"WGWC+HW Jl Merek-Sidikalang , Merek, Karo Regency, North Sumatra","map":"https://maps.app.goo.gl/bn8qeqP9UYVtgPod6","embed":"https://maps.google.com/maps?q=2.9463911,98.5221172&z=14&output=embed"},{"name":"UD. Pejoresa","city":"Berastagi, Sumatera Utara","street":"Simp.Korpri (depan dinas sosial, Jl. Letjen Jamin Ginting, Raya, Kec. Berastagi, Kabupaten Karo, Sumatera Utara 22152","map":"https://www.google.com/maps/@3.1645154,98.4993935,3a,75y,346.21h,76.87t/data=!3m7!1e1!3m5!1sALx7iaDp0-vwMgBWD_keaQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D13.127848683615824%26panoid%3DALx7iaDp0-vwMgBWD_keaQ%26yaw%3D346.20608150370515!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D","embed":"https://maps.google.com/maps?q=3.1645154,98.4993935&z=14&output=embed"},{"name":"UD. BKS Agro","city":"Berastagi, Sumatera Utara","street":"5GH6+F95, Jl. Letjen Jamin Ginting, Rumah Berastagi, Kec. Berastagi, Kabupaten Karo, Sumatera Utara 22152","map":"https://www.google.com/maps/place/UD.+SINUHAJI/@3.1476675,98.5074824,20z/data=!4m15!1m8!3m7!1s0x30310034b87b0439:0x5b5ceb938e9f6f1d!2sJl.+Letjen+Jamin+Ginting,+Kabupaten+Karo,+Sumatera+Utara!3b1!8m2!3d3.147118!4d98.507439!16s%2Fg%2F1hm25xng3!3m5!1s0x303103fa057cfa07:0x9c8caca6ba348fb1!8m2!3d3.1476196!4d98.5075727!16s%2Fg%2F11lllfk3fq?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D","embed":"https://maps.google.com/maps?q=3.147118,98.507439&z=14&output=embed"},{"name":"UD. Destreisa","city":"Sei Bingai, Sumatera Utara","street":"FFJV+R3X, Pasar VIII Namu Terasi, Sei Bingai, Langkat Regency, North Sumatra 20771","map":"https://www.google.com/maps/place/FFJV%2BR3X,+Ps.+VIII+Namu+Terasi,+Kec.+Sei+Bingai,+Kabupaten+Langkat,+Sumatera+Utara/@3.4819191,98.4926405,3a,23.7y,45.52h,90.08t/data=!3m7!1e1!3m5!1svuNvzwypNB3d9CPEWRgqxg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-0.08062023609238622%26panoid%3DvuNvzwypNB3d9CPEWRgqxg%26yaw%3D45.51595194318702!7i16384!8i8192!4m5!3m4!1s0x3031276864c0ecf9:0x53a17f9769ec91e6!8m2!3d3.4821125!4d98.4927344?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D","embed":"https://maps.google.com/maps?q=3.4821125,98.4927344&z=14&output=embed"},{"name":"UD. Hasil Tani","city":"Siantar Marimbun, Sumatera Utara","street":"Jl. DI Panjaitan No.23, Nagahuta Tim., Kec. Siantar Marimbun, Kota Pematang Siantar, Sumatera Utara 21126","map":"https://maps.app.goo.gl/XPR3VM3WHe8UuTZU6","embed":"https://maps.google.com/maps?q=2.939496,99.049635&z=14&output=embed"},{"name":"UD. Bandar Jaya","city":"Purba, Sumatera Utara","street":"Jl. Saribu Dolok Tiga Runggu, Purba, Simalungun Regency, North Sumatra 21165","map":"https://maps.app.goo.gl/XcY32XGQ8ufbwkSP7","embed":"https://maps.google.com/maps?q=2.9321348,98.7896307&z=14&output=embed"},{"name":"UD. Jaya Tani","city":"Silimakuta, Sumatera Utara","street":"Jl. Sutomo No.19, Seribu Dolok, Kec. Silimakuta, Kabupaten Simalungun, Sumatera Utara 21167","map":"https://maps.app.goo.gl/vdkUjGuPKmzZJDxJ6","embed":"https://maps.google.com/maps?q=3.5943791,98.6830688&z=14&output=embed"},{"name":"UD. Sitepu","city":"Purba, Sumatera Utara","street":"WJ7V+QR Purba Sipinggan, Purba, Simalungun Regency, North Sumatra","map":"https://www.google.com/maps/@2.9140162,98.6447869,3a,90y,37.55h,75.67t/data=!3m7!1e1!3m5!1sGScUwM7u62Nf2HkhbE4nPQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D14.327617677044103%26panoid%3DGScUwM7u62Nf2HkhbE4nPQ%26yaw%3D37.54677614584817!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D","embed":"https://maps.google.com/maps?q=2.9140162,98.6447869&z=14&output=embed"},{"name":"Toko berkah tani","city":"Enrekang, Sulawesi Selatan","street":"Ummu Muqbil toko berkah tani, Dusun/Kampung paje Desa parinding RT/RW Kec. baraka Kab. enrekang","map":"https://maps.app.goo.gl/Nf8KCJq47eRejvV36","embed":"https://maps.google.com/maps?q=-3.3959268,119.9162276&z=14&output=embed"},{"name":"Gudang pupuk Chelsea","city":"Enrekang, Sulawesi Selatan","street":"Jl. Sungai Mata Allo, Puserren, Kec. Enrekang, Kabupaten Enrekang, Sulawesi Selatan 91711","map":"https://maps.app.goo.gl/vgEcKPBxtL9sCQHz5","embed":"https://maps.google.com/maps?q=-3.55725,119.777&z=14&output=embed"},{"name":"Kios pupuk","city":"Minahasa Tenggara, Sulawesi Utara","street":"Jln Tolebeng, Jaga IV, Ds Tombatu 3, Kec Tombatu Utara, Kab. Minahasa Tenggara","map":"https://maps.app.goo.gl/UJoK5Z2wGxx8egjm9","embed":"https://maps.google.com/maps?q=1.0431033,124.6852441&z=14&output=embed"},{"name":"Agen pupuk","city":"Solok, Sumatera Barat","street":"Dusun Lipek Pageh, Kec. Lembah Gumanti, Kab. Solok, Sumatera Barat","map":"https://maps.app.goo.gl/gaLgWRqXNwL3gnHy9","embed":"https://maps.google.com/maps?q=-1.038419,100.801067&z=14&output=embed"},{"name":"UD. Anugrah","city":"Simalungun, Sumatera Utara","street":"Jl. Merdeka, Seribu Dolok, Kec. Silimakuta, Kabupaten Simalungun, Sumatera Utara 21167","map":"https://maps.app.goo.gl/cLDLJzDPLkjebZpEA","embed":"https://maps.google.com/maps?q=2.9405233,98.6121349&z=14&output=embed"},{"name":"UD Maju Tani","city":"Batubara, Sumatera Utara","street":"Kampung Lima Desa Gambus Laut Kec. Lima Puluh Pesisir Kab, Batu Bara Sumut","map":"https://maps.app.goo.gl/gFZPcsemwzvWQ2EY7","embed":"https://maps.google.com/maps?q=3.2984319,99.4728244&z=14&output=embed"},{"name":"El. Tani","city":"Dairi, Sumatera Utara","street":"Paropo 1, Kec. Silahsabungan","map":"https://maps.app.goo.gl/PynZUMNNdnCNFn7e9","embed":"https://maps.google.com/maps?q=2.8526399,98.5248885&z=14&output=embed"},{"name":"Maju tani","city":"Deli Serdang, Sumatera Utara","street":"Dusun 1, Desa Pagar Jati, Kec Lubuk Pakam, Kab Deli Serdang","map":"https://maps.app.goo.gl/bxSQ8zYgVHpT77Kf6","embed":"https://maps.google.com/maps?q=3.560655,98.878259&z=14&output=embed"},{"name":"Agen pupuk","city":"Karo, Sumatera Utara","street":"Desa Lingga Julu RT/RW - Kecamatan Simpang Empat Kabupaten Karo sumut","map":"https://maps.app.goo.gl/fby9bXiLmsysiFmCA","embed":"https://maps.google.com/maps?q=3.164281,98.482655&z=14&output=embed"},{"name":"Agen pupuk","city":"Pematang Siantar, Sumatera Utara","street":"Dusun/Kampung Desa jl cemara no 47 kel. Sukaraja, Kecamatan siantar marihat Kota pemajam, Siantar Sumut","map":"https://maps.app.goo.gl/Ud9rAVuZhoHeaD3H7","embed":"https://maps.google.com/maps?q=2.95598,99.070842&z=14&output=embed"},{"name":"UD. Diera Tani","city":"Tapanuli Utara, Sumatera Utara","street":"Desa Paniaran, Kec. Siborongborong","map":"https://maps.app.goo.gl/8zjAr8dtvPNoZzku8","embed":"https://maps.google.com/maps?q=2.177973,98.983116&z=14&output=embed"},{"name":"Toko Ratu Tani","city":"Enrekang, Sulawesi Selatan","street":"MRGF+3HR, Kambiolangi, Alla, Enrekang Regency, South Sulawesi 91754","map":"https://www.google.com/maps?q=-3.324878,119.823846","embed":"https://maps.google.com/maps?q=-3.324878,119.823846&z=14&output=embed"}];
+  var grid = document.getElementById('province-grid');
+  if (!grid) return;
+  var modal = document.getElementById('loc-modal');
+  var backdrop = document.getElementById('loc-modal-backdrop');
+  var closeBtn = document.getElementById('loc-modal-close');
+  var titleEl = document.getElementById('loc-modal-title');
+  var searchEl = document.getElementById('loc-search');
+  var listEl = document.getElementById('loc-list');
+  var PIN = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
+  var currentProv = null;
+  function T(k, v) { return window.i18n ? window.i18n.t(k, v) : k; }
+  function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function provOf(c) { return (c.split(',').pop() || '').trim(); }
+  function kabOf(c) { var i = c.lastIndexOf(','); return (i >= 0 ? c.slice(0, i) : c).trim(); }
+  var provinces = LOCATIONS.map(function (l) { return provOf(l.city); })
+    .filter(function (p, i, a) { return a.indexOf(p) === i; })
+    .sort(function (a, b) { return a.localeCompare(b, 'id'); });
+
+  function renderGrid() {
+    grid.innerHTML = provinces.map(function (p) {
+      var n = LOCATIONS.filter(function (l) { return provOf(l.city) === p; }).length;
+      return '<button type="button" data-prov="' + esc(p) + '" class="flex items-center gap-3 text-left rounded-[16px] border border-[#E5E5E5] p-5 hover:border-primary-500 transition-colors">'
+        + '<span class="w-10 h-10 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">' + PIN + '</span>'
+        + '<span class="min-w-0"><span class="block text-label-l truncate">' + esc(p) + '</span>'
+        + '<span class="block text-body-s text-text-tertiary">' + esc(T('index.locations.storesCount', { n: n })) + '</span></span>'
+        + '<span class="ml-auto text-text-tertiary text-h5">&#8250;</span></button>';
+    }).join('');
+    Array.prototype.forEach.call(grid.querySelectorAll('button[data-prov]'), function (b) {
+      b.addEventListener('click', function () { openProvince(b.getAttribute('data-prov')); });
+    });
+  }
+
+  function renderList() {
+    var q = (searchEl.value || '').trim().toLowerCase();
+    var rows = LOCATIONS
+      .filter(function (l) { return provOf(l.city) === currentProv; })
+      .filter(function (l) { return !q || l.name.toLowerCase().indexOf(q) >= 0 || l.street.toLowerCase().indexOf(q) >= 0; })
+      .sort(function (a, b) { return kabOf(a.city).localeCompare(kabOf(b.city), 'id'); });
+    if (!rows.length) { listEl.innerHTML = '<p class="text-body-m text-text-tertiary">' + esc(T('index.locations.noResults')) + '</p>'; return; }
+    listEl.innerHTML = rows.map(function (l) {
+      return '<div class="flex flex-col md:flex-row gap-4 rounded-[16px] border border-[#E5E5E5] p-5">'
+        + '<div class="flex flex-col gap-2 md:w-1/2"><div>'
+        + '<p class="text-label-l">' + esc(l.name) + '</p>'
+        + '<p class="text-body-s text-text-tertiary">' + esc(l.city) + '</p>'
+        + '<p class="text-body-s text-text-tertiary mt-2">' + esc(l.street) + '</p></div>'
+        + '<a href="' + l.map + '" target="_blank" rel="noopener noreferrer" class="text-label-m text-primary-700 hover:underline mt-auto pt-2">' + esc(T('index.locations.openMaps')) + '</a></div>'
+        + '<iframe src="' + l.embed + '" loading="lazy" class="w-full md:w-1/2 h-40 rounded-[12px] border-0" title="' + esc(l.name) + '"></iframe></div>';
+    }).join('');
+  }
+
+  function openProvince(p) { currentProv = p; titleEl.textContent = p; searchEl.value = ''; renderList(); modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden'; searchEl.focus(); }
+  function closeModal() { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow = ''; currentProv = null; }
+
+  searchEl.addEventListener('input', renderList);
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal(); });
+
+  function refresh() { renderGrid(); if (currentProv) renderList(); if (window.i18n) { closeBtn.setAttribute('aria-label', T('common.close')); window.i18n.apply(); } }
+  renderGrid();
+  if (window.i18n) { closeBtn.setAttribute('aria-label', T('common.close')); window.i18n.apply(); }
+  window.addEventListener('i18n:change', refresh);
+})();
+</script>
+
 
 </body>
 </html>

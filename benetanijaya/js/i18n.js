@@ -18,6 +18,7 @@
     'footer.copyright': { id: 'Bene Pyto Tani Jaya © 2026. Semua hak dilindungi.', en: 'Bene Pyto Tani Jaya © 2026. All rights reserved.' },
 
     'common.searchPlaceholder': { id: 'Cari berdasarkan judul atau tag', en: 'Search by title or tag' },
+    'common.close': { id: 'Tutup', en: 'Close' },
     'common.allTags': { id: 'Semua Tag', en: 'All Tags' },
     'common.sortFeatured': { id: 'Unggulan', en: 'Featured' },
     'common.sortTitleAsc': { id: 'Judul A-Z', en: 'Title A-Z' },
@@ -66,8 +67,11 @@
 
     'index.locations.badge': { id: 'Lokasi', en: 'Locations' },
     'index.locations.title': { id: 'Tempat Produk Kami Dijual', en: 'Where Our Products Are Sold' },
-    'index.locations.subtitle': { id: 'Produk Bene Pyto Tani Jaya menjangkau petani di kota-kota di seluruh Indonesia. Ketuk sebuah kota untuk membuka lokasinya di Google Maps.', en: 'Bene Pyto Tani Jaya products reach farmers in cities across Indonesia. Tap a city to open its location on Google Maps.' },
+    'index.locations.subtitle': { id: 'Produk Bene Pyto Tani Jaya menjangkau petani di berbagai provinsi. Pilih provinsi untuk melihat daftar tokonya.', en: 'Bene Pyto Tani Jaya products reach farmers across many provinces. Select a province to see its stores.' },
     'index.locations.openMaps': { id: 'Buka di Maps', en: 'Open in Maps' },
+    'index.locations.searchPlaceholder': { id: 'Cari nama atau alamat', en: 'Search by name or address' },
+    'index.locations.storesCount': { id: '{n} lokasi', en: '{n} locations' },
+    'index.locations.noResults': { id: 'Tidak ada lokasi yang cocok.', en: 'No matching locations.' },
 
     'productList.breadcrumb': { id: 'Produk', en: 'Products' },
     'productList.badge': { id: 'Produk', en: 'Products' },

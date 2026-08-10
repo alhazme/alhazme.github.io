@@ -62,6 +62,12 @@
     },
   };
 </script>
+<style>
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+</style>
 </head>
 <body class="font-sans text-text-primary bg-white">
 
@@ -281,28 +287,30 @@
 </section>
 
 <!-- Trusted By -->
-<section class="max-w-5xl mx-auto px-6 py-16 text-center">
-  <h2 class="text-h4 text-text-primary max-w-2xl mx-auto" data-i18n="aboutUs.trustedTitle">Dipercaya oleh petani, agribisnis, dan pemimpin rantai pasok</h2>
-  <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 mt-10">
-    <div class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/></svg>
-      <span class="text-h5 font-semibold">Logoipsum</span>
-    </div>
-    <div class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4 L20 19 L4 19 Z" stroke-linejoin="round"/></svg>
-      <span class="text-h5 font-semibold">Logoipsum</span>
-    </div>
-    <div class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="3"/></svg>
-      <span class="text-h5 font-semibold">Logoipsum</span>
-    </div>
-    <div class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 L20.5 8 V16 L12 21 L3.5 16 V8 Z" stroke-linejoin="round"/></svg>
-      <span class="text-h5 font-semibold">Logoipsum</span>
-    </div>
-    <div class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 L21 12 L12 21 L3 12 Z" stroke-linejoin="round"/></svg>
-      <span class="text-h5 font-semibold">Logoipsum</span>
+<section class="py-16">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <h2 class="text-h2 text-text-primary max-w-2xl mx-auto" data-i18n="aboutUs.trustedTitle">Dipercaya oleh petani, agribisnis, dan pemimpin rantai pasok</h2>
+  </div>
+  <div class="overflow-x-auto touch-pan-x select-none [-webkit-overflow-scrolling:touch] pb-4 md:overflow-hidden md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden mt-10">
+    <div class="flex items-center gap-6 sm:gap-8 w-max md:animate-[scroll-left_40s_linear_infinite] md:hover:[animation-play-state:paused] px-6">
+      <img src="images/companies/ipb-university.png" alt="IPB University" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/stpipb.png" alt="STP IPB" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/icbb.png" alt="ICBB" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/sri.png" alt="SRI" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/eal.png" alt="EAL" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/adb.png" alt="ADB" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/ksu.png" alt="KSU" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/primestep.png" alt="Primestep" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/tut-wuri-handayani.png" alt="Tut Wuri Handayani" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/ipb-university.png" alt="" aria-hidden="true" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/stpipb.png" alt="" aria-hidden="true" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/icbb.png" alt="" aria-hidden="true" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/sri.png" alt="" aria-hidden="true" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/eal.png" alt="" aria-hidden="true" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/adb.png" alt="" aria-hidden="true" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/ksu.png" alt="" aria-hidden="true" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/primestep.png" alt="" aria-hidden="true" class="h-40 w-40 object-contain shrink-0">
+      <img src="images/companies/tut-wuri-handayani.png" alt="" aria-hidden="true" class="h-40 w-40 object-contain shrink-0">
     </div>
   </div>
 </section>
