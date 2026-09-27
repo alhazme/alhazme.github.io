@@ -2,10 +2,10 @@
 """
 Generate responsive AVIF + WebP versions of the site images.
 
-  images/<name>.png -> img/<name>-<w>.avif / .webp   (project mockups used by index.html)
-  hero.png          -> img/hero-<w>.avif / .webp
+  images/<name>.png -> images/<name>-<w>.avif / .webp   (project mockups used by index.html)
+  hero.png          -> images/hero-<w>.avif / .webp
 
-Also writes img/manifest.json with each source size (used for width/height attributes).
+Also writes images/manifest.json with each source size (used for width/height attributes).
 
 Usage (repo root): python3 scripts/optimize_images.py
 Requires: Pillow >= 11 (AVIF), numpy, scipy
@@ -16,7 +16,7 @@ from PIL import Image, ImageFilter
 from scipy import ndimage
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, "img")
+OUT = os.path.join(ROOT, "images")
 os.makedirs(OUT, exist_ok=True)
 
 AVIF_Q, WEBP_Q = 58, 80
@@ -52,7 +52,8 @@ def encode(im, name, widths):
 
 
 html = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
-names = sorted(set(re.findall(r'images/([\w-]+)\.png', html)))
+names = sorted((set(re.findall(r'images/([\w-]+)\.png', html))
+                | set(re.findall(r'images/([\w-]+)-\d+\.avif', html))) - {"hero"})
 
 manifest = {}
 for name in names:
@@ -64,5 +65,5 @@ hero = Image.open(os.path.join(ROOT, "hero.png")).convert("RGBA")
 manifest["hero"] = {"size": list(hero.size), "widths": encode(hero, "hero", HERO_W)}
 
 json.dump(manifest, open(os.path.join(OUT, "manifest.json"), "w"), indent=1)
-total = sum(os.path.getsize(os.path.join(OUT, f)) for f in os.listdir(OUT))
-print(f"img/: {total / 1e6:.2f} MB")
+total = sum(os.path.getsize(os.path.join(OUT, f)) for f in os.listdir(OUT) if f.endswith((".avif", ".webp")))
+print(f"images/ (avif+webp): {total / 1e6:.2f} MB")
