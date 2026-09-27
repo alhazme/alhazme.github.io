@@ -669,6 +669,58 @@
     }
 
     /* Social proof row */
+    .hero-social {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: fit-content;
+      text-decoration: none;
+    }
+
+    .social-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .avatar-stack {
+      display: flex;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid var(--color-absolute-zero);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .avatar:not(:first-child) { margin-left: -8px; }
+
+    .stars {
+      color: var(--color-goldenrod);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .social-label {
+      font-size: 13px;
+      color: var(--color-ash-gray);
+      transition: color 0.15s ease;
+    }
+
+    .social-label strong {
+      color: var(--color-vapor-white);
+      font-weight: 500;
+    }
+
+    .hero-social:hover .social-label { color: var(--color-vapor-white); }
+
     .hero-proof { display: flex; flex-direction: column; gap: 8px; }
     .hero-proof-label { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--color-slate-dust); }
     .hero-proof-list { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; font-family: var(--font-display); font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--color-silver-mist); }
@@ -1636,7 +1688,20 @@
           <a href="#contact" class="btn-ghost">Let's Talk</a>
         </div>
 
-        <div class="hero-proof enter" style="--d:4">
+        <a class="hero-social enter" style="--d:4" href="#testimonials">
+          <div class="avatar-stack" aria-hidden="true">
+            <div class="avatar" style="background:#2a1a3e;color:#b8a2ff">US</div>
+            <div class="avatar" style="background:#1a3020;color:#33c659">MF</div>
+            <div class="avatar" style="background:#3e2a0a;color:#fac80a">RA</div>
+            <div class="avatar" style="background:#1a2e3e;color:#4fa3d1">HH</div>
+          </div>
+          <div class="social-meta">
+            <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="social-label"><strong>4</strong> recommendations on LinkedIn</span>
+          </div>
+        </a>
+
+        <div class="hero-proof enter" style="--d:5">
           <span class="hero-proof-label">Shipped apps for</span>
           <ul class="hero-proof-list">
             <li>Bukalapak</li><li>Collins Aerospace</li><li>Lab Sakura</li><li>Sepulsa</li><li>FLIK</li>
@@ -1644,7 +1709,7 @@
         </div>
 
         <!-- Stats Row -->
-        <div class="stats-row enter" style="--d:5">
+        <div class="stats-row enter" style="--d:6">
           <div class="stat-item">
             <div class="stat-value" data-count="12" data-suffix="+">12+</div>
             <div class="stat-label">Products shipped end-to-end</div>
@@ -1985,7 +2050,7 @@
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="testimonials-section" aria-labelledby="testimonials-title">
+  <section class="testimonials-section" id="testimonials" aria-labelledby="testimonials-title">
     <h2 class="testimonials-heading reveal" id="testimonials-title">What They Say</h2>
     <div class="testimonials-outer">
       <div class="testimonials-track">
