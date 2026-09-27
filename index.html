@@ -1094,6 +1094,49 @@
       animation-play-state: paused;
     }
 
+    /* Pause control for touch and keyboard users (hover pause only works with a mouse) */
+    .logos-track.is-paused,
+    .testimonials-track.is-paused {
+      animation-play-state: paused;
+    }
+
+    .marquee-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 28px auto 0;
+      height: 40px;
+      padding: 0 16px;
+      border-radius: var(--radius-buttons);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--color-ash-gray);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .marquee-toggle:hover {
+      color: var(--color-vapor-white);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    [data-theme="light"] .marquee-toggle {
+      border-color: rgba(0, 0, 0, 0.12);
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    [data-theme="light"] .marquee-toggle:hover {
+      border-color: rgba(0, 0, 0, 0.25);
+    }
+
+    .marquee-toggle svg { width: 12px; height: 12px; fill: currentColor; }
+    .marquee-toggle .i-play { display: none; }
+    .marquee-toggle.is-paused .i-play { display: block; }
+    .marquee-toggle.is-paused .i-pause { display: none; }
+
     @keyframes marquee {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
@@ -1952,6 +1995,22 @@
           track.appendChild(c);
         });
         track.classList.add('is-looped');
+
+        var what = track.classList.contains('logos-track') ? 'logos' : 'testimonials';
+        var toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'marquee-toggle';
+        toggle.innerHTML = '<svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1"/><rect x="14" y="4" width="5" height="16" rx="1"/></svg>' +
+          '<svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg><span></span>';
+        var sync = function () {
+          var paused = track.classList.contains('is-paused');
+          toggle.classList.toggle('is-paused', paused);
+          toggle.lastChild.textContent = paused ? 'Play' : 'Pause';
+          toggle.setAttribute('aria-label', (paused ? 'Play' : 'Pause') + ' scrolling ' + what);
+        };
+        toggle.addEventListener('click', function () { track.classList.toggle('is-paused'); sync(); });
+        sync();
+        track.parentElement.insertAdjacentElement('afterend', toggle);
       });
 
       // Nav: hide on scroll down, show on scroll up
