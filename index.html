@@ -1317,13 +1317,127 @@
       .contact-section { padding: 96px 20px; }
     }
 
+    /* === MOBILE TAB BAR (liquid glass) === */
+    .tabbar { display: none; }
+
+    @media (max-width: 768px) {
+      .tabbar {
+        display: block;
+        position: fixed;
+        top: auto; /* reset the global nav rules (top: 0, height: 64px) */
+        height: auto;
+        left: 12px;
+        right: 12px;
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        z-index: 100;
+        max-width: 440px;
+        margin: 0 auto;
+        padding: 6px;
+        border-radius: 32px;
+        background: linear-gradient(180deg, rgba(58, 58, 64, 0.62), rgba(28, 28, 32, 0.52));
+        backdrop-filter: blur(22px) saturate(180%);
+        -webkit-backdrop-filter: blur(22px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.24),
+          inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+          0 12px 32px rgba(0, 0, 0, 0.45);
+      }
+
+      /* Specular highlight across the top edge */
+      .tabbar::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: radial-gradient(120% 60% at 30% -10%, rgba(255, 255, 255, 0.22), transparent 60%);
+        pointer-events: none;
+      }
+
+      .tabbar ul {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        list-style: none;
+      }
+
+      .tabbar-indicator {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 20%;
+        border-radius: 26px;
+        background: rgba(255, 255, 255, 0.14);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 2px 10px rgba(0, 0, 0, 0.25);
+        transform: translateX(calc(var(--i, 0) * 100%));
+        transition: transform 0.5s cubic-bezier(0.34, 1.3, 0.64, 1);
+      }
+
+      .tabbar a {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        height: 52px;
+        border-radius: 26px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 11px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.25s ease;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .tabbar a[aria-current="true"] { color: #ffffff; }
+
+      .tabbar svg {
+        width: 22px;
+        height: 22px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      [data-theme="light"] .tabbar {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(245, 245, 247, 0.7));
+        border-color: rgba(255, 255, 255, 0.9);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.95),
+          0 0 0 1px rgba(0, 0, 0, 0.06),
+          0 12px 32px rgba(0, 0, 0, 0.14);
+      }
+
+      [data-theme="light"] .tabbar::before {
+        background: radial-gradient(120% 60% at 30% -10%, rgba(255, 255, 255, 0.8), transparent 60%);
+      }
+
+      [data-theme="light"] .tabbar-indicator {
+        background: rgba(0, 0, 0, 0.06);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      [data-theme="light"] .tabbar a { color: #4a4a4a; }
+      [data-theme="light"] .tabbar a[aria-current="true"] { color: #0a0a0a; }
+
+      @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+        .tabbar { background: rgba(24, 24, 28, 0.96); }
+        [data-theme="light"] .tabbar { background: rgba(250, 250, 252, 0.97); }
+      }
+    }
+
     /* === Reduced motion === */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .badge-dot { animation: none; }
       .hero-glow, .hero-device, .contact-section::before, .parallax, .js .enter, .js .hero-right.enter { animation: none !important; }
       .js .reveal, .js .rise-in { opacity: 1; transform: none; transition: none; }
-      nav, .hero-tilt, .service-card { transition: none; }
+      nav, .hero-tilt, .service-card, .tabbar-indicator { transition: none; }
       .logos-track.is-looped, .testimonials-track.is-looped { animation: none; }
       .logos-track, .testimonials-track { width: auto; flex-wrap: wrap; justify-content: center; }
       .logos-outer, .testimonials-outer { mask-image: none; -webkit-mask-image: none; }
@@ -1447,7 +1561,7 @@
     }
 
     @media (max-width: 768px) {
-      footer { padding: 48px 20px 32px; }
+      footer { padding: 48px 20px calc(112px + env(safe-area-inset-bottom, 0px)); }
       .footer-top { flex-direction: column; gap: 36px; }
       .footer-links { gap: 36px; }
       .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -1479,6 +1593,18 @@
       </button>
       <a href="#contact" class="btn-nav">Hire Me</a>
     </div>
+  </nav>
+
+  <!-- MOBILE TAB BAR -->
+  <nav class="tabbar" aria-label="Section navigation">
+    <ul>
+      <li class="tabbar-indicator" aria-hidden="true"></li>
+      <li><a href="#about"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>About</a></li>
+      <li><a href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="m2 13 10 5 10-5"/></svg>Services</a></li>
+      <li><a href="#skills"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg>Skills</a></li>
+      <li><a href="#projects"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Work</a></li>
+      <li><a href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contact</a></li>
+    </ul>
   </nav>
 
   <main id="main">
@@ -2034,12 +2160,27 @@
 
       // Nav: highlight the section in view
       var links = {};
-      document.querySelectorAll('.nav-links a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+      document.querySelectorAll('.nav-links a, .tabbar a').forEach(function (a) {
+        var id = a.getAttribute('href').slice(1);
+        (links[id] = links[id] || []).push(a);
+      });
+      var tabs = [].slice.call(document.querySelectorAll('.tabbar a'));
+      var tabList = document.querySelector('.tabbar ul');
+      var setActive = function (id) {
+        Object.keys(links).forEach(function (k) {
+          links[k].forEach(function (a) { if (k === id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+        });
+        var i = tabs.map(function (a) { return a.getAttribute('href').slice(1); }).indexOf(id);
+        if (i >= 0) tabList.style.setProperty('--i', i);
+      };
+      tabs.forEach(function (a) { a.addEventListener('click', function () { setActive(a.getAttribute('href').slice(1)); }); });
+      // Contact is the last section; at the very bottom it never reaches the middle band the observer watches
+      window.addEventListener('scroll', function () {
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) setActive('contact');
+      }, { passive: true });
       var sectionIO = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (!e.isIntersecting || !links[e.target.id]) return;
-          Object.keys(links).forEach(function (k) { links[k].removeAttribute('aria-current'); });
-          links[e.target.id].setAttribute('aria-current', 'true');
+          if (e.isIntersecting && links[e.target.id]) setActive(e.target.id);
         });
       }, { rootMargin: '-45% 0px -50% 0px' });
       Object.keys(links).forEach(function (id) { var el = document.getElementById(id); if (el) sectionIO.observe(el); });
