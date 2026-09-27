@@ -1,0 +1,6 @@
+# GitHub Pages (Jekyll) build settings.
+# Build scripts and working notes are excluded so they are not published at alhaz.me/...
+exclude:
+  - scripts
+  - framer.design.md
+  - personal-website-plan.md
