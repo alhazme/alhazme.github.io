@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Langkah: First Then. Papan gambar untuk yang dilakukan sekarang dan berikutnya</title>
+<meta name="description" content="Langkah adalah aplikasi iPhone dan iPad yang menunjukkan kepada anak apa yang dilakukan pertama dan apa sesudahnya, dengan kartu bergambar, timer opsional yang tenang, dan satu bintang tiap papan selesai.">
+<meta name="theme-color" content="#faf8f4">
+<meta property="og:title" content="Langkah: First Then">
+<meta property="og:description" content="Papan gambar untuk yang dilakukan sekarang dan berikutnya.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../assets/img/apple-touch-icon.png">
+<link rel="icon" href="../assets/img/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="alternate" hreflang="en" href="../index.html">
+<link rel="stylesheet" href="../assets/styles.css">
+<script src="../assets/header.js" defer></script>
+<link rel="preload" as="image" href="../assets/img/splash_reading_dina.webp">
+<link rel="preload" as="image" href="../assets/img/splash_play_dino.webp">
+<script>
+document.documentElement.classList.add("is-loading");
+setTimeout(() => document.documentElement.classList.remove("is-loading"), 4000);
+</script>
+<script src="../assets/loading.js" defer></script>
+<script src="../assets/preview.js" defer></script>
+<script src="../assets/cards.js" defer></script>
+</head>
+<body>
+<div class="site-loader" role="status" aria-label="Memuat Langkah">
+  <div class="loader-buddies">
+    <img src="../assets/img/splash_reading_dina.webp" alt="Dina membaca buku" width="640" height="640" fetchpriority="high">
+    <img src="../assets/img/splash_play_dino.webp" alt="Dino bermain bola" width="640" height="640" fetchpriority="high">
+  </div>
+  <strong>Langkah</strong>
+  <p>Selangkah, bersama.</p>
+  <p class="loader-status">Memuat halaman...</p>
+</div>
+<!-- Indonesian version of ../index.html. The direction contract lives in that file. -->
+<svg width="0" height="0" hidden>
+  <!-- Icons: Phosphor (MIT), bold and fill weights -->
+  <symbol id="i-arrow" viewBox="0 0 256 256"><path fill="currentColor" d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 256 256"><path fill="currentColor" d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96Z"/></symbol>
+  <symbol id="i-star" viewBox="-8 -8 272 272"><path fill="currentColor" d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Langsung ke isi</a>
+
+<header class="wrap site-header">
+  <a class="brand" href="index.html" aria-current="page"><img src="../assets/img/app-icon.webp" alt="" width="40" height="40">Langkah</a>
+  <nav class="nav" aria-label="Situs">
+    <a href="../privacy/id/index.html">Privasi</a>
+    <a href="../support/id/index.html">Bantuan</a>
+    <a class="lang" href="../index.html" lang="en" hreflang="en" aria-label="English">EN</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="wrap hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <h1 class="display" id="hero-title">Pertama ini. Lalu itu.</h1>
+      <p class="lede">Langkah menunjukkan kepada anak apa yang dilakukan sekarang dan apa sesudahnya, satu kartu bergambar tiap kali.</p>
+    </div>
+    <div class="hero-showcase">
+      <div class="hero-features features-left">
+        <a class="hero-feature" href="#cards"><h2>Kartu bergambar</h2><p>60 aktivitas bersama Dino dan Dina. Tambahkan foto dan suara sendiri.</p></a>
+        <a class="hero-feature" href="#timer"><h2>Timer yang tenang</h2><p>Setiap langkah menunggu sampai anak siap mengetuk Selesai.</p></a>
+      </div>
+      <div class="hero-device">
+        <div class="phone">
+          <div class="phone-camera" aria-hidden="true"></div>
+          <div class="phone-viewport" tabindex="0" role="img" aria-label="Pratinjau Langkah: splash screen, Mode Anak belajar bersama Dina, bermain bersama Dino, lalu Hebat dengan satu bintang yang didapat.">
+          <div class="phone-track" aria-hidden="true">
+          <div class="splash preview-screen">
+            <div class="splash-cards">
+              <div class="splash-card"><span class="splash-stage stage-first">Pertama</span><img src="../assets/img/splash_reading_dina.webp" alt="" width="640" height="640"><strong>Belajar</strong></div>
+              <svg class="splash-arrow"><use href="#i-arrow"/></svg>
+              <div class="splash-card"><span class="splash-stage stage-then">Lalu</span><img src="../assets/img/splash_play_dino.webp" alt="" width="640" height="640"><strong>Bermain</strong></div>
+            </div>
+            <strong class="splash-name">Langkah</strong>
+            <p>Selangkah, bersama.</p>
+          </div>
+          <div class="preview-screen preview-child preview-first">
+            <svg class="preview-lock"><use href="#i-lock"/></svg>
+            <div class="preview-next"><img src="../assets/img/splash_play_dino.webp" alt="" width="640" height="640"><span><small>Berikutnya</small><strong>Bermain</strong></span></div>
+            <div class="preview-card"><span class="splash-stage stage-first">Pertama</span><img src="../assets/img/splash_reading_dina.webp" alt="" width="640" height="640"><strong>Belajar</strong></div>
+            <span class="preview-done">Selesai</span>
+          </div>
+          <div class="preview-screen preview-child preview-then">
+            <svg class="preview-lock"><use href="#i-lock"/></svg>
+            <div class="preview-next"><img src="../assets/img/splash_reading_dina.webp" alt="" width="640" height="640"><span><small>Selesai</small><strong>Belajar</strong></span></div>
+            <div class="preview-card"><span class="splash-stage stage-then">Lalu</span><img src="../assets/img/splash_play_dino.webp" alt="" width="640" height="640"><strong>Bermain</strong></div>
+            <span class="preview-done">Selesai</span>
+          </div>
+          <div class="preview-screen preview-good-job">
+            <svg class="preview-lock"><use href="#i-lock"/></svg>
+            <img src="../assets/img/buddy_good_job_dino.webp" alt="" width="640" height="640">
+            <strong>Hebat!</strong>
+            <span class="preview-star"><svg class="star"><use href="#i-star"/></svg>1 bintang</span>
+          </div>
+          </div>
+          </div>
+        </div>
+        <!-- TODO(OPS-004): link each store button to its verified listing when available. -->
+        <div class="store-actions" aria-label="Ketersediaan aplikasi">
+          <button class="store-button" type="button" disabled aria-label="Download on the App Store, segera hadir"><img src="../assets/img/app-store-en.svg" alt="Download on the App Store" width="144" height="48"></button>
+          <button class="store-button store-button-play" type="button" disabled aria-label="Get it on Google Play, segera hadir"><img src="../assets/img/play-store-en.png" alt="Get it on Google Play" width="646" height="250"></button>
+        </div>
+        <p class="store-note">Segera hadir. Tautan unduh masih dummy.</p>
+      </div>
+      <div class="hero-features features-right">
+        <a class="hero-feature" href="#stars"><h2>Satu papan, satu bintang</h2><p>Rayakan setiap papan yang selesai. Bintang yang didapat tetap tersimpan.</p></a>
+        <a class="hero-feature" href="#modes"><h2>Untuk tangan kecil</h2><p>Anda menyiapkan papan. Anak mengikuti satu langkah tiap kali.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="cards">
+    <div class="wrap"><div class="section-copy">
+      <h2 class="title" id="cards">Pertama sikat gigi. Lalu bermain.</h2>
+      <p>Di aplikasi Langkah, Anda memilih dua kartu bergambar untuk satu papan: kegiatan pertama dan kegiatan berikutnya. Anak bisa melihat urutan yang akan dijalani.</p>
+      <p>Pilih gambar Dino dan Dina untuk kegiatan sehari-hari. Anak dapat mengetuk kartu untuk mendengar nama kegiatannya dalam Bahasa Indonesia atau Inggris.</p>
+      <p class="muted">10 kartu di bawah tersedia gratis. Langkah Pro membuka semua 60 kartu, serta pilihan foto dan rekaman suara sendiri.</p>
+    </div></div>
+    <div class="card-marquee" tabindex="0" role="region" aria-label="10 kartu aktivitas gratis">
+    <ul class="strip">
+      <li class="tile" data-activity="get_dressed"><img src="../assets/img/get_dressed_dina.webp" alt="" width="640" height="640" loading="lazy">Pakai baju</li>
+      <li class="tile" data-activity="put_on_shoes"><img src="../assets/img/put_on_shoes_dino.webp" alt="" width="640" height="640" loading="lazy">Pakai sepatu</li>
+      <li class="tile" data-activity="toilet"><img src="../assets/img/toilet_dino.webp" alt="" width="640" height="640" loading="lazy">Toilet</li>
+      <li class="tile" data-activity="bath"><img src="../assets/img/bath_dino.webp" alt="" width="640" height="640" loading="lazy">Mandi</li>
+      <li class="tile" data-activity="brush_teeth"><img src="../assets/img/brush_teeth_dino.webp" alt="" width="640" height="640" loading="lazy">Sikat gigi</li>
+      <li class="tile" data-activity="eat"><img src="../assets/img/eat_dino.webp" alt="" width="640" height="640" loading="lazy">Makan</li>
+      <li class="tile" data-activity="play"><img src="../assets/img/play_dino.webp" alt="" width="640" height="640" loading="lazy">Bermain</li>
+      <li class="tile" data-activity="tablet"><img src="../assets/img/tablet_dino.webp" alt="" width="640" height="640" loading="lazy">Tablet</li>
+      <li class="tile" data-activity="sleep"><img src="../assets/img/sleep_dina.webp" alt="" width="640" height="640" loading="lazy">Tidur</li>
+      <li class="tile" data-activity="car"><img src="../assets/img/car_dino.webp" alt="" width="640" height="640" loading="lazy">Mobil</li>
+    </ul>
+    </div>
+  </section>
+
+  <section class="wrap section split" aria-labelledby="timer">
+    <div class="section-copy">
+      <h2 class="title" id="timer">Beri anak gambaran waktu yang tersisa.</h2>
+      <p>Setelah urutan kegiatan jelas, Anda bisa menambahkan timer pada salah satu atau kedua kartu. Cincin timer menunjukkan waktu yang tersisa, misalnya saat anak bermain.</p>
+      <p>Saat waktu habis, kartu tetap menunggu anak mengetuk Selesai. Anak bisa menuntaskan kegiatannya sebelum berpindah. Anda juga bisa memakai papan tanpa timer.</p>
+      <p class="muted">Cincin berubah menjadi warna persik dan menampilkan Waktu habis, tanpa merah atau kedip.</p>
+    </div>
+    <div class="timer-visual">
+      <img class="timer-art" src="../assets/img/buddy_ready_dino.webp" alt="Dino siap menemani anak" width="640" height="640" loading="lazy">
+    <div class="rings">
+      <div class="ring-card">
+        <div class="ring">
+          <svg viewBox="0 0 112 112" aria-hidden="true"><circle class="ring-track" cx="56" cy="56" r="46"/><circle class="ring-run" cx="56" cy="56" r="46"/></svg>
+          <span>3:05</span>
+        </div>
+        <p>Saat timer berjalan</p>
+      </div>
+      <div class="ring-card">
+        <div class="ring">
+          <svg viewBox="0 0 112 112" aria-hidden="true"><circle class="ring-up" cx="56" cy="56" r="46"/></svg>
+          <span>Waktu habis</span>
+        </div>
+        <p>Saat waktu habis</p>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="stars">
+    <div class="wrap split">
+      <img class="band-art breathe" src="../assets/img/buddy_all_done_dino.webp" alt="Dino mengangkat bintang kuning" width="640" height="640" loading="lazy">
+      <div class="section-copy">
+        <h2 class="statement" id="stars">Dua langkah selesai, satu <svg class="star" aria-hidden="true"><use href="#i-star"/></svg> bintang didapat.</h2>
+        <p class="lede">Anak mendapat satu bintang saat kedua kegiatan selesai. Dino atau Dina ikut merayakan di layar aplikasi.</p>
+        <p>Bintang yang sudah didapat tetap tersimpan, termasuk pada hari ketika anak belum menyelesaikan papan.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="modes">
+    <h2 class="title" id="modes">Anda menyiapkan. Anak mengikuti satu langkah tiap kali.</h2>
+    <div class="roles">
+      <div>
+        <h3 class="headline">Mode Orang Tua</h3>
+        <img class="mode-art" src="../assets/img/parent_mode_setup.webp" alt="Ayah dan ibu memegang tablet dengan tangan ibu di belakangnya" width="640" height="640" loading="lazy">
+        <ul>
+          <li>Pilih dua kartu sesuai rutinitas anak, lalu beri nama papannya.</li>
+          <li>Pasang timer bila diperlukan, atau biarkan tanpa timer.</li>
+          <li>Pilih Dino atau Dina, lalu buka papan untuk memulai Mode Anak.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="headline">Mode Anak</h3>
+        <img class="mode-art" src="../assets/img/child_mode_study.webp" alt="Dino dan Dina menulis di samping tablet berdiri dengan tulisan study di layarnya" width="640" height="640" loading="lazy">
+        <ul>
+          <li>Anak melihat kartu kegiatan sekarang dan petunjuk kegiatan berikutnya.</li>
+          <li>Setelah kegiatan pertama selesai, anak mengetuk Selesai untuk membuka kartu kedua.</li>
+          <li>Setelah kegiatan kedua selesai, anak mengetuk Selesai untuk menerima satu bintang.</li>
+        </ul>
+        <p>Untuk kembali ke pengaturan, orang tua mengetuk ikon gembok <span class="lock-chip"><svg aria-hidden="true"><use href="#i-lock"/></svg></span> dan menjawab satu soal.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section split" aria-labelledby="price">
+    <img class="art art-first" src="../assets/img/buddy_unlock_together.webp" alt="Dino dan Dina membuka peti berisi kartu aktivitas dengan kunci" width="640" height="640" loading="lazy">
+    <div class="section-copy">
+      <h2 class="title" id="price">Mulai dengan satu papan gratis.</h2>
+      <p>Contoh sikat gigi lalu bermain tadi bisa dibuat dengan kartu gratis. Ubah isi papan yang sama saat rutinitas anak berubah.</p>
+      <dl class="plans">
+        <div>
+          <dt>Gratis</dt>
+          <dd>10 aktivitas, 1 papan, 1 anak. Papan bisa diubah sesering yang Anda mau.</dd>
+        </div>
+        <div>
+          <dt>Langkah Pro</dt>
+          <dd>Semua 60 aktivitas, papan dan anak tanpa batas, foto dan rekaman suara sendiri. Gunakan foto benda yang anak kenal dan suara Anda untuk menyebut kegiatannya.</dd>
+        </div>
+      </dl>
+      <p class="muted">Sekali beli, tanpa langganan. Harga tampil dalam mata uang Anda di App Store, dan Keluarga Berbagi didukung.</p>
+    </div>
+  </section>
+</main>
+
+<div class="closing">
+  <section class="wrap split" aria-labelledby="private">
+    <div class="section-copy">
+      <h2 class="title" id="private">Data anak tersimpan di perangkat Anda.</h2>
+      <p>Anda dapat memakai Langkah tanpa membuat akun. Papan, nama anak, foto, dan rekaman suara disimpan di iPhone atau iPad Anda. Aplikasi tidak mengirimkannya kepada kami.</p>
+      <p>Anak mengikuti kegiatan tanpa iklan. Pengaturan dan pembelian tetap berada di Mode Orang Tua, dan Langkah tidak memakai analitik.</p>
+      <div class="actions">
+        <a class="button button-secondary" href="../privacy/id/index.html">Baca kebijakan privasi</a>
+      </div>
+    </div>
+    <img class="art" src="../assets/img/buddy_privacy_together.webp" alt="Dino dan Dina menunjukkan ponsel dengan gembok kuning tertutup di layarnya" width="640" height="640" loading="lazy">
+  </section>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Langkah: First Then dibuat oleh Alhazme.</p>
+    <ul>
+      <li><a href="../privacy/id/index.html">Kebijakan privasi</a></li>
+      <li><a href="../support/id/index.html">Bantuan</a></li>
+      <li><a href="../index.html" lang="en" hreflang="en">English</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
