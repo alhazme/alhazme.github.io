@@ -22,6 +22,10 @@ os.makedirs(OUT, exist_ok=True)
 AVIF_Q, WEBP_Q = 58, 80
 PROJECT_W = (640, 1024, 1600, 2400)
 HERO_W = (480, 924)
+EXTRA_SOURCES = {
+    "langkah-folded-portrait": "Langkah - Folded - Portrait.png",
+    "langkah-open-landscape": "Langkah - Open - Landscape.png",
+}
 
 
 def load(path):
@@ -53,11 +57,12 @@ def encode(im, name, widths):
 
 html = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
 names = sorted((set(re.findall(r'images/([\w-]+)\.png', html))
-                | set(re.findall(r'images/([\w-]+)-\d+\.avif', html))) - {"hero"})
+                | set(re.findall(r'images/([\w-]+)-\d+\.avif', html))
+                | set(EXTRA_SOURCES)) - {"hero"})
 
 manifest = {}
 for name in names:
-    im = load(os.path.join(ROOT, "images", f"{name}.png"))
+    im = load(os.path.join(ROOT, "images", EXTRA_SOURCES.get(name, f"{name}.png")))
     manifest[name] = {"size": list(im.size), "widths": encode(im, name, PROJECT_W)}
     print(name, manifest[name])
 
