@@ -34,7 +34,6 @@ document.documentElement.classList.add("is-loading");
 setTimeout(() => document.documentElement.classList.remove("is-loading"), 4000);
 </script>
 <script src="assets/loading.js" defer></script>
-<script src="assets/preview.js" defer></script>
 <script src="assets/cards.js" defer></script>
 </head>
 <body>
@@ -48,13 +47,13 @@ setTimeout(() => document.documentElement.classList.remove("is-loading"), 4000);
   <p class="loader-status">Loading the page...</p>
 </div>
 <!--
-THESIS: the app's splash sits in a centered phone, with its features on either side.
+THESIS: the app's home screen sits in a centered iPhone Duo, with its features on either side.
 OWN-WORLD: Langkah tokens from docs/design.md. Warm background, sage-dark actions, FIRST blue
 tint and THEN peach tint as whole fields, solid white cards, 1.5px lines, rounded type.
 STORY: a parent sees a familiar first-then routine, understands the timer and completion star,
 learns how to prepare and run a board, then checks the free tier and how child data is stored.
-FIRST VIEWPORT: a centered splash screen, feature links on either side, store options below.
-FORM: the app's own splash, built from its components and approved artwork. No concept roll was run
+FIRST VIEWPORT: a centered home screen, feature links on either side, store options below.
+FORM: the app's native home screenshot in a folded iPhone Duo frame. No concept roll was run
 (no PRODUCT.md; the design system is locked by docs/design.md).
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the
 verdict, DESIGN.md, and every shipping raster carrying its provenance.
@@ -89,39 +88,12 @@ verdict, DESIGN.md, and every shipping raster carrying its provenance.
         <a class="hero-feature" href="#timer"><h2>A gentle timer</h2><p>Each step waits until your child is ready to tap Done.</p></a>
       </div>
       <div class="hero-device">
-        <div class="phone">
-          <div class="phone-camera" aria-hidden="true"></div>
-          <div class="phone-viewport" tabindex="0" role="img" aria-label="Langkah preview: splash screen, Child Mode learning with Dina, playing with Dino, then Good Job with one earned star.">
-          <div class="phone-track" aria-hidden="true">
-          <div class="splash preview-screen">
-            <div class="splash-cards">
-              <div class="splash-card"><span class="splash-stage stage-first">First</span><img src="assets/img/splash_reading_dina.webp" alt="" width="640" height="640"><strong>Learn</strong></div>
-              <svg class="splash-arrow"><use href="#i-arrow"/></svg>
-              <div class="splash-card"><span class="splash-stage stage-then">Then</span><img src="assets/img/splash_play_dino.webp" alt="" width="640" height="640"><strong>Play</strong></div>
-            </div>
-            <strong class="splash-name">Langkah</strong>
-            <p>One step, together.</p>
-          </div>
-          <div class="preview-screen preview-child preview-first">
-            <svg class="preview-lock"><use href="#i-lock"/></svg>
-            <div class="preview-next"><img src="assets/img/splash_play_dino.webp" alt="" width="640" height="640"><span><small>Up next</small><strong>Play</strong></span></div>
-            <div class="preview-card"><span class="splash-stage stage-first">First</span><img src="assets/img/splash_reading_dina.webp" alt="" width="640" height="640"><strong>Learn</strong></div>
-            <span class="preview-done">Done</span>
-          </div>
-          <div class="preview-screen preview-child preview-then">
-            <svg class="preview-lock"><use href="#i-lock"/></svg>
-            <div class="preview-next"><img src="assets/img/splash_reading_dina.webp" alt="" width="640" height="640"><span><small>Done</small><strong>Learn</strong></span></div>
-            <div class="preview-card"><span class="splash-stage stage-then">Then</span><img src="assets/img/splash_play_dino.webp" alt="" width="640" height="640"><strong>Play</strong></div>
-            <span class="preview-done">Done</span>
-          </div>
-          <div class="preview-screen preview-good-job">
-            <svg class="preview-lock"><use href="#i-lock"/></svg>
-            <img src="assets/img/buddy_good_job_dino.webp" alt="" width="640" height="640">
-            <strong>Good Job!</strong>
-            <span class="preview-star"><svg class="star"><use href="#i-star"/></svg>1 star</span>
-          </div>
-          </div>
-          </div>
+        <div class="iphone-duo">
+          <img src="assets/img/iphone-duo-home-960.webp"
+            srcset="assets/img/iphone-duo-home-480.webp 480w, assets/img/iphone-duo-home-960.webp 960w"
+            sizes="(max-height: 700px) 240px, 280px"
+            alt="Langkah home on a folded iPhone Duo, showing Sam's board: first eat, then play."
+            width="960" height="1397" fetchpriority="high">
         </div>
         <!-- TODO(OPS-004): link each store button to its verified listing when available. -->
         <div class="store-actions" aria-label="App availability">

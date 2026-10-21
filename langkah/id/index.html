@@ -34,7 +34,6 @@ document.documentElement.classList.add("is-loading");
 setTimeout(() => document.documentElement.classList.remove("is-loading"), 4000);
 </script>
 <script src="../assets/loading.js" defer></script>
-<script src="../assets/preview.js" defer></script>
 <script src="../assets/cards.js" defer></script>
 </head>
 <body>
@@ -78,39 +77,12 @@ setTimeout(() => document.documentElement.classList.remove("is-loading"), 4000);
         <a class="hero-feature" href="#timer"><h2>Timer yang tenang</h2><p>Setiap langkah menunggu sampai anak siap mengetuk Selesai.</p></a>
       </div>
       <div class="hero-device">
-        <div class="phone">
-          <div class="phone-camera" aria-hidden="true"></div>
-          <div class="phone-viewport" tabindex="0" role="img" aria-label="Pratinjau Langkah: splash screen, Mode Anak belajar bersama Dina, bermain bersama Dino, lalu Hebat dengan satu bintang yang didapat.">
-          <div class="phone-track" aria-hidden="true">
-          <div class="splash preview-screen">
-            <div class="splash-cards">
-              <div class="splash-card"><span class="splash-stage stage-first">Pertama</span><img src="../assets/img/splash_reading_dina.webp" alt="" width="640" height="640"><strong>Belajar</strong></div>
-              <svg class="splash-arrow"><use href="#i-arrow"/></svg>
-              <div class="splash-card"><span class="splash-stage stage-then">Lalu</span><img src="../assets/img/splash_play_dino.webp" alt="" width="640" height="640"><strong>Bermain</strong></div>
-            </div>
-            <strong class="splash-name">Langkah</strong>
-            <p>Selangkah, bersama.</p>
-          </div>
-          <div class="preview-screen preview-child preview-first">
-            <svg class="preview-lock"><use href="#i-lock"/></svg>
-            <div class="preview-next"><img src="../assets/img/splash_play_dino.webp" alt="" width="640" height="640"><span><small>Berikutnya</small><strong>Bermain</strong></span></div>
-            <div class="preview-card"><span class="splash-stage stage-first">Pertama</span><img src="../assets/img/splash_reading_dina.webp" alt="" width="640" height="640"><strong>Belajar</strong></div>
-            <span class="preview-done">Selesai</span>
-          </div>
-          <div class="preview-screen preview-child preview-then">
-            <svg class="preview-lock"><use href="#i-lock"/></svg>
-            <div class="preview-next"><img src="../assets/img/splash_reading_dina.webp" alt="" width="640" height="640"><span><small>Selesai</small><strong>Belajar</strong></span></div>
-            <div class="preview-card"><span class="splash-stage stage-then">Lalu</span><img src="../assets/img/splash_play_dino.webp" alt="" width="640" height="640"><strong>Bermain</strong></div>
-            <span class="preview-done">Selesai</span>
-          </div>
-          <div class="preview-screen preview-good-job">
-            <svg class="preview-lock"><use href="#i-lock"/></svg>
-            <img src="../assets/img/buddy_good_job_dino.webp" alt="" width="640" height="640">
-            <strong>Hebat!</strong>
-            <span class="preview-star"><svg class="star"><use href="#i-star"/></svg>1 bintang</span>
-          </div>
-          </div>
-          </div>
+        <div class="iphone-duo">
+          <img src="../assets/img/iphone-duo-home-960.webp"
+            srcset="../assets/img/iphone-duo-home-480.webp 480w, ../assets/img/iphone-duo-home-960.webp 960w"
+            sizes="(max-height: 700px) 240px, 280px"
+            alt="Halaman utama Langkah di iPhone Duo terlipat, dengan papan Sam: pertama makan, lalu bermain."
+            width="960" height="1397" fetchpriority="high">
         </div>
         <!-- TODO(OPS-004): link each store button to its verified listing when available. -->
         <div class="store-actions" aria-label="Ketersediaan aplikasi">
