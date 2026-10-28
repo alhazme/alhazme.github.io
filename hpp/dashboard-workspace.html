@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kalkulator HPP - Workspace</title>
+<style>*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:system-ui,-apple-system,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SF Mono,Menlo,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}html{-webkit-text-size-adjust:100%}body{background:#faf9f5;color:#141413;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}h1,h2,h3{font-family:ui-serif,Georgia,serif;font-weight:500;letter-spacing:-.01em}:focus-visible{outline:2px solid #d97757;outline-offset:2px}input,select,textarea{font-size:16px}.fld{height:2.5rem;width:100%;border-radius:8px;border-width:1.5px;--tw-border-opacity:1;border-color:rgb(209 207 197/var(--tw-border-opacity,1));--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1));padding-left:.75rem;padding-right:.75rem;--tw-text-opacity:1;color:rgb(20 20 19/var(--tw-text-opacity,1))}.fld::-moz-placeholder{--tw-text-opacity:1;color:rgb(135 134 127/var(--tw-text-opacity,1))}.fld::placeholder{--tw-text-opacity:1;color:rgb(135 134 127/var(--tw-text-opacity,1))}.fld:focus{--tw-border-opacity:1;border-color:rgb(217 119 87/var(--tw-border-opacity,1));outline:2px solid transparent;outline-offset:2px}.lbl{margin-bottom:.375rem;display:block;font-family:ui-monospace,SF Mono,Menlo,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;--tw-text-opacity:1;color:rgb(135 134 127/var(--tw-text-opacity,1))}.btn{display:inline-flex;height:2.25rem;-webkit-user-select:none;-moz-user-select:none;user-select:none;align-items:center;justify-content:center;gap:.375rem;border-radius:8px;padding-left:1rem;padding-right:1rem;font-size:.875rem;line-height:1.25rem;font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.btn-primary{--tw-bg-opacity:1;background-color:rgb(217 119 87/var(--tw-bg-opacity,1));--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.btn-primary:hover{--tw-brightness:brightness(.95);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.btn-secondary{border-width:1.5px;--tw-border-opacity:1;border-color:rgb(209 207 197/var(--tw-border-opacity,1));--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1));--tw-text-opacity:1;color:rgb(20 20 19/var(--tw-text-opacity,1))}.btn-secondary:hover{--tw-bg-opacity:1;background-color:rgb(250 249 245/var(--tw-bg-opacity,1))}.btn-ghost{background-color:transparent;--tw-text-opacity:1;color:rgb(61 61 58/var(--tw-text-opacity,1))}.btn-ghost:hover{--tw-bg-opacity:1;background-color:rgb(240 238 230/var(--tw-bg-opacity,1))}.btn-danger{--tw-bg-opacity:1;background-color:rgb(176 74 74/var(--tw-bg-opacity,1));--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.btn-danger:hover{--tw-brightness:brightness(.95);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.panel{border-radius:12px;border-width:1.5px;--tw-border-opacity:1;border-color:rgb(209 207 197/var(--tw-border-opacity,1));--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.badge{display:inline-flex;height:22px;align-items:center;border-radius:999px;padding-left:9px;padding-right:9px;font-size:.75rem;line-height:1rem;font-weight:500}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.bottom-0{bottom:0}.bottom-5{bottom:1.25rem}.left-1\/2{left:50%}.right-3{right:.75rem}.top-0{top:0}.top-1\/2{top:50%}.z-30{z-index:30}.z-40{z-index:40}.z-50{z-index:50}.col-span-1{grid-column:span 1/span 1}.mx-auto{margin-left:auto;margin-right:auto}.-mb-px{margin-bottom:-1px}.-ml-2{margin-left:-.5rem}.-mt-1{margin-top:-.25rem}.-mt-2{margin-top:-.5rem}.mb-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.ml-auto{margin-left:auto}.mr-auto{margin-right:auto}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-1\.5{margin-top:.375rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.flex{display:flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-8{height:2rem}.max-h-\[92vh\]{max-height:92vh}.w-16{width:4rem}.w-20{width:5rem}.w-24{width:6rem}.w-full{width:100%}.min-w-0{min-width:0}.max-w-4xl{max-width:56rem}.max-w-sm{max-width:24rem}.max-w-xs{max-width:20rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.border-collapse{border-collapse:collapse}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.-translate-y-1\/2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-1\/2{--tw-translate-y:-50%}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-x-4{-moz-column-gap:1rem;column-gap:1rem}.gap-y-2{row-gap:.5rem}.space-y-0\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.125rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.125rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px*(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px*var(--tw-divide-y-reverse))}.divide-gray-100>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(240 238 230/var(--tw-divide-opacity,1))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.whitespace-nowrap{white-space:nowrap}.rounded-panel{border-radius:12px}.rounded-row{border-radius:8px}.rounded-t-panel{border-top-left-radius:12px;border-top-right-radius:12px}.rounded-t-row{border-top-left-radius:8px;border-top-right-radius:8px}.border-\[1\.5px\]{border-width:1.5px}.border-b{border-bottom-width:1px}.border-b-0{border-bottom-width:0}.border-t{border-top-width:1px}.border-gray-100{--tw-border-opacity:1;border-color:rgb(240 238 230/var(--tw-border-opacity,1))}.border-gray-300{--tw-border-opacity:1;border-color:rgb(209 207 197/var(--tw-border-opacity,1))}.border-transparent{border-color:transparent}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(240 238 230/var(--tw-bg-opacity,1))}.bg-ivory{--tw-bg-opacity:1;background-color:rgb(250 249 245/var(--tw-bg-opacity,1))}.bg-ivory\/95{background-color:hsla(48,33%,97%,.95)}.bg-oat{--tw-bg-opacity:1;background-color:rgb(227 218 204/var(--tw-bg-opacity,1))}.bg-slate\/40{background-color:rgba(20,20,19,.4)}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.p-0{padding:0}.p-5{padding:1.25rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3\.5{padding-left:.875rem;padding-right:.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-3\.5{padding-top:.875rem;padding-bottom:.875rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-0{padding-bottom:0}.pb-24{padding-bottom:6rem}.pl-0\.5{padding-left:.125rem}.pr-7{padding-right:1.75rem}.pt-3{padding-top:.75rem}.pt-4{padding-top:1rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace,SF Mono,Menlo,monospace}.font-serif{font-family:ui-serif,Georgia,serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-\[36px\]{font-size:36px}.text-\[44px\]{font-size:44px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-medium{font-weight:500}.uppercase{text-transform:uppercase}.normal-case{text-transform:none}.leading-none{line-height:1}.leading-tight{line-height:1.25}.tracking-\[0\.06em\]{letter-spacing:.06em}.text-danger{--tw-text-opacity:1;color:rgb(176 74 74/var(--tw-text-opacity,1))}.text-gray-500{--tw-text-opacity:1;color:rgb(135 134 127/var(--tw-text-opacity,1))}.text-gray-700{--tw-text-opacity:1;color:rgb(61 61 58/var(--tw-text-opacity,1))}.text-slate{--tw-text-opacity:1;color:rgb(20 20 19/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.shadow-lg{--tw-shadow:0 12px 28px rgba(20,20,19,.12);--tw-shadow-colored:0 12px 28px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}.no-scrollbar::-webkit-scrollbar{display:none}@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}.last\:mb-0:last-child{margin-bottom:0}.last\:border-0:last-child{border-width:0}.hover\:bg-ivory:hover{--tw-bg-opacity:1;background-color:rgb(250 249 245/var(--tw-bg-opacity,1))}.hover\:text-slate:hover{--tw-text-opacity:1;color:rgb(20 20 19/var(--tw-text-opacity,1))}@media (min-width:640px){.sm\:max-w-lg{max-width:32rem}.sm\:items-center{align-items:center}.sm\:rounded-panel{border-radius:12px}.sm\:p-4{padding:1rem}}</style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
+:root{--green:#16543b;--ink:#182322;--muted:#63706f;--line:#e3e8e6;--wash:#f4f6f5;--soft:#eaf2ee}
+body.bg-ivory{background:var(--wash)}
+body{font-family:Geist,Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--wash);color:var(--ink);font-size:14px;line-height:1.5;font-variant-numeric:tabular-nums}
+button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.4}h1,h2,h3,.font-serif,.font-mono{font-family:inherit}h1{font-size:28px;font-weight:650;letter-spacing:-.035em}h2{font-weight:600;letter-spacing:-.02em}::selection{background:#cae4d5;color:#163c2a}input{caret-color:var(--green)}:focus-visible{outline:3px solid #75a98d;outline-offset:3px}*{scrollbar-width:thin;scrollbar-color:#cbd5ce transparent}.hidden{display:none!important}
+.app-shell{display:grid;grid-template-columns:214px minmax(0,1fr);min-height:100dvh}.sidebar{position:sticky;top:0;height:100dvh;background:#f8faf9;border-right:1px solid var(--line);display:flex;flex-direction:column;padding:28px 16px 20px;gap:28px}.brand{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700;letter-spacing:-.04em;white-space:nowrap}.brand-icon{display:grid;place-items:center;width:32px;height:36px;border-radius:8px;background:var(--green);color:white}.icon{width:19px;height:19px;flex-shrink:0;vertical-align:middle}.sidebar nav{display:grid;gap:6px}.sidebar .tab-btn{display:flex;align-items:center;gap:12px;padding:12px 14px;border:0;border-radius:7px;text-align:left;color:#43514c;font-weight:500}.sidebar .tab-btn[aria-selected=true]{background:var(--green);color:white}.nav-count{margin-left:auto;font-size:11px;opacity:.7}.sidebar-footer{margin-top:auto}.storage-box{border:1px solid var(--line);border-radius:9px;padding:13px;background:white;margin-bottom:10px}.storage-title{font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px}.storage-box p{font-size:11px;color:var(--muted);margin:6px 0 0 27px}.storage-dot{width:6px;height:6px;border-radius:50%;background:#33845b;margin-left:auto}.storage-action{font-size:11px;color:var(--green);margin:8px 0 0 27px;text-decoration:underline;text-underline-offset:3px}.side-action{width:100%;display:flex;gap:10px;align-items:center;padding:10px 12px;margin-top:5px;border:1px solid var(--line);border-radius:6px;background:white;text-align:left;font-size:12px}.sidebar-note{font-size:10px;color:var(--muted);text-align:center;margin-top:18px}.workspace{min-width:0}.workspace-topbar{height:58px;background:#fafcfb;border-bottom:1px solid var(--line);padding:0 28px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted)}.workspace-topbar strong{font-weight:500;color:#35463d}.save-status{display:flex;align-items:center;gap:7px}.save-status i{width:6px;height:6px;background:#508e6b;border-radius:50%}
+#view-menu{display:grid;grid-template-columns:292px minmax(0,1fr);min-height:calc(100dvh - 58px)}.menu-browser{background:#fafcfb;border-right:1px solid var(--line);padding:25px 16px;min-width:0}.menu-browser-head{display:flex;align-items:center;justify-content:space-between;padding:0 4px}.menu-browser h2{font-size:20px}.menu-count{font-size:12px;color:var(--muted);margin-top:3px}.menu-search{position:relative;margin:20px 0 14px}.menu-search .icon{position:absolute;left:12px;top:12px;color:#738077}.menu-search input{width:100%;border:1px solid #dce3de;border-radius:6px;padding:10px 12px 10px 38px;background:white;font-size:12px}.recipe-entry{padding:14px 12px;border-radius:6px;border:1px solid transparent;position:relative;margin:3px 0}.recipe-entry.selected{background:var(--soft);border-color:#d5e6dc}.recipe-entry:hover{background:#edf2ef}.recipe-open{width:100%;display:block;text-align:left}.recipe-labels,.recipe-prices{display:flex;align-items:center;justify-content:space-between;gap:10px}.recipe-labels strong{font-size:13px;font-weight:600}.recipe-labels span{font-size:10px;color:var(--muted)}.recipe-prices{margin-top:7px;font-size:11px;color:var(--muted)}.recipe-prices b{color:#35483e;font-weight:500}.recipe-order{display:none;gap:4px;justify-content:flex-end;margin-top:8px}.recipe-entry:focus-within .recipe-order,.recipe-entry:hover .recipe-order{display:flex}.recipe-order button{font-size:10px;padding:2px 7px;border:1px solid #d3dfd7;border-radius:4px;background:white}.list-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding:18px 4px;margin-top:24px;color:var(--muted);font-size:11px}.list-bottom button{color:var(--green);font-weight:500}
+.editor-space{padding:27px 28px 35px;min-width:0}.editor-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:23px}.editor-heading p{color:var(--muted);font-size:12px;margin-top:5px}.heading-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.editor-name{font-size:27px!important;font-weight:650;letter-spacing:-.035em;padding:0!important;border-color:transparent!important;background:transparent!important;width:100%;height:auto!important;color:var(--ink)}.editor-name:hover{border-color:#d9e4dc!important}.editor-name:focus{border-color:var(--green)!important;background:white!important}.editor-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:24px}.control-box{background:white;border:1px solid var(--line);border-radius:9px;padding:14px}.control-box .lbl{font-size:11px;font-weight:500;color:#4d5b54;margin-bottom:10px;letter-spacing:0;text-transform:none}.field-affix{display:flex;align-items:center;gap:10px}.field-affix span{color:var(--muted);font-size:12px}.field-affix input{width:100%;min-width:0;background:#f9fbfa;text-align:left;border:1px solid var(--line);padding:8px 10px;border-radius:5px;font-weight:500}.editor-columns{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:18px;align-items:start}.panel{border:1px solid var(--line);border-radius:10px;background:white;box-shadow:none}.recipe-panel{overflow:hidden}.panel-head{padding:18px 20px 16px;display:flex;justify-content:space-between;align-items:start;gap:10px}.panel-head h2,.summary-panel h2{font-size:15px}.panel-head p{font-size:11px;color:var(--muted);margin-top:4px}.ingredient-scroll{overflow-x:auto}.ingredient-table{width:100%;border-collapse:collapse;min-width:480px}.ingredient-table th{background:#f6f8f7;text-align:left;font-size:10px;font-weight:500;color:#657168;padding:10px 8px;white-space:nowrap}.ingredient-table td{padding:11px 8px;border-bottom:1px solid #edf0ee;font-size:12px;vertical-align:top}.ingredient-table th:first-child,.ingredient-table td:first-child{padding-left:20px}.ingredient-table .fld{border:1px solid transparent;background:transparent;padding:5px 4px;font-size:11px;border-radius:4px;min-height:32px;height:32px}.ingredient-table .fld:hover,.ingredient-table .fld:focus{border-color:#cbdccf;background:#fafcfb}.ingredient-name{min-width:135px;width:100%;max-width:220px}.ingredient-qty{width:54px!important;text-align:right}.ingredient-unit{width:67px!important}.ingredient-meta{font-size:10px;color:var(--muted);margin-top:2px;padding-left:4px}.money{text-align:right;white-space:nowrap;padding-top:20px!important}.delete-row{display:grid;place-items:center;width:26px;height:30px;color:#8d5b5b;background:transparent;border-radius:4px}.delete-row:hover{background:#faeeee}.delete-row .icon{width:14px;height:14px}.ingredient-footer{padding:16px 20px}.ingredient-tools{display:flex;gap:12px;flex-wrap:wrap;margin-top:13px}.text-button{font-size:11px;color:var(--muted)}.text-button:hover{color:var(--green);text-decoration:underline}.recipe-total{display:flex;justify-content:space-between;padding:16px 20px;border-top:1px solid var(--line);background:#fafcfb;font-size:12px}.recipe-total strong{font-weight:600}.summary-stack{display:grid;gap:16px}.summary-panel{padding:19px}.summary-panel>p{font-size:11px;color:var(--muted);margin-top:5px}.cost-line{display:flex;justify-content:space-between;gap:12px;font-size:12px;margin-top:18px;color:#5a665f}.cost-line strong{color:var(--ink);font-weight:500;white-space:nowrap}.hpp-line{margin:18px -7px 0;padding:14px 10px;border-radius:6px;background:var(--soft);display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;color:var(--green);gap:6px}.hpp-line strong{font-size:21px;letter-spacing:-.025em;white-space:nowrap}.cost-note{font-size:10px;color:var(--muted);margin-top:10px}.direct-price{background:#eef5f0;border:1px solid #e0ebe3;border-radius:6px;padding:14px 12px;margin-top:18px}.direct-price span{font-size:11px;font-weight:500}.direct-price strong{font-size:25px;letter-spacing:-.03em;display:block;margin:4px 0;color:var(--green)}.direct-price p{font-size:10px;color:#546f5d}.channel-line{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 0;border-bottom:1px solid #edf0ee;font-size:12px}.channel-line:last-child{border:0;padding-bottom:0}.channel-line small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.channel-line strong{font-size:12px;font-weight:600;white-space:nowrap}.stale-notice{margin-top:18px;border:1px solid #eadcb5;border-radius:8px;background:#fffbef;padding:15px 17px;display:flex;gap:11px;align-items:start}.stale-notice>.icon{color:#9a7021;margin-top:1px}.stale-notice strong{font-size:12px;color:#685326}.stale-notice p{font-size:11px;color:#7b6c4c;margin-top:4px}.stale-notice button{font-size:11px;font-weight:500;color:#6c572b;text-decoration:underline;text-underline-offset:3px;margin-top:9px}.editor-bottom{display:flex;justify-content:space-between;gap:12px;margin-top:23px;font-size:10px;color:var(--muted)}.editor-bottom span{display:flex;align-items:center;gap:6px}.editor-bottom .icon{width:13px;height:13px}.editor-empty{padding:80px 25px;text-align:center}.editor-empty h1{font-size:24px}.editor-empty p{color:var(--muted);margin:10px auto 24px;max-width:42ch}.other-view{padding:30px;max-width:1150px;margin:0 auto}.btn{border-radius:6px;font-family:inherit;font-size:12px;min-height:36px;padding:8px 12px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid transparent;font-weight:500}.btn-primary{background:var(--green);color:white;border-color:var(--green)}.btn-primary:hover{background:#103e2c}.btn-secondary{background:white;color:#39483f;border-color:#dfe5e1}.btn-secondary:hover{background:#f0f5f1}.btn-ghost{background:transparent;color:#657168}.btn-ghost:hover{background:#edf2ee}.btn-danger{background:#fff5f5;color:#ae4646;border-color:#f0dcdc}.fld{border:1px solid #dfe5e1;border-radius:6px;background:#fcfdfc;padding:9px 11px;font-size:13px;color:var(--ink);width:100%}.lbl{font-family:inherit;font-size:11px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--muted);display:block;margin-bottom:7px}.badge{border-radius:4px;font-family:inherit;font-size:10px}.text-gray-500{color:var(--muted)}.text-danger{color:#ad4040}.bg-oat{background:#f3f1e9}.font-serif{font-weight:600;letter-spacing:-.025em}#storage-warning{display:none}#modal-root .bg-white{background:white}#modal-root .text-lg{font-weight:600}#modal-root{position:relative;z-index:50}
+@media(min-width:1800px){.editor-space{padding:32px 40px}.editor-columns{grid-template-columns:minmax(0,1fr) 340px}.ingredient-table .fld{font-size:13px}.ingredient-table td{font-size:13px}.ingredient-name{max-width:none}}
+@media(max-width:1390px){.app-shell{grid-template-columns:184px minmax(0,1fr)}.sidebar{padding:24px 12px}.brand{font-size:15px;gap:7px}#view-menu{grid-template-columns:245px minmax(0,1fr)}.menu-browser{padding:24px 12px}.editor-space{padding:24px 20px}.editor-columns{grid-template-columns:minmax(0,1fr) 250px;gap:14px}.editor-heading{align-items:start}.editor-name{font-size:24px!important}.heading-actions .btn{padding:7px 9px;font-size:11px}.control-box{padding:12px}.summary-panel{padding:16px}.panel-head{padding:16px}.panel-head .btn{font-size:10px;padding:7px 8px}}
+@media(max-width:1160px){.editor-columns{grid-template-columns:minmax(0,1fr)}.summary-stack{grid-template-columns:1fr 1fr}.editor-controls{gap:8px}.control-box .lbl{font-size:10px}.editor-heading{flex-wrap:wrap}.heading-actions{justify-content:start}.editor-heading>div:first-child{width:100%}}
+@media(max-width:900px){.app-shell{grid-template-columns:76px minmax(0,1fr)}.sidebar{align-items:center;padding:20px 8px}.brand>span:last-child,.nav-label,.nav-count,.sidebar-footer{display:none}.sidebar nav{width:100%}.sidebar .tab-btn{justify-content:center;padding:13px}.sidebar .tab-btn .icon{width:21px;height:21px}#view-menu{grid-template-columns:220px minmax(0,1fr)}.editor-space{padding:22px 16px}.summary-stack{grid-template-columns:1fr}.editor-controls{grid-template-columns:1fr}.control-box{display:flex;align-items:center;justify-content:space-between;gap:10px}.control-box .lbl{margin:0;max-width:50%;font-size:11px}.field-affix{width:50%}.workspace-topbar{padding:0 18px}.other-view{padding:22px 18px}.ingredient-table{min-width:460px}}
+@media(max-width:650px){.app-shell{display:block}.sidebar{position:sticky;top:0;height:auto;padding:10px 14px 0;display:block;z-index:20;border-right:0;border-bottom:1px solid var(--line)}.brand>span:last-child{display:block}.brand{font-size:16px}.brand-icon{width:27px;height:29px}.sidebar nav{display:flex;margin-top:10px;gap:5px;justify-content:space-between}.sidebar .tab-btn{padding:10px 8px;gap:6px;border-radius:5px 5px 0 0;font-size:11px}.nav-label{display:inline}.sidebar .tab-btn .icon{width:15px;height:15px}.workspace-topbar{height:42px;font-size:10px;padding:0 16px}.save-status{gap:5px}#view-menu{display:block;min-height:0}.menu-browser{padding:18px 16px;border-right:0;border-bottom:1px solid var(--line)}.menu-browser-head h2{font-size:18px}.menu-count{font-size:10px}.menu-search{margin:12px 0}.recipe-list{display:flex;overflow-x:auto;gap:8px;padding-bottom:5px}.recipe-entry{flex:0 0 175px;border:1px solid var(--line);background:white;padding:11px}.recipe-labels span{display:none}.recipe-order,.recipe-entry:hover .recipe-order,.recipe-entry:focus-within .recipe-order{display:none}.list-bottom{margin:8px 0 0;padding:10px 0 0;display:flex;justify-content:space-between;gap:8px}.editor-space{padding:22px 16px}.editor-name{font-size:25px!important}.editor-heading{gap:10px;margin-bottom:18px}.editor-controls{grid-template-columns:repeat(3,minmax(0,1fr))}.control-box{display:block;padding:10px}.control-box .lbl{max-width:none;min-height:30px;font-size:10px;margin-bottom:7px}.field-affix{width:100%;gap:4px}.field-affix span{font-size:10px}.field-affix input{padding:7px 5px;font-size:12px}.summary-stack{grid-template-columns:1fr}.editor-bottom{flex-wrap:wrap}.other-view{padding:22px 16px}.other-view>.flex{flex-wrap:wrap;gap:12px}.other-view .grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}#modal-root .grid-cols-3{gap:8px}.stale-notice{padding:13px}.panel-head{padding:16px}.ingredient-tools{gap:12px}.heading-actions{width:100%}.heading-actions .btn{flex:1}.editor-empty{padding:45px 20px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body class="bg-ivory text-slate">
+
+<div class="app-shell"><aside class="sidebar"><a class="brand" href="dashboard-workspace.html" aria-label="Kalkulator HPP"><span class="brand-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 10h2m4 0h2M8 14h2m4 0h2M8 18h2m4 0h2"/></svg></span><span>Kalkulator HPP</span></a><nav role="tablist" aria-label="Navigasi utama"><button class="tab-btn" data-tab="menu" role="tab" title="Menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3v6a3 3 0 0 0 6 0V3M7 3v18M19 21V3c-4 2-5 8 0 9"/></svg><span class="nav-label">Menu</span></button><button class="tab-btn" data-tab="bahan" role="tab" title="Bahan"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5ZM3 8v9l9 5 9-5V8M12 13v9"/></svg><span class="nav-label">Bahan</span></button><button class="tab-btn" data-tab="paket" role="tab" title="Paket"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M2 7h20M8 7V3h8v4M12 7v14"/></svg><span class="nav-label">Paket</span></button><button class="tab-btn" data-tab="setting" role="tab" title="Pengaturan"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 3-1 3-3 1-2 3 2 2-1 4 3 1 2 4 3-1 3 1 2-4 3-1-1-4 2-2-2-3-3-1-1-3Z"/><circle cx="12" cy="12" r="3"/></svg><span class="nav-label">Pengaturan</span></button></nav><div class="sidebar-footer"><div class="storage-box"><div class="storage-title"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg><button id="storage-chip" type="button">Browser saja</button><span class="storage-dot"></span></div><p>Perubahan tersimpan otomatis di browser ini.</p><button class="storage-action" data-side="setting">Kelola penyimpanan</button></div><button class="side-action" id="side-export"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"/></svg>Export JSON</button><button class="side-action" id="side-import"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3m-4 4 4-4 4 4M4 16v5h16v-5"/></svg>Import JSON</button><button class="side-action" id="side-markdown"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H5v20h14V7l-5-5ZM14 2v6h5M8 12h8M8 16h8"/></svg>Export semua menu (MD)</button><p class="sidebar-note">Dari biaya bahan ke harga jual.</p></div></aside><div class="workspace"><header class="workspace-topbar"><span>Kalkulator HPP <span style="margin:0 10px;color:#b7c2bc">/</span><strong id="current-section">Menu</strong></span><span class="save-status"><i></i><span id="save-label">Tersimpan di browser</span></span></header><main><div id="storage-warning" class="hidden"></div><section id="view-menu" class="tab-view"></section><section id="view-bahan" class="tab-view other-view hidden"></section><section id="view-paket" class="tab-view other-view hidden"></section><section id="view-setting" class="tab-view other-view hidden"></section></main></div></div>
+<div id="modal-root"></div>
+<div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden"></div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   KONSTANTA & UTILITAS
+   ============================================================ */
+
+function icon(name) { return {"menu": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 3v6a3 3 0 0 0 6 0V3M7 3v18M19 21V3c-4 2-5 8 0 9\"/></svg>", "bahan": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m12 3 9 5-9 5-9-5 9-5ZM3 8v9l9 5 9-5V8M12 13v9\"/></svg>", "paket": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"7\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M2 7h20M8 7V3h8v4M12 7v14\"/></svg>", "setting": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 3-1 3-3 1-2 3 2 2-1 4 3 1 2 4 3-1 3 1 2-4 3-1-1-4 2-2-2-3-3-1-1-3Z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg>", "download": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5\"/></svg>", "upload": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 15V3m-4 4 4-4 4 4M4 16v5h16v-5\"/></svg>", "document": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 2H5v20h14V7l-5-5ZM14 2v6h5M8 12h8M8 16h8\"/></svg>", "database": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><ellipse cx=\"12\" cy=\"5\" rx=\"8\" ry=\"3\"/><path d=\"M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0\"/></svg>", "plus": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg>", "search": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"6\"/><path d=\"m15 15 6 6\"/></svg>", "trash": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7\"/></svg>", "alert": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m12 3 10 18H2L12 3ZM12 9v5M12 17v1\"/></svg>", "check": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m5 12 4 4L19 6\"/></svg>", "up": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 14 6-6 6 6\"/></svg>", "down": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 10 6 6 6-6\"/></svg>", "calculator": "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"5\" y=\"2\" width=\"14\" height=\"20\" rx=\"2\"/><path d=\"M8 6h8M8 10h2m4 0h2M8 14h2m4 0h2M8 18h2m4 0h2\"/></svg>"}[name] || ""; }
+
+const LS_KEY = "hpp-calculator-v1";
+
+const KELAS = {
+  berat:  { label: "Berat",  base: "g",   satuanBeli: ["g", "kg"] },
+  volume: { label: "Volume", base: "ml",  satuanBeli: ["ml", "l"] },
+  hitung: { label: "Hitung", base: "pcs", satuanBeli: ["pcs"]     },
+};
+
+// Satuan pemakaian yang boleh dipilih di resep, per kelas bahan.
+const SATUAN_PAKAI = {
+  berat:  ["g", "kg", "sdt", "sdm", "gelas", "ml", "l"],
+  volume: ["ml", "l", "sdt", "sdm", "gelas", "g", "kg"],
+  hitung: ["pcs"],
+};
+
+const SATUAN_VOLUME = ["ml", "l", "sdt", "sdm", "gelas"];
+const SATUAN_BERAT = ["g", "kg"];
+
+// Satuan yang tersedia untuk sebuah bahan, termasuk pembagian bahan hitungan.
+function satuanUntuk(b) {
+  if (!b) return ["g"];
+  if (b.kelas === "hitung") {
+    const out = ["pcs"];
+    if (b.pembagian && b.pembagian.nama && Number(b.pembagian.jumlah) > 1) out.push(b.pembagian.nama);
+    if (Number(b.gramPerPcs) > 0) out.push("g", "kg");
+    return out;
+  }
+  return SATUAN_PAKAI[b.kelas];
+}
+
+// Nama satuan beli yang ditampilkan (ekor, ikat, botol, ...).
+function labelSatuan(b, sat) {
+  return b && b.kelas === "hitung" && sat === "pcs" ? (b.satuanLabel || "pcs") : sat;
+}
+
+// Satu angka densitas (g/ml) berlaku untuk semua bahan, diturunkan dari setting "1 sdt = N gram".
+// Tidak ada kalibrasi per bahan - kesederhanaan dipilih sebagai ganti presisi per bahan.
+function globalDensitas() {
+  const s = state.settings;
+  if (s.gramSdtDefault > 0 && s.mlSdt > 0) return s.gramSdtDefault / s.mlSdt;
+  return NaN;
+}
+
+const DEFAULT_STATE = () => ({
+  version: 1,
+  settings: {
+    mlSdt: 5,
+    mlSdm: 15,
+    mlGelas: 240,
+    gramSdtDefault: 5,
+    staleDays: 30,
+    marginDefault: 30,
+    channels: [],
+  },
+  bahan: [],
+  menu: [],
+  bundling: [],
+});
+
+function uid() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+}
+
+function rp(n) {
+  if (!isFinite(n)) return "-";
+  return "Rp " + Math.round(n).toLocaleString("id-ID");
+}
+
+function num(n, dec = 2) {
+  if (!isFinite(n)) return "-";
+  return Number(n.toFixed(dec)).toLocaleString("id-ID");
+}
+
+function todayISO() {
+  return new Date().toISOString();
+}
+
+function hariSejak(iso) {
+  if (!iso) return null;
+  return Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+}
+
+function tglIndo(iso) {
+  if (!iso) return "-";
+  return new Date(iso).toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" });
+}
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => (
+    { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
+  ));
+}
+
+/* ============================================================
+   STATE
+   ============================================================ */
+
+let state = DEFAULT_STATE();
+let fileHandle = null;          // File System Access API, bila didukung
+let activeTab = "menu";
+let menuEditId = null;          // id menu yang sedang dibuka di editor
+let paketEditId = null;         // id paket yang sedang dibuka di editor
+
+const SUPPORT_FS = typeof window.showSaveFilePicker === "function";
+
+function loadLocal() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw) state = migrasi(JSON.parse(raw));
+  } catch (e) {
+    toast("Data tersimpan tidak terbaca. Memulai dari kosong.", "danger");
+  }
+}
+
+function migrasi(data) {
+  const base = DEFAULT_STATE();
+  if (!data || typeof data !== "object") return base;
+  const settings = Object.assign(base.settings, data.settings || {});
+  // Versi lama menyimpan "Langsung / WhatsApp" sebagai channel biasa berkomisi 0%.
+  // Sekarang jalur langsung dipisah dari daftar channel, jadi entri lama itu dibuang.
+  settings.channels = (settings.channels || []).filter(
+    (c) => (c.nama || "").trim().toLowerCase() !== "langsung / whatsapp"
+  );
+  return {
+    version: 1,
+    settings,
+    bahan: Array.isArray(data.bahan) ? data.bahan : [],
+    menu: Array.isArray(data.menu) ? data.menu : [],
+    bundling: Array.isArray(data.bundling) ? data.bundling : [],
+  };
+}
+
+async function save() {
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify(state));
+  } catch (e) {
+    toast("Gagal menyimpan ke browser. Penyimpanan mungkin penuh atau diblokir.", "danger");
+  }
+  if (fileHandle) {
+    try {
+      const w = await fileHandle.createWritable();
+      await w.write(JSON.stringify(backupPayload(), null, 2));
+      await w.close();
+    } catch (e) {
+      fileHandle = null;
+      toast("Koneksi ke file terputus. Data tetap tersimpan di browser.", "danger");
+      renderStorage();
+    }
+  }
+}
+
+/* ============================================================
+   PERHITUNGAN
+   ============================================================ */
+
+// Harga per satuan dasar (per gram / per ml / per pcs).
+function hargaPerBase(b) {
+  const k = KELAS[b.kelas];
+  if (!k) return NaN;
+  let qty = Number(b.qtyBeli);
+  if (b.satuanBeli === "kg" || b.satuanBeli === "l") qty *= 1000;
+  if (!qty || qty <= 0) return NaN;
+  return Number(b.hargaBeli) / qty;
+}
+
+// Konversi jumlah pemakaian ke satuan dasar bahan.
+// Mengembalikan { value, error }.
+function keBase(b, qty, satuan) {
+  const s = state.settings;
+  const q = Number(qty);
+  if (!isFinite(q)) return { value: NaN, error: "Jumlah tidak valid" };
+  const mlDari = (sat) => ({ ml: 1, l: 1000, sdt: s.mlSdt, sdm: s.mlSdm, gelas: s.mlGelas }[sat]);
+
+  if (b.kelas === "hitung") {
+    if (satuan === "pcs") return { value: q };
+    if (b.pembagian && b.pembagian.nama && satuan === b.pembagian.nama) {
+      const j = Number(b.pembagian.jumlah);
+      if (!(j > 0)) return { value: NaN, error: "Jumlah potongan per " + labelSatuan(b, "pcs") + " belum diisi" };
+      return { value: q / j };
+    }
+    if (SATUAN_BERAT.includes(satuan)) {
+      const g = Number(b.gramPerPcs);
+      if (!(g > 0)) return { value: NaN, error: "Berat per " + labelSatuan(b, "pcs") + " belum diisi" };
+      return { value: (satuan === "kg" ? q * 1000 : q) / g };
+    }
+    return { value: NaN, error: "Satuan tidak cocok dengan bahan ini" };
+  }
+
+  if (b.kelas === "berat") {
+    if (satuan === "g") return { value: q };
+    if (satuan === "kg") return { value: q * 1000 };
+    if (SATUAN_VOLUME.includes(satuan)) {
+      const d = globalDensitas();
+      if (!(d > 0)) return { value: NaN, error: "Isi takaran sendok di Setting untuk memakai satuan ini" };
+      return { value: q * mlDari(satuan) * d };
+    }
+  }
+
+  if (b.kelas === "volume") {
+    if (SATUAN_VOLUME.includes(satuan)) return { value: q * mlDari(satuan) };
+    if (SATUAN_BERAT.includes(satuan)) {
+      const d = globalDensitas();
+      if (!(d > 0)) return { value: NaN, error: "Isi takaran sendok di Setting untuk memakai satuan ini" };
+      return { value: (satuan === "kg" ? q * 1000 : q) / d };
+    }
+  }
+
+  return { value: NaN, error: "Satuan tidak cocok dengan kelas bahan" };
+}
+
+// Harga per satuan besar agar terbaca (per kg / per liter / per satuan hitungan).
+function hargaSatuanTampil(perBase, baseUnit, b) {
+  if (!isFinite(perBase)) return "-";
+  if (baseUnit === "pcs") return rp(perBase) + "/" + labelSatuan(b, "pcs");
+  return rp(perBase * 1000) + "/" + (baseUnit === "g" ? "kg" : "liter");
+}
+
+function hitungMenu(m) {
+  const rows = [];
+  let subtotal = 0;
+  let adaError = false;
+
+  (m.items || []).forEach((it) => {
+    const b = state.bahan.find((x) => x.id === it.bahanId);
+    if (!b) {
+      rows.push({ nama: "(bahan terhapus)", qty: it.qty, satuan: it.satuan, base: NaN, biaya: NaN, error: "Bahan tidak ditemukan di master" });
+      adaError = true;
+      return;
+    }
+    const konv = keBase(b, it.qty, it.satuan);
+    const perBase = hargaPerBase(b);
+    const biaya = konv.value * perBase;
+    if (konv.error || !isFinite(biaya)) adaError = true;
+    rows.push({
+      bahan: b,
+      nama: b.nama,
+      qty: Number(it.qty),
+      satuan: it.satuan,
+      base: konv.value,
+      baseUnit: KELAS[b.kelas].base,
+      perBase,
+      biaya,
+      error: konv.error || (!isFinite(perBase) ? "Harga beli bahan belum lengkap" : null),
+      stale: hariSejak(b.updatedAt) != null && hariSejak(b.updatedAt) > state.settings.staleDays,
+    });
+    if (isFinite(biaya)) subtotal += biaya;
+  });
+
+  const porsi = Number(m.porsi) > 0 ? Number(m.porsi) : 1;
+  const bahanPerPorsi = subtotal / porsi;
+  const overhead = Number(m.overheadPerPorsi) || 0;
+  // Dibulatkan ke rupiah penuh di sini, sebelum dipakai menghitung margin dan harga jual.
+  // Tanpa ini, margin dan harga jual bisa dibulatkan ke arah berbeda dari sumber yang sama
+  // (satu ke atas, satu ke bawah) dan menghasilkan selisih semu Rp 1 di layar.
+  const hpp = Math.round(bahanPerPorsi + overhead);
+  const margin = (Number(m.marginTarget) || 0) / 100;
+
+  // Harga langsung (Langsung/WhatsApp): HPP dinaikkan sebesar margin, tanpa potongan channel.
+  // Channel selain Langsung/WhatsApp: (HPP + margin) dinaikkan lagi sebesar komisi channel,
+  // sehingga laba bersih yang diterima tetap sama dengan jalur langsung.
+  const harga = hitungHargaJual(hpp, m.marginTarget);
+
+  return { rows, subtotal, porsi, bahanPerPorsi, overhead, hpp, margin, ...harga, adaError };
+}
+
+// Menghitung harga langsung dan harga per channel dari satu angka HPP dan target margin (%).
+// Dipakai bersama oleh Menu dan Paket supaya rumusnya konsisten di kedua tempat.
+function hitungHargaJual(hpp, marginTargetPct) {
+  const margin = (Number(marginTargetPct) || 0) / 100;
+  const hargaLangsung = margin < 1 ? hpp / (1 - margin) : NaN;
+  const marginRupiah = isFinite(hargaLangsung) ? hargaLangsung - hpp : NaN;
+  const labaLangsung = isFinite(hargaLangsung) ? hargaLangsung - hpp : NaN;
+
+  const channels = state.settings.channels.map((c) => {
+    const komisi = (Number(c.komisi) || 0) / 100;
+    let hargaChannel = NaN;
+    if (isFinite(hargaLangsung) && komisi < 1) hargaChannel = (hpp + marginRupiah) / (1 - komisi);
+    const diterima = hargaChannel * (1 - komisi);
+    return { nama: c.nama, komisi: Number(c.komisi) || 0, harga: hargaChannel, diterima, laba: diterima - hpp };
+  });
+
+  return { hargaLangsung, marginRupiah, labaLangsung, channels };
+}
+
+// HPP paket = jumlah (HPP menu × qty) untuk setiap menu di dalam paket. Tanpa overhead sendiri -
+// overhead sudah tercakup di HPP masing-masing menu.
+function hitungPaket(bd) {
+  const rows = [];
+  let subtotal = 0;
+  let adaError = false;
+
+  (bd.items || []).forEach((it) => {
+    const menu = state.menu.find((x) => x.id === it.menuId);
+    if (!menu) {
+      rows.push({ nama: "(menu terhapus)", qty: it.qty, hppSatuan: NaN, subtotal: NaN, error: "Menu tidak ditemukan" });
+      adaError = true;
+      return;
+    }
+    const hasilMenu = hitungMenu(menu);
+    if (hasilMenu.adaError) adaError = true;
+    const qty = Number(it.qty) > 0 ? Number(it.qty) : 0;
+    const rowSubtotal = hasilMenu.hpp * qty;
+    rows.push({
+      nama: menu.nama || "Tanpa nama",
+      qty,
+      hppSatuan: hasilMenu.hpp,
+      subtotal: rowSubtotal,
+      error: hasilMenu.adaError ? "Menu ini punya bahan yang belum bisa dihitung" : null,
+    });
+    subtotal += rowSubtotal;
+  });
+
+  const hpp = Math.round(subtotal);
+  const harga = hitungHargaJual(hpp, bd.marginTarget);
+
+  return { rows, hpp, ...harga, adaError };
+}
+
+/* ============================================================
+   RENDER - KERANGKA
+   ============================================================ */
+
+function render() {
+  renderStorage();
+  document.querySelectorAll(".tab-btn").forEach((b) => {
+    const on = b.dataset.tab === activeTab;
+    b.setAttribute("aria-selected", on ? "true" : "false");
+  });
+  document.getElementById("view-menu").classList.toggle("hidden", activeTab !== "menu");
+  document.getElementById("view-bahan").classList.toggle("hidden", activeTab !== "bahan");
+  document.getElementById("view-paket").classList.toggle("hidden", activeTab !== "paket");
+  document.getElementById("view-setting").classList.toggle("hidden", activeTab !== "setting");
+
+  document.getElementById("current-section").textContent = ({menu:"Menu",bahan:"Bahan",paket:"Paket",setting:"Pengaturan"})[activeTab];
+  if (activeTab === "menu") renderMenu();
+  if (activeTab === "bahan") renderBahan();
+  if (activeTab === "paket") renderPaket();
+  if (activeTab === "setting") renderSetting();
+}
+
+function renderStorage() {
+  document.getElementById("storage-chip").textContent = fileHandle ? "Tersambung ke file" : "Browser saja";
+  document.getElementById("save-label").textContent = fileHandle ? "Tersimpan di browser dan file" : "Tersimpan di browser";
+}
+
+function toast(msg, tone = "ok") {
+  const el = document.getElementById("toast");
+  const bg = tone === "danger" ? "#B04A4A" : tone === "warning" ? "#C78E3F" : "#141413";
+  el.innerHTML = '<div class="px-4 py-2.5 rounded-row text-sm text-white shadow-lg" style="background:' + bg + '">' + esc(msg) + "</div>";
+  el.classList.remove("hidden");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => el.classList.add("hidden"), 3200);
+}
+
+function modal(title, bodyHtml, footerHtml) {
+  const root = document.getElementById("modal-root");
+  root.innerHTML =
+    '<div class="fixed inset-0 z-40 bg-slate/40 flex items-end sm:items-center justify-center p-0 sm:p-4" data-close-modal>' +
+      '<div class="bg-white w-full sm:max-w-lg rounded-t-panel sm:rounded-panel border-[1.5px] border-gray-300 max-h-[92vh] overflow-y-auto" role="dialog" aria-modal="true">' +
+        '<div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between sticky top-0 bg-white">' +
+          '<h2 class="text-lg">' + esc(title) + "</h2>" +
+          '<button class="btn btn-ghost h-8 px-2" data-close-modal aria-label="Tutup">x</button>' +
+        "</div>" +
+        '<div class="px-5 py-5">' + bodyHtml + "</div>" +
+        (footerHtml ? '<div class="px-5 py-4 border-t border-gray-100 flex gap-2 justify-end sticky bottom-0 bg-white">' + footerHtml + "</div>" : "") +
+      "</div>" +
+    "</div>";
+  root.querySelectorAll("[data-close-modal]").forEach((el) => {
+    el.addEventListener("click", (e) => { if (e.target === el) closeModal(); });
+  });
+}
+
+function closeModal() {
+  document.getElementById("modal-root").innerHTML = "";
+}
+
+/* ============================================================
+   TAB - MENU
+   ============================================================ */
+
+function renderMenu() {
+  const v = document.getElementById("view-menu");
+  if (!state.menu.some(m => m.id === menuEditId)) menuEditId = state.menu[0]?.id || null;
+  v.innerHTML = `<aside class="menu-browser"><div class="menu-browser-head"><div><h2>Menu</h2><p class="menu-count">${state.menu.length} menu - ${state.bundling.length} paket</p></div><button class="btn btn-primary" id="btn-menu-baru">${icon("plus")}Menu baru</button></div><div class="menu-search">${icon("search")}<input id="menu-search" type="search" placeholder="Cari menu..." aria-label="Cari menu"></div><div class="recipe-list" id="recipe-list"></div><div class="list-bottom"><span>${state.bahan.length} bahan di master</span><button id="open-master">Kelola bahan</button></div></aside><div class="editor-space" id="menu-detail"></div>`;
+  renderRecipeList("");
+  document.getElementById("menu-search").addEventListener("input", e => renderRecipeList(e.target.value));
+  document.getElementById("btn-menu-baru").addEventListener("click", menuBaru);
+  document.getElementById("open-master").addEventListener("click", () => { activeTab = "bahan"; render(); });
+  if (menuEditId) renderMenuEditor(document.getElementById("menu-detail"));
+  else document.getElementById("menu-detail").innerHTML = `<div class="editor-empty"><h1>Mulai dari menu pertamamu</h1><p>Tambahkan bahan, tentukan porsi dan margin. HPP dan harga jual akan dihitung otomatis.</p><button class="btn btn-primary" onclick="menuBaru()">${icon("plus")}Buat menu</button><p>Sudah punya backup? <button class="text-button" onclick="importBackup()">Import JSON</button></p></div>`;
+}
+
+function renderRecipeList(query) {
+  const list = document.getElementById("recipe-list");
+  const menus = state.menu.filter(m => m.nama.toLowerCase().includes(query.toLowerCase()));
+  list.innerHTML = menus.map(m => {
+    const c = hitungMenu(m), i = state.menu.indexOf(m);
+    return `<div class="recipe-entry ${m.id === menuEditId ? "selected" : ""}"><button class="recipe-open" data-open-menu="${m.id}" aria-pressed="${m.id === menuEditId}"><span class="recipe-labels"><strong>${esc(m.nama || "Menu baru")}</strong><span>${c.porsi} porsi</span></span><span class="recipe-prices"><span>HPP ${c.adaError ? "Periksa bahan" : rp(c.hpp)}</span><b>${rp(c.hargaLangsung)}</b></span></button><div class="recipe-order"><button data-order="${i}" data-direction="-1" ${i === 0 ? "disabled" : ""}>Naik</button><button data-order="${i}" data-direction="1" ${i === state.menu.length - 1 ? "disabled" : ""}>Turun</button></div></div>`;
+  }).join("") || '<p class="menu-count" style="padding:15px 4px">Tidak ada menu yang cocok.</p>';
+  list.querySelectorAll("[data-open-menu]").forEach(el => el.addEventListener("click", () => { menuEditId = el.dataset.openMenu; renderRecipeList(query); renderMenuEditor(document.getElementById("menu-detail")); }));
+  list.querySelectorAll("[data-order]").forEach(el => el.addEventListener("click", () => { const i = Number(el.dataset.order), j = i + Number(el.dataset.direction); [state.menu[i], state.menu[j]] = [state.menu[j], state.menu[i]]; save(); renderRecipeList(query); }));
+}
+
+function menuBaru() {
+  const m = {
+    id: uid(),
+    nama: "",
+    porsi: 1,
+    overheadPerPorsi: 0,
+    marginTarget: state.settings.marginDefault,
+    items: [],
+    updatedAt: todayISO(),
+  };
+  state.menu.push(m);
+  menuEditId = m.id;
+  save();
+  render();
+}
+
+// Markup panel "Harga langsung" + tabel "Channel lainnya", dipakai bersama oleh
+// editor Menu dan editor Paket supaya tampilannya konsisten di kedua tempat.
+// Menyamakan nama channel supaya "GrabFood", "Grab Food", "grab-food" dianggap sama -
+// hanya huruf yang dibandingkan, tanpa spasi/tanda baca/kapitalisasi.
+function normalisasiNamaChannel(s) {
+  return (s || "").toLowerCase().replace(/[^a-z]/g, "");
+}
+
+// Ambil harga jual Langsung, GrabFood, GoFood, ShopeeFood dari hasil hitungMenu/hitungPaket.
+// Kalau salah satu channel itu belum diatur di Setting, nilainya NaN dan tampil "-".
+function hargaChannelUtama(hasil) {
+  const cari = (target) => {
+    const ch = hasil.channels.find((c) => normalisasiNamaChannel(c.nama) === target);
+    return ch ? ch.harga : NaN;
+  };
+  return {
+    langsung: hasil.hargaLangsung,
+    grabfood: cari("grabfood"),
+    gofood: cari("gofood"),
+    shopeefood: cari("shopeefood"),
+  };
+}
+
+// Grid 2x2 ringkas untuk kartu list (Menu maupun Paket) - dipakai bersama supaya konsisten.
+function markupHargaRingkasKartu(hasil) {
+  const h = hargaChannelUtama(hasil);
+  const item = (label, val) =>
+    "<div>" +
+      '<div class="font-mono text-[10px] uppercase tracking-[0.06em] text-gray-500">' + label + "</div>" +
+      '<div class="text-sm font-medium mt-0.5">' + rp(val) + "</div>" +
+    "</div>";
+  return (
+    '<div class="grid grid-cols-2 gap-x-4 gap-y-2 mt-3">' +
+      item("Langsung", h.langsung) + item("GrabFood", h.grabfood) + item("GoFood", h.gofood) + item("ShopeeFood", h.shopeefood) +
+    "</div>"
+  );
+}
+
+function markupHargaJual(marginTargetPct, harga) {
+  const channelRows = harga.channels.map((ch) =>
+    "<tr>" +
+      '<td class="px-4 py-3 text-sm">' + esc(ch.nama) + '<span class="text-gray-500"> - komisi ' + num(ch.komisi, 1) + "%</span></td>" +
+      '<td class="px-4 py-3 text-sm text-right font-medium">' + rp(ch.harga) + "</td>" +
+      '<td class="px-4 py-3 text-sm text-right' + (ch.laba < 0 ? " text-danger" : "") + '">' + rp(ch.laba) + "</td>" +
+    "</tr>"
+  ).join("");
+
+  return (
+    '<div class="panel p-5 mb-4">' +
+      '<div class="flex items-end justify-between gap-4">' +
+        "<div>" +
+          '<div class="lbl">Harga langsung <span class="normal-case text-gray-500">(Langsung / WhatsApp)</span></div>' +
+          '<div class="font-serif text-[36px] leading-none">' + (isFinite(harga.hargaLangsung) ? rp(harga.hargaLangsung) : "-") + "</div>" +
+        "</div>" +
+        '<div class="text-sm text-right text-gray-700 space-y-0.5">' +
+          "<div>Margin " + num(marginTargetPct, 1) + "% = " + rp(harga.marginRupiah) + "</div>" +
+          "<div>Laba " + rp(harga.labaLangsung) + "</div>" +
+        "</div>" +
+      "</div>" +
+      '<p class="text-xs text-gray-500 mt-2">Tidak ada potongan komisi. Channel lain di bawah dihitung dari angka ini.</p>' +
+    "</div>" +
+
+    (state.settings.channels.length
+      ? '<div class="panel overflow-hidden mb-4">' +
+          '<div class="px-5 py-4 border-b border-gray-100">' +
+            '<h2 class="text-lg">Channel lainnya</h2>' +
+            '<p class="text-xs text-gray-500 mt-0.5">(HPP + margin) dibagi (1 - komisi), agar laba tetap sama dengan jalur langsung.</p>' +
+          "</div>" +
+          '<table class="w-full border-collapse">' +
+            '<thead><tr class="bg-gray-100">' +
+              '<th class="px-4 py-2.5 text-left font-mono text-[11px] uppercase tracking-[0.06em] text-gray-500">Channel</th>' +
+              '<th class="px-4 py-2.5 text-right font-mono text-[11px] uppercase tracking-[0.06em] text-gray-500">Harga jual</th>' +
+              '<th class="px-4 py-2.5 text-right font-mono text-[11px] uppercase tracking-[0.06em] text-gray-500">Laba/porsi</th>' +
+            "</tr></thead>" +
+            "<tbody class='divide-y divide-gray-100'>" + channelRows + "</tbody>" +
+          "</table>" +
+        "</div>"
+      : '<div class="panel px-5 py-6 text-center mb-4">' +
+          '<p class="text-sm text-gray-500">Belum ada channel selain Langsung/WhatsApp. Tambahkan di tab Setting.</p>' +
+        "</div>")
+  );
+}
+function renderMenuEditor(v) {
+  const m = state.menu.find((x) => x.id === menuEditId);
+  if (!m) { menuEditId = null; return renderMenu(); }
+  const c = hitungMenu(m);
+
+  const staleRows = c.rows.filter(r => r.stale);
+  const itemRows = m.items.map((it, i) => {
+    const r = c.rows[i], b = r.bahan;
+    const options = state.bahan.slice().sort((a,b) => a.nama.localeCompare(b.nama)).map(x => `<option value="${x.id}" ${x.id === it.bahanId ? "selected" : ""}>${esc(x.nama)}</option>`).join("");
+    const units = satuanUntuk(b).map(unit => `<option value="${esc(unit)}" ${unit === it.satuan ? "selected" : ""}>${esc(labelSatuan(b,unit))}</option>`).join("");
+    return `<tr><td><select class="fld ingredient-name" data-item-bahan="${i}" aria-label="Bahan baris ${i+1}"><option value="">Pilih bahan</option>${options}</select><div class="ingredient-meta ${r.error ? "text-danger" : ""}">${r.error ? esc(r.error) : esc(hargaSatuanTampil(r.perBase,r.baseUnit,b))}</div></td><td><input class="fld ingredient-qty" type="number" min="0" step="any" value="${esc(it.qty)}" data-item-qty="${i}" aria-label="Jumlah bahan baris ${i+1}"></td><td><select class="fld ingredient-unit" data-item-satuan="${i}" aria-label="Satuan bahan baris ${i+1}">${units}</select></td><td class="money">${rp(r.biaya)}</td><td><button class="delete-row" data-item-hapus="${i}" aria-label="Hapus bahan baris ${i+1}">${icon("trash")}</button></td></tr>`;
+  }).join("");
+  v.innerHTML = `
+    <div class="editor-heading"><div style="min-width:0;flex:1"><input class="editor-name fld" value="${esc(m.nama)}" data-m="nama" placeholder="Nama menu baru" aria-label="Nama menu"><p>Kelola resep, hitung HPP dan tentukan harga jual.</p></div><div class="heading-actions"><button class="btn btn-secondary" id="btn-export-md">${icon("document")}Export MD</button><button class="btn btn-danger" id="btn-hapus-menu">${icon("trash")}Hapus</button></div></div>
+    <div class="editor-controls"><div class="control-box"><label class="lbl" for="recipe-portions">Jumlah porsi seresep</label><div class="field-affix"><input id="recipe-portions" type="number" min="1" step="1" value="${esc(m.porsi)}" data-m="porsi"><span>porsi</span></div></div><div class="control-box"><label class="lbl" for="recipe-overhead">Overhead per porsi</label><div class="field-affix"><span>Rp</span><input id="recipe-overhead" type="number" min="0" step="any" value="${esc(m.overheadPerPorsi)}" data-m="overheadPerPorsi"></div></div><div class="control-box"><label class="lbl" for="recipe-margin">Target margin</label><div class="field-affix"><input id="recipe-margin" type="number" min="0" max="99" step="any" value="${esc(m.marginTarget)}" data-m="marginTarget"><span>%</span></div></div></div>
+    <div class="editor-columns"><div><section class="panel recipe-panel"><div class="panel-head"><div><h2>Bahan dalam resep</h2><p>Jumlah bahan untuk ${num(c.porsi,0)} porsi, sebelum overhead.</p></div><button class="btn btn-primary" id="btn-item-tambah">${icon("plus")}Bahan</button></div><div class="ingredient-scroll" tabindex="0" role="region" aria-label="Tabel bahan resep. Geser horizontal untuk melihat biaya."><table class="ingredient-table"><thead><tr><th>Bahan</th><th>Jumlah</th><th>Satuan</th><th style="text-align:right">Biaya</th><th><span class="sr-only">Aksi</span></th></tr></thead><tbody>${itemRows || '<tr><td colspan="5" style="padding:30px 20px;color:#63706f">Belum ada bahan. Tambahkan bahan untuk menghitung HPP.</td></tr>'}</tbody></table></div><div class="ingredient-footer"><div class="ingredient-tools"><button class="text-button" id="btn-bahan-cepat">Buat bahan baru</button><button class="text-button" id="btn-salin-menu">Salin dari menu lain</button></div></div><div class="recipe-total"><span>Total bahan seresep</span><strong>${rp(c.subtotal)}</strong></div></section>
+    ${staleRows.length ? `<aside class="stale-notice">${icon("alert")}<div><strong>${staleRows.length} bahan perlu diperbarui harganya</strong><p>Harga terakhir diperbarui lebih dari ${state.settings.staleDays} hari lalu. ${esc(staleRows.slice(0,3).map(r => r.nama).join(", "))}${staleRows.length > 3 ? ", dan lainnya." : "."}</p><button id="review-prices">Periksa harga bahan</button></div></aside>` : ""}
+    ${c.adaError ? '<div class="stale-notice"><p class="text-danger">Ada bahan yang belum bisa dihitung. Periksa nama bahan, jumlah, dan satuannya.</p></div>' : ""}</div>
+    <aside class="summary-stack"><section class="panel summary-panel"><h2>Ringkasan biaya</h2><p>Biaya untuk satu porsi menu.</p><div class="cost-line"><span>Bahan per porsi</span><strong>${rp(c.bahanPerPorsi)}</strong></div><div class="cost-line"><span>Overhead per porsi</span><strong>${rp(c.overhead)}</strong></div><div class="hpp-line"><span>HPP per porsi</span><strong>${c.adaError ? "Periksa bahan" : rp(c.hpp)}</strong></div><p class="cost-note">Overhead mencakup gas, listrik, kemasan atau tenaga.</p></section><section class="panel summary-panel"><h2>Harga jual per channel</h2><p>Komisi diperhitungkan agar laba bersih tetap sama.</p><div class="direct-price"><span>Langsung / WhatsApp</span><strong>${rp(c.hargaLangsung)}</strong><p>Margin ${num(m.marginTarget)}% - Laba ${rp(c.labaLangsung)}/porsi</p></div>${c.channels.map(ch => `<div class="channel-line"><span>${esc(ch.nama)}<small>Komisi ${num(ch.komisi)}%</small></span><strong>${rp(ch.harga)}</strong></div>`).join("") || '<p class="cost-note">Tambahkan channel di Pengaturan.</p>'}</section></aside></div>
+    <footer class="editor-bottom"><span>${icon("check")}Perubahan disimpan otomatis</span><button class="text-button" id="btn-export-json-menu">Export detail menu (JSON)</button></footer><button id="btn-kembali" class="hidden" tabindex="-1">Semua menu</button>`;
+  const review = document.getElementById("review-prices");
+  if (review) review.addEventListener("click", () => { activeTab = "bahan"; render(); });
+
+  // --- listeners editor
+  document.getElementById("btn-kembali").addEventListener("click", () => { menuEditId = null; render(); });
+
+  v.querySelectorAll("[data-m]").forEach((el) => {
+    el.addEventListener("change", () => {
+      const f = el.dataset.m;
+      m[f] = f === "nama" ? el.value : Number(el.value);
+      m.updatedAt = todayISO();
+      save(); render();
+    });
+  });
+
+  v.querySelectorAll("[data-item-bahan]").forEach((el) => {
+    el.addEventListener("change", () => {
+      const i = +el.dataset.itemBahan;
+      m.items[i].bahanId = el.value;
+      const b = state.bahan.find((x) => x.id === el.value);
+      if (b && !satuanUntuk(b).includes(m.items[i].satuan)) {
+        m.items[i].satuan = b.kelas === "hitung" ? "pcs" : KELAS[b.kelas].base;
+      }
+      save(); render();
+    });
+  });
+  v.querySelectorAll("[data-item-qty]").forEach((el) => {
+    el.addEventListener("change", () => { m.items[+el.dataset.itemQty].qty = Number(el.value); save(); render(); });
+  });
+  v.querySelectorAll("[data-item-satuan]").forEach((el) => {
+    el.addEventListener("change", () => { m.items[+el.dataset.itemSatuan].satuan = el.value; save(); render(); });
+  });
+  v.querySelectorAll("[data-item-hapus]").forEach((el) => {
+    el.addEventListener("click", () => { m.items.splice(+el.dataset.itemHapus, 1); save(); render(); });
+  });
+
+  document.getElementById("btn-item-tambah").addEventListener("click", () => {
+    if (!state.bahan.length) { toast("Belum ada bahan di master. Buat bahan dulu.", "warning"); return formBahan(null, () => {}); }
+    m.items.push({ bahanId: "", qty: 0, satuan: "g" });
+    save(); render();
+  });
+  document.getElementById("btn-bahan-cepat").addEventListener("click", () => {
+    formBahan(null, (baru) => { m.items.push({ bahanId: baru.id, qty: 0, satuan: baru.kelas === "hitung" ? "pcs" : KELAS[baru.kelas].base }); save(); render(); });
+  });
+  document.getElementById("btn-salin-menu").addEventListener("click", () => bukaSalinBahan(m));
+
+  document.getElementById("btn-export-md").addEventListener("click", () => exportMarkdownMenu(m));
+  document.getElementById("btn-export-json-menu").addEventListener("click", () => exportJsonMenu(m));
+  document.getElementById("btn-hapus-menu").addEventListener("click", () => {
+    if (!confirm("Hapus menu \"" + (m.nama || "Tanpa nama") + "\"? Tindakan ini tidak bisa dibatalkan.")) return;
+    state.menu = state.menu.filter((x) => x.id !== m.id);
+    menuEditId = null; save(); render();
+    toast("Menu dihapus.");
+  });
+}
+
+// Salin daftar bahan (referensi bahanId + qty + satuan) dari menu lain ke menu m.
+// Menambahkan ke bahan yang sudah ada, tidak menggantikan - supaya tidak ada data yang hilang tanpa sengaja.
+function bukaSalinBahan(m) {
+  const lain = state.menu.filter((x) => x.id !== m.id);
+  const rows = lain.length
+    ? lain.map((x) =>
+        '<button class="w-full text-left px-4 py-3 rounded-row border-[1.5px] border-gray-300 hover:bg-ivory mb-2 last:mb-0" data-salin-menu="' + x.id + '">' +
+          '<div class="flex items-baseline justify-between gap-3">' +
+            '<span class="font-medium">' + esc(x.nama || "Tanpa nama") + "</span>" +
+            '<span class="text-xs text-gray-500">' + (x.items || []).length + " bahan</span>" +
+          "</div>" +
+        "</button>"
+      ).join("")
+    : '<p class="text-sm text-gray-500 py-4 text-center">Belum ada menu lain untuk disalin.</p>';
+
+  modal("Salin bahan dari menu lain",
+    "<div>" + rows + "</div>",
+    '<button class="btn btn-secondary" id="salin-batal">Batal</button>'
+  );
+  document.getElementById("salin-batal").addEventListener("click", closeModal);
+  document.querySelectorAll("[data-salin-menu]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const src = state.menu.find((x) => x.id === el.dataset.salinMenu);
+      if (!src) return;
+      const salinan = (src.items || []).map((it) => ({ bahanId: it.bahanId, qty: it.qty, satuan: it.satuan }));
+      m.items = (m.items || []).concat(salinan);
+      m.updatedAt = todayISO();
+      closeModal(); save(); render();
+      toast(salinan.length + ' bahan disalin dari "' + (src.nama || "menu tsb") + '".');
+    });
+  });
+}
+
+/* ============================================================
+   TAB - BAHAN
+   ============================================================ */
+
+function renderBahan() {
+  const v = document.getElementById("view-bahan");
+  const list = state.bahan.slice().sort((a, b) => a.nama.localeCompare(b.nama));
+
+  const rows = list.map((b) => {
+    const per = hargaPerBase(b);
+    const umur = hariSejak(b.updatedAt);
+    const stale = umur != null && umur > state.settings.staleDays;
+    const satuanTampil = b.kelas === "berat" ? "kg" : b.kelas === "volume" ? "liter" : labelSatuan(b, "pcs");
+    const hargaTampil = b.kelas === "hitung" ? per : per * 1000;
+    return (
+      '<button class="w-full text-left px-5 py-3.5 hover:bg-ivory transition-colors border-b border-gray-100 last:border-0" data-edit-bahan="' + b.id + '">' +
+        '<div class="flex items-baseline justify-between gap-3">' +
+          '<span class="font-medium">' + esc(b.nama) + "</span>" +
+          '<span class="text-sm">' + rp(hargaTampil) + '<span class="text-gray-500 text-xs">/' + satuanTampil + "</span></span>" +
+        "</div>" +
+        '<div class="flex items-center gap-2 mt-1 flex-wrap">' +
+          '<span class="badge bg-gray-100 text-gray-700">' + KELAS[b.kelas].label + "</span>" +
+          (b.kelas === "hitung" && b.pembagian && b.pembagian.nama && Number(b.pembagian.jumlah) > 1
+            ? '<span class="badge" style="background:rgba(217,119,87,0.14);color:#D97757">1 ' + esc(labelSatuan(b, "pcs")) + " = " + num(b.pembagian.jumlah, 0) + " " + esc(b.pembagian.nama) + "</span>" : "") +
+          (b.kelas === "hitung" && Number(b.gramPerPcs) > 0
+            ? '<span class="badge bg-gray-100 text-gray-700">~ ' + num(b.gramPerPcs, 0) + " g/" + esc(labelSatuan(b, "pcs")) + "</span>" : "") +
+          (stale ? '<span class="badge" style="background:rgba(199,142,63,0.16);color:#A06A2A">' + umur + " hari lalu</span>"
+                 : '<span class="text-xs text-gray-500">diperbarui ' + tglIndo(b.updatedAt) + "</span>") +
+        "</div>" +
+      "</button>"
+    );
+  }).join("");
+
+  v.innerHTML =
+    '<div class="flex items-center justify-between mb-4">' +
+      '<h2 class="text-xl">Bahan <span class="text-gray-500 text-base">(' + state.bahan.length + ")</span></h2>" +
+      '<button class="btn btn-primary" id="btn-bahan-baru">Bahan baru</button>' +
+    "</div>" +
+    (list.length
+      ? '<div class="panel overflow-hidden">' + rows + "</div>"
+      : '<div class="panel px-6 py-10 text-center">' +
+          '<h2 class="text-xl mb-2">Belum ada bahan</h2>' +
+          '<p class="text-sm text-gray-500 mb-5 max-w-sm mx-auto">Isi harga beli sekali di sini, lalu semua menu yang memakainya ikut terhitung. Ubah harga di satu tempat saja saat harga pasar bergerak.</p>' +
+          '<button class="btn btn-primary" id="btn-bahan-baru-2">Tambah bahan</button>' +
+        "</div>");
+
+  const a = document.getElementById("btn-bahan-baru");
+  const a2 = document.getElementById("btn-bahan-baru-2");
+  if (a) a.addEventListener("click", () => formBahan(null));
+  if (a2) a2.addEventListener("click", () => formBahan(null));
+  v.querySelectorAll("[data-edit-bahan]").forEach((el) => {
+    el.addEventListener("click", () => formBahan(state.bahan.find((x) => x.id === el.dataset.editBahan)));
+  });
+}
+
+function formBahan(b, onSaved) {
+  const isBaru = !b;
+  const d = b || { id: uid(), nama: "", kelas: "berat", hargaBeli: "", qtyBeli: 1, satuanBeli: "kg", satuanLabel: "", gramPerPcs: null, pembagian: null, updatedAt: null };
+
+  const kelasOpsi = Object.keys(KELAS).map((k) => '<option value="' + k + '"' + (k === d.kelas ? " selected" : "") + ">" + KELAS[k].label + "</option>").join("");
+
+  modal(isBaru ? "Bahan baru" : "Ubah bahan",
+    '<div class="space-y-4">' +
+      '<div><label class="lbl">Nama bahan</label><input class="fld" id="f-nama" value="' + esc(d.nama) + '" placeholder="Ayam broiler"></div>' +
+      '<div><label class="lbl">Kelas satuan</label><select class="fld" id="f-kelas">' + kelasOpsi + "</select>" +
+        '<p class="text-xs text-gray-500 mt-1.5">Berat untuk bahan yang ditimbang, volume untuk cairan, hitung untuk yang dihitung per butir atau per pcs.</p></div>' +
+      '<div class="grid grid-cols-3 gap-3">' +
+        '<div class="col-span-1"><label class="lbl">Harga beli</label><input class="fld text-right" id="f-harga" type="number" min="0" step="any" value="' + esc(d.hargaBeli) + '"></div>' +
+        '<div class="col-span-1"><label class="lbl">Isi</label><input class="fld text-right" id="f-qty" type="number" min="0" step="any" value="' + esc(d.qtyBeli) + '"></div>' +
+        '<div class="col-span-1"><label class="lbl">Satuan</label><select class="fld" id="f-satuan"></select></div>' +
+      "</div>" +
+      '<p class="text-xs text-gray-500 -mt-2">Contoh: harga 38000, isi 1, satuan kg.</p>' +
+      '<div id="f-hitung" class="bg-oat rounded-panel px-4 py-4 space-y-4">' +
+        "<div>" +
+          '<label class="lbl">Nama satuan beli</label>' +
+          '<input class="fld" id="f-satuan-label" value="' + esc(d.satuanLabel || "") + '" placeholder="ekor">' +
+          '<p class="text-xs text-gray-700 mt-1.5">Dipakai sebagai pengganti kata pcs, misalnya ekor, ikat, atau botol.</p>' +
+        "</div>" +
+        "<div>" +
+          '<label class="lbl">Dipotong jadi</label>' +
+          '<div class="flex items-center gap-2">' +
+            '<span class="text-sm shrink-0">1 satuan =</span>' +
+            '<input class="fld w-20 text-right" id="f-bagi-jml" type="number" min="0" step="1" value="' + esc(d.pembagian && d.pembagian.jumlah ? d.pembagian.jumlah : "") + '" placeholder="4">' +
+            '<input class="fld flex-1 min-w-0" id="f-bagi-nama" value="' + esc(d.pembagian && d.pembagian.nama ? d.pembagian.nama : "") + '" placeholder="potong">' +
+          "</div>" +
+          '<p class="text-xs text-gray-700 mt-1.5">Isi kalau bahan dibeli utuh lalu dipakai per bagian. Satuan ini akan muncul di resep.</p>' +
+        "</div>" +
+        "<div>" +
+          '<label class="lbl">Berat per satuan (gram)</label>' +
+          '<input class="fld text-right" id="f-gram-pcs" type="number" min="0" step="any" value="' + esc(d.gramPerPcs || "") + '" placeholder="1100">' +
+          '<p class="text-xs text-gray-700 mt-1.5">Timbang sendiri, karena berat per ekor berbeda antar pemasok. Mengisinya membuat resep bisa memakai gram.</p>' +
+        "</div>" +
+      "</div>" +
+      '<p class="text-xs text-gray-500 -mt-1">Konversi ke sendok/gelas memakai takaran umum dari Setting, berlaku sama untuk semua bahan.</p>' +
+    "</div>",
+    (isBaru ? "" : '<button class="btn btn-danger mr-auto" id="f-hapus">Hapus</button>') +
+    '<button class="btn btn-secondary" id="f-batal">Batal</button>' +
+    '<button class="btn btn-primary" id="f-simpan">Simpan</button>'
+  );
+
+  const elKelas = document.getElementById("f-kelas");
+  const elSatuan = document.getElementById("f-satuan");
+  const elHitung = document.getElementById("f-hitung");
+
+  function syncKelas() {
+    const k = elKelas.value;
+    elSatuan.innerHTML = KELAS[k].satuanBeli.map((s) => '<option value="' + s + '"' + (s === d.satuanBeli ? " selected" : "") + ">" + s + "</option>").join("");
+    elHitung.style.display = k === "hitung" ? "" : "none";
+  }
+  elKelas.addEventListener("change", syncKelas);
+  syncKelas();
+
+  document.getElementById("f-batal").addEventListener("click", closeModal);
+  const hp = document.getElementById("f-hapus");
+  if (hp) hp.addEventListener("click", () => {
+    const dipakai = state.menu.filter((m) => (m.items || []).some((i) => i.bahanId === d.id));
+    const pesan = dipakai.length
+      ? "Bahan ini dipakai di " + dipakai.length + " menu. Menu tersebut akan menandai barisnya sebagai bermasalah. Tetap hapus?"
+      : "Hapus bahan \"" + d.nama + "\"?";
+    if (!confirm(pesan)) return;
+    state.bahan = state.bahan.filter((x) => x.id !== d.id);
+    closeModal(); save(); render();
+    toast("Bahan dihapus.");
+  });
+
+  document.getElementById("f-simpan").addEventListener("click", () => {
+    const nama = document.getElementById("f-nama").value.trim();
+    const harga = Number(document.getElementById("f-harga").value);
+    const qty = Number(document.getElementById("f-qty").value);
+    if (!nama) return toast("Nama bahan belum diisi.", "warning");
+    if (!(harga > 0)) return toast("Harga beli harus lebih dari nol.", "warning");
+    if (!(qty > 0)) return toast("Isi kemasan harus lebih dari nol.", "warning");
+
+    const kelas = elKelas.value;
+    const bagiJml = Number(document.getElementById("f-bagi-jml").value);
+    const bagiNama = document.getElementById("f-bagi-nama").value.trim();
+    const gramPcs = Number(document.getElementById("f-gram-pcs").value);
+
+    Object.assign(d, {
+      nama, kelas, hargaBeli: harga, qtyBeli: qty,
+      satuanBeli: elSatuan.value,
+      satuanLabel: kelas === "hitung" ? (document.getElementById("f-satuan-label").value.trim() || "") : "",
+      gramPerPcs: kelas === "hitung" && gramPcs > 0 ? gramPcs : null,
+      pembagian: kelas === "hitung" && bagiJml > 1 && bagiNama ? { nama: bagiNama, jumlah: bagiJml } : null,
+      updatedAt: todayISO(),
+    });
+    if (isBaru) state.bahan.push(d);
+    closeModal(); save(); render();
+    toast(isBaru ? "Bahan ditambahkan." : "Bahan diperbarui.");
+    if (onSaved) onSaved(d);
+  });
+}
+
+/* ============================================================
+   TAB - PAKET (BUNDLING)
+   ============================================================ */
+
+function renderPaket() {
+  const v = document.getElementById("view-paket");
+  if (paketEditId) return renderPaketEditor(v);
+
+  if (!state.bundling.length) {
+    v.innerHTML =
+      '<div class="panel px-6 py-10 text-center">' +
+        '<h2 class="text-xl mb-2">Belum ada paket</h2>' +
+        '<p class="text-sm text-gray-500 mb-5 max-w-sm mx-auto">Gabungkan beberapa menu jadi satu paket - HPP-nya otomatis dijumlahkan dari menu-menu di dalamnya.</p>' +
+        (state.menu.length
+          ? '<button class="btn btn-primary" id="btn-paket-baru">Buat paket</button>'
+          : '<p class="text-xs text-gray-500">Buat menu terlebih dahulu di tab Menu sebelum membuat paket.</p>') +
+      "</div>";
+  } else {
+    const cards = state.bundling.map((bd) => {
+      const c = hitungPaket(bd);
+      return (
+        '<button class="panel w-full text-left px-5 py-4 hover:bg-ivory transition-colors" data-open-paket="' + bd.id + '">' +
+          '<div class="flex items-baseline justify-between gap-3">' +
+            '<span class="font-medium">' + esc(bd.nama || "Tanpa nama") + "</span>" +
+            '<span class="text-xs text-gray-500 shrink-0">HPP ' + (c.adaError ? "!" : rp(c.hpp)) + "</span>" +
+          "</div>" +
+          markupHargaRingkasKartu(c) +
+          '<div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 flex-wrap">' +
+            '<span class="text-xs text-gray-500">1 porsi</span>' +
+            (c.adaError ? '<span class="badge" style="background:rgba(176,74,74,0.14);color:#B04A4A">Perlu diperiksa</span>' : "") +
+          "</div>" +
+        "</button>"
+      );
+    }).join("");
+
+    v.innerHTML =
+      '<div class="flex items-center justify-between mb-4">' +
+        '<h2 class="text-xl">Paket <span class="text-gray-500 text-base">(' + state.bundling.length + ")</span></h2>" +
+        '<button class="btn btn-primary" id="btn-paket-baru">Paket baru</button>' +
+      "</div>" +
+      '<div class="grid gap-3">' + cards + "</div>";
+  }
+
+  const nb = document.getElementById("btn-paket-baru");
+  if (nb) nb.addEventListener("click", paketBaru);
+  v.querySelectorAll("[data-open-paket]").forEach((el) => {
+    el.addEventListener("click", () => { paketEditId = el.dataset.openPaket; render(); });
+  });
+}
+
+function paketBaru() {
+  if (!state.menu.length) { toast("Buat menu dulu sebelum membuat paket.", "warning"); return; }
+  const bd = {
+    id: uid(),
+    nama: "",
+    items: [],
+    marginTarget: state.settings.marginDefault,
+    updatedAt: todayISO(),
+  };
+  state.bundling.push(bd);
+  paketEditId = bd.id;
+  save();
+  render();
+}
+
+function renderPaketEditor(v) {
+  const bd = state.bundling.find((x) => x.id === paketEditId);
+  if (!bd) { paketEditId = null; return renderPaket(); }
+  const c = hitungPaket(bd);
+
+  const itemRows = bd.items.length
+    ? bd.items.map((it, i) => {
+        const r = c.rows[i];
+        const opsi = state.menu.map((x) => '<option value="' + x.id + '"' + (x.id === it.menuId ? " selected" : "") + ">" + esc(x.nama || "Tanpa nama") + "</option>").join("");
+        return (
+          '<div class="border-b border-gray-100 last:border-0 py-3">' +
+            '<div class="flex gap-2 items-start">' +
+              '<select class="fld flex-1 min-w-0" data-pitem-menu="' + i + '"><option value="">- pilih menu -</option>' + opsi + "</select>" +
+              '<input class="fld w-16 shrink-0 text-right" type="number" step="1" min="0" value="' + esc(it.qty) + '" data-pitem-qty="' + i + '" aria-label="Jumlah">' +
+              '<button class="btn btn-ghost h-10 px-2 shrink-0 text-danger" data-pitem-hapus="' + i + '" aria-label="Hapus menu">x</button>' +
+            "</div>" +
+            '<div class="flex items-center justify-between gap-2 mt-1.5 pl-0.5">' +
+              '<span class="text-xs text-gray-500">' +
+                (r.error ? '<span class="text-danger">' + esc(r.error) + "</span>" : "HPP " + rp(r.hppSatuan) + "/porsi") +
+              "</span>" +
+              '<span class="text-sm font-medium">' + (isFinite(r.subtotal) ? rp(r.subtotal) : "-") + "</span>" +
+            "</div>" +
+          "</div>"
+        );
+      }).join("")
+    : '<p class="text-sm text-gray-500 py-6 text-center">Belum ada menu di paket ini. Tambahkan menu pertama.</p>';
+
+  v.innerHTML =
+    '<button class="btn btn-ghost -ml-2 mb-3" id="btn-kembali-paket">< Semua paket</button>' +
+
+    '<div class="panel p-5 mb-4">' +
+      '<label class="lbl">Nama paket</label>' +
+      '<input class="fld text-lg" value="' + esc(bd.nama) + '" placeholder="Paket Hemat 1" data-bd="nama">' +
+      '<div class="grid grid-cols-2 gap-3 mt-4">' +
+        '<div><label class="lbl">Margin (%)</label><input class="fld text-right" type="number" min="0" max="99" step="any" value="' + esc(bd.marginTarget) + '" data-bd="marginTarget"></div>' +
+      "</div>" +
+    "</div>" +
+
+    '<div class="panel p-5 mb-4">' +
+      '<div class="flex items-center justify-between mb-1">' +
+        '<h2 class="text-lg">Isi paket</h2>' +
+        '<span class="text-xs text-gray-500">' + c.rows.length + " menu</span>" +
+      "</div>" +
+      '<div class="divide-y divide-gray-100">' + itemRows + "</div>" +
+      '<div class="flex gap-2 mt-4">' +
+        '<button class="btn btn-secondary" id="btn-pitem-tambah">+ Menu</button>' +
+      "</div>" +
+    "</div>" +
+
+    '<div class="panel p-5 mb-4">' +
+      '<div class="lbl">HPP paket</div>' +
+      '<div class="font-serif text-[44px] leading-none' + (c.adaError ? " text-danger" : "") + '">' + (c.adaError ? "-" : rp(c.hpp)) + "</div>" +
+      '<p class="text-xs text-gray-500 mt-2">Jumlah HPP semua menu di dalam paket, dikali jumlah masing-masing. Tidak ada overhead tambahan - overhead sudah tercakup di HPP setiap menu.</p>' +
+      (c.adaError ? '<p class="text-sm text-danger mt-3">Ada menu yang belum bisa dihitung. Perbaiki dulu di daftar isi paket di atas atau di tab Menu.</p>' : "") +
+    "</div>" +
+
+    markupHargaJual(bd.marginTarget, c) +
+
+    '<div class="flex flex-wrap gap-2">' +
+      '<button class="btn btn-danger ml-auto" id="btn-hapus-paket">Hapus paket</button>' +
+    "</div>";
+
+  document.getElementById("btn-kembali-paket").addEventListener("click", () => { paketEditId = null; render(); });
+
+  v.querySelectorAll("[data-bd]").forEach((el) => {
+    el.addEventListener("change", () => {
+      const f = el.dataset.bd;
+      bd[f] = f === "nama" ? el.value : Number(el.value);
+      bd.updatedAt = todayISO();
+      save(); render();
+    });
+  });
+
+  v.querySelectorAll("[data-pitem-menu]").forEach((el) => {
+    el.addEventListener("change", () => { bd.items[+el.dataset.pitemMenu].menuId = el.value; save(); render(); });
+  });
+  v.querySelectorAll("[data-pitem-qty]").forEach((el) => {
+    el.addEventListener("change", () => { bd.items[+el.dataset.pitemQty].qty = Number(el.value); save(); render(); });
+  });
+  v.querySelectorAll("[data-pitem-hapus]").forEach((el) => {
+    el.addEventListener("click", () => { bd.items.splice(+el.dataset.pitemHapus, 1); save(); render(); });
+  });
+
+  document.getElementById("btn-pitem-tambah").addEventListener("click", () => {
+    bd.items.push({ menuId: "", qty: 1 });
+    save(); render();
+  });
+
+  document.getElementById("btn-hapus-paket").addEventListener("click", () => {
+    if (!confirm('Hapus paket "' + (bd.nama || "Tanpa nama") + '"? Tindakan ini tidak bisa dibatalkan.')) return;
+    state.bundling = state.bundling.filter((x) => x.id !== bd.id);
+    paketEditId = null; save(); render();
+    toast("Paket dihapus.");
+  });
+}
+
+/* ============================================================
+   TAB - SETTING
+   ============================================================ */
+
+function renderSetting() {
+  const v = document.getElementById("view-setting");
+  const s = state.settings;
+
+  const chRows = s.channels.map((c, i) =>
+    '<div class="flex gap-2 items-center py-2.5 border-b border-gray-100 last:border-0">' +
+      '<input class="fld flex-1 min-w-0" value="' + esc(c.nama) + '" data-ch-nama="' + i + '" aria-label="Nama channel">' +
+      '<div class="relative shrink-0"><input class="fld w-24 text-right pr-7" type="number" min="0" max="99" step="any" value="' + esc(c.komisi) + '" data-ch-komisi="' + i + '" aria-label="Komisi persen">' +
+        '<span class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">%</span></div>' +
+      '<button class="btn btn-ghost h-10 px-2 text-danger shrink-0" data-ch-hapus="' + i + '" aria-label="Hapus channel">x</button>' +
+    "</div>"
+  ).join("");
+
+  v.innerHTML =
+    '<div class="panel p-5 mb-4">' +
+      '<h2 class="text-lg mb-1">Langsung / WhatsApp</h2>' +
+      '<p class="text-xs text-gray-500">Tanpa potongan komisi. Harganya dihitung dari HPP + margin, langsung di tab Menu - tidak ada pengaturan tambahan di sini.</p>' +
+    "</div>" +
+
+    '<div class="panel p-5 mb-4">' +
+      '<h2 class="text-lg mb-1">Channel lainnya</h2>' +
+      '<p class="text-xs text-gray-500 mb-3">Aggregator seperti GrabFood, GoFood, ShopeeFood. Isi komisi sesuai tarif yang berlaku di dashboard merchant Anda - tarif tidak diisi otomatis karena berbeda per merchant dan bisa berubah. Harga jualnya otomatis dinaikkan agar laba bersih tetap sama dengan Langsung/WhatsApp.</p>' +
+      (s.channels.length ? '<div>' + chRows + "</div>" : '<p class="text-sm text-gray-500 py-2">Belum ada channel selain Langsung/WhatsApp.</p>') +
+      '<button class="btn btn-secondary mt-3" id="btn-ch-tambah">+ Channel</button>' +
+    "</div>" +
+
+    '<div class="panel p-5 mb-4">' +
+      '<h2 class="text-lg mb-1">Takaran sendok</h2>' +
+      '<p class="text-xs text-gray-500 mb-4">Nilai bawaan mengikuti alat ukur metrik. Kalau Anda memakai sendok dapur biasa, ukur sekali lalu sesuaikan di sini - seluruh resep ikut menyesuaikan.</p>' +
+      '<div class="grid grid-cols-3 gap-3">' +
+        '<div><label class="lbl">1 sdt (ml)</label><input class="fld text-right" type="number" min="0" step="any" value="' + esc(s.mlSdt) + '" data-s="mlSdt"></div>' +
+        '<div><label class="lbl">1 sdm (ml)</label><input class="fld text-right" type="number" min="0" step="any" value="' + esc(s.mlSdm) + '" data-s="mlSdm"></div>' +
+        '<div><label class="lbl">1 gelas (ml)</label><input class="fld text-right" type="number" min="0" step="any" value="' + esc(s.mlGelas) + '" data-s="mlGelas"></div>' +
+      "</div>" +
+      '<div class="mt-4 pt-4 border-t border-gray-100">' +
+        '<label class="lbl">1 sdt (gram)</label>' +
+        '<div class="flex items-center gap-2 max-w-xs">' +
+          '<input class="fld text-right" type="number" min="0" step="any" value="' + esc(s.gramSdtDefault) + '" data-s="gramSdtDefault">' +
+        "</div>" +
+        '<p class="text-xs text-gray-500 mt-2">Satu angka ini berlaku untuk semua bahan saat resep memakai sendok atau gelas - tidak perlu kalibrasi ulang per bahan. Turunannya: 1 sdm ~ <span id="turunan-sdm" class="font-medium"></span> g, 1 gelas ~ <span id="turunan-gelas" class="font-medium"></span> g. Ini rata-rata umum, bukan hasil timbang tiap bahan - bahan yang jauh lebih ringan atau berat dari air (tepung, gula halus) akan meleset dari angka sebenarnya.</p>' +
+      "</div>" +
+    "</div>" +
+
+    '<div class="panel p-5 mb-4">' +
+      '<h2 class="text-lg mb-4">Bawaan</h2>' +
+      '<div class="grid grid-cols-2 gap-3">' +
+        '<div><label class="lbl">Margin default (%)</label><input class="fld text-right" type="number" min="0" max="99" step="any" value="' + esc(s.marginDefault) + '" data-s="marginDefault"></div>' +
+        '<div><label class="lbl">Harga usang setelah (hari)</label><input class="fld text-right" type="number" min="1" step="1" value="' + esc(s.staleDays) + '" data-s="staleDays"></div>' +
+      "</div>" +
+    "</div>" +
+
+    '<div class="panel p-5 mb-4">' +
+      '<h2 class="text-lg mb-1">Penyimpanan</h2>' +
+      '<p class="text-xs text-gray-500 mb-4">' +
+        (fileHandle ? "Setiap perubahan langsung ditulis ke file yang tersambung." : "Saat ini data hanya ada di browser ini.") +
+        (SUPPORT_FS ? "" : " Browser ini tidak mendukung tulis langsung ke file, jadi gunakan export dan import JSON untuk memindahkan data.") +
+      "</p>" +
+      '<div class="flex flex-wrap gap-2">' +
+        (SUPPORT_FS ? '<button class="btn btn-primary" id="btn-fs-simpan">Sambungkan ke file</button><button class="btn btn-secondary" id="btn-fs-buka">Buka dari file</button>' : "") +
+        '<button class="btn btn-secondary" id="btn-json-export">Export JSON</button>' +
+        '<button class="btn btn-secondary" id="btn-json-import">Import JSON</button>' +
+      "</div>" +
+    "</div>" +
+
+    '<div class="panel p-5">' +
+      '<h2 class="text-lg mb-1">Data</h2>' +
+      '<p class="text-xs text-gray-500 mb-4">Contoh bahan berisi bahan dapur umum tanpa harga. Harga tetap harus Anda isi sendiri, karena harga pasar berbeda per daerah dan waktu.</p>' +
+      '<div class="flex flex-wrap gap-2">' +
+        '<button class="btn btn-secondary" id="btn-seed">Isi contoh bahan</button>' +
+        '<button class="btn btn-danger" id="btn-reset">Hapus semua data</button>' +
+      "</div>" +
+    "</div>";
+
+  const dSdm = document.getElementById("turunan-sdm");
+  const dGelas = document.getElementById("turunan-gelas");
+  if (dSdm) {
+    const dens = globalDensitas();
+    dSdm.textContent = isFinite(dens) ? num(dens * s.mlSdm, 1) : "-";
+    dGelas.textContent = isFinite(dens) ? num(dens * s.mlGelas, 0) : "-";
+  }
+
+  v.querySelectorAll("[data-s]").forEach((el) => {
+    el.addEventListener("change", () => { s[el.dataset.s] = Number(el.value); save(); render(); });
+  });
+  v.querySelectorAll("[data-ch-nama]").forEach((el) => {
+    el.addEventListener("change", () => { s.channels[+el.dataset.chNama].nama = el.value; save(); });
+  });
+  v.querySelectorAll("[data-ch-komisi]").forEach((el) => {
+    el.addEventListener("change", () => { s.channels[+el.dataset.chKomisi].komisi = Number(el.value); save(); });
+  });
+  v.querySelectorAll("[data-ch-hapus]").forEach((el) => {
+    el.addEventListener("click", () => { s.channels.splice(+el.dataset.chHapus, 1); save(); render(); });
+  });
+  document.getElementById("btn-ch-tambah").addEventListener("click", () => {
+    s.channels.push({ id: uid(), nama: "Channel baru", komisi: 0 }); save(); render();
+  });
+
+  if (SUPPORT_FS) {
+    document.getElementById("btn-fs-simpan").addEventListener("click", fsSambungkan);
+    document.getElementById("btn-fs-buka").addEventListener("click", fsBuka);
+  }
+  document.getElementById("btn-json-export").addEventListener("click", exportBackup);
+  document.getElementById("btn-json-import").addEventListener("click", importBackup);
+  document.getElementById("btn-seed").addEventListener("click", seedBahan);
+  document.getElementById("btn-reset").addEventListener("click", () => {
+    if (!confirm("Hapus semua bahan, menu, dan setting? Tindakan ini tidak bisa dibatalkan.")) return;
+    state = DEFAULT_STATE(); menuEditId = null; save(); render();
+    toast("Semua data dihapus.");
+  });
+}
+
+function seedBahan() {
+  const contoh = [
+    ["Ayam broiler (karkas)", "hitung", "pcs", { satuanLabel: "ekor", pembagian: { nama: "potong", jumlah: 4 } }],
+    ["Beras", "berat", "kg"],
+    ["Tepung terigu", "berat", "kg"],
+    ["Tepung beras", "berat", "kg"],
+    ["Bawang merah", "berat", "kg"],
+    ["Bawang putih", "berat", "kg"],
+    ["Kemiri", "berat", "kg"],
+    ["Kunyit", "berat", "kg"],
+    ["Garam", "berat", "kg"],
+    ["Gula pasir", "berat", "kg"],
+    ["Kaldu bubuk", "berat", "kg"],
+    ["Merica bubuk", "berat", "kg"],
+    ["Minyak goreng", "volume", "l"],
+    ["Kecap manis", "volume", "l"],
+    ["Santan kemasan", "volume", "l"],
+    ["Telur ayam", "hitung", "pcs"],
+    ["Daun salam", "hitung", "pcs"],
+    ["Kotak makan", "hitung", "pcs"],
+  ];
+  let ditambah = 0;
+  contoh.forEach(([nama, kelas, satuan, extra]) => {
+    if (state.bahan.some((b) => b.nama.toLowerCase() === nama.toLowerCase())) return;
+    state.bahan.push(Object.assign({
+      id: uid(), nama, kelas, hargaBeli: 0, qtyBeli: 1, satuanBeli: satuan,
+      satuanLabel: "", gramPerPcs: null, pembagian: null,
+      updatedAt: null,
+    }, extra || {}));
+    ditambah++;
+  });
+  save(); render();
+  toast(ditambah + " bahan ditambahkan. Isi harga belinya sebelum dipakai.");
+}
+
+/* ============================================================
+   PENYIMPANAN FILE & EXPORT
+   ============================================================ */
+
+function backupPayload() {
+  return {
+    tipe: "hpp-calculator-backup",
+    version: 1,
+    exportedAt: todayISO(),
+    settings: state.settings,
+    bahan: state.bahan,
+    menu: state.menu,
+    bundling: state.bundling,
+  };
+}
+
+function unduh(nama, isi, mime) {
+  const blob = new Blob([isi], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = nama;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function slug(s) {
+  return (s || "menu").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "menu";
+}
+
+function stampFile() {
+  const d = new Date();
+  return d.getFullYear() + String(d.getMonth() + 1).padStart(2, "0") + String(d.getDate()).padStart(2, "0");
+}
+
+async function fsSambungkan() {
+  try {
+    fileHandle = await window.showSaveFilePicker({
+      suggestedName: "hpp-data.json",
+      types: [{ description: "JSON", accept: { "application/json": [".json"] } }],
+    });
+    await save();
+    renderStorage(); render();
+    toast("Tersambung. Perubahan akan ikut ditulis ke file.");
+  } catch (e) { /* dibatalkan user */ }
+}
+
+async function fsBuka() {
+  try {
+    const [h] = await window.showOpenFilePicker({ types: [{ description: "JSON", accept: { "application/json": [".json"] } }] });
+    const file = await h.getFile();
+    const data = JSON.parse(await file.text());
+    if (!confirm("Ganti seluruh data saat ini dengan isi file tersebut?")) return;
+    state = migrasi(data);
+    fileHandle = h;
+    menuEditId = null;
+    await save(); render();
+    toast("Data dimuat dari file.");
+  } catch (e) {
+    if (e && e.name !== "AbortError") toast("File tidak bisa dibaca. Pastikan itu file backup dari app ini.", "danger");
+  }
+}
+
+function exportBackup() {
+  unduh("hpp-backup-" + stampFile() + ".json", JSON.stringify(backupPayload(), null, 2), "application/json");
+}
+
+function importBackup() {
+  const inp = document.createElement("input");
+  inp.type = "file"; inp.accept = ".json,application/json";
+  inp.addEventListener("change", async () => {
+    const f = inp.files[0];
+    if (!f) return;
+    try {
+      const data = JSON.parse(await f.text());
+      if (!confirm("Ganti seluruh data saat ini dengan isi file tersebut?")) return;
+      state = migrasi(data); menuEditId = null; save(); render();
+      toast("Data berhasil diimpor.");
+    } catch (e) {
+      toast("File tidak bisa dibaca. Pastikan itu file backup dari app ini.", "danger");
+    }
+  });
+  inp.click();
+}
+
+function exportJsonMenu(m) {
+  const c = hitungMenu(m);
+  const payload = {
+    tipe: "hpp-calculator-laporan-menu",
+    version: 1,
+    exportedAt: todayISO(),
+    menu: {
+      nama: m.nama, porsi: c.porsi, overheadPerPorsi: c.overhead, marginTarget: m.marginTarget,
+      bahan: c.rows.map((r) => ({
+        nama: r.nama, jumlah: r.qty, satuan: r.satuan,
+        setaraDasar: isFinite(r.base) ? Number(r.base.toFixed(4)) : null,
+        satuanDasar: r.baseUnit,
+        hargaPerSatuanDasar: isFinite(r.perBase) ? Number(r.perBase.toFixed(6)) : null,
+        biaya: isFinite(r.biaya) ? Math.round(r.biaya) : null,
+      })),
+      totalBahanSeresep: Math.round(c.subtotal),
+      bahanPerPorsi: Math.round(c.bahanPerPorsi),
+      hppPerPorsi: Math.round(c.hpp),
+      hargaLangsung: {
+        channel: "Langsung / WhatsApp",
+        hargaJual: isFinite(c.hargaLangsung) ? Math.round(c.hargaLangsung) : null,
+        labaPerPorsi: isFinite(c.labaLangsung) ? Math.round(c.labaLangsung) : null,
+      },
+      hargaChannelLain: c.channels.map((ch) => ({
+        channel: ch.nama, komisiPersen: ch.komisi,
+        hargaJual: isFinite(ch.harga) ? Math.round(ch.harga) : null,
+        labaPerPorsi: isFinite(ch.laba) ? Math.round(ch.laba) : null,
+      })),
+    },
+    takaran: { sdt: state.settings.mlSdt, sdm: state.settings.mlSdm, gelas: state.settings.mlGelas },
+  };
+  unduh("hpp-" + slug(m.nama) + "-" + stampFile() + ".json", JSON.stringify(payload, null, 2), "application/json");
+}
+
+function markdownMenu(m) {
+  const c = hitungMenu(m);
+  const L = [];
+  L.push("## " + (m.nama || "Tanpa nama"));
+  L.push("");
+  L.push("- Porsi seresep: **" + num(c.porsi, 0) + "**");
+  L.push("- Overhead per porsi: **" + rp(c.overhead) + "**");
+  L.push("- Target margin bersih: **" + num(m.marginTarget, 1) + "%**");
+  L.push("");
+  L.push("### Bahan");
+  L.push("");
+  L.push("| Bahan | Dipakai | Setara | Harga satuan | Biaya |");
+  L.push("|---|---|---|---|---|");
+  c.rows.forEach((r) => {
+    const setara = isFinite(r.base) ? num(r.base) + " " + r.baseUnit : "-";
+    const hargaSat = hargaSatuanTampil(r.perBase, r.baseUnit, r.bahan);
+    L.push("| " + r.nama + " | " + num(r.qty) + " " + r.satuan + " | " + setara + " | " + hargaSat + " | " + (isFinite(r.biaya) ? rp(r.biaya) : "-") + " |");
+  });
+  L.push("| **Total seresep** | | | | **" + rp(c.subtotal) + "** |");
+  L.push("");
+  L.push("### HPP");
+  L.push("");
+  L.push("| Komponen | Per porsi |");
+  L.push("|---|---|");
+  L.push("| Bahan | " + rp(c.bahanPerPorsi) + " |");
+  L.push("| Overhead | " + rp(c.overhead) + " |");
+  L.push("| **HPP** | **" + rp(c.hpp) + "** |");
+  L.push("");
+  L.push("### Harga jual");
+  L.push("");
+  L.push("| Channel | Komisi | Harga jual | Laba/porsi |");
+  L.push("|---|---|---|---|");
+  L.push("| Langsung / WhatsApp | 0% | " + rp(c.hargaLangsung) + " | " + rp(c.labaLangsung) + " |");
+  c.channels.forEach((ch) => {
+    L.push("| " + ch.nama + " | " + num(ch.komisi, 1) + "% | " + rp(ch.harga) + " | " + rp(ch.laba) + " |");
+  });
+  if (c.adaError) {
+    L.push("");
+    L.push("> Catatan: ada baris bahan yang belum bisa dihitung saat laporan ini dibuat.");
+  }
+
+  return L.join("\n");
+}
+
+function markdownHeader() {
+  const s = state.settings;
+  return [
+    "# Laporan HPP",
+    "",
+    "Dibuat: " + tglIndo(todayISO()),
+    "",
+    "Takaran yang dipakai: 1 sdt = " + num(s.mlSdt, 1) + " ml - 1 sdm = " + num(s.mlSdm, 1) + " ml - 1 gelas = " + num(s.mlGelas, 1) + " ml - 1 sdt ~ " + num(s.gramSdtDefault, 1) + " gram (rata-rata umum, bukan per bahan)",
+    "",
+  ].join("\n");
+}
+
+function markdownSnapshot() {
+  const L = ["", "---", "", "## Harga bahan saat laporan ini dibuat", "", "| Bahan | Harga beli | Isi | Diperbarui |", "|---|---|---|---|"];
+  state.bahan.forEach((b) => {
+    L.push("| " + b.nama + " | " + rp(b.hargaBeli) + " | " + num(b.qtyBeli) + " " + b.satuanBeli + " | " + tglIndo(b.updatedAt) + " |");
+  });
+  return L.join("\n");
+}
+
+function exportMarkdownMenu(m) {
+  const isi = markdownHeader() + markdownMenu(m) + markdownSnapshot() + "\n";
+  unduh("hpp-" + slug(m.nama) + "-" + stampFile() + ".md", isi, "text/markdown");
+}
+
+function exportMarkdownSemua() {
+  if (!state.menu.length) return toast("Belum ada menu untuk diekspor.", "warning");
+  const isi = markdownHeader() + state.menu.map(markdownMenu).join("\n\n---\n\n") + markdownSnapshot() + "\n";
+  unduh("hpp-semua-menu-" + stampFile() + ".md", isi, "text/markdown");
+}
+
+/* ============================================================
+   INISIALISASI
+   ============================================================ */
+
+document.querySelectorAll(".tab-btn").forEach((b) => {
+  b.addEventListener("click", () => {
+    activeTab = b.dataset.tab;
+    if (activeTab !== "menu") menuEditId = null;
+    if (activeTab !== "paket") paketEditId = null;
+    render();
+  });
+});
+document.getElementById("storage-chip").addEventListener("click", () => { activeTab = "setting"; render(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+
+document.getElementById("side-export").addEventListener("click", exportBackup);
+document.getElementById("side-import").addEventListener("click", importBackup);
+document.getElementById("side-markdown").addEventListener("click", exportMarkdownSemua);
+document.querySelectorAll("[data-side]").forEach(el => el.addEventListener("click", () => { activeTab = el.dataset.side; render(); }));
+loadLocal();
+render();
+</script>
+</body>
+</html>
