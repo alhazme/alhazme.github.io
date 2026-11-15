@@ -27,219 +27,163 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Langkah: First Then", "description": "Langkah is a First Then board app for iPhone and iPad. Show your child what happens now and next with picture cards, a gentle timer, and a star per board.", "url": "https://alhaz.me/langkah/", "image": "https://alhaz.me/langkah/assets/img/apple-touch-icon.png", "inLanguage": "en", "operatingSystem": "iOS, iPadOS", "applicationCategory": "EducationalApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Organization", "name": "Alhazme", "url": "https://alhaz.me/"}}</script>
 <link rel="stylesheet" href="assets/styles.css">
 <script src="assets/header.js" defer></script>
-<link rel="preload" as="image" href="assets/img/splash_reading_dina.webp">
-<link rel="preload" as="image" href="assets/img/splash_play_dino.webp">
-<script>
-document.documentElement.classList.add("is-loading");
-setTimeout(() => document.documentElement.classList.remove("is-loading"), 4000);
-</script>
-<script src="assets/loading.js" defer></script>
-<script src="assets/cards.js" defer></script>
+
+<link rel="stylesheet" href="assets/landing.css">
+<link rel="preload" as="image" href="assets/img/screens/board.webp">
+<script src="assets/landing.js" defer></script>
 </head>
-<body>
-<div class="site-loader" role="status" aria-label="Loading Langkah">
-  <div class="loader-buddies">
-    <img src="assets/img/splash_reading_dina.webp" alt="Dina reading a book" width="640" height="640" fetchpriority="high">
-    <img src="assets/img/splash_play_dino.webp" alt="Dino playing with a ball" width="640" height="640" fetchpriority="high">
-  </div>
-  <strong>Langkah</strong>
-  <p>One step, together.</p>
-  <p class="loader-status">Loading the page...</p>
-</div>
-<!--
-THESIS: the app's home screen sits in a centered iPhone Duo, with its features on either side.
-OWN-WORLD: Langkah tokens from docs/design.md. Warm background, sage-dark actions, FIRST blue
-tint and THEN peach tint as whole fields, solid white cards, 1.5px lines, rounded type.
-STORY: a parent sees a familiar first-then routine, understands the timer and completion star,
-learns how to prepare and run a board, then checks the free tier and how child data is stored.
-FIRST VIEWPORT: a centered home screen, feature links on either side, store options below.
-FORM: the app's native home screenshot in a folded iPhone Duo frame. No concept roll was run
-(no PRODUCT.md; the design system is locked by docs/design.md).
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the
-verdict, DESIGN.md, and every shipping raster carrying its provenance.
--->
-<svg width="0" height="0" hidden>
-  <!-- Icons: Phosphor (MIT), bold and fill weights -->
-  <symbol id="i-arrow" viewBox="0 0 256 256"><path fill="currentColor" d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></symbol>
-  <symbol id="i-lock" viewBox="0 0 256 256"><path fill="currentColor" d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96Z"/></symbol>
-  <symbol id="i-star" viewBox="-8 -8 272 272"><path fill="currentColor" d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></symbol>
-</svg>
-
+<body class="landing">
 <a class="skip" href="#main">Skip to content</a>
-
-<header class="wrap site-header">
-  <a class="brand" href="index.html" aria-current="page"><img src="assets/img/app-icon.webp" alt="" width="40" height="40">Langkah</a>
-  <nav class="nav" aria-label="Site">
-    <a href="privacy/index.html">Privacy</a>
-    <a href="support/index.html">Support</a>
-    <a class="lang" href="id/index.html" lang="id" hreflang="id" aria-label="Bahasa Indonesia">ID</a>
+<header class="site-header">
+  <a class="brand" href="index.html" aria-current="page"><img src="assets/img/app-icon.webp" alt="" width="40" height="40">langkah<span class="brand-dot" aria-hidden="true">.</span></a>
+  <nav class="landing-nav" aria-label="Main navigation">
+    <a href="#how">How it works</a>
+    <a href="#features">Features</a>
+    <a href="#buddies">Meet the buddies</a>
   </nav>
-</header>
-
-<main id="main">
-  <section class="wrap hero" aria-labelledby="hero-title">
-    <div class="hero-copy">
-      <h1 class="display" id="hero-title">First this. Then that.</h1>
-      <p class="lede">Langkah shows your child what happens now and what comes next, one picture card at a time.</p>
-    </div>
-    <div class="hero-showcase">
-      <div class="hero-features features-left">
-        <a class="hero-feature" href="#cards"><h2>Picture cards</h2><p>60 activities with Dino and Dina. Add your own photos and voice.</p></a>
-        <a class="hero-feature" href="#timer"><h2>A gentle timer</h2><p>Each step waits until your child is ready to tap Done.</p></a>
-      </div>
-      <div class="hero-device">
-        <div class="iphone-duo">
-          <img src="assets/img/iphone-duo-home-960.webp"
-            srcset="assets/img/iphone-duo-home-480.webp 480w, assets/img/iphone-duo-home-960.webp 960w"
-            sizes="(max-height: 700px) 240px, 280px"
-            alt="Langkah home on a folded iPhone Duo, showing Sam's board: first eat, then play."
-            width="960" height="1397" fetchpriority="high">
-        </div>
-        <!-- TODO(OPS-004): link each store button to its verified listing when available. -->
-        <div class="store-actions" aria-label="App availability">
-          <button class="store-button" type="button" disabled aria-label="Download on the App Store, coming soon"><img src="assets/img/app-store-en.svg" alt="Download on the App Store" width="144" height="48"></button>
-          <button class="store-button store-button-play" type="button" disabled aria-label="Get it on Google Play, coming soon"><img src="assets/img/play-store-en.png" alt="Get it on Google Play" width="646" height="250"></button>
-        </div>
-        <p class="store-note">Coming soon. Download links are placeholders.</p>
-      </div>
-      <div class="hero-features features-right">
-        <a class="hero-feature" href="#stars"><h2>One board, one star</h2><p>Celebrate each finished board. Earned stars stay with your child.</p></a>
-        <a class="hero-feature" href="#modes"><h2>Made for little hands</h2><p>You set up the board. Your child follows one step at a time.</p></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="cards">
-    <div class="wrap"><div class="section-copy">
-      <h2 class="title" id="cards">First brush teeth. Then play.</h2>
-      <p>In the Langkah app, you choose two picture cards for one board: the first activity and the one that follows. Your child can see the order before starting.</p>
-      <p>Choose pictures of Dino and Dina for everyday activities. Your child can tap a card to hear its name in English or Bahasa Indonesia.</p>
-      <p class="muted">The 10 cards below are free. Langkah Pro unlocks all 60 cards, plus your own photos and voice recordings.</p>
-    </div></div>
-    <div class="card-marquee" tabindex="0" role="region" aria-label="10 free activity cards">
-    <ul class="strip">
-      <li class="tile" data-activity="get_dressed"><img src="assets/img/get_dressed_dina.webp" alt="" width="640" height="640" loading="lazy">Get dressed</li>
-      <li class="tile" data-activity="put_on_shoes"><img src="assets/img/put_on_shoes_dino.webp" alt="" width="640" height="640" loading="lazy">Put on shoes</li>
-      <li class="tile" data-activity="toilet"><img src="assets/img/toilet_dino.webp" alt="" width="640" height="640" loading="lazy">Toilet</li>
-      <li class="tile" data-activity="bath"><img src="assets/img/bath_dino.webp" alt="" width="640" height="640" loading="lazy">Bath</li>
-      <li class="tile" data-activity="brush_teeth"><img src="assets/img/brush_teeth_dino.webp" alt="" width="640" height="640" loading="lazy">Brush teeth</li>
-      <li class="tile" data-activity="eat"><img src="assets/img/eat_dino.webp" alt="" width="640" height="640" loading="lazy">Eat</li>
-      <li class="tile" data-activity="play"><img src="assets/img/play_dino.webp" alt="" width="640" height="640" loading="lazy">Play</li>
-      <li class="tile" data-activity="tablet"><img src="assets/img/tablet_dino.webp" alt="" width="640" height="640" loading="lazy">Tablet</li>
-      <li class="tile" data-activity="sleep"><img src="assets/img/sleep_dina.webp" alt="" width="640" height="640" loading="lazy">Sleep</li>
-      <li class="tile" data-activity="car"><img src="assets/img/car_dino.webp" alt="" width="640" height="640" loading="lazy">Car</li>
-    </ul>
-    </div>
-  </section>
-
-  <section class="wrap section split" aria-labelledby="timer">
-    <div class="section-copy">
-      <h2 class="title" id="timer">Show your child how much time is left.</h2>
-      <p>Once the activity order is clear, you can add a timer to either or both cards. The timer ring shows the time remaining, for example while your child plays.</p>
-      <p>When time is up, the card waits for your child to tap Done. Your child can finish the activity before moving on. You can also use the board without a timer.</p>
-      <p class="muted">The ring turns peach and displays Time's up, without red or flashing.</p>
-    </div>
-    <div class="timer-visual">
-      <img class="timer-art" src="assets/img/buddy_ready_dino.webp" alt="Dino ready to accompany your child" width="640" height="640" loading="lazy">
-    <div class="rings">
-      <div class="ring-card">
-        <div class="ring">
-          <svg viewBox="0 0 112 112" aria-hidden="true"><circle class="ring-track" cx="56" cy="56" r="46"/><circle class="ring-run" cx="56" cy="56" r="46"/></svg>
-          <span>3:05</span>
-        </div>
-        <p>While the timer runs</p>
-      </div>
-      <div class="ring-card">
-        <div class="ring">
-          <svg viewBox="0 0 112 112" aria-hidden="true"><circle class="ring-up" cx="56" cy="56" r="46"/></svg>
-          <span>Time's up</span>
-        </div>
-        <p>When time is up</p>
-      </div>
-    </div>
-    </div>
-  </section>
-
-  <section class="band" aria-labelledby="stars">
-    <div class="wrap split">
-      <img class="band-art breathe" src="assets/img/buddy_all_done_dino.webp" alt="Dino holding up a yellow star" width="640" height="640" loading="lazy">
-      <div class="section-copy">
-        <h2 class="statement" id="stars">Two steps finished, one <svg class="star" aria-hidden="true"><use href="#i-star"/></svg> star earned.</h2>
-        <p class="lede">Your child earns one star when both activities are finished. Dino or Dina celebrates with them on screen.</p>
-        <p>Your child keeps the stars they have earned, including on days when they leave a board unfinished.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap section" aria-labelledby="modes">
-    <h2 class="title" id="modes">You prepare the board. Your child follows one step at a time.</h2>
-    <div class="roles">
-      <div>
-        <h3 class="headline">Parent Mode</h3>
-        <img class="mode-art" src="assets/img/parent_mode_setup.webp" alt="A father and mother holding a tablet with the mother's hand behind it" width="640" height="640" loading="lazy">
-        <ul>
-          <li>Pick two cards for your child's routine and name the board.</li>
-          <li>Add a timer if needed, or leave it off.</li>
-          <li>Choose Dino or Dina, then open the board to start Child Mode.</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="headline">Child Mode</h3>
-        <img class="mode-art" src="assets/img/child_mode_study.webp" alt="Dino and Dina writing beside a tablet on a stand with study on its screen" width="640" height="640" loading="lazy">
-        <ul>
-          <li>Your child sees the current activity card and a hint of what comes next.</li>
-          <li>After the first activity, your child taps Done to open the second card.</li>
-          <li>After the second activity, your child taps Done to receive one star.</li>
-        </ul>
-        <p>To return to settings, a grown-up taps the lock icon <span class="lock-chip"><svg aria-hidden="true"><use href="#i-lock"/></svg></span> and answers one question.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap section split" aria-labelledby="price">
-    <img class="art art-first" src="assets/img/buddy_unlock_together.webp" alt="Dino and Dina opening a chest of activity cards with a key" width="640" height="640" loading="lazy">
-    <div class="section-copy">
-      <h2 class="title" id="price">Start with one free board.</h2>
-      <p>The brush teeth and play cards in this example are free. Edit the same board when your child's routine changes.</p>
-      <dl class="plans">
-        <div>
-          <dt>Free</dt>
-          <dd>10 activities, 1 board, 1 child. Edit the board as often as you like.</dd>
-        </div>
-        <div>
-          <dt>Langkah Pro</dt>
-          <dd>All 60 activities, unlimited boards and children, your own photos and voice recordings. Use pictures of objects your child knows and your voice to name the activities.</dd>
-        </div>
-      </dl>
-      <p class="muted">One purchase, with no subscription. The price is shown in your currency on the App Store, and Family Sharing is supported.</p>
-    </div>
-  </section>
-</main>
-
-<div class="closing">
-  <section class="wrap split" aria-labelledby="private">
-    <div class="section-copy">
-      <h2 class="title" id="private">Your child's data is stored on your device.</h2>
-      <p>You can use Langkah without creating an account. Boards, your child's name, photos and voice recordings are stored on your iPhone or iPad. The app does not send them to us.</p>
-      <p>Your child follows activities without advertising. Settings and purchases stay in Parent Mode, and Langkah does not use analytics.</p>
-      <div class="actions">
-        <a class="button button-secondary" href="privacy/index.html">Read the privacy policy</a>
-      </div>
-    </div>
-    <img class="art" src="assets/img/buddy_privacy_together.webp" alt="Dino and Dina presenting a phone with a closed yellow padlock on its screen" width="640" height="640" loading="lazy">
-  </section>
-</div>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <p>Langkah: First Then is made by Alhazme.</p>
-    <ul>
-      <li><a href="privacy/index.html">Privacy policy</a></li>
-      <li><a href="support/index.html">Support</a></li>
-      <li><a href="id/index.html" lang="id" hreflang="id">Bahasa Indonesia</a></li>
-    </ul>
+  <div class="header-actions">
+    <a class="language-link" href="id/index.html" lang="id" hreflang="id" aria-label="Bahasa Indonesia">ID</a>
+    <a class="small-cta" href="#download">Get Langkah <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
   </div>
-</footer>
+</header>
+<main id="main">
+  <section class="intro" aria-labelledby="hero-title">
+    <div class="intro-hill hill-left" aria-hidden="true"></div><div class="intro-hill hill-right" aria-hidden="true"></div>
+    <div class="intro-copy">
+      <p class="eyebrow"><span></span>Little steps. Together.</p>
+      <h1 id="hero-title">First this.<br><em>Then that.</em></h1>
+      <p class="intro-description">First brush teeth. Then play. Help your child see what happens now and next, with picture cards and two little friends.</p>
+      <a class="primary-link" href="#how">See how Langkah works <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <p class="intro-note">For iPhone &amp; iPad. No account. No ads.</p>
+    </div>
+    <div class="showcase" aria-label="Explore Langkah">
+      <div class="floating-card float-one" aria-hidden="true"><span>A little routine</span><img src="assets/img/brush_teeth_dino.webp" alt="" width="640" height="640"><strong>Brush teeth</strong></div>
+      <div class="floating-card float-two" aria-hidden="true"><span>Room to learn</span><img src="assets/img/reading_dina.webp" alt="" width="640" height="640"><strong>Read together</strong></div>
+      <div class="showcase-phone" id="app-preview" role="region" aria-label="App screenshots, in English">
+        <div class="app-frame"><img src="assets/img/screens/board.webp" alt="A First Then board: brush teeth first, then play. Dino asks if Sam is ready." width="720" height="1565" fetchpriority="high"></div>
+      </div>
+      <div class="floating-card float-three" aria-hidden="true"><span>Time for fun</span><img src="assets/img/play_dino.webp" alt="" width="640" height="640"><strong>Go play</strong></div>
+      <div class="floating-card float-four" aria-hidden="true"><span>A gentle goodnight</span><img src="assets/img/sleep_dina.webp" alt="" width="640" height="640"><strong>Wind down</strong></div>
+      <div class="tiny-spark spark-one" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6.4 7 .9-5.1 4.9 1.3 7-6.2-3.4L5.8 21l1.3-6.8L2 9.3l7-.9Z"/></svg></div><div class="tiny-spark spark-two" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6.4 7 .9-5.1 4.9 1.3 7-6.2-3.4L5.8 21l1.3-6.8L2 9.3l7-.9Z"/></svg></div>
+    </div>
+    <div class="preview-options" role="group" aria-label="Choose an app preview">
+      <button type="button" data-screen="board" data-alt="A First Then board: brush teeth first, then play. Dino asks if Sam is ready." aria-pressed="true" aria-controls="app-preview">Your board</button>
+      <button type="button" data-screen="first" data-alt="First: brush teeth, with a visual countdown timer." aria-pressed="false" aria-controls="app-preview">First this</button>
+      <button type="button" data-screen="then" data-alt="Then: play, after finishing the first activity." aria-pressed="false" aria-controls="app-preview">Then that</button>
+      <button type="button" data-screen="celebrate" data-alt="Good Job: Dino celebrates a finished board with one star." aria-pressed="false" aria-controls="app-preview">A little hooray</button>
+    </div>
+    <p class="preview-caption" aria-live="polite">A peek inside the app. Pick a screen to explore.</p>
+  </section>
 
+  <div class="reassurance"><div class="content-width">
+    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Works offline</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>English &amp; Bahasa Indonesia</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Your data stays with you</span>
+  </div></div>
+
+  <section class="how-section content-width" id="how" aria-labelledby="how-title">
+    <div class="section-heading"><p class="eyebrow">A little structure, a lot of care</p>
+      <h2 id="how-title">Two pictures. One clear next step.</h2>
+      <p>Everyday routines, made visible. You set the order. Your child takes it one step at a time.</p></div>
+    <ol class="how-steps">
+      <li><span class="step-number">01</span><h3>Make a little plan</h3>
+      <p>Pick two picture cards: what comes first, and what comes next. Add a timer if it helps.</p></li>
+      <li><span class="step-number">02</span><h3>One thing at a time</h3>
+      <p>Your child sees one big card, with a little hint of what follows. They tap Done when ready.</p></li>
+      <li><span class="step-number">03</span><h3>Celebrate the little wins</h3>
+      <p>Two activities finished, one star earned. Dino and Dina are there to share the moment.</p></li>
+    </ol>
+  </section>
+
+  <section class="features-section content-width" id="features" aria-labelledby="features-title">
+    <div class="section-heading"><p class="eyebrow">Thoughtful by design</p>
+      <h2 id="features-title">A small app for everyday moments.</h2></div>
+    <article class="feature-row" id="cards" aria-labelledby="cards-title">
+      <div class="feature-visual library-visual"><div class="app-frame"><img src="assets/img/screens/library.webp" alt="The Langkah activity library, with illustrated cards for everyday routines." width="720" height="1565" loading="lazy"></div><span class="visual-label">A picture for every little plan</span></div>
+      <div class="feature-copy"><p class="feature-index">01 / Picture cards</p>
+      <h3 id="cards-title">Familiar pictures.<br>A clearer day.</h3>
+      <p>From getting dressed to winding down, Dino and Dina make everyday activities easy to recognise. Tap a card to hear its name in English or Bahasa Indonesia.</p>
+      <p>Start with 10 free cards. Langkah Pro opens all 60, plus your own photos and voice recordings.</p>
+      <a class="text-link" href="#activities">Meet the activity cards <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+    </article>
+    <article class="feature-row reverse" id="timer" aria-labelledby="timer-title">
+      <div class="feature-visual timer-scene"><div class="app-frame"><img src="assets/img/screens/first.webp" alt="A First card for brushing teeth, with a gentle visual timer." width="720" height="1565" loading="lazy"></div><div class="timer-sticker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>At their own pace</span></div></div>
+      <div class="feature-copy"><p class="feature-index">02 / A gentle timer</p>
+      <h3 id="timer-title">A little time.<br>Without the rush.</h3>
+      <p>A simple ring shows how much time is left. When it ends, the card waits. Your child taps Done when they are ready to move on.</p>
+      <p>No flashing. No sudden switch. And if your day does not need a timer, just leave it off.</p>
+      <div class="feature-detail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Optional on either or both activities</div></div>
+    </article>
+    <article class="feature-row" id="stars" aria-labelledby="stars-title">
+      <div class="feature-visual celebration-scene"><img class="celebration-art" src="assets/img/buddy_all_done_dino.webp" alt="Dino proudly holding a yellow star." width="640" height="640" loading="lazy"><div class="earned-star"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6.4 7 .9-5.1 4.9 1.3 7-6.2-3.4L5.8 21l1.3-6.8L2 9.3l7-.9Z"/></svg><span>One board. One star.</span></div></div>
+      <div class="feature-copy"><p class="feature-index">03 / Little wins</p>
+      <h3 id="stars-title">Every little step<br>deserves a hooray.</h3>
+      <p>Finish both activities and a little celebration is waiting. One star for each completed board, shared with a familiar friend.</p>
+      <p>The stars your child has earned are theirs to keep, including on days when a board is left unfinished.</p>
+      <div class="feature-detail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6.4 7 .9-5.1 4.9 1.3 7-6.2-3.4L5.8 21l1.3-6.8L2 9.3l7-.9Z"/></svg>Progress to keep, at their own pace</div></div>
+    </article>
+    <article class="feature-row reverse" id="modes" aria-labelledby="modes-title">
+      <div class="feature-visual parent-scene"><img class="parent-art" src="assets/img/parent_mode_setup.webp" alt="Parents preparing a routine together on a tablet." width="640" height="640" loading="lazy"><div class="mode-note">You prepare. They take the next step.</div></div>
+      <div class="feature-copy"><p class="feature-index">04 / Made for both of you</p>
+      <h3 id="modes-title">Your helping hand.<br>Their little world.</h3>
+      <p>In Parent Mode, choose cards, set timers and name the board. In Child Mode, little hands get a big picture and one clear action.</p>
+      <p>Settings and purchases stay behind a grown-up question. Your child can focus on the step in front of them.</p>
+      <a class="text-link" href="support/index.html">A little help getting started <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+    </article>
+  </section>
+
+  <section class="activity-section" id="activities" aria-labelledby="activities-title">
+    <div class="section-heading content-width"><p class="eyebrow">From morning to goodnight</p>
+      <h2 id="activities-title">Little pictures of their world.</h2>
+      <p>Ten everyday activities to start with, all included for free.</p></div>
+    <div class="activity-gallery" tabindex="0" role="region" aria-label="Ten free activity cards, scroll horizontally"><ul>
+      <li><img src="assets/img/get_dressed_dina.webp" alt="" width="640" height="640" loading="lazy"><span>Get dressed</span></li>
+      <li><img src="assets/img/put_on_shoes_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Put on shoes</span></li>
+      <li><img src="assets/img/toilet_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Toilet</span></li>
+      <li><img src="assets/img/bath_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Bath</span></li>
+      <li><img src="assets/img/brush_teeth_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Brush teeth</span></li>
+      <li><img src="assets/img/eat_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Eat</span></li>
+      <li><img src="assets/img/play_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Play</span></li>
+      <li><img src="assets/img/tablet_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Tablet</span></li>
+      <li><img src="assets/img/sleep_dina.webp" alt="" width="640" height="640" loading="lazy"><span>Sleep</span></li>
+      <li><img src="assets/img/car_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Car</span></li>
+    </ul></div>
+    <p class="gallery-hint">Scroll to meet them all <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></p>
+  </section>
+
+  <section class="buddies-section content-width" id="buddies" aria-labelledby="buddies-title">
+    <div class="buddies-copy"><p class="eyebrow">A friend on every step</p>
+      <h2 id="buddies-title">Say hello to<br>Dino &amp; Dina.</h2>
+      <p>A green dinosaur suit. A pink one, too. Two familiar faces to read, play and celebrate with, from the first card to the last little star.</p>
+      <p>Choose the buddy your child feels at home with. They will be right there, one step at a time.</p>
+      <span class="buddy-signoff">One step, together.</span></div>
+    <div class="buddies-visual"><img class="dino-art" src="assets/img/splash_play_dino.webp" alt="Dino in his green dinosaur suit, playing with a ball." width="640" height="640" loading="lazy"><img class="dina-art" src="assets/img/splash_reading_dina.webp" alt="Dina in her pink dinosaur suit, reading a book." width="640" height="640" loading="lazy"><span class="buddy-name name-dino">Dino</span><span class="buddy-name name-dina">Dina</span></div>
+  </section>
+
+  <section class="privacy-section content-width" id="private" aria-labelledby="privacy-title">
+    <div class="privacy-art"><img src="assets/img/buddy_privacy_together.webp" alt="Dino and Dina keeping a phone safe with a closed padlock." width="640" height="640" loading="lazy"></div>
+    <div class="privacy-copy"><p class="eyebrow">Their world stays yours</p>
+      <h2 id="privacy-title">Small steps.<br>Private by nature.</h2>
+      <p>No account to create. No ads to get in the way. Boards, names, photos and voice recordings stay on your iPhone or iPad. We do not receive them, and Langkah has no analytics.</p>
+      <a class="text-link" href="privacy/index.html">Read our privacy policy <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+  </section>
+
+  <section class="download-section" id="download" aria-labelledby="download-title"><div class="content-width download-inner">
+    <div class="download-copy"><p class="eyebrow">Your next little step</p>
+      <h2 id="download-title">A little plan.<br>A day to grow into.</h2>
+      <p>Start free with 10 activities, one board and one child. Make your first little routine, then change it as your day changes.</p>
+      <!-- TODO(OPS-004): replace disabled badges with verified store listing links. -->
+      <div class="download-badges" aria-label="App availability">
+      <button type="button" disabled aria-label="Download on the App Store, coming soon"><img src="assets/img/app-store-en.svg" alt="Download on the App Store" width="144" height="48"></button>
+      <button type="button" disabled aria-label="Get it on Google Play, coming soon"><img src="assets/img/play-store-en.png" alt="Get it on Google Play" width="646" height="250"></button>
+    </div><p class="availability-note">Coming soon. Download links are not available yet.</p>
+      <div class="pro-note"><strong>Langkah Pro</strong><p>All 60 activities, unlimited boards and children, your own photos and voice. One purchase, no subscription. Family Sharing supported. The App Store shows the price in your currency.</p></div>
+    </div>
+    <div class="download-art"><img src="assets/img/buddy_unlock_together.webp" alt="Dino and Dina unlocking a treasure chest full of activity cards." width="640" height="640" loading="lazy"></div>
+  </div></section>
+</main>
+<footer class="landing-footer content-width">
+  <div class="footer-top"><a class="brand" href="index.html"><img src="assets/img/app-icon.webp" alt="" width="40" height="40">langkah<span class="brand-dot" aria-hidden="true">.</span></a><p>One step, together.</p><nav aria-label="Footer"><a href="privacy/index.html">Privacy</a><a href="support/index.html">Support</a><a href="id/index.html" lang="id" hreflang="id">Bahasa Indonesia</a></nav></div>
+  <div class="footer-bottom"><p>Made with care by Alhazme.</p>
+      <span>© 2026 Langkah: First Then</span></div>
+</footer>
 </body>
 </html>

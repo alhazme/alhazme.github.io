@@ -27,208 +27,163 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Langkah: First Then", "description": "Langkah adalah aplikasi papan First Then untuk iPhone dan iPad. Tunjukkan kepada anak apa yang dilakukan sekarang dan berikutnya dengan kartu bergambar dan timer.", "url": "https://alhaz.me/langkah/id/", "image": "https://alhaz.me/langkah/assets/img/apple-touch-icon.png", "inLanguage": "id", "operatingSystem": "iOS, iPadOS", "applicationCategory": "EducationalApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Organization", "name": "Alhazme", "url": "https://alhaz.me/"}}</script>
 <link rel="stylesheet" href="../assets/styles.css">
 <script src="../assets/header.js" defer></script>
-<link rel="preload" as="image" href="../assets/img/splash_reading_dina.webp">
-<link rel="preload" as="image" href="../assets/img/splash_play_dino.webp">
-<script>
-document.documentElement.classList.add("is-loading");
-setTimeout(() => document.documentElement.classList.remove("is-loading"), 4000);
-</script>
-<script src="../assets/loading.js" defer></script>
-<script src="../assets/cards.js" defer></script>
+
+<link rel="stylesheet" href="../assets/landing.css">
+<link rel="preload" as="image" href="../assets/img/screens/board.webp">
+<script src="../assets/landing.js" defer></script>
 </head>
-<body>
-<div class="site-loader" role="status" aria-label="Memuat Langkah">
-  <div class="loader-buddies">
-    <img src="../assets/img/splash_reading_dina.webp" alt="Dina membaca buku" width="640" height="640" fetchpriority="high">
-    <img src="../assets/img/splash_play_dino.webp" alt="Dino bermain bola" width="640" height="640" fetchpriority="high">
-  </div>
-  <strong>Langkah</strong>
-  <p>Selangkah, bersama.</p>
-  <p class="loader-status">Memuat halaman...</p>
-</div>
-<!-- Indonesian version of ../index.html. The direction contract lives in that file. -->
-<svg width="0" height="0" hidden>
-  <!-- Icons: Phosphor (MIT), bold and fill weights -->
-  <symbol id="i-arrow" viewBox="0 0 256 256"><path fill="currentColor" d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></symbol>
-  <symbol id="i-lock" viewBox="0 0 256 256"><path fill="currentColor" d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96Z"/></symbol>
-  <symbol id="i-star" viewBox="-8 -8 272 272"><path fill="currentColor" d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></symbol>
-</svg>
-
+<body class="landing">
 <a class="skip" href="#main">Langsung ke isi</a>
-
-<header class="wrap site-header">
-  <a class="brand" href="index.html" aria-current="page"><img src="../assets/img/app-icon.webp" alt="" width="40" height="40">Langkah</a>
-  <nav class="nav" aria-label="Situs">
-    <a href="../privacy/id/index.html">Privasi</a>
-    <a href="../support/id/index.html">Bantuan</a>
-    <a class="lang" href="../index.html" lang="en" hreflang="en" aria-label="English">EN</a>
+<header class="site-header">
+  <a class="brand" href="index.html" aria-current="page"><img src="../assets/img/app-icon.webp" alt="" width="40" height="40">langkah<span class="brand-dot" aria-hidden="true">.</span></a>
+  <nav class="landing-nav" aria-label="Navigasi utama">
+    <a href="#how">Cara kerja</a>
+    <a href="#features">Fitur</a>
+    <a href="#buddies">Kenalan dulu</a>
   </nav>
-</header>
-
-<main id="main">
-  <section class="wrap hero" aria-labelledby="hero-title">
-    <div class="hero-copy">
-      <h1 class="display" id="hero-title">Pertama ini. Lalu itu.</h1>
-      <p class="lede">Langkah menunjukkan kepada anak apa yang dilakukan sekarang dan apa sesudahnya, satu kartu bergambar tiap kali.</p>
-    </div>
-    <div class="hero-showcase">
-      <div class="hero-features features-left">
-        <a class="hero-feature" href="#cards"><h2>Kartu bergambar</h2><p>60 aktivitas bersama Dino dan Dina. Tambahkan foto dan suara sendiri.</p></a>
-        <a class="hero-feature" href="#timer"><h2>Timer yang tenang</h2><p>Setiap langkah menunggu sampai anak siap mengetuk Selesai.</p></a>
-      </div>
-      <div class="hero-device">
-        <div class="iphone-duo">
-          <img src="../assets/img/iphone-duo-home-960.webp"
-            srcset="../assets/img/iphone-duo-home-480.webp 480w, ../assets/img/iphone-duo-home-960.webp 960w"
-            sizes="(max-height: 700px) 240px, 280px"
-            alt="Halaman utama Langkah di iPhone Duo terlipat, dengan papan Sam: pertama makan, lalu bermain."
-            width="960" height="1397" fetchpriority="high">
-        </div>
-        <!-- TODO(OPS-004): link each store button to its verified listing when available. -->
-        <div class="store-actions" aria-label="Ketersediaan aplikasi">
-          <button class="store-button" type="button" disabled aria-label="Download on the App Store, segera hadir"><img src="../assets/img/app-store-en.svg" alt="Download on the App Store" width="144" height="48"></button>
-          <button class="store-button store-button-play" type="button" disabled aria-label="Get it on Google Play, segera hadir"><img src="../assets/img/play-store-en.png" alt="Get it on Google Play" width="646" height="250"></button>
-        </div>
-        <p class="store-note">Segera hadir. Tautan unduh masih dummy.</p>
-      </div>
-      <div class="hero-features features-right">
-        <a class="hero-feature" href="#stars"><h2>Satu papan, satu bintang</h2><p>Rayakan setiap papan yang selesai. Bintang yang didapat tetap tersimpan.</p></a>
-        <a class="hero-feature" href="#modes"><h2>Untuk tangan kecil</h2><p>Anda menyiapkan papan. Anak mengikuti satu langkah tiap kali.</p></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="cards">
-    <div class="wrap"><div class="section-copy">
-      <h2 class="title" id="cards">Pertama sikat gigi. Lalu bermain.</h2>
-      <p>Di aplikasi Langkah, Anda memilih dua kartu bergambar untuk satu papan: kegiatan pertama dan kegiatan berikutnya. Anak bisa melihat urutan yang akan dijalani.</p>
-      <p>Pilih gambar Dino dan Dina untuk kegiatan sehari-hari. Anak dapat mengetuk kartu untuk mendengar nama kegiatannya dalam Bahasa Indonesia atau Inggris.</p>
-      <p class="muted">10 kartu di bawah tersedia gratis. Langkah Pro membuka semua 60 kartu, serta pilihan foto dan rekaman suara sendiri.</p>
-    </div></div>
-    <div class="card-marquee" tabindex="0" role="region" aria-label="10 kartu aktivitas gratis">
-    <ul class="strip">
-      <li class="tile" data-activity="get_dressed"><img src="../assets/img/get_dressed_dina.webp" alt="" width="640" height="640" loading="lazy">Pakai baju</li>
-      <li class="tile" data-activity="put_on_shoes"><img src="../assets/img/put_on_shoes_dino.webp" alt="" width="640" height="640" loading="lazy">Pakai sepatu</li>
-      <li class="tile" data-activity="toilet"><img src="../assets/img/toilet_dino.webp" alt="" width="640" height="640" loading="lazy">Toilet</li>
-      <li class="tile" data-activity="bath"><img src="../assets/img/bath_dino.webp" alt="" width="640" height="640" loading="lazy">Mandi</li>
-      <li class="tile" data-activity="brush_teeth"><img src="../assets/img/brush_teeth_dino.webp" alt="" width="640" height="640" loading="lazy">Sikat gigi</li>
-      <li class="tile" data-activity="eat"><img src="../assets/img/eat_dino.webp" alt="" width="640" height="640" loading="lazy">Makan</li>
-      <li class="tile" data-activity="play"><img src="../assets/img/play_dino.webp" alt="" width="640" height="640" loading="lazy">Bermain</li>
-      <li class="tile" data-activity="tablet"><img src="../assets/img/tablet_dino.webp" alt="" width="640" height="640" loading="lazy">Tablet</li>
-      <li class="tile" data-activity="sleep"><img src="../assets/img/sleep_dina.webp" alt="" width="640" height="640" loading="lazy">Tidur</li>
-      <li class="tile" data-activity="car"><img src="../assets/img/car_dino.webp" alt="" width="640" height="640" loading="lazy">Mobil</li>
-    </ul>
-    </div>
-  </section>
-
-  <section class="wrap section split" aria-labelledby="timer">
-    <div class="section-copy">
-      <h2 class="title" id="timer">Beri anak gambaran waktu yang tersisa.</h2>
-      <p>Setelah urutan kegiatan jelas, Anda bisa menambahkan timer pada salah satu atau kedua kartu. Cincin timer menunjukkan waktu yang tersisa, misalnya saat anak bermain.</p>
-      <p>Saat waktu habis, kartu tetap menunggu anak mengetuk Selesai. Anak bisa menuntaskan kegiatannya sebelum berpindah. Anda juga bisa memakai papan tanpa timer.</p>
-      <p class="muted">Cincin berubah menjadi warna persik dan menampilkan Waktu habis, tanpa merah atau kedip.</p>
-    </div>
-    <div class="timer-visual">
-      <img class="timer-art" src="../assets/img/buddy_ready_dino.webp" alt="Dino siap menemani anak" width="640" height="640" loading="lazy">
-    <div class="rings">
-      <div class="ring-card">
-        <div class="ring">
-          <svg viewBox="0 0 112 112" aria-hidden="true"><circle class="ring-track" cx="56" cy="56" r="46"/><circle class="ring-run" cx="56" cy="56" r="46"/></svg>
-          <span>3:05</span>
-        </div>
-        <p>Saat timer berjalan</p>
-      </div>
-      <div class="ring-card">
-        <div class="ring">
-          <svg viewBox="0 0 112 112" aria-hidden="true"><circle class="ring-up" cx="56" cy="56" r="46"/></svg>
-          <span>Waktu habis</span>
-        </div>
-        <p>Saat waktu habis</p>
-      </div>
-    </div>
-    </div>
-  </section>
-
-  <section class="band" aria-labelledby="stars">
-    <div class="wrap split">
-      <img class="band-art breathe" src="../assets/img/buddy_all_done_dino.webp" alt="Dino mengangkat bintang kuning" width="640" height="640" loading="lazy">
-      <div class="section-copy">
-        <h2 class="statement" id="stars">Dua langkah selesai, satu <svg class="star" aria-hidden="true"><use href="#i-star"/></svg> bintang didapat.</h2>
-        <p class="lede">Anak mendapat satu bintang saat kedua kegiatan selesai. Dino atau Dina ikut merayakan di layar aplikasi.</p>
-        <p>Bintang yang sudah didapat tetap tersimpan, termasuk pada hari ketika anak belum menyelesaikan papan.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap section" aria-labelledby="modes">
-    <h2 class="title" id="modes">Anda menyiapkan. Anak mengikuti satu langkah tiap kali.</h2>
-    <div class="roles">
-      <div>
-        <h3 class="headline">Mode Orang Tua</h3>
-        <img class="mode-art" src="../assets/img/parent_mode_setup.webp" alt="Ayah dan ibu memegang tablet dengan tangan ibu di belakangnya" width="640" height="640" loading="lazy">
-        <ul>
-          <li>Pilih dua kartu sesuai rutinitas anak, lalu beri nama papannya.</li>
-          <li>Pasang timer bila diperlukan, atau biarkan tanpa timer.</li>
-          <li>Pilih Dino atau Dina, lalu buka papan untuk memulai Mode Anak.</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="headline">Mode Anak</h3>
-        <img class="mode-art" src="../assets/img/child_mode_study.webp" alt="Dino dan Dina menulis di samping tablet berdiri dengan tulisan study di layarnya" width="640" height="640" loading="lazy">
-        <ul>
-          <li>Anak melihat kartu kegiatan sekarang dan petunjuk kegiatan berikutnya.</li>
-          <li>Setelah kegiatan pertama selesai, anak mengetuk Selesai untuk membuka kartu kedua.</li>
-          <li>Setelah kegiatan kedua selesai, anak mengetuk Selesai untuk menerima satu bintang.</li>
-        </ul>
-        <p>Untuk kembali ke pengaturan, orang tua mengetuk ikon gembok <span class="lock-chip"><svg aria-hidden="true"><use href="#i-lock"/></svg></span> dan menjawab satu soal.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap section split" aria-labelledby="price">
-    <img class="art art-first" src="../assets/img/buddy_unlock_together.webp" alt="Dino dan Dina membuka peti berisi kartu aktivitas dengan kunci" width="640" height="640" loading="lazy">
-    <div class="section-copy">
-      <h2 class="title" id="price">Mulai dengan satu papan gratis.</h2>
-      <p>Contoh sikat gigi lalu bermain tadi bisa dibuat dengan kartu gratis. Ubah isi papan yang sama saat rutinitas anak berubah.</p>
-      <dl class="plans">
-        <div>
-          <dt>Gratis</dt>
-          <dd>10 aktivitas, 1 papan, 1 anak. Papan bisa diubah sesering yang Anda mau.</dd>
-        </div>
-        <div>
-          <dt>Langkah Pro</dt>
-          <dd>Semua 60 aktivitas, papan dan anak tanpa batas, foto dan rekaman suara sendiri. Gunakan foto benda yang anak kenal dan suara Anda untuk menyebut kegiatannya.</dd>
-        </div>
-      </dl>
-      <p class="muted">Sekali beli, tanpa langganan. Harga tampil dalam mata uang Anda di App Store, dan Keluarga Berbagi didukung.</p>
-    </div>
-  </section>
-</main>
-
-<div class="closing">
-  <section class="wrap split" aria-labelledby="private">
-    <div class="section-copy">
-      <h2 class="title" id="private">Data anak tersimpan di perangkat Anda.</h2>
-      <p>Anda dapat memakai Langkah tanpa membuat akun. Papan, nama anak, foto, dan rekaman suara disimpan di iPhone atau iPad Anda. Aplikasi tidak mengirimkannya kepada kami.</p>
-      <p>Anak mengikuti kegiatan tanpa iklan. Pengaturan dan pembelian tetap berada di Mode Orang Tua, dan Langkah tidak memakai analitik.</p>
-      <div class="actions">
-        <a class="button button-secondary" href="../privacy/id/index.html">Baca kebijakan privasi</a>
-      </div>
-    </div>
-    <img class="art" src="../assets/img/buddy_privacy_together.webp" alt="Dino dan Dina menunjukkan ponsel dengan gembok kuning tertutup di layarnya" width="640" height="640" loading="lazy">
-  </section>
-</div>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <p>Langkah: First Then dibuat oleh Alhazme.</p>
-    <ul>
-      <li><a href="../privacy/id/index.html">Kebijakan privasi</a></li>
-      <li><a href="../support/id/index.html">Bantuan</a></li>
-      <li><a href="../index.html" lang="en" hreflang="en">English</a></li>
-    </ul>
+  <div class="header-actions">
+    <a class="language-link" href="../index.html" lang="en" hreflang="en" aria-label="English">EN</a>
+    <a class="small-cta" href="#download">Dapatkan Langkah <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
   </div>
-</footer>
+</header>
+<main id="main">
+  <section class="intro" aria-labelledby="hero-title">
+    <div class="intro-hill hill-left" aria-hidden="true"></div><div class="intro-hill hill-right" aria-hidden="true"></div>
+    <div class="intro-copy">
+      <p class="eyebrow"><span></span>Selangkah, bersama.</p>
+      <h1 id="hero-title">Pertama ini.<br><em>Lalu itu.</em></h1>
+      <p class="intro-description">Pertama sikat gigi. Lalu bermain. Bantu anak melihat kegiatan sekarang dan berikutnya, bersama kartu bergambar dan dua teman kecil.</p>
+      <a class="primary-link" href="#how">Lihat cara kerja Langkah <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <p class="intro-note">Untuk iPhone &amp; iPad. Tanpa akun. Tanpa iklan.</p>
+    </div>
+    <div class="showcase" aria-label="Jelajahi Langkah">
+      <div class="floating-card float-one" aria-hidden="true"><span>Rutinitas kecil</span><img src="../assets/img/brush_teeth_dino.webp" alt="" width="640" height="640"><strong>Sikat gigi</strong></div>
+      <div class="floating-card float-two" aria-hidden="true"><span>Waktunya belajar</span><img src="../assets/img/reading_dina.webp" alt="" width="640" height="640"><strong>Baca bersama</strong></div>
+      <div class="showcase-phone" id="app-preview" role="region" aria-label="Screenshot aplikasi, dalam bahasa Inggris">
+        <div class="app-frame"><img src="../assets/img/screens/board.webp" alt="Papan First Then: sikat gigi dahulu, lalu bermain. Dino menyapa Sam sebelum mulai." width="720" height="1565" fetchpriority="high"></div>
+      </div>
+      <div class="floating-card float-three" aria-hidden="true"><span>Waktunya seru-seruan</span><img src="../assets/img/play_dino.webp" alt="" width="640" height="640"><strong>Ayo bermain</strong></div>
+      <div class="floating-card float-four" aria-hidden="true"><span>Selamat tidur</span><img src="../assets/img/sleep_dina.webp" alt="" width="640" height="640"><strong>Istirahat dulu</strong></div>
+      <div class="tiny-spark spark-one" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6.4 7 .9-5.1 4.9 1.3 7-6.2-3.4L5.8 21l1.3-6.8L2 9.3l7-.9Z"/></svg></div><div class="tiny-spark spark-two" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6.4 7 .9-5.1 4.9 1.3 7-6.2-3.4L5.8 21l1.3-6.8L2 9.3l7-.9Z"/></svg></div>
+    </div>
+    <div class="preview-options" role="group" aria-label="Pilih pratinjau aplikasi">
+      <button type="button" data-screen="board" data-alt="Papan First Then: sikat gigi dahulu, lalu bermain. Dino menyapa Sam sebelum mulai." aria-pressed="true" aria-controls="app-preview">Papanmu</button>
+      <button type="button" data-screen="first" data-alt="Pertama: sikat gigi, dengan timer visual." aria-pressed="false" aria-controls="app-preview">Pertama ini</button>
+      <button type="button" data-screen="then" data-alt="Lalu: bermain, setelah kegiatan pertama selesai." aria-pressed="false" aria-controls="app-preview">Lalu itu</button>
+      <button type="button" data-screen="celebrate" data-alt="Hebat: Dino merayakan papan yang selesai dengan satu bintang." aria-pressed="false" aria-controls="app-preview">Rayakan</button>
+    </div>
+    <p class="preview-caption" aria-live="polite">Intip aplikasinya. Pilih tampilan untuk melihat lebih dekat.</p>
+  </section>
 
+  <div class="reassurance"><div class="content-width">
+    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Bisa dipakai offline</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Bahasa Indonesia &amp; Inggris</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Data tetap di perangkatmu</span>
+  </div></div>
+
+  <section class="how-section content-width" id="how" aria-labelledby="how-title">
+    <div class="section-heading"><p class="eyebrow">Sedikit arahan, sepenuh perhatian</p>
+      <h2 id="how-title">Dua gambar. Langkah berikutnya jadi jelas.</h2>
+      <p>Rutinitas sehari-hari, kini terlihat jelas. Kamu atur urutannya. Anak menjalaninya satu per satu.</p></div>
+    <ol class="how-steps">
+      <li><span class="step-number">01</span><h3>Buat rencana kecil</h3>
+      <p>Pilih dua kartu bergambar: kegiatan pertama dan sesudahnya. Tambahkan timer bila perlu.</p></li>
+      <li><span class="step-number">02</span><h3>Satu kegiatan tiap kali</h3>
+      <p>Anak melihat satu kartu besar dan petunjuk kegiatan berikutnya. Ketuk Selesai saat sudah siap.</p></li>
+      <li><span class="step-number">03</span><h3>Rayakan pencapaian kecil</h3>
+      <p>Dua kegiatan selesai, satu bintang didapat. Dino dan Dina ikut merayakan momen itu.</p></li>
+    </ol>
+  </section>
+
+  <section class="features-section content-width" id="features" aria-labelledby="features-title">
+    <div class="section-heading"><p class="eyebrow">Dirancang dengan perhatian</p>
+      <h2 id="features-title">Aplikasi kecil untuk keseharian anak.</h2></div>
+    <article class="feature-row" id="cards" aria-labelledby="cards-title">
+      <div class="feature-visual library-visual"><div class="app-frame"><img src="../assets/img/screens/library.webp" alt="Koleksi kartu Langkah dengan ilustrasi kegiatan sehari-hari." width="720" height="1565" loading="lazy"></div><span class="visual-label">Gambar untuk setiap rencana kecil</span></div>
+      <div class="feature-copy"><p class="feature-index">01 / Kartu bergambar</p>
+      <h3 id="cards-title">Gambar yang akrab.<br>Hari lebih terarah.</h3>
+      <p>Dari memakai baju sampai beristirahat, Dino dan Dina membantu anak mengenali kegiatan sehari-hari. Ketuk kartu untuk mendengar namanya dalam Bahasa Indonesia atau Inggris.</p>
+      <p>Mulai dengan 10 kartu gratis. Langkah Pro membuka semua 60 kartu, ditambah foto dan rekaman suaramu sendiri.</p>
+      <a class="text-link" href="#activities">Lihat kartu aktivitasnya <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+    </article>
+    <article class="feature-row reverse" id="timer" aria-labelledby="timer-title">
+      <div class="feature-visual timer-scene"><div class="app-frame"><img src="../assets/img/screens/first.webp" alt="Kartu Pertama untuk sikat gigi dengan timer visual." width="720" height="1565" loading="lazy"></div><div class="timer-sticker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Sesuai ritme anak</span></div></div>
+      <div class="feature-copy"><p class="feature-index">02 / Timer yang tenang</p>
+      <h3 id="timer-title">Ada waktunya.<br>Tanpa terburu-buru.</h3>
+      <p>Cincin sederhana menunjukkan waktu yang tersisa. Saat waktu habis, kartu tetap menunggu. Anak mengetuk Selesai saat siap melanjutkan.</p>
+      <p>Tanpa kedipan atau perpindahan mendadak. Kalau hari ini tidak perlu timer, cukup biarkan nonaktif.</p>
+      <div class="feature-detail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Opsional untuk salah satu atau kedua kegiatan</div></div>
+    </article>
+    <article class="feature-row" id="stars" aria-labelledby="stars-title">
+      <div class="feature-visual celebration-scene"><img class="celebration-art" src="../assets/img/buddy_all_done_dino.webp" alt="Dino mengangkat bintang kuning dengan bangga." width="640" height="640" loading="lazy"><div class="earned-star"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6.4 7 .9-5.1 4.9 1.3 7-6.2-3.4L5.8 21l1.3-6.8L2 9.3l7-.9Z"/></svg><span>Satu papan. Satu bintang.</span></div></div>
+      <div class="feature-copy"><p class="feature-index">03 / Pencapaian kecil</p>
+      <h3 id="stars-title">Setiap langkah kecil<br>layak dirayakan.</h3>
+      <p>Selesaikan kedua kegiatan dan perayaan kecil pun menanti. Satu bintang untuk setiap papan yang selesai, bersama teman yang sudah akrab.</p>
+      <p>Bintang yang sudah anak dapatkan tetap tersimpan, termasuk pada hari ketika papan belum selesai.</p>
+      <div class="feature-detail"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6.4 7 .9-5.1 4.9 1.3 7-6.2-3.4L5.8 21l1.3-6.8L2 9.3l7-.9Z"/></svg>Pencapaian tetap tersimpan, sesuai ritme anak</div></div>
+    </article>
+    <article class="feature-row reverse" id="modes" aria-labelledby="modes-title">
+      <div class="feature-visual parent-scene"><img class="parent-art" src="../assets/img/parent_mode_setup.webp" alt="Orang tua menyiapkan rutinitas bersama di tablet." width="640" height="640" loading="lazy"><div class="mode-note">Kamu siapkan. Anak jalankan.</div></div>
+      <div class="feature-copy"><p class="feature-index">04 / Untuk kamu dan anak</p>
+      <h3 id="modes-title">Arahan darimu.<br>Dunia kecil mereka.</h3>
+      <p>Di Mode Orang Tua, pilih kartu, atur timer, dan beri nama papan. Di Mode Anak, tangan kecil mendapat gambar besar dan satu tindakan yang jelas.</p>
+      <p>Pengaturan dan pembelian dilindungi pertanyaan untuk orang dewasa. Anak bisa fokus pada kegiatan di depannya.</p>
+      <a class="text-link" href="../support/id/index.html">Panduan untuk memulai <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+    </article>
+  </section>
+
+  <section class="activity-section" id="activities" aria-labelledby="activities-title">
+    <div class="section-heading content-width"><p class="eyebrow">Dari pagi sampai malam</p>
+      <h2 id="activities-title">Gambar kecil dari dunia mereka.</h2>
+      <p>Sepuluh kegiatan sehari-hari untuk memulai, semuanya gratis.</p></div>
+    <div class="activity-gallery" tabindex="0" role="region" aria-label="Sepuluh kartu aktivitas gratis, geser ke samping"><ul>
+      <li><img src="../assets/img/get_dressed_dina.webp" alt="" width="640" height="640" loading="lazy"><span>Pakai baju</span></li>
+      <li><img src="../assets/img/put_on_shoes_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Pakai sepatu</span></li>
+      <li><img src="../assets/img/toilet_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Toilet</span></li>
+      <li><img src="../assets/img/bath_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Mandi</span></li>
+      <li><img src="../assets/img/brush_teeth_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Sikat gigi</span></li>
+      <li><img src="../assets/img/eat_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Makan</span></li>
+      <li><img src="../assets/img/play_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Bermain</span></li>
+      <li><img src="../assets/img/tablet_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Tablet</span></li>
+      <li><img src="../assets/img/sleep_dina.webp" alt="" width="640" height="640" loading="lazy"><span>Tidur</span></li>
+      <li><img src="../assets/img/car_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Mobil</span></li>
+    </ul></div>
+    <p class="gallery-hint">Geser untuk melihat semuanya <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></p>
+  </section>
+
+  <section class="buddies-section content-width" id="buddies" aria-labelledby="buddies-title">
+    <div class="buddies-copy"><p class="eyebrow">Teman di setiap langkah</p>
+      <h2 id="buddies-title">Kenalan dengan<br>Dino &amp; Dina.</h2>
+      <p>Kostum dinosaurus hijau. Satu lagi merah muda. Dua wajah akrab untuk menemani membaca, bermain, dan merayakan, dari kartu pertama sampai bintang terakhir.</p>
+      <p>Pilih teman yang membuat anak merasa nyaman. Mereka akan selalu ada, satu langkah tiap kali.</p>
+      <span class="buddy-signoff">Selangkah, bersama.</span></div>
+    <div class="buddies-visual"><img class="dino-art" src="../assets/img/splash_play_dino.webp" alt="Dino dengan kostum dinosaurus hijau, bermain bola." width="640" height="640" loading="lazy"><img class="dina-art" src="../assets/img/splash_reading_dina.webp" alt="Dina dengan kostum dinosaurus merah muda, membaca buku." width="640" height="640" loading="lazy"><span class="buddy-name name-dino">Dino</span><span class="buddy-name name-dina">Dina</span></div>
+  </section>
+
+  <section class="privacy-section content-width" id="private" aria-labelledby="privacy-title">
+    <div class="privacy-art"><img src="../assets/img/buddy_privacy_together.webp" alt="Dino dan Dina menjaga ponsel dengan gembok tertutup." width="640" height="640" loading="lazy"></div>
+    <div class="privacy-copy"><p class="eyebrow">Dunia mereka tetap milikmu</p>
+      <h2 id="privacy-title">Langkah kecil.<br>Privasi tetap terjaga.</h2>
+      <p>Tanpa membuat akun. Tanpa gangguan iklan. Papan, nama, foto, dan rekaman suara tersimpan di iPhone atau iPad kamu. Kami tidak menerimanya, dan Langkah tidak memakai analitik.</p>
+      <a class="text-link" href="../privacy/id/index.html">Baca kebijakan privasi <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+  </section>
+
+  <section class="download-section" id="download" aria-labelledby="download-title"><div class="content-width download-inner">
+    <div class="download-copy"><p class="eyebrow">Langkah kecil berikutnya</p>
+      <h2 id="download-title">Rencana kecil.<br>Siap jalani hari.</h2>
+      <p>Mulai gratis dengan 10 aktivitas, satu papan, dan satu anak. Buat rutinitas kecil pertama, lalu ubah sesuai kebutuhan harimu.</p>
+      <!-- TODO(OPS-004): replace disabled badges with verified store listing links. -->
+      <div class="download-badges" aria-label="Ketersediaan aplikasi">
+      <button type="button" disabled aria-label="Download on the App Store, segera hadir"><img src="../assets/img/app-store-en.svg" alt="Download on the App Store" width="144" height="48"></button>
+      <button type="button" disabled aria-label="Get it on Google Play, segera hadir"><img src="../assets/img/play-store-en.png" alt="Get it on Google Play" width="646" height="250"></button>
+    </div><p class="availability-note">Segera hadir. Tautan unduh belum tersedia.</p>
+      <div class="pro-note"><strong>Langkah Pro</strong><p>Semua 60 aktivitas, papan dan anak tanpa batas, foto dan suara sendiri. Sekali beli, tanpa langganan. Mendukung Keluarga Berbagi. Harga tampil dalam mata uangmu di App Store.</p></div>
+    </div>
+    <div class="download-art"><img src="../assets/img/buddy_unlock_together.webp" alt="Dino dan Dina membuka peti berisi kartu aktivitas." width="640" height="640" loading="lazy"></div>
+  </div></section>
+</main>
+<footer class="landing-footer content-width">
+  <div class="footer-top"><a class="brand" href="index.html"><img src="../assets/img/app-icon.webp" alt="" width="40" height="40">langkah<span class="brand-dot" aria-hidden="true">.</span></a><p>Selangkah, bersama.</p><nav aria-label="Navigasi bawah"><a href="../privacy/id/index.html">Privasi</a><a href="../support/id/index.html">Bantuan</a><a href="../index.html" lang="en" hreflang="en">English</a></nav></div>
+  <div class="footer-bottom"><p>Dibuat dengan perhatian oleh Alhazme.</p>
+      <span>© 2026 Langkah: First Then</span></div>
+</footer>
 </body>
 </html>
