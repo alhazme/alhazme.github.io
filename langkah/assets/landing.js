@@ -18,3 +18,28 @@ previewButtons.forEach((button) => {
     };
   });
 });
+
+const activityGallery = document.querySelector(".activity-gallery");
+const activityTrack = activityGallery.querySelector(".activity-track");
+const galleryMotion = document.querySelector(".gallery-motion");
+const repeatedActivities = activityTrack.querySelector("ul").cloneNode(true);
+repeatedActivities.setAttribute("aria-hidden", "true");
+repeatedActivities.querySelectorAll("img").forEach((image) => {
+  image.loading = "eager";
+});
+activityTrack.append(repeatedActivities);
+activityGallery.classList.add("is-animated", "is-offscreen");
+galleryMotion.hidden = false;
+
+new IntersectionObserver(([entry]) => {
+  activityGallery.classList.toggle("is-offscreen", !entry.isIntersecting);
+}).observe(activityGallery);
+
+document.addEventListener("visibilitychange", () => {
+  activityGallery.classList.toggle("is-hidden", document.hidden);
+});
+
+galleryMotion.addEventListener("click", () => {
+  const paused = activityGallery.classList.toggle("is-paused");
+  galleryMotion.textContent = paused ? galleryMotion.dataset.resume : galleryMotion.dataset.pause;
+});
