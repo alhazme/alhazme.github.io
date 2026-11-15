@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-15T09:07:13.889439+00:00",
+  "title": "Design System: Langkah site",
+  "extensions": {
+    "colorMeta": {
+      "sage-dark": {
+        "role": "primary",
+        "displayName": "Sage Dark",
+        "canonical": "#447267",
+        "tonalRamp": [
+          "oklch(15% 0.054 177)",
+          "oklch(26% 0.054 177)",
+          "oklch(38% 0.054 177)",
+          "oklch(49% 0.054 177)",
+          "oklch(61% 0.054 177)",
+          "oklch(72% 0.054 177)",
+          "oklch(84% 0.054 177)",
+          "oklch(95% 0.054 177)"
+        ]
+      },
+      "sage": {
+        "role": "tertiary",
+        "displayName": "Sage",
+        "canonical": "#8fb8a8",
+        "tonalRamp": [
+          "oklch(15% 0.050 169)",
+          "oklch(26% 0.050 169)",
+          "oklch(38% 0.050 169)",
+          "oklch(49% 0.050 169)",
+          "oklch(61% 0.050 169)",
+          "oklch(72% 0.050 169)",
+          "oklch(84% 0.050 169)",
+          "oklch(95% 0.050 169)"
+        ]
+      },
+      "sage-tint": {
+        "role": "tertiary",
+        "displayName": "Sage Tint",
+        "canonical": "#e5efea",
+        "tonalRamp": [
+          "oklch(15% 0.013 165)",
+          "oklch(26% 0.013 165)",
+          "oklch(38% 0.013 165)",
+          "oklch(49% 0.013 165)",
+          "oklch(61% 0.013 165)",
+          "oklch(72% 0.013 165)",
+          "oklch(84% 0.013 165)",
+          "oklch(95% 0.013 165)"
+        ]
+      },
+      "first-tint": {
+        "role": "secondary",
+        "displayName": "FIRST Tint",
+        "canonical": "#e7ecf6",
+        "tonalRamp": [
+          "oklch(15% 0.015 264)",
+          "oklch(26% 0.015 264)",
+          "oklch(38% 0.015 264)",
+          "oklch(49% 0.015 264)",
+          "oklch(61% 0.015 264)",
+          "oklch(72% 0.015 264)",
+          "oklch(84% 0.015 264)",
+          "oklch(95% 0.015 264)"
+        ]
+      },
+      "first-ink": {
+        "role": "secondary",
+        "displayName": "FIRST Ink",
+        "canonical": "#4c6392",
+        "tonalRamp": [
+          "oklch(15% 0.080 264)",
+          "oklch(26% 0.080 264)",
+          "oklch(38% 0.080 264)",
+          "oklch(49% 0.080 264)",
+          "oklch(61% 0.080 264)",
+          "oklch(72% 0.080 264)",
+          "oklch(84% 0.080 264)",
+          "oklch(95% 0.080 264)"
+        ]
+      },
+      "then-tint": {
+        "role": "secondary",
+        "displayName": "THEN Tint",
+        "canonical": "#fbeadb",
+        "tonalRamp": [
+          "oklch(15% 0.027 64)",
+          "oklch(26% 0.027 64)",
+          "oklch(38% 0.027 64)",
+          "oklch(49% 0.027 64)",
+          "oklch(61% 0.027 64)",
+          "oklch(72% 0.027 64)",
+          "oklch(84% 0.027 64)",
+          "oklch(95% 0.027 64)"
+        ]
+      },
+      "then-ink": {
+        "role": "secondary",
+        "displayName": "THEN Ink",
+        "canonical": "#955c2d",
+        "tonalRamp": [
+          "oklch(15% 0.097 58)",
+          "oklch(26% 0.097 58)",
+          "oklch(38% 0.097 58)",
+          "oklch(49% 0.097 58)",
+          "oklch(61% 0.097 58)",
+          "oklch(72% 0.097 58)",
+          "oklch(84% 0.097 58)",
+          "oklch(95% 0.097 58)"
+        ]
+      },
+      "star": {
+        "role": "tertiary",
+        "displayName": "Star",
+        "canonical": "#efc24f",
+        "tonalRamp": [
+          "oklch(15% 0.140 87)",
+          "oklch(26% 0.140 87)",
+          "oklch(38% 0.140 87)",
+          "oklch(49% 0.140 87)",
+          "oklch(61% 0.140 87)",
+          "oklch(72% 0.140 87)",
+          "oklch(84% 0.140 87)",
+          "oklch(95% 0.140 87)"
+        ]
+      },
+      "star-line": {
+        "role": "tertiary",
+        "displayName": "Star Line",
+        "canonical": "#b9861c",
+        "tonalRamp": [
+          "oklch(15% 0.128 80)",
+          "oklch(26% 0.128 80)",
+          "oklch(38% 0.128 80)",
+          "oklch(49% 0.128 80)",
+          "oklch(61% 0.128 80)",
+          "oklch(72% 0.128 80)",
+          "oklch(84% 0.128 80)",
+          "oklch(95% 0.128 80)"
+        ]
+      },
+      "dino-tint": {
+        "role": "tertiary",
+        "displayName": "Dino Tint",
+        "canonical": "#e2f0e2",
+        "tonalRamp": [
+          "oklch(15% 0.024 145)",
+          "oklch(26% 0.024 145)",
+          "oklch(38% 0.024 145)",
+          "oklch(49% 0.024 145)",
+          "oklch(61% 0.024 145)",
+          "oklch(72% 0.024 145)",
+          "oklch(84% 0.024 145)",
+          "oklch(95% 0.024 145)"
+        ]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Background",
+        "canonical": "#faf8f4",
+        "tonalRamp": [
+          "oklch(15% 0.006 85)",
+          "oklch(26% 0.006 85)",
+          "oklch(38% 0.006 85)",
+          "oklch(49% 0.006 85)",
+          "oklch(61% 0.006 85)",
+          "oklch(72% 0.006 85)",
+          "oklch(84% 0.006 85)",
+          "oklch(95% 0.006 85)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#3f4542",
+        "tonalRamp": [
+          "oklch(15% 0.009 164)",
+          "oklch(26% 0.009 164)",
+          "oklch(38% 0.009 164)",
+          "oklch(49% 0.009 164)",
+          "oklch(61% 0.009 164)",
+          "oklch(72% 0.009 164)",
+          "oklch(84% 0.009 164)",
+          "oklch(95% 0.009 164)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Ink 2",
+        "canonical": "#626864",
+        "tonalRamp": [
+          "oklch(15% 0.010 157)",
+          "oklch(26% 0.010 157)",
+          "oklch(38% 0.010 157)",
+          "oklch(49% 0.010 157)",
+          "oklch(61% 0.010 157)",
+          "oklch(72% 0.010 157)",
+          "oklch(84% 0.010 157)",
+          "oklch(95% 0.010 157)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "canonical": "#e6e0d6",
+        "tonalRamp": [
+          "oklch(15% 0.015 81)",
+          "oklch(26% 0.015 81)",
+          "oklch(38% 0.015 81)",
+          "oklch(49% 0.015 81)",
+          "oklch(61% 0.015 81)",
+          "oklch(72% 0.015 81)",
+          "oklch(84% 0.015 81)",
+          "oklch(95% 0.015 81)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The landing page tagline only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings and page titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Sub-headings and card names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text, 62ch measure."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "FIRST and THEN stage labels only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "primary-link",
+        "value": "0 6px 15px #44726718",
+        "purpose": "Existing primary action elevation."
+      },
+      {
+        "name": "app-frame",
+        "value": "0 24px 40px -15px #324f4138, 0 4px 8px #324f411c",
+        "purpose": "Existing framed app screenshots."
+      },
+      {
+        "name": "floating-card",
+        "value": "0 14px 24px -10px #324f4133",
+        "purpose": "Existing overlapping illustrated hero cards."
+      }
+    ],
+    "motion": [
+      {
+        "name": "control-feedback",
+        "value": "150ms ease",
+        "purpose": "Existing link and button feedback."
+      },
+      {
+        "name": "activity-drift",
+        "value": "42s linear infinite",
+        "purpose": "User-requested free activity gallery loop; pausable, suspended offscreen and in hidden tabs, static under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow-phone",
+        "value": "359px"
+      },
+      {
+        "name": "single-column",
+        "value": "580px"
+      },
+      {
+        "name": "compact-navigation",
+        "value": "760px"
+      },
+      {
+        "name": "compact-spacing",
+        "value": "1000px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Link",
+      "kind": "button",
+      "description": "Current Langkah landing page primary link.",
+      "html": "<a class=\"ds-primary-link\" href=\"#how\">See how Langkah works</a>",
+      "css": ".ds-primary-link {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 16px;\n  min-height: 44px;\n  padding: 11px 20px;\n  border-radius: var(--radius-sm);\n  background: var(--sage-dark);\n  color: var(--surface);\n  font-size: 14px;\n  font-weight: 750;\n  text-decoration: none;\n  transition: background-color 150ms ease, transform 150ms ease;\n} .ds-primary-link:focus-visible { outline: 3px solid var(--sage-dark); outline-offset: 3px; }"
+    },
+    {
+      "name": "Availability Link",
+      "kind": "button",
+      "description": "Current Langkah landing page availability link.",
+      "html": "<a class=\"ds-small-cta\" href=\"#download\">Get Langkah</a>",
+      "css": ".ds-small-cta {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 16px;\n  min-height: 44px;\n  padding: 11px 20px;\n  border-radius: var(--radius-sm);\n  background: var(--sage-dark);\n  color: var(--surface);\n  font-size: 14px;\n  font-weight: 750;\n  text-decoration: none;\n  transition: background-color 150ms ease, transform 150ms ease;\n} .ds-small-cta:focus-visible { outline: 3px solid var(--sage-dark); outline-offset: 3px; }"
+    },
+    {
+      "name": "Activity Tile",
+      "kind": "card",
+      "description": "Current Langkah landing page activity tile.",
+      "html": "<div class=\"ds-activity-tile\">Brush teeth</div>",
+      "css": ".ds-activity-tile {\n  width: 148px;\n  padding: 9px 9px 16px;\n  border: 1px solid var(--line);\n  border-radius: 20px;\n  background: var(--surface);\n  text-align: center;\n  font-size: 13px;\n  font-weight: 800;\n} .ds-activity-tile:focus-visible { outline: 3px solid var(--sage-dark); outline-offset: 3px; }"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "description": "Current Langkah landing page navigation link.",
+      "html": "<a class=\"ds-navigation-link\" href=\"#how\">How it works</a>",
+      "css": ".ds-navigation-link {\n  display: inline-flex;\n  align-items: center;\n  min-height: 44px;\n  color: var(--ink);\n  font-weight: 700;\n  font-size: 14px;\n  text-decoration: none;\n} .ds-navigation-link:focus-visible { outline: 3px solid var(--sage-dark); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "overview": "The layout takes its direction from https://kindlo.me/: a centered introduction, a phone framed by illustrated cards, and alternating product stories. Langkah keeps its own identity, product content, bilingual pages and local assets."
+  }
+}

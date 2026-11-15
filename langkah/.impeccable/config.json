@@ -1,0 +1,92 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-color",
+        "value": "#365c53",
+        "createdAt": "2026-11-15T06:54:44.145Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#d3e2d5",
+        "createdAt": "2026-11-15T06:54:44.190Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#dce7d9",
+        "createdAt": "2026-11-15T06:54:44.235Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#555c55",
+        "createdAt": "2026-11-15T06:54:44.279Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#29332e",
+        "createdAt": "2026-11-15T06:54:44.321Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#324f4138",
+        "createdAt": "2026-11-15T06:54:44.364Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#324f411c",
+        "createdAt": "2026-11-15T06:54:44.406Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#171d19",
+        "createdAt": "2026-11-15T06:54:44.448Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#324f4133",
+        "createdAt": "2026-11-15T06:54:44.492Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#f7f9fd",
+        "createdAt": "2026-11-15T06:54:44.536Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#f9f4ed",
+        "createdAt": "2026-11-15T06:54:44.580Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#f2e8d8",
+        "createdAt": "2026-11-15T06:54:44.624Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#be923f",
+        "createdAt": "2026-11-15T06:54:44.668Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#f3ecda",
+        "createdAt": "2026-11-15T06:54:44.711Z",
+        "reason": "Agent review: pre-existing landing palette for sage hills, phone frames, pastel artwork cards and muted shadows, described in DESIGN.md; the gallery change introduces no literal colors."
+      }
+    ]
+  }
+}
