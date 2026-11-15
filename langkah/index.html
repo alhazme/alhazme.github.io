@@ -58,7 +58,7 @@
     </div>
     <div class="showcase" aria-label="Explore Langkah">
       <div class="floating-card float-one" aria-hidden="true"><span>A little routine</span><img src="assets/img/brush_teeth_dino.webp" alt="" width="640" height="640"><strong>Brush teeth</strong></div>
-      <div class="floating-card float-two" aria-hidden="true"><span>Room to learn</span><img src="assets/img/reading_dina.webp" alt="" width="640" height="640"><strong>Read together</strong></div>
+      <div class="floating-card float-two" aria-hidden="true"><span>Ready for the day</span><img src="assets/img/get_dressed_dina.webp" alt="" width="640" height="640"><strong>Get dressed</strong></div>
       <div class="showcase-phone" id="app-preview" role="region" aria-label="App screenshots, in English">
         <div class="app-frame"><img src="assets/img/screens/board.webp" alt="A First Then board: brush teeth first, then play. Dino asks if Sam is ready." width="720" height="1565" fetchpriority="high"></div>
       </div>
@@ -134,7 +134,8 @@
     <div class="section-heading content-width"><p class="eyebrow">From morning to goodnight</p>
       <h2 id="activities-title">Little pictures of their world.</h2>
       <p>Ten everyday activities to start with, all included for free.</p></div>
-    <div class="activity-gallery" tabindex="0" role="region" aria-label="Ten free activity cards, scroll horizontally"><ul>
+    <button class="gallery-motion" type="button" aria-controls="activity-gallery" data-pause="Pause animation" data-resume="Resume animation" hidden>Pause animation</button>
+    <div class="activity-gallery" id="activity-gallery" tabindex="0" role="region" aria-label="Ten free activity cards"><div class="activity-track"><ul>
       <li><img src="assets/img/get_dressed_dina.webp" alt="" width="640" height="640" loading="lazy"><span>Get dressed</span></li>
       <li><img src="assets/img/put_on_shoes_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Put on shoes</span></li>
       <li><img src="assets/img/toilet_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Toilet</span></li>
@@ -145,8 +146,7 @@
       <li><img src="assets/img/tablet_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Tablet</span></li>
       <li><img src="assets/img/sleep_dina.webp" alt="" width="640" height="640" loading="lazy"><span>Sleep</span></li>
       <li><img src="assets/img/car_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Car</span></li>
-    </ul></div>
-    <p class="gallery-hint">Scroll to meet them all <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></p>
+    </ul></div></div>
   </section>
 
   <section class="buddies-section content-width" id="buddies" aria-labelledby="buddies-title">
