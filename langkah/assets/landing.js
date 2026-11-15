@@ -29,6 +29,7 @@ repeatedActivities.querySelectorAll("img").forEach((image) => {
 });
 activityTrack.append(repeatedActivities);
 activityGallery.classList.add("is-animated", "is-offscreen");
+activityGallery.classList.toggle("is-hidden", document.hidden);
 galleryMotion.hidden = false;
 
 new IntersectionObserver(([entry]) => {
