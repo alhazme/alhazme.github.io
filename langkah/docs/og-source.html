@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Langkah share image source</title>
+<link rel="stylesheet" href="../assets/styles.css">
+<style>
+html, body {
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+}
+body {
+  padding: 60px;
+  text-align: center;
+}
+.og-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 76px;
+}
+.og-brand img {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-md);
+}
+h1 {
+  color: var(--sage-dark);
+  font-size: 60px;
+  line-height: 76px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.og-tagline {
+  margin-top: 12px;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 52px;
+}
+.og-board {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 36px;
+}
+.og-step {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  width: 320px;
+  padding: 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-2xl);
+  background: var(--surface);
+}
+.og-stage {
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 32px;
+  letter-spacing: 0.06em;
+}
+.og-step img {
+  width: 284px;
+  height: 216px;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+}
+.og-first .og-stage { color: var(--first-ink); }
+.og-first img { background: var(--first-tint); }
+.og-then .og-stage { color: var(--then-ink); }
+.og-then img { background: var(--then-tint); }
+.og-step strong {
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 30px;
+}
+.og-arrow {
+  width: 64px;
+  height: 64px;
+  color: var(--sage-dark);
+}
+</style>
+</head>
+<body>
+<!-- Render at 1200x630 with device scale 1 after local fonts and artwork load.
+     Uses the site's Nunito, tokens and approved splash artwork. The arrow is
+     the same Phosphor arrow used between the landing page's splash cards. -->
+<div class="og-brand">
+  <img src="../assets/img/app-icon.webp" alt="" width="72" height="72">
+  <h1>Langkah: First Then</h1>
+</div>
+<p class="og-tagline">First this. Then that.</p>
+<div class="og-board">
+  <div class="og-step og-first">
+    <span class="og-stage">FIRST</span>
+    <img src="../assets/img/splash_reading_dina.webp" alt="Dina reading a book" width="640" height="640">
+    <strong>Learn</strong>
+  </div>
+  <svg class="og-arrow" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg>
+  <div class="og-step og-then">
+    <span class="og-stage">THEN</span>
+    <img src="../assets/img/splash_play_dino.webp" alt="Dino playing with a ball" width="640" height="640">
+    <strong>Play</strong>
+  </div>
+</div>
+</body>
+</html>

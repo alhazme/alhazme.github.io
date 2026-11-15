@@ -1,0 +1,458 @@
+[
+  {
+    "source": "/",
+    "label": "Langkah",
+    "href": "./",
+    "pass": true
+  },
+  {
+    "source": "/",
+    "label": "Privacy",
+    "href": "/privacy/index.html",
+    "pass": true
+  },
+  {
+    "source": "/",
+    "label": "Support",
+    "href": "/support/index.html",
+    "pass": true
+  },
+  {
+    "source": "/",
+    "label": "ID",
+    "href": "id/",
+    "pass": true
+  },
+  {
+    "source": "/",
+    "label": "Picture cards60 activities with Dino and Dina. Add your own photos and voice.",
+    "href": "#cards",
+    "pass": true
+  },
+  {
+    "source": "/",
+    "label": "A gentle timerEach step waits until your child is ready to tap Done.",
+    "href": "#timer",
+    "pass": true
+  },
+  {
+    "source": "/",
+    "label": "One board, one starCelebrate each finished board. Earned stars stay with your child.",
+    "href": "#stars",
+    "pass": true
+  },
+  {
+    "source": "/",
+    "label": "Made for little handsYou set up the board. Your child follows one step at a time.",
+    "href": "#modes",
+    "pass": true
+  },
+  {
+    "source": "/",
+    "label": "Read the privacy policy",
+    "href": "/privacy/index.html",
+    "pass": true
+  },
+  {
+    "source": "/",
+    "label": "Privacy policy",
+    "href": "/privacy/index.html",
+    "pass": true
+  },
+  {
+    "source": "/",
+    "label": "Support",
+    "href": "/support/index.html",
+    "pass": true
+  },
+  {
+    "source": "/",
+    "label": "Bahasa Indonesia",
+    "href": "id/",
+    "pass": true
+  },
+  {
+    "source": "/id/",
+    "label": "Langkah",
+    "href": "./",
+    "pass": true
+  },
+  {
+    "source": "/id/",
+    "label": "Privasi",
+    "href": "/privacy/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/id/",
+    "label": "Bantuan",
+    "href": "/support/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/id/",
+    "label": "EN",
+    "href": "../",
+    "pass": true
+  },
+  {
+    "source": "/id/",
+    "label": "Kartu bergambar60 aktivitas bersama Dino dan Dina. Tambahkan foto dan suara sendiri.",
+    "href": "#cards",
+    "pass": true
+  },
+  {
+    "source": "/id/",
+    "label": "Timer yang tenangSetiap langkah menunggu sampai anak siap mengetuk Selesai.",
+    "href": "#timer",
+    "pass": true
+  },
+  {
+    "source": "/id/",
+    "label": "Satu papan, satu bintangRayakan setiap papan yang selesai. Bintang yang didapat tetap tersimpan.",
+    "href": "#stars",
+    "pass": true
+  },
+  {
+    "source": "/id/",
+    "label": "Untuk tangan kecilAnda menyiapkan papan. Anak mengikuti satu langkah tiap kali.",
+    "href": "#modes",
+    "pass": true
+  },
+  {
+    "source": "/id/",
+    "label": "Baca kebijakan privasi",
+    "href": "/privacy/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/id/",
+    "label": "Kebijakan privasi",
+    "href": "/privacy/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/id/",
+    "label": "Bantuan",
+    "href": "/support/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/id/",
+    "label": "English",
+    "href": "../",
+    "pass": true
+  },
+  {
+    "source": "/privacy/index.html",
+    "label": "Langkah",
+    "href": "../",
+    "pass": true
+  },
+  {
+    "source": "/privacy/index.html",
+    "label": "Privacy",
+    "href": "/privacy/index.html",
+    "pass": true
+  },
+  {
+    "source": "/privacy/index.html",
+    "label": "Support",
+    "href": "/support/index.html",
+    "pass": true
+  },
+  {
+    "source": "/privacy/index.html",
+    "label": "ID",
+    "href": "/privacy/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/privacy/index.html",
+    "label": "Contact",
+    "href": "#contact",
+    "pass": true
+  },
+  {
+    "source": "/privacy/index.html",
+    "label": "support page",
+    "href": "/support/index.html",
+    "pass": true
+  },
+  {
+    "source": "/privacy/index.html",
+    "label": "Home",
+    "href": "../",
+    "pass": true
+  },
+  {
+    "source": "/privacy/index.html",
+    "label": "Support",
+    "href": "/support/index.html",
+    "pass": true
+  },
+  {
+    "source": "/privacy/index.html",
+    "label": "Bahasa Indonesia",
+    "href": "/privacy/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/privacy/id/index.html",
+    "label": "Langkah",
+    "href": "../../id/",
+    "pass": true
+  },
+  {
+    "source": "/privacy/id/index.html",
+    "label": "Privasi",
+    "href": "/privacy/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/privacy/id/index.html",
+    "label": "Bantuan",
+    "href": "/support/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/privacy/id/index.html",
+    "label": "EN",
+    "href": "/privacy/index.html",
+    "pass": true
+  },
+  {
+    "source": "/privacy/id/index.html",
+    "label": "Kontak",
+    "href": "#contact",
+    "pass": true
+  },
+  {
+    "source": "/privacy/id/index.html",
+    "label": "halaman bantuan",
+    "href": "/support/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/privacy/id/index.html",
+    "label": "Beranda",
+    "href": "../../id/",
+    "pass": true
+  },
+  {
+    "source": "/privacy/id/index.html",
+    "label": "Bantuan",
+    "href": "/support/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/privacy/id/index.html",
+    "label": "English",
+    "href": "/privacy/index.html",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "Langkah",
+    "href": "../",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "Privacy",
+    "href": "/privacy/index.html",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "Support",
+    "href": "/support/index.html",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "ID",
+    "href": "/support/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "Leaving Child Mode",
+    "href": "#leave",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "Keeping your child in the app",
+    "href": "#guided",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "When the timer ends",
+    "href": "#timer",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "Restoring your purchase",
+    "href": "#restore",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "Family Sharing and Ask to Buy",
+    "href": "#family",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "What is free and what is Pro",
+    "href": "#free",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "Changing the language",
+    "href": "#language",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "Moving to a new device",
+    "href": "#newdevice",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "Refunds",
+    "href": "#refund",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "privacy policy",
+    "href": "/privacy/index.html",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "Home",
+    "href": "../",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "Privacy policy",
+    "href": "/privacy/index.html",
+    "pass": true
+  },
+  {
+    "source": "/support/index.html",
+    "label": "Bahasa Indonesia",
+    "href": "/support/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Langkah",
+    "href": "../../id/",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Privasi",
+    "href": "/privacy/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Bantuan",
+    "href": "/support/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "EN",
+    "href": "/support/index.html",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Keluar dari Mode Anak",
+    "href": "#leave",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Menjaga anak tetap di aplikasi",
+    "href": "#guided",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Saat timer habis",
+    "href": "#timer",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Memulihkan pembelian",
+    "href": "#restore",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Keluarga Berbagi dan Minta untuk Membeli",
+    "href": "#family",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Yang gratis dan yang Pro",
+    "href": "#free",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Mengganti bahasa",
+    "href": "#language",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Pindah ke perangkat baru",
+    "href": "#newdevice",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Pengembalian dana",
+    "href": "#refund",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "kebijakan privasi",
+    "href": "/privacy/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Beranda",
+    "href": "../../id/",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "Kebijakan privasi",
+    "href": "/privacy/id/index.html",
+    "pass": true
+  },
+  {
+    "source": "/support/id/index.html",
+    "label": "English",
+    "href": "/support/index.html",
+    "pass": true
+  }
+]

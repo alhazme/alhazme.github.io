@@ -530,10 +530,6 @@
   width: 218px;
 }
 
-.library-visual .app-frame {
-  transform: rotate(-5deg);
-}
-
 .visual-label {
   position: relative;
   margin-top: 20px;
@@ -585,10 +581,6 @@
 
 .timer-scene {
   background: var(--first-tint);
-}
-
-.timer-scene .app-frame {
-  transform: rotate(5deg);
 }
 
 .timer-sticker {
@@ -671,7 +663,7 @@
 }
 
 .activity-gallery {
-  max-width: 1440px;
+  width: 100%;
   margin: 44px auto 0;
   padding-block: 12px 22px;
   overflow-x: auto;
@@ -694,7 +686,6 @@
   animation: activity-drift 42s linear infinite;
 }
 
-.activity-gallery.is-paused .activity-track,
 .activity-gallery.is-offscreen .activity-track,
 .activity-gallery.is-hidden .activity-track,
 .activity-gallery:focus-within .activity-track {
@@ -758,23 +749,6 @@
   background: var(--first-tint);
 }
 
-.gallery-motion {
-  display: block;
-  min-height: 44px;
-  margin: 16px auto 0;
-  padding: 8px 16px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  color: var(--sage-dark);
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.gallery-motion[hidden] {
-  display: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .activity-gallery.is-animated {
     overflow: visible;
@@ -792,8 +766,7 @@
     padding: 0 24px;
   }
 
-  .activity-gallery ul[aria-hidden],
-  .gallery-motion {
+  .activity-gallery ul[aria-hidden] {
     display: none;
   }
 }
@@ -868,7 +841,7 @@
 }
 
 .name-dino {
-  bottom: 16px;
+  bottom: -20px;
   left: 21%;
   transform: rotate(-9deg);
 }
@@ -953,6 +926,10 @@
   width: 145px;
   height: 48px;
   object-fit: contain;
+}
+
+.download-badges button[hidden] {
+  display: none;
 }
 
 .download-badges button:last-child {
