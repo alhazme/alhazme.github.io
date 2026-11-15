@@ -58,7 +58,7 @@
     </div>
     <div class="showcase" aria-label="Jelajahi Langkah">
       <div class="floating-card float-one" aria-hidden="true"><span>Rutinitas kecil</span><img src="../assets/img/brush_teeth_dino.webp" alt="" width="640" height="640"><strong>Sikat gigi</strong></div>
-      <div class="floating-card float-two" aria-hidden="true"><span>Waktunya belajar</span><img src="../assets/img/reading_dina.webp" alt="" width="640" height="640"><strong>Baca bersama</strong></div>
+      <div class="floating-card float-two" aria-hidden="true"><span>Siap memulai hari</span><img src="../assets/img/get_dressed_dina.webp" alt="" width="640" height="640"><strong>Pakai baju</strong></div>
       <div class="showcase-phone" id="app-preview" role="region" aria-label="Screenshot aplikasi, dalam bahasa Inggris">
         <div class="app-frame"><img src="../assets/img/screens/board.webp" alt="Papan First Then: sikat gigi dahulu, lalu bermain. Dino menyapa Sam sebelum mulai." width="720" height="1565" fetchpriority="high"></div>
       </div>
@@ -134,7 +134,8 @@
     <div class="section-heading content-width"><p class="eyebrow">Dari pagi sampai malam</p>
       <h2 id="activities-title">Gambar kecil dari dunia mereka.</h2>
       <p>Sepuluh kegiatan sehari-hari untuk memulai, semuanya gratis.</p></div>
-    <div class="activity-gallery" tabindex="0" role="region" aria-label="Sepuluh kartu aktivitas gratis, geser ke samping"><ul>
+    <button class="gallery-motion" type="button" aria-controls="activity-gallery" data-pause="Jeda animasi" data-resume="Lanjutkan animasi" hidden>Jeda animasi</button>
+    <div class="activity-gallery" id="activity-gallery" tabindex="0" role="region" aria-label="Sepuluh kartu aktivitas gratis"><div class="activity-track"><ul>
       <li><img src="../assets/img/get_dressed_dina.webp" alt="" width="640" height="640" loading="lazy"><span>Pakai baju</span></li>
       <li><img src="../assets/img/put_on_shoes_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Pakai sepatu</span></li>
       <li><img src="../assets/img/toilet_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Toilet</span></li>
@@ -145,8 +146,7 @@
       <li><img src="../assets/img/tablet_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Tablet</span></li>
       <li><img src="../assets/img/sleep_dina.webp" alt="" width="640" height="640" loading="lazy"><span>Tidur</span></li>
       <li><img src="../assets/img/car_dino.webp" alt="" width="640" height="640" loading="lazy"><span>Mobil</span></li>
-    </ul></div>
-    <p class="gallery-hint">Geser untuk melihat semuanya <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></p>
+    </ul></div></div>
   </section>
 
   <section class="buddies-section content-width" id="buddies" aria-labelledby="buddies-title">
