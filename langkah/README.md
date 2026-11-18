@@ -1,6 +1,6 @@
 # langkah-site
 
-Static site for Langkah: First Then (TICKET-OPS-002). Plain HTML and CSS, no build step,
+Static site for Langkah: First Then App (TICKET-OPS-002). Plain HTML and CSS, no build step,
 no analytics, no cookies. Every page link is relative and ends in `index.html`, so the site
 works at a GitHub Pages project path (`/<repo>/`), on a custom domain, and opened from disk.
 

@@ -44,7 +44,7 @@ def artwork(name, x, y, w, h):
                          round(y * scale + (h * scale - image.height) / 2)), image)
 
 
-name = "Langkah: First Then"
+name = "Langkah: First Then App"
 name_width = width(name, 60, 900, -1.2)
 brand_x = (1200 - 72 - 20 - name_width) / 2
 icon = Image.open(root / "assets/img/app-icon.webp").convert("RGB").resize((72 * scale, 72 * scale), Image.Resampling.LANCZOS)
