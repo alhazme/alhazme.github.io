@@ -1004,6 +1004,12 @@
       background: #f7f7f7;
     }
 
+    /* The Langkah demo video's backdrop, so the video does not sit in a visible box. Dark theme
+       only: the light-theme rule above is more specific and keeps #f7f7f7. */
+    .project-block--langkah {
+      background: #1d1d1f;
+    }
+
     [data-theme="light"] .testimonials-section {
       background: #f7f7f7;
     }
@@ -1822,7 +1828,7 @@
   <section id="projects" aria-labelledby="projects-title">
     <h2 class="sr-only" id="projects-title">Selected work</h2>
 
-    <section class="project-block project-block--grey" aria-labelledby="langkah-title">
+    <section class="project-block project-block--grey project-block--langkah" aria-labelledby="langkah-title">
       <div class="project-inner">
         <p class="project-category reveal">Education</p>
         <h3 class="project-title reveal" id="langkah-title" style="--d:1">Langkah: First Then</h3>
